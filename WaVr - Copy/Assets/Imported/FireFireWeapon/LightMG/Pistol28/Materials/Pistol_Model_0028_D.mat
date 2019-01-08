@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Pistol_Model_0028_D
+  m_Shader: {fileID: 4800000, guid: 722fdd6b84219cc489603060652374ab, type: 3}
+  m_ShaderKeywords: DISABLE_LIGHTING
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: b4e5d49e6ffe1ef41906cabe7bc33ca9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AmbientOcclusionDiffuse: 1
+    - _AmbientOcclusionSpec: 0
+    - _DstBlend: 0
+    - _Emissive: 1
+    - _Mode: 0
+    - _ShadowFalloff: 0.25
+    - _ShadowIntens: 0.5
+    - _SpecSmoothness: 0.5
+    - _SrcBlend: 1
+    - _StaticLightingScale: 1
+    - _Wrap: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.998073, g: 1, b: 0.8602941, a: 1}
