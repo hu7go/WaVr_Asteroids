@@ -17,10 +17,10 @@ public class TurretMenu : MonoBehaviour
             teleAnywherePos = gameObject.transform.Find("TeleAnywherePos");
     }
 
-    public bool CheckWhichSideCanSeePlayer ()
+    public bool CheckWhichSideCanSeePlayer (bool spawnTurret = true)
     {
         Vector3 offset = new Vector3(0, 0, 0);
-        if (Manager.Instance.teleportVersion == Manager.TeleVersion.arrowsSide)
+        if (Manager.Instance.teleportVersion == Manager.TeleVersion.arrowsSide && spawnTurret == false)
             offset = new Vector3(2, 0, 0);
 
         Vector3 startPoint = transform.position + offset;
@@ -64,11 +64,11 @@ public class TurretMenu : MonoBehaviour
             return null;
     }
 
-    public SideScript CheckSideScript ()
+    public SideScript CheckSideScript (bool spawningTurret)
     {
         tI.sideScript = GetComponent<SideScript>();
 
-        if (CheckWhichSideCanSeePlayer())
+        if (CheckWhichSideCanSeePlayer(spawningTurret))
             return tI.sideScript;
         else
             return null;

@@ -102,12 +102,22 @@ public class TeleportRotation : MonoBehaviour
                 int layerMask = 1 << 13;
                 if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), layerMask))
                 {
+                    if (tmpPrev.collider != null)
+                    {
+                        if (buildButtonTarget.collider != tmpPrev.collider)
+                        {
+                        tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
+                        }
+                    }
+
                     buildButtonTarget.collider.GetComponent<TurretSpawn>().ShowRangeIndicator();
                     tmpPrev = buildButtonTarget;
                 }
                 else
+                {
                     if (tmpPrev.collider != null)
                         tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
+                }
             }
 
             if (highlightCubes)
@@ -223,15 +233,8 @@ public class TeleportRotation : MonoBehaviour
             //
 
             //! If the manager is set to teleport you!
-            if (Manager.Instance.pointerState == Manager.PointerState.Teleport || Manager.Instance.pointerState == Manager.PointerState.Rotate)
+            if (Manager.Instance.pointerState == Manager.PointerState.Teleport)
             {
-                if (Manager.Instance.pointerState == Manager.PointerState.Rotate)
-                {
-                    //remove this return if you should be able to teleport while in rotate mode!
-                    return;
-                    Manager.Instance.pointerState = Manager.PointerState.Teleport;
-                }
-
                 //If the target hit has a highlightscript!
                 if (highlightCubes)
                     if (previousHit.collider.GetComponentInChildren<CubeHighlight>() != null)
@@ -269,6 +272,9 @@ public class TeleportRotation : MonoBehaviour
                     asteroidHit = hit;
 
                     ghostLineHit = asteroidHit;
+
+
+                    master.currentAsteroidStandingOn = hit.collider.GetComponent<SideScript>();
 
                     //If we use the new State version of the UI we shoudl teleport instantly uppon clicking on a asteroid!
                     if (Manager.Instance.useNewUI)

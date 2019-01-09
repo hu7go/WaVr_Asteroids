@@ -26,7 +26,7 @@ public class TurretMenuMaster : MonoBehaviour
             SideScript finalSide = new SideScript();
             for (int i = 0; i < sideMenus.Length; i++)
             {
-                SideScript tmp = sideMenus[i].CheckSideScript();
+                SideScript tmp = sideMenus[i].CheckSideScript(false);
                 tmpList.Add(tmp);
             }
 
@@ -53,7 +53,7 @@ public class TurretMenuMaster : MonoBehaviour
         {
             TurretInfo newTI = new TurretInfo();
             newTI.transform = sideMenus[i].StartCheck();
-            newTI.sideScript = sideMenus[i].CheckSideScript();
+            newTI.sideScript = sideMenus[i].CheckSideScript(true);
 
             menuPos.Add(sideMenus[i].StartCheck());
             turretSides.Add(newTI);
@@ -83,6 +83,7 @@ public class TurretMenuMaster : MonoBehaviour
                 tmpTurret.turretSpawnpos = turretSides[i].transform;
             else
                 tmpTurret.turretSpawnpos = turretSides[i].sideScript.GetComponentInParent<Transform>();
+
 
             tmpTurret.master = this;
 
@@ -114,7 +115,7 @@ public class TurretMenuMaster : MonoBehaviour
                     }
                     break;
                 case Sides.front:
-                    newButton.transform.position += Vector3.right * multiplier;
+                    newButton.transform.position += Vector3.forward * multiplier;
                     tmpTurret.rangeOffset = Vector3.right * tmp;
 
                     tmpTurret.index = 2;
@@ -125,7 +126,7 @@ public class TurretMenuMaster : MonoBehaviour
                     }
                     break;
                 case Sides.back:
-                    newButton.transform.position += Vector3.left * multiplier;
+                    newButton.transform.position += Vector3.back * multiplier;
                     tmpTurret.rangeOffset = Vector3.left * tmp;
 
                     tmpTurret.index = 3;
@@ -136,7 +137,7 @@ public class TurretMenuMaster : MonoBehaviour
                     }
                     break;
                 case Sides.left:
-                    newButton.transform.position += Vector3.forward * multiplier;
+                    newButton.transform.position += Vector3.left * multiplier;
                     tmpTurret.rangeOffset = Vector3.forward * tmp;
 
                     tmpTurret.index = 4;
@@ -147,7 +148,7 @@ public class TurretMenuMaster : MonoBehaviour
                     }
                     break;
                 case Sides.right:
-                    newButton.transform.position += Vector3.back * multiplier;
+                    newButton.transform.position += Vector3.right * multiplier;
                     tmpTurret.rangeOffset = Vector3.back * tmp;
 
                     tmpTurret.index = 5;

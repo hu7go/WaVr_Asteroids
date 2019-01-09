@@ -37,6 +37,8 @@ public class TeleportMaster : MonoBehaviour
 
     [HideInInspector] public SideScript currentHit;
     [HideInInspector] public SideScript previousHit;
+    //The asteroid you are currently standing on!
+    [HideInInspector] public SideScript currentAsteroidStandingOn;
 
     public VRTK_StraightPointerRenderer pointer;
     VRTK_InteractUse use;
@@ -48,11 +50,13 @@ public class TeleportMaster : MonoBehaviour
 
     private void Start()
     {
+        currentAsteroidStandingOn = firstAsteroid;
         currentHit = firstAsteroid;
 
         use = pointer.GetComponent<VRTK_InteractUse>();
         grab = pointer.GetComponent<VRTK_InteractGrab>();
         previousHit = firstAsteroid;
+
     }
 
     public void Update()
@@ -454,6 +458,6 @@ public class TeleportMaster : MonoBehaviour
 
     public void ChechWhichSideIsClosest ()
     {
-        currentHit.GetComponent<TurretMenuMaster>().CheckSides(this, false);
+        currentAsteroidStandingOn.GetComponent<TurretMenuMaster>().CheckSides(this, false);
     }
 }
