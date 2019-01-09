@@ -8,6 +8,9 @@ public class KnappenSnappen : MonoBehaviour {
     [SerializeField]
     private GameObject object1, object2, object3, object4;
 
+    [SerializeField]
+    private GameObject head;
+
     //if ghost object is closer to one of the "objects" then snap the UIthing to the closest "object" to ghost
     void Update () {
         float distance1 = Vector3.Distance(ghost.transform.position, object1.transform.position);
@@ -36,5 +39,6 @@ public class KnappenSnappen : MonoBehaviour {
         {
             transform.position = object4.transform.position;
         }
+        transform.LookAt(head.transform.position*-1);
     }
 }
