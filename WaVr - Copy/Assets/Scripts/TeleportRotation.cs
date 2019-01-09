@@ -255,7 +255,14 @@ public class TeleportRotation : MonoBehaviour
                     else
                         master.newRot = hit.collider.transform.rotation;
 
-                    master.newPos = hit.point;
+                    if (Manager.Instance.teleportVersion != Manager.TeleVersion.arrowsSide)
+                    {
+                        master.newPos = hit.point;
+                    }
+                    else
+                    {
+                        master.newPos = master.GetClosestSide();
+                    }
 
                     if (!Manager.Instance.useNewUI)
                         teleportorBuildUI.SetActive(true);

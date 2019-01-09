@@ -71,6 +71,35 @@ public class TurretMenuMaster : MonoBehaviour
             SpawnButtons();
     }
 
+    public Vector3 ReturnClosestSide (TeleportMaster master)
+    {
+        List<SideScript> tmpList = new List<SideScript>();
+        Vector3 finalSide = new Vector3();
+        for (int i = 0; i < sideMenus.Length; i++)
+        {
+            SideScript tmp = sideMenus[i].CheckSideScript(false);
+            tmpList.Add(tmp);
+        }
+
+        for (var i = tmpList.Count - 1; i > -1; i--)
+            if (tmpList[i] == null)
+                tmpList.RemoveAt(i);
+
+        float distance = 10;
+
+        foreach (SideScript side in tmpList)
+        {
+            Debug.DrawLine(side.transform.position, master.currentHit.transform.position, Color.cyan, 5f);
+            if (distance > Vector3.Distance(side.transform.position, master.currentHit.transform.position))
+            {
+                distance = Vector3.Distance(side.transform.position, master.currentHit.transform.position);
+                finalSide = side.transform.position;
+            }
+        }
+
+        return finalSide;
+    }
+
     void SpawnButtons ()
     {
         for (int i = 0; i < menuPos.Count; i++)

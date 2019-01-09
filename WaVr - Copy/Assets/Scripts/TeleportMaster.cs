@@ -56,7 +56,6 @@ public class TeleportMaster : MonoBehaviour
         use = pointer.GetComponent<VRTK_InteractUse>();
         grab = pointer.GetComponent<VRTK_InteractGrab>();
         previousHit = firstAsteroid;
-
     }
 
     public void Update()
@@ -459,5 +458,10 @@ public class TeleportMaster : MonoBehaviour
     public void ChechWhichSideIsClosest ()
     {
         currentAsteroidStandingOn.GetComponent<TurretMenuMaster>().CheckSides(this, false);
+    }
+
+    public Vector3 GetClosestSide ()
+    {
+        return currentHit.GetComponent<TurretMenuMaster>().ReturnClosestSide(this);
     }
 }
