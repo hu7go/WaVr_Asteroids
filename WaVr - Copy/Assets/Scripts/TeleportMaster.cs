@@ -4,6 +4,8 @@ using VRTK;
 
 public class TeleportMaster : MonoBehaviour
 {
+    public Transform headsetFollower;
+
     public UnityEvent StartTeleport;
     public UnityEvent CanTeleport;
 
@@ -397,9 +399,19 @@ public class TeleportMaster : MonoBehaviour
             for (int i = 0; i < arrowScripts.Length; i++)
                 arrowScripts[i].rotator = currentHit.rotator.gameObject;
 
-            player.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-            player.transform.localPosition = new Vector3(2, .7f, 0);
+            float angle = 0;
+
+            //angle = headsetFollower.parent.localRotation.eulerAngles.y;
+            //angle = angle / 90;
+            //angle = Mathf.Round(angle);
+            //angle = angle * 90;
+
+
+            player.transform.localRotation = Quaternion.Euler(0, angle, 0);
+
+
+            player.transform.localPosition = new Vector3(0, .7f, 0);
         }
 
         if (Manager.Instance.teleportVersion == Manager.TeleVersion.onTop)
@@ -460,7 +472,7 @@ public class TeleportMaster : MonoBehaviour
         currentAsteroidStandingOn.GetComponent<TurretMenuMaster>().CheckSides(this, false);
     }
 
-    public Vector3 GetClosestSide ()
+    public SideScript GetClosestSide ()
     {
         return currentHit.GetComponent<TurretMenuMaster>().ReturnClosestSide(this);
     }

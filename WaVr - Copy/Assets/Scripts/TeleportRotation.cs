@@ -261,7 +261,7 @@ public class TeleportRotation : MonoBehaviour
                     }
                     else
                     {
-                        master.newPos = master.GetClosestSide();
+                        master.newPos = hit.point;
                     }
 
                     if (!Manager.Instance.useNewUI)

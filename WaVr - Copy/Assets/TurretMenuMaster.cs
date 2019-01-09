@@ -71,10 +71,10 @@ public class TurretMenuMaster : MonoBehaviour
             SpawnButtons();
     }
 
-    public Vector3 ReturnClosestSide (TeleportMaster master)
+    public SideScript ReturnClosestSide (TeleportMaster master)
     {
         List<SideScript> tmpList = new List<SideScript>();
-        Vector3 finalSide = new Vector3();
+        SideScript finalSide = new SideScript();
         for (int i = 0; i < sideMenus.Length; i++)
         {
             SideScript tmp = sideMenus[i].CheckSideScript(false);
@@ -89,11 +89,11 @@ public class TurretMenuMaster : MonoBehaviour
 
         foreach (SideScript side in tmpList)
         {
-            Debug.DrawLine(side.transform.position, master.currentHit.transform.position, Color.cyan, 5f);
-            if (distance > Vector3.Distance(side.transform.position, master.currentHit.transform.position))
+            Debug.DrawLine(side.transform.position, master.previousHit.transform.position, Color.cyan, 5f);
+            if (distance > Vector3.Distance(side.transform.position, master.previousHit.transform.position))
             {
-                distance = Vector3.Distance(side.transform.position, master.currentHit.transform.position);
-                finalSide = side.transform.position;
+                distance = Vector3.Distance(side.transform.position, master.previousHit.transform.position);
+                finalSide = side;
             }
         }
 

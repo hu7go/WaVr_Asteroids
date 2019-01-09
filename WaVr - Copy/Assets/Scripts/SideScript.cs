@@ -7,6 +7,7 @@ public class SideScript : MonoBehaviour
     private Asteroid parent;
     [SerializeField] private Transform teleportPos;
     public Transform rotator;
+    public Vector3 sideOffset;
 
     private void Start()
     {
