@@ -223,8 +223,15 @@ public class TeleportRotation : MonoBehaviour
             //
 
             //! If the manager is set to teleport you!
-            if (Manager.Instance.pointerState == Manager.PointerState.Teleport)
+            if (Manager.Instance.pointerState == Manager.PointerState.Teleport || Manager.Instance.pointerState == Manager.PointerState.Rotate)
             {
+                if (Manager.Instance.pointerState == Manager.PointerState.Rotate)
+                {
+                    //remove this return if you should be able to teleport while in rotate mode!
+                    return;
+                    Manager.Instance.pointerState = Manager.PointerState.Teleport;
+                }
+
                 //If the target hit has a highlightscript!
                 if (highlightCubes)
                     if (previousHit.collider.GetComponentInChildren<CubeHighlight>() != null)
