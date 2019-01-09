@@ -9,6 +9,6 @@ public class StayingY : MonoBehaviour
 
 	void LateUpdate ()
     {
-        transform.localRotation = Quaternion.Euler(x, target.rotation.eulerAngles.y, z);
+        transform.localRotation = Quaternion.Euler(x, target.parent.transform.localRotation.eulerAngles.y, z);
 	}
 }
