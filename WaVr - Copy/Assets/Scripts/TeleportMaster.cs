@@ -399,19 +399,19 @@ public class TeleportMaster : MonoBehaviour
             for (int i = 0; i < arrowScripts.Length; i++)
                 arrowScripts[i].rotator = currentHit.rotator.gameObject;
 
+            player.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-            float angle = 0;
+            Vector3 tmpVector = GetClosestSide().sideOffset;
+            player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
 
-            //angle = headsetFollower.parent.localRotation.eulerAngles.y;
-            //angle = angle / 90;
-            //angle = Mathf.Round(angle);
-            //angle = angle * 90;
+            arrowsPos.localPosition = new Vector3(-tmpVector.x, -.75f, -tmpVector.z);
+            Vector3 playerPos = player.transform.localPosition + new Vector3(0, -1.45f, 0);
+            Vector3 direction = (playerPos - arrowsPos.localPosition).normalized;
+            Quaternion lookRot = Quaternion.LookRotation(direction, Vector3.up);
 
+            arrowsPos.localRotation = lookRot;
 
-            player.transform.localRotation = Quaternion.Euler(0, angle, 0);
-
-
-            player.transform.localPosition = new Vector3(0, .7f, 0);
+            arrowsPos.localRotation *= Quaternion.Euler(0, -90, 0);
         }
 
         if (Manager.Instance.teleportVersion == Manager.TeleVersion.onTop)

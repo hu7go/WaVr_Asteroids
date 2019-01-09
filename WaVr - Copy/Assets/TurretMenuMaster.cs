@@ -85,7 +85,7 @@ public class TurretMenuMaster : MonoBehaviour
             if (tmpList[i] == null)
                 tmpList.RemoveAt(i);
 
-        float distance = 10;
+        float distance = 1000;
 
         foreach (SideScript side in tmpList)
         {
