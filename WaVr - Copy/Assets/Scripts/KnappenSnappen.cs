@@ -4,8 +4,6 @@ using UnityEngine;
 public class KnappenSnappen : MonoBehaviour {
     [SerializeField]
     private GameObject ghost;
-    [SerializeField]
-    private GameObject UIthing;
 
     [SerializeField]
     private GameObject object1, object2, object3, object4;
@@ -21,22 +19,22 @@ public class KnappenSnappen : MonoBehaviour {
 
         if (nums.Min() == distance1)
         {
-            UIthing.transform.position = object1.transform.position;
+            transform.position = object1.transform.position;
         }
 
         else if (nums.Min() == distance2)
         {
-            UIthing.transform.position = object2.transform.position;
+            transform.position = object2.transform.position;
         }
 
         else if (nums.Min() == distance3)
         {
-            UIthing.transform.position = object3.transform.position;
+            transform.position = object3.transform.position;
         }
 
         else if (nums.Min() == distance4)
         {
-            UIthing.transform.position = object4.transform.position;
+            transform.position = object4.transform.position;
         }
     }
 }
