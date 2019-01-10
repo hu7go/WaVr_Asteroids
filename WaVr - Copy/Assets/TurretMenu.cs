@@ -37,8 +37,6 @@ public class TurretMenu : MonoBehaviour
         else
             pos = playerEyeNoPositionTracking;
 
-        Debug.DrawLine(startPoint, pos.position, Color.red, 10);
-
         if (Physics.Linecast(startPoint, pos.position, out hit))
         {
             if (hit.collider.tag == "Player")
@@ -64,9 +62,14 @@ public class TurretMenu : MonoBehaviour
             return null;
     }
 
-    public SideScript CheckSideScript (bool spawningTurret)
+    public SideScript CheckSideScript (bool spawningTurret, bool tmp = false)
     {
         tI.sideScript = GetComponent<SideScript>();
+
+        if (tmp)
+        {
+            return tI.sideScript;
+        }
 
         if (CheckWhichSideCanSeePlayer(spawningTurret))
             return tI.sideScript;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 using VRTK;
 
@@ -401,8 +402,12 @@ public class TeleportMaster : MonoBehaviour
 
             player.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-            Vector3 tmpVector = GetClosestSide().sideOffset;
-            player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+
+            //Vector3 tmpVector = GetClosestSide().sideOffset;
+            //player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+
+            Vector3 tmpVector = GetClosestSide().transform.localPosition * 3.636363f;
+            player.transform.localPosition = new Vector3(tmpVector.x, tmpVector.y + .7f, tmpVector.z);
 
             arrowsPos.localPosition = new Vector3(-tmpVector.x, -.75f, -tmpVector.z);
             Vector3 playerPos = player.transform.localPosition + new Vector3(0, -1.45f, 0);
@@ -467,6 +472,7 @@ public class TeleportMaster : MonoBehaviour
         player.transform.position += new Vector3(1, 0, 1);
     }
 
+    //This is for when we rotate to see which side of the asteroid we are standing on!
     public void ChechWhichSideIsClosest ()
     {
         currentAsteroidStandingOn.GetComponent<TurretMenuMaster>().CheckSides(this, false);
@@ -474,6 +480,55 @@ public class TeleportMaster : MonoBehaviour
 
     public SideScript GetClosestSide ()
     {
-        return currentHit.GetComponent<TurretMenuMaster>().ReturnClosestSide(this);
+        List<SideScript> closestSides = currentHit.GetComponent<TurretMenuMaster>().ReturnClosestSide(this);
+        SideScript newSide = new SideScript();
+
+        Debug.Log(closestSides[0].sides);
+        if (closestSides[0].sides == currentSide || TMP(closestSides[0].sides) == false)
+            newSide = closestSides[1];
+        else
+            newSide = closestSides[0];
+
+        return newSide;
+    }
+
+    public bool TMP (Sides newSide)
+    {
+        switch (newSide)
+        {
+            case Sides.up:
+                if (currentSide == Sides.down)
+                    return false;
+                else
+                    return true;
+            case Sides.down:
+                if (currentSide == Sides.up)
+                    return false;
+                else
+                    return true;
+            case Sides.front:
+                if (currentSide == Sides.back)
+                    return false;
+                else
+                    return true;
+            case Sides.back:
+                if (currentSide == Sides.front)
+                    return false;
+                else
+                    return true;
+            case Sides.left:
+                if (currentSide == Sides.right)
+                    return false;
+                else
+                    return true;
+            case Sides.right:
+                if (currentSide == Sides.left)
+                    return false;
+                else
+                    return true;
+            default:
+                break;
+        }
+        return true;
     }
 }

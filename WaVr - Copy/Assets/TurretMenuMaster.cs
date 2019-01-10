@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TurretMenuMaster : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class TurretMenuMaster : MonoBehaviour
             SideScript finalSide = new SideScript();
             for (int i = 0; i < sideMenus.Length; i++)
             {
-                SideScript tmp = sideMenus[i].CheckSideScript(false);
+                SideScript tmp = sideMenus[i].CheckSideScript(false, true);
                 tmpList.Add(tmp);
             }
 
@@ -38,6 +39,7 @@ public class TurretMenuMaster : MonoBehaviour
 
             foreach (SideScript side in tmpList)
             {
+                Debug.DrawLine(side.transform.position, master.arrowPositionCheck.position, Color.blue, 10f);
                 if (distance > Vector3.Distance(side.transform.position, master.arrowPositionCheck.position))
                 {
                     distance = Vector3.Distance(side.transform.position, master.arrowPositionCheck.position);
@@ -71,10 +73,10 @@ public class TurretMenuMaster : MonoBehaviour
             SpawnButtons();
     }
 
-    public SideScript ReturnClosestSide (TeleportMaster master)
+    //Returns a list of obj sorted by the distance to the player
+    public List<SideScript> ReturnClosestSide (TeleportMaster master)
     {
         List<SideScript> tmpList = new List<SideScript>();
-        SideScript finalSide = new SideScript();
         for (int i = 0; i < sideMenus.Length; i++)
         {
             SideScript tmp = sideMenus[i].CheckSideScript(false);
@@ -84,20 +86,18 @@ public class TurretMenuMaster : MonoBehaviour
         for (var i = tmpList.Count - 1; i > -1; i--)
             if (tmpList[i] == null)
                 tmpList.RemoveAt(i);
-
-        float distance = 1000;
-
-        foreach (SideScript side in tmpList)
+       
+        //This sorts the list by distance to the player!
+        tmpList.OrderBy(x => Vector3.Distance(master.previousHit.transform.position, x.transform.position)).ToList();
+        tmpList.Sort(delegate (SideScript a, SideScript b)
         {
-            Debug.DrawLine(side.transform.position, master.previousHit.transform.position, Color.cyan, 5f);
-            if (distance > Vector3.Distance(side.transform.position, master.previousHit.transform.position))
-            {
-                distance = Vector3.Distance(side.transform.position, master.previousHit.transform.position);
-                finalSide = side;
-            }
-        }
+            Debug.DrawLine(master.previousHit.transform.position, a.transform.position, Color.blue, 10f);
+            return Vector3.Distance(master.previousHit.transform.position, a.transform.position)
+            .CompareTo(Vector3.Distance(master.previousHit.transform.position, b.transform.position));
+        });
+        //
 
-        return finalSide;
+        return tmpList;
     }
 
     void SpawnButtons ()

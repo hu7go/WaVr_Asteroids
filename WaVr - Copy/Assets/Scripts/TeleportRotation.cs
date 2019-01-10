@@ -48,7 +48,7 @@ public class TeleportRotation : MonoBehaviour
         line = GetComponent<LineRenderer>();
         linePos = new Vector3[2];
 
-        Debug.DrawRay(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5,0,0));
+        //Debug.DrawRay(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5,0,0));
 
         if (Physics.Raycast(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5, 0, 0), out hit))
             prevAsteroidHit = hit;
