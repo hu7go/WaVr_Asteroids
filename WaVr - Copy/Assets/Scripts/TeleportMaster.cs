@@ -51,6 +51,8 @@ public class TeleportMaster : MonoBehaviour
     public float fadeTime = .5f;
     public SideScript firstAsteroid;
 
+    [Space(20), SerializeField] public int arrowIndex = 1;
+
     private void Start()
     {
         currentAsteroidStandingOn = firstAsteroid;
@@ -392,6 +394,7 @@ public class TeleportMaster : MonoBehaviour
         if (Manager.Instance.teleportVersion == Manager.TeleVersion.onTopSide || Manager.Instance.teleportVersion == Manager.TeleVersion.arrowsSide)
             player.transform.localPosition += new Vector3(2, 0, 0);
 
+        //
         if (Manager.Instance.teleportVersion == Manager.TeleVersion.arrowsSide)
         {
             player.transform.parent = currentHit.rotator;
@@ -408,6 +411,18 @@ public class TeleportMaster : MonoBehaviour
 
             Vector3 tmpVector = GetClosestSide().transform.localPosition * 3.636363f;
             player.transform.localPosition = new Vector3(tmpVector.x, tmpVector.y + .7f, tmpVector.z);
+            arrowPositionCheck.localPosition = new Vector3(-tmpVector.x, -tmpVector.y + .7f, -tmpVector.z);
+
+            //Calculate which side index the player currently has
+            if (tmpVector.x > 0)
+                arrowIndex = 1;
+            if (tmpVector.z < 0)
+                arrowIndex = 2;
+            if (tmpVector.x < 0)
+                arrowIndex = 3;
+            if (tmpVector.z > 0)
+                arrowIndex = 4;
+            //
 
             arrowsPos.localPosition = new Vector3(-tmpVector.x, -.75f, -tmpVector.z);
             Vector3 playerPos = player.transform.localPosition + new Vector3(0, -1.45f, 0);
@@ -418,7 +433,9 @@ public class TeleportMaster : MonoBehaviour
 
             arrowsPos.localRotation *= Quaternion.Euler(0, -90, 0);
         }
+        //
 
+        //
         if (Manager.Instance.teleportVersion == Manager.TeleVersion.onTop)
         {
             player.transform.localPosition -= new Vector3(0, .75f, 0);
@@ -482,6 +499,9 @@ public class TeleportMaster : MonoBehaviour
     {
         List<SideScript> closestSides = currentHit.GetComponent<TurretMenuMaster>().ReturnClosestSide(this);
         SideScript newSide = new SideScript();
+
+        foreach (SideScript side in closestSides)
+            Debug.Log(Vector3.Distance(side.transform.position, previousHit.transform.position));
 
         Debug.Log(closestSides[0].sides);
         if (closestSides[0].sides == currentSide || TMP(closestSides[0].sides) == false)

@@ -28,19 +28,83 @@ public class ChangeSide : MonoBehaviour
         {
                 //The direction im clicking!
             case direction.forward:
-                rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
+                switch (tpm.arrowIndex)
+                {
+                    case 1:
+                        rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
+                        break;
+                    case 2:
+                        rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
+                        break;
+                    case 3:
+                        rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
+                        break;
+                    case 4:
+                        rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
+                        break;
+                    default:
+                        break;
+                }
                 break;
                 //The direction im clicking!
             case direction.backward:
-                rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
+                switch (tpm.arrowIndex)
+                {
+                    case 1:
+                        rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
+                        break;
+                    case 2:
+                        rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
+                        break;
+                    case 3:
+                        rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
+                        break;
+                    case 4:
+                        rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
+                        break;
+                    default:
+                        break;
+                }
                 break;
                 //The direction im clicking!
             case direction.left:
-                rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
+                switch (tpm.arrowIndex)
+                {
+                    case 1:
+                        rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
+                        break;
+                    case 2:
+                        rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
+                        break;
+                    case 3:
+                        rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
+                        break;
+                    case 4:
+                        rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
+                        break;
+                    default:
+                        break;
+                }
                 break;
                 //The direction im clicking!
             case direction.right:
-                rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
+                switch (tpm.arrowIndex)
+                {
+                    case 1:
+                        rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
+                        break;
+                    case 2:
+                        rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
+                        break;
+                    case 3:
+                        rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
+                        break;
+                    case 4:
+                        rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
+                        break;
+                    default:
+                        break;
+                }
                 break;
             default:
                 break;

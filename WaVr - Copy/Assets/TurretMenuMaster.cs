@@ -79,19 +79,26 @@ public class TurretMenuMaster : MonoBehaviour
         List<SideScript> tmpList = new List<SideScript>();
         for (int i = 0; i < sideMenus.Length; i++)
         {
-            SideScript tmp = sideMenus[i].CheckSideScript(false);
-            tmpList.Add(tmp);
+            tmpList.Add(sideMenus[i].GetComponent<SideScript>());
+
+            //SideScript tmp = sideMenus[i].CheckSideScript(false);
+            //tmpList.Add(tmp);
         }
 
-        for (var i = tmpList.Count - 1; i > -1; i--)
-            if (tmpList[i] == null)
-                tmpList.RemoveAt(i);
-       
+        //for (var i = tmpList.Count - 1; i > -1; i--)
+        //    if (tmpList[i] == null)
+        //        tmpList.RemoveAt(i);
+
         //This sorts the list by distance to the player!
+
         tmpList.OrderBy(x => Vector3.Distance(master.previousHit.transform.position, x.transform.position)).ToList();
         tmpList.Sort(delegate (SideScript a, SideScript b)
         {
-            Debug.DrawLine(master.previousHit.transform.position, a.transform.position, Color.blue, 10f);
+            Debug.Log(master.previousHit.name + " : " +  tmpList.Count());
+
+            Debug.DrawLine(master.previousHit.transform.position, a.transform.position, Color.blue, 8f);
+            Debug.DrawLine(master.previousHit.transform.position, b.transform.position, Color.red, 12f);
+
             return Vector3.Distance(master.previousHit.transform.position, a.transform.position)
             .CompareTo(Vector3.Distance(master.previousHit.transform.position, b.transform.position));
         });
