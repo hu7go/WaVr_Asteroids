@@ -6,39 +6,57 @@ public class KnappenSnappen : MonoBehaviour {
     private GameObject ghost;
 
     [SerializeField]
+    private GameObject rotationGhost;
+
+    [SerializeField]
+    private GameObject sdkManager;
+
+    [SerializeField]
     private GameObject object1, object2, object3, object4;
+
+    public bool snap;
 
     //if ghost object is closer to one of the "objects" then snap the UIthing to the closest "object" to ghost
     void Update () {
-        float distance1 = Vector3.Distance(ghost.transform.position, object1.transform.position);
-        float distance2 = Vector3.Distance(ghost.transform.position, object2.transform.position);
-        float distance3 = Vector3.Distance(ghost.transform.position, object3.transform.position);
-        float distance4 = Vector3.Distance(ghost.transform.position, object4.transform.position);
 
-        float[] nums = { distance1, distance2, distance3, distance4 };
-
-        if (nums.Min() == distance1)
+        if (!snap)
         {
-            transform.position = object1.transform.position;
-            transform.localRotation = Quaternion.Euler(52.295f, 0, 0);
+            transform.parent = rotationGhost.transform;
+            transform.position = new Vector3(0, 0, 0.45f);
         }
-
-        else if (nums.Min() == distance2)
+        if (snap)
         {
-            transform.position = object2.transform.position;
-            transform.localRotation = Quaternion.Euler(52.295f, 90, 0);
-        }
+            transform.parent = sdkManager.transform;
+            float distance1 = Vector3.Distance(ghost.transform.position, object1.transform.position);
+            float distance2 = Vector3.Distance(ghost.transform.position, object2.transform.position);
+            float distance3 = Vector3.Distance(ghost.transform.position, object3.transform.position);
+            float distance4 = Vector3.Distance(ghost.transform.position, object4.transform.position);
 
-        else if (nums.Min() == distance3)
-        {
-            transform.position = object3.transform.position;
-            transform.localRotation = Quaternion.Euler(52.295f, 180, 0);
-        }
+            float[] nums = { distance1, distance2, distance3, distance4 };
 
-        else if (nums.Min() == distance4)
-        {
-            transform.position = object4.transform.position;
-            transform.localRotation = Quaternion.Euler(52.295f, 270, 0);
+            if (nums.Min() == distance1)
+            {
+                transform.position = object1.transform.position;
+                transform.localRotation = Quaternion.Euler(52.295f, 0, 0);
+            }
+
+            else if (nums.Min() == distance2)
+            {
+                transform.position = object2.transform.position;
+                transform.localRotation = Quaternion.Euler(52.295f, 90, 0);
+            }
+
+            else if (nums.Min() == distance3)
+            {
+                transform.position = object3.transform.position;
+                transform.localRotation = Quaternion.Euler(52.295f, 180, 0);
+            }
+
+            else if (nums.Min() == distance4)
+            {
+                transform.position = object4.transform.position;
+                transform.localRotation = Quaternion.Euler(52.295f, 270, 0);
+            }
         }
     }
 }
