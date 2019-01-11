@@ -87,7 +87,7 @@ public class TurretMenuMaster : MonoBehaviour
         tmpList.OrderBy(x => Vector3.Distance(master.previousHit.transform.position, x.transform.position)).ToList();
         tmpList.Sort(delegate (SideScript a, SideScript b)
         {
-            Debug.Log(master.previousHit.name + " : " +  tmpList.Count());
+            //Debug.Log(master.previousHit.name + " : " +  tmpList.Count());
 
             Debug.DrawLine(master.previousHit.transform.position, a.transform.position, Color.blue, 8f);
             Debug.DrawLine(master.previousHit.transform.position, b.transform.position, Color.red, 12f);
