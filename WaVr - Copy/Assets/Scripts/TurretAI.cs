@@ -48,7 +48,7 @@ public class TurretAI : MonoBehaviour {
             for (int i = 0; i < enemiesList.Count; i++)
             {
                 //distance.Add(Vector3.Distance(tMuzzle.transform.position, enemiesList[i].transform.position),(transform.position.x));
-                distanceID[distance ,enemiesList[].transform.position.x];
+                //distanceID[distance ,enemiesList[].transform.position.x];
                 //distanceID[][].Min(0);
             }
             // distance.Min()
