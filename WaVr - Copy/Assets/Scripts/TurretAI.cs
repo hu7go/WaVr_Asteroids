@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretAI : MonoBehaviour {
@@ -8,10 +6,9 @@ public class TurretAI : MonoBehaviour {
     private GameObject tMuzzle,bullet,enemyParent;
 
     private Ray range;
-    private List<float[][]> distance;
-    private float[][] distanceID;
     private List<GameObject> enemiesList;
 
+    private int closest = 0;
     public Turret turretInfo;
 	void Start () {
         InvokeRepeating("Calculate", 3, turretInfo.attackSpeed);
@@ -35,7 +32,7 @@ public class TurretAI : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && !enemiesList.Contains(other.gameObject))
         {
             enemiesList.Add(other.gameObject);
         }
@@ -43,21 +40,23 @@ public class TurretAI : MonoBehaviour {
 
     private void Calculate()
     {
-        if (enemiesList != null)
+        if (enemiesList == null || enemiesList.Count == 0)
+            return;
+        if (enemiesList.Count > 1)
         {
             for (int i = 0; i < enemiesList.Count; i++)
             {
-                //distance.Add(Vector3.Distance(tMuzzle.transform.position, enemiesList[i].transform.position),(transform.position.x));
-                //distanceID[distance ,enemiesList[].transform.position.x];
-                //distanceID[][].Min(0);
+                if(Vector3.Distance(enemiesList[i].transform.position, tMuzzle.transform.position) < Vector3.Distance(enemiesList[closest].transform.position, tMuzzle.transform.position))
+                    closest = i;
+                print(enemiesList[closest] + "is closest");
             }
-            // distance.Min()
         }
+        Shoot();
     }
 
     private void Shoot()
     {
-
-
+        tMuzzle.transform.LookAt(enemiesList[closest].transform.position);
+        //Do shooting things
     }
 }
