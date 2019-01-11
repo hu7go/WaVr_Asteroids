@@ -80,17 +80,10 @@ public class TurretMenuMaster : MonoBehaviour
         for (int i = 0; i < sideMenus.Length; i++)
         {
             tmpList.Add(sideMenus[i].GetComponent<SideScript>());
-
-            //SideScript tmp = sideMenus[i].CheckSideScript(false);
-            //tmpList.Add(tmp);
         }
 
-        //for (var i = tmpList.Count - 1; i > -1; i--)
-        //    if (tmpList[i] == null)
-        //        tmpList.RemoveAt(i);
 
         //This sorts the list by distance to the player!
-
         tmpList.OrderBy(x => Vector3.Distance(master.previousHit.transform.position, x.transform.position)).ToList();
         tmpList.Sort(delegate (SideScript a, SideScript b)
         {
