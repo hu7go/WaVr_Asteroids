@@ -8,12 +8,13 @@ public class TurretAI : MonoBehaviour {
     private GameObject tMuzzle,bullet,enemyParent;
 
     private Ray range;
-    private List<float> distance;
+    private List<float[][]> distance;
+    private float[][] distanceID;
     private List<GameObject> enemiesList;
 
     public Turret turretInfo;
 	void Start () {
-        InvokeRepeating("Shoot", 3, turretInfo.attackSpeed);
+        InvokeRepeating("Calculate", 3, turretInfo.attackSpeed);
 	}
 
     private void OnTriggerEnter(Collider other)
@@ -40,15 +41,23 @@ public class TurretAI : MonoBehaviour {
         }
     }
 
-    private void Shoot()
+    private void Calculate()
     {
         if (enemiesList != null)
+        {
             for (int i = 0; i < enemiesList.Count; i++)
             {
-                float[] nums = new float[];
-
-                distance.Add(Vector3.Distance(tMuzzle.transform.position, enemiesList[i].transform.position));
+                //distance.Add(Vector3.Distance(tMuzzle.transform.position, enemiesList[i].transform.position),(transform.position.x));
+                distanceID[distance ,enemiesList[].transform.position.x];
+                //distanceID[][].Min(0);
             }
-        // distance.Min()
+            // distance.Min()
+        }
+    }
+
+    private void Shoot()
+    {
+
+
     }
 }
