@@ -61,6 +61,14 @@ public class TeleportMaster : MonoBehaviour
         use = pointer.GetComponent<VRTK_InteractUse>();
         grab = pointer.GetComponent<VRTK_InteractGrab>();
         previousHit = firstAsteroid;
+
+        //! WARNING, this clears ALL log messages on start, comment out the line below if you need to debug something on start.
+        Invoke("ClearConsole", .01f);
+    }
+
+    public void ClearConsole ()
+    {
+        Utils.ClearLogConsole();
     }
 
     public void Update()
@@ -411,29 +419,29 @@ public class TeleportMaster : MonoBehaviour
 
             Vector3 tmpVector = GetClosestSide().transform.localPosition * 3.636363f;
 
-            switch (currentSide)
-            {
-                case Sides.up:
-                    player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                    break;
-                case Sides.down:
-                    player.transform.localPosition = new Vector3(tmpVector.x /** -1*/, .7f, tmpVector.z * -1);
-                    break;
-                case Sides.front:
-                    player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                    break;
-                case Sides.back:
-                    player.transform.localPosition = new Vector3(tmpVector.x * -1, .7f, tmpVector.z);
-                    break;
-                case Sides.left:
-                    player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
-                    break;
-                case Sides.right:
-                    player.transform.localPosition = new Vector3(tmpVector.y * - 1, .7f, tmpVector.z);
-                    break;
-                default:
-                    break;
-            }
+            //switch (currentSide)
+            //{
+            //    case Sides.up:
+            //        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+            //        break;
+            //    case Sides.down:
+            //        player.transform.localPosition = new Vector3(tmpVector.x /** -1*/, .7f, tmpVector.z * -1);
+            //        break;
+            //    case Sides.front:
+            //        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+            //        break;
+            //    case Sides.back:
+            //        player.transform.localPosition = new Vector3(tmpVector.x * -1, .7f, tmpVector.z);
+            //        break;
+            //    case Sides.left:
+            //        player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
+            //        break;
+            //    case Sides.right:
+            //        player.transform.localPosition = new Vector3(tmpVector.y * - 1, .7f, tmpVector.z);
+            //        break;
+            //    default:
+            //        break;
+            //}
 
             arrowPositionCheck.localPosition = new Vector3(-tmpVector.x, -tmpVector.y + .7f, -tmpVector.z);
 
@@ -451,6 +459,136 @@ public class TeleportMaster : MonoBehaviour
             if (tmpVector.y > 0)
                 arrowIndex = 3;
             //
+
+            switch (arrowIndex)
+            {
+                case 1:
+                    switch (currentSide)
+                    {
+                        case Sides.up:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(1);
+                            break;
+                        case Sides.down:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(2);
+                            break;
+                        case Sides.front:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(3);
+                            break;
+                        case Sides.back:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(4);
+                            break;
+                        case Sides.left:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(5);
+                            break;
+                        case Sides.right:
+                        player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
+                            Debug.Log(6);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (currentSide)
+                    {
+                        case Sides.up:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(7);
+                            break;
+                        case Sides.down:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(8);
+                            break;
+                        case Sides.front:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(9);
+                            break;
+                        case Sides.back:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(10);
+                            break;
+                        case Sides.left:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(11);
+                            break;
+                        case Sides.right:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(12);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case 3:
+                    switch (currentSide)
+                    {
+                        case Sides.up:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(13);
+                            break;
+                        case Sides.down:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(14);
+                            break;
+                        case Sides.front:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(15);
+                            break;
+                        case Sides.back:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(16);
+                            break;
+                        case Sides.left:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(17);
+                            break;
+                        case Sides.right:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(18);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case 4:
+                    switch (currentSide)
+                    {
+                        case Sides.up:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(19);
+                            break;
+                        case Sides.down:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(20);
+                            break;
+                        case Sides.front:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(21);
+                            break;
+                        case Sides.back:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(22);
+                            break;
+                        case Sides.left:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(23);
+                            break;
+                        case Sides.right:
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                            Debug.Log(24);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
 
             arrowsPos.localPosition = new Vector3(-tmpVector.x, -.75f, -tmpVector.z);
             Vector3 playerPos = player.transform.localPosition + new Vector3(0, -1.45f, 0);
