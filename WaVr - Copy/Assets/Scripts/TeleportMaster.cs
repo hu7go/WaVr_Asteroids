@@ -410,7 +410,31 @@ public class TeleportMaster : MonoBehaviour
             //player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
 
             Vector3 tmpVector = GetClosestSide().transform.localPosition * 3.636363f;
-            player.transform.localPosition = new Vector3(tmpVector.x, tmpVector.y + .7f, tmpVector.z);
+
+            switch (currentSide)
+            {
+                case Sides.up:
+                    player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                    break;
+                case Sides.down:
+                    player.transform.localPosition = new Vector3(tmpVector.x /** -1*/, .7f, tmpVector.z * -1);
+                    break;
+                case Sides.front:
+                    player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
+                    break;
+                case Sides.back:
+                    player.transform.localPosition = new Vector3(tmpVector.x * -1, .7f, tmpVector.z);
+                    break;
+                case Sides.left:
+                    player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
+                    break;
+                case Sides.right:
+                    player.transform.localPosition = new Vector3(tmpVector.y * - 1, .7f, tmpVector.z);
+                    break;
+                default:
+                    break;
+            }
+
             arrowPositionCheck.localPosition = new Vector3(-tmpVector.x, -tmpVector.y + .7f, -tmpVector.z);
 
             //Calculate which side index the player currently has
@@ -434,7 +458,6 @@ public class TeleportMaster : MonoBehaviour
             Quaternion lookRot = Quaternion.LookRotation(direction, Vector3.up);
 
             arrowsPos.localRotation = lookRot;
-
             arrowsPos.localRotation *= Quaternion.Euler(0, -90, 0);
         }
         //
@@ -507,7 +530,7 @@ public class TeleportMaster : MonoBehaviour
         //foreach (SideScript side in closestSides)
             //Debug.Log(Vector3.Distance(side.transform.position, previousHit.transform.position));
 
-        //Debug.Log(closestSides[0].sides);
+        Debug.Log(closestSides[0].sides);
         if (closestSides[0].sides == currentSide || TMP(closestSides[0].sides) == false)
             newSide = closestSides[1];
         else
