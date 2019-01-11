@@ -56,7 +56,9 @@ public class TurretAI : MonoBehaviour {
 
     private void Shoot()
     {
-        tMuzzle.transform.LookAt(enemiesList[closest].transform.position);
+        //tMuzzle.transform.LookAt(enemiesList[closest].transform.position);
+        Quaternion newRot = Quaternion.LookRotation(enemiesList[closest].transform.position);
+        tMuzzle.transform.rotation = Quaternion.Slerp(tMuzzle.transform.rotation, newRot, turretInfo.rotationSpeed);
         //Do shooting things
     }
 }
