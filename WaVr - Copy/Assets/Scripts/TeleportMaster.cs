@@ -445,20 +445,92 @@ public class TeleportMaster : MonoBehaviour
 
             arrowPositionCheck.localPosition = new Vector3(-tmpVector.x, -tmpVector.y + .7f, -tmpVector.z);
 
-            //Calculate which side index the player currently has
-            if (tmpVector.x > 0)
-                arrowIndex = 1;
-            if (tmpVector.z < 0)
-                arrowIndex = 2;
-            if (tmpVector.x < 0)
-                arrowIndex = 3;
-            if (tmpVector.z > 0)
-                arrowIndex = 4;
-            if (tmpVector.y < 0)
-                arrowIndex = 1;
-            if (tmpVector.y > 0)
-                arrowIndex = 3;
+            //Calculate which side/arrow index the player currently has
+            switch (currentSide)
+            {
+                case Sides.up:
+                    if (tmpVector.x > 0 && tmpVector.y == 0 && tmpVector.z == 0)
+                        arrowIndex = 1;
+                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z < 0)
+                        arrowIndex = 2;
+                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
+                        arrowIndex = 3;
+                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z > 0)
+                        arrowIndex = 4;
+                    break;
+                case Sides.down:
+                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
+                        arrowIndex = 1;
+                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z < 0)
+                        arrowIndex = 2;
+                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
+                        arrowIndex = 3;
+                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z > 0)
+                        arrowIndex = 4;
+                    break;
+                case Sides.front:
+                    //Not sure if this one will work!
+                    if (tmpVector.x > 0 && tmpVector.y == 0 && tmpVector.z == 0)
+                        arrowIndex = 1;
+                    if (tmpVector.x == 0 && tmpVector.y > 0 && tmpVector.z == 0)
+                        arrowIndex = 2;
+                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
+                        arrowIndex = 3;
+                    if (tmpVector.x == 0 && tmpVector.y < 0 && tmpVector.z == 0)
+                        arrowIndex = 4;
+                    //
+                    break;
+                case Sides.back:
+                    //Not sure if this one will work
+                    if (tmpVector.x > 0 && tmpVector.y == 0 && tmpVector.z == 0)
+                        arrowIndex = 1;
+                    if (tmpVector.x == 0 && tmpVector.y < 0 && tmpVector.z == 0)
+                        arrowIndex = 2;
+                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
+                        arrowIndex = 3;
+                    if (tmpVector.x == 0 && tmpVector.y > 0 && tmpVector.z == 0)
+                        arrowIndex = 4;
+                    //
+                    break;
+                case Sides.left:
+                    if (tmpVector.x == 0 && tmpVector.y > 0 && tmpVector.z == 0)
+                        arrowIndex = 1;
+                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z < 0)
+                        arrowIndex = 2;
+                    if (tmpVector.x == 0 && tmpVector.y < 0 && tmpVector.z == 0)
+                        arrowIndex = 3;
+                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z > 0)
+                        arrowIndex = 4;
+                    break;
+                case Sides.right:
+                    if (tmpVector.x == 0 && tmpVector.y < 0 && tmpVector.z == 0)
+                        arrowIndex = 1;
+                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z < 0)
+                        arrowIndex = 2;
+                    if (tmpVector.x == 0 && tmpVector.y > 0 && tmpVector.z == 0)
+                        arrowIndex = 3;
+                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z > 0)
+                        arrowIndex = 4;
+                    break;
+                default:
+                    break;
+            }
+
+            //if (tmpVector.x > 0)
+            //    arrowIndex = 1;
+            //if (tmpVector.z < 0)
+            //    arrowIndex = 2;
+            //if (tmpVector.x < 0)
+            //    arrowIndex = 3;
+            //if (tmpVector.z > 0)
+            //    arrowIndex = 4;
+            //if (tmpVector.y < 0)
+            //    arrowIndex = 4;
+            //if (tmpVector.y > 0)
+            //    arrowIndex = 3;
             //
+
+            Utils.ClearLogConsole();
 
             switch (arrowIndex)
             {
@@ -467,27 +539,27 @@ public class TeleportMaster : MonoBehaviour
                     {
                         case Sides.up:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(1);
+                            Debug.Log(1 + " Done");
                             break;
                         case Sides.down:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(2);
+                        player.transform.localPosition = new Vector3(tmpVector.x * -1, .7f, tmpVector.z);
+                            Debug.Log(2 + " Done");
                             break;
                         case Sides.front:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(3);
+                            Debug.Log(3 + " Done");
                             break;
                         case Sides.back:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(4);
+                            Debug.Log(4 + " Done");
                             break;
                         case Sides.left:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(5);
+                        player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
+                            Debug.Log(5 + " Done");
                             break;
                         case Sides.right:
-                        player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
-                            Debug.Log(6);
+                        player.transform.localPosition = new Vector3(tmpVector.y * - 1, .7f, tmpVector.z);
+                            Debug.Log(6 + " Done");
                             break;
                         default:
                             break;
@@ -498,27 +570,27 @@ public class TeleportMaster : MonoBehaviour
                     {
                         case Sides.up:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(7);
+                            Debug.Log(7 + " Done");
                             break;
                         case Sides.down:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(8);
+                        player.transform.localPosition = new Vector3(tmpVector.x * - 1, .7f, tmpVector.z);
+                            Debug.Log(8 + " Done");
                             break;
                         case Sides.front:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(9);
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y * - 1);
+                            Debug.Log(9 + " Done");
                             break;
                         case Sides.back:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(10);
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y);
+                            Debug.Log(10 + " Done");
                             break;
                         case Sides.left:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(11);
+                            Debug.Log(11 + " Done");
                             break;
                         case Sides.right:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(12);
+                            Debug.Log(12 + " Done");
                             break;
                         default:
                             break;
@@ -529,27 +601,27 @@ public class TeleportMaster : MonoBehaviour
                     {
                         case Sides.up:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(13);
+                            Debug.Log(13 + " Done");
                             break;
                         case Sides.down:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(14);
+                        player.transform.localPosition = new Vector3(tmpVector.x * - 1, .7f, tmpVector.z);
+                            Debug.Log(14 + " Done");
                             break;
                         case Sides.front:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(15);
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y * - 1);
+                            Debug.Log(15 + " Done");
                             break;
                         case Sides.back:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(16);
+                            Debug.Log(16 + " Done");
                             break;
                         case Sides.left:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(17);
+                        player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
+                            Debug.Log(17 + " Done");
                             break;
                         case Sides.right:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(18);
+                        player.transform.localPosition = new Vector3(tmpVector.y * - 1, .7f, tmpVector.z);
+                            Debug.Log(18 + " Done");
                             break;
                         default:
                             break;
@@ -560,27 +632,27 @@ public class TeleportMaster : MonoBehaviour
                     {
                         case Sides.up:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(19);
+                            Debug.Log(19 + " Done");
                             break;
                         case Sides.down:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(20);
+                            Debug.Log(20 + " Done");
                             break;
                         case Sides.front:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(21);
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y * - 1);
+                            Debug.Log(21 + " Done");
                             break;
                         case Sides.back:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(22);
+                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y);
+                            Debug.Log(22 + " Done");
                             break;
                         case Sides.left:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(23);
+                            Debug.Log(23 + " Done");
                             break;
                         case Sides.right:
                         player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(24);
+                            Debug.Log(24 + " Done");
                             break;
                         default:
                             break;
@@ -589,6 +661,10 @@ public class TeleportMaster : MonoBehaviour
                 default:
                     break;
             }
+
+            Debug.Log("Arrow index: " + arrowIndex);
+            Debug.Log("<color=red>X: " + tmpVector.x + "</color>,      " + "<color=green>Y: " + tmpVector.y + "</color>,       " + "<color=blue>Z: " + tmpVector.z + "</color>");
+            Debug.DrawLine(currentHit.transform.position, previousHit.transform.position, Color.cyan, 1000f);
 
             arrowsPos.localPosition = new Vector3(-tmpVector.x, -.75f, -tmpVector.z);
             Vector3 playerPos = player.transform.localPosition + new Vector3(0, -1.45f, 0);

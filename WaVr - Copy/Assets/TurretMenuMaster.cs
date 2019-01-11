@@ -89,8 +89,8 @@ public class TurretMenuMaster : MonoBehaviour
         {
             //Debug.Log(master.previousHit.name + " : " +  tmpList.Count());
 
-            Debug.DrawLine(master.previousHit.transform.position, a.transform.position, Color.blue, 8f);
-            Debug.DrawLine(master.previousHit.transform.position, b.transform.position, Color.red, 12f);
+            //Debug.DrawLine(master.previousHit.transform.position, a.transform.position, Color.blue, 8f);
+            //Debug.DrawLine(master.previousHit.transform.position, b.transform.position, Color.red, 12f);
 
             return Vector3.Distance(master.previousHit.transform.position, a.transform.position)
             .CompareTo(Vector3.Distance(master.previousHit.transform.position, b.transform.position));
