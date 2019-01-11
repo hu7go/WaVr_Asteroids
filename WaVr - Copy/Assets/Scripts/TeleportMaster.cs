@@ -422,6 +422,10 @@ public class TeleportMaster : MonoBehaviour
                 arrowIndex = 3;
             if (tmpVector.z > 0)
                 arrowIndex = 4;
+            if (tmpVector.y < 0)
+                arrowIndex = 1;
+            if (tmpVector.y > 0)
+                arrowIndex = 3;
             //
 
             arrowsPos.localPosition = new Vector3(-tmpVector.x, -.75f, -tmpVector.z);
@@ -500,10 +504,10 @@ public class TeleportMaster : MonoBehaviour
         List<SideScript> closestSides = currentHit.GetComponent<TurretMenuMaster>().ReturnClosestSide(this);
         SideScript newSide = new SideScript();
 
-        foreach (SideScript side in closestSides)
-            Debug.Log(Vector3.Distance(side.transform.position, previousHit.transform.position));
+        //foreach (SideScript side in closestSides)
+            //Debug.Log(Vector3.Distance(side.transform.position, previousHit.transform.position));
 
-        Debug.Log(closestSides[0].sides);
+        //Debug.Log(closestSides[0].sides);
         if (closestSides[0].sides == currentSide || TMP(closestSides[0].sides) == false)
             newSide = closestSides[1];
         else
