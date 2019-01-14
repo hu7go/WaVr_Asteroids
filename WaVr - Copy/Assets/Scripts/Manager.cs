@@ -44,19 +44,20 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject player;
 
     [Space(20)]
-    [SerializeField] private Text timerText;
     [SerializeField] private bool startTimer = false;
+    [SerializeField] private bool gameStarted = false;
+    [SerializeField] private bool towerDefence;
+    [SerializeField] private bool startGameWithEnemies = false;
     [SerializeField] private float myTimer = 0f;
     [SerializeField] private int playerHealth = 10;
-    [SerializeField] private bool gameStarted = false;
     [SerializeField] private GameObject startUI;
     [SerializeField] private GameObject endUI;
-    [SerializeField] private Text overText;
     [SerializeField] private GameObject objective;
-    [SerializeField] private Text pizzaCounter;
-    [SerializeField] private bool startGameWithEnemies = false;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject confrimDenyButtons;
+    [SerializeField] private Text timerText;
+    [SerializeField] private Text overText;
+    [SerializeField] private Text pizzaCounter;
 
     [Space(20)]
     [Tooltip("This bool decides if the new UI is used this current scene")]
@@ -111,6 +112,7 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        //add a enemyspawnlocation look at objective
         SetPointerState(PointerState.Teleport);
 
         if (startGameWithEnemies)
@@ -152,6 +154,7 @@ public class Manager : MonoBehaviour
 
     public void StartSpawningEnemies()
     {
+        if(!towerDefence)
         for (int i = 0; i < maxNumberOfEnemies; i++)
         {
             if (totalNumberOfEnemiesSpawned >= totalNumberOfEnemiesAllowedToSpawn)
@@ -159,6 +162,30 @@ public class Manager : MonoBehaviour
 
             Spawn();
         }
+        if (towerDefence)
+        {
+            //Instantiate Objective
+            StartCoroutine(EnemySpawner());
+        }
+    }
+    private IEnumerator EnemySpawner()
+    {
+        yield return new WaitForSeconds(15);
+        //Instantiate EnemySpawner
+        StartCoroutine(SpawnEnemyObjective());
+    }
+
+    private IEnumerator SpawnEnemyObjective()
+    {
+        yield return new WaitForSeconds(2);
+        //instantiate Enemy
+        //Keep them coming maybe 5 in a row with delay in betweeen
+        //complete wave go back to "StartSpawningEnemies" for wave 2;
+        //else new function with end result of time + kills?
+    }
+    public void GameOver()
+    {
+        //if objective dies
     }
 
     public void RemoveEnemie()
