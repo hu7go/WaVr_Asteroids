@@ -61,7 +61,7 @@ public class EnemyAI : MonoBehaviour
         else
             return false;
     }
-
+            //Shoot at objective
     public void StartShooting ()
     {
         if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, out hit, range, layerMask))
@@ -74,7 +74,7 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(gun.RetunrFireRate(), gun.RetunrFireRate() + 2));
         StartShooting();
     }
-
+    //from turrets
     public void TakeDamage (int damage)
     {
         health -= damage;

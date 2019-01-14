@@ -112,6 +112,7 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        //add a enemyspawnlocation look at objective
         SetPointerState(PointerState.Teleport);
 
         if (startGameWithEnemies)

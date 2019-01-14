@@ -6,7 +6,7 @@ public class ObjectiveHP : MonoBehaviour {
 
     private void CheckHP()
     {
-        //make a ´color gradient change or something to display health, maybe a hp bar when hovering over the Objective with rayvast.
+        //make a color gradient change or something to display health, maybe a hp bar when hovering over the Objective with rayvast.
         if(Hp <= 0)
         {
             Manager.Instance.GameOver();

@@ -2813,7 +2813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &248873169
@@ -32053,19 +32053,20 @@ MonoBehaviour:
   teleportVersion: 2
   turretHover: 1
   player: {fileID: 627375558}
-  timerText: {fileID: 1564587480}
   startTimer: 0
+  gameStarted: 0
+  towerDefence: 0
+  startGameWithEnemies: 0
   myTimer: 0
   playerHealth: 10
-  gameStarted: 0
   startUI: {fileID: 1963608503}
   endUI: {fileID: 2056120666}
-  overText: {fileID: 836148850}
   objective: {fileID: 1624812495}
-  pizzaCounter: {fileID: 1809437993}
-  startGameWithEnemies: 0
   startButton: {fileID: 1710787614}
   confrimDenyButtons: {fileID: 227425604}
+  timerText: {fileID: 1564587480}
+  overText: {fileID: 836148850}
+  pizzaCounter: {fileID: 1809437993}
   useNewUI: 1
   newUIButtons: {fileID: 1551485662}
   pointerState: 0
