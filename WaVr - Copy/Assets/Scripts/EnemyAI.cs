@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    GameObject player;
+    GameObject objective;
     Transform lookingPos;
     SpaceGun gun;
     UnparentSound ups;
@@ -15,46 +15,46 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private int health = 5;
 
-    [HideInInspector] public bool tooClose = false;
+    [HideInInspector] public bool tooClose = false;  //These two aren't used atm and needs to be used so that they aren't inside each other
     [HideInInspector] public Transform pushAwayFrom;
 
     private float range = 25;
 
     private void Start()
     {
-        player = GameObject.Find("VRTK_SDKMANAGER");
-        lookingPos = GameObject.Find("HeadSetFollower").transform;
+        objective = GameObject.Find("VRTK_SDKMANAGER");  //needs to change to actual objective
+        lookingPos = GameObject.Find("HeadSetFollower").transform;   //is this one needed?
         gun = GetComponent<SpaceGun>();
-        StartShooting();
+        StartShooting();  // Start shooting when in range of objective?
         ups = GetComponentInChildren<UnparentSound>();
     }
 
     public void FixedUpdate()
     {
-        MoveMent();
+        Movement();
         Debug.DrawRay(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, Color.red);
     }
 
-    void MoveMent ()
+    void Movement ()  // add some swaying?
     {
-        transform.LookAt(lookingPos);
+        transform.LookAt(lookingPos); // look at the objective instead of something more?
 
         if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward, out playerHit, range))
         {
-            if (playerHit.collider.tag != "Player")
+            if (playerHit.collider.tag != "Player") // objective
             {
                 transform.position = Vector3.Lerp(transform.position, transform.up, Time.deltaTime * speed);
                 return;
             }
         }
 
-        var distance = Vector3.Distance(transform.position, player.transform.position);
+        var distance = Vector3.Distance(transform.position, objective.transform.position);
 
         if (distance > 10)
-            transform.position = Vector3.Lerp(transform.position, player.transform.position, Time.deltaTime * speed);
+            transform.position = Vector3.Lerp(transform.position, objective.transform.position, Time.deltaTime * speed);
     }
 
-    bool TooClose ()
+    bool TooClose () //make it work
     {
         if (tooClose)
             return true;
@@ -80,6 +80,7 @@ public class EnemyAI : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            StopAllCoroutines();
             ups.UnParent();
             Manager.Instance.RemoveEnemie();
             Destroy(gameObject);
