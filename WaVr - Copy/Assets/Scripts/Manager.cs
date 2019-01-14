@@ -182,6 +182,10 @@ public class Manager : MonoBehaviour
         //complete wave go back to "StartSpawningEnemies" for wave 2;
         //else new function with end result of time + kills?
     }
+    public void GameOver()
+    {
+        //if objective dies
+    }
 
     public void RemoveEnemie()
     {
