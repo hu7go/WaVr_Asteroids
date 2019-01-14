@@ -30,6 +30,7 @@ public class TeleportMaster : MonoBehaviour
 
     [Space(20)]
     public Sides currentSide = Sides.up;
+    public Sides previousSide = Sides.right;
     [SerializeField] public bool reverseTeleport = false;
     public bool newWay;
     public bool onlyUp;
@@ -358,8 +359,11 @@ public class TeleportMaster : MonoBehaviour
 
     void ActualTeleport ()
     {
-        if(!arrowsTeleport)
+        if (!arrowsTeleport)
+        {
+            previousSide = currentSide;
             currentSide = currentHit.sides;
+        }
         if (onlyUp)
         {
             player.transform.position = currentHit.TeleportPosition().position;
@@ -413,258 +417,14 @@ public class TeleportMaster : MonoBehaviour
 
             player.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-
             //Vector3 tmpVector = GetClosestSide().sideOffset;
             //player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
 
             Vector3 tmpVector = GetClosestSide().transform.localPosition * 3.636363f;
 
-            //switch (currentSide)
-            //{
-            //    case Sides.up:
-            //        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-            //        break;
-            //    case Sides.down:
-            //        player.transform.localPosition = new Vector3(tmpVector.x /** -1*/, .7f, tmpVector.z * -1);
-            //        break;
-            //    case Sides.front:
-            //        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-            //        break;
-            //    case Sides.back:
-            //        player.transform.localPosition = new Vector3(tmpVector.x * -1, .7f, tmpVector.z);
-            //        break;
-            //    case Sides.left:
-            //        player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
-            //        break;
-            //    case Sides.right:
-            //        player.transform.localPosition = new Vector3(tmpVector.y * - 1, .7f, tmpVector.z);
-            //        break;
-            //    default:
-            //        break;
-            //}
-
             arrowPositionCheck.localPosition = new Vector3(-tmpVector.x, -tmpVector.y + .7f, -tmpVector.z);
 
-            //Calculate which side/arrow index the player currently has
-            switch (currentSide)
-            {
-                case Sides.up:
-                    if (tmpVector.x > 0 && tmpVector.y == 0 && tmpVector.z == 0)
-                        arrowIndex = 1;
-                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z < 0)
-                        arrowIndex = 2;
-                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
-                        arrowIndex = 3;
-                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z > 0)
-                        arrowIndex = 4;
-                    break;
-                case Sides.down:
-                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
-                        arrowIndex = 1;
-                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z < 0)
-                        arrowIndex = 2;
-                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
-                        arrowIndex = 3;
-                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z > 0)
-                        arrowIndex = 4;
-                    break;
-                case Sides.front:
-                    //Not sure if this one will work!
-                    if (tmpVector.x > 0 && tmpVector.y == 0 && tmpVector.z == 0)
-                        arrowIndex = 1;
-                    if (tmpVector.x == 0 && tmpVector.y > 0 && tmpVector.z == 0)
-                        arrowIndex = 2;
-                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
-                        arrowIndex = 3;
-                    if (tmpVector.x == 0 && tmpVector.y < 0 && tmpVector.z == 0)
-                        arrowIndex = 4;
-                    //
-                    break;
-                case Sides.back:
-                    //Not sure if this one will work
-                    if (tmpVector.x > 0 && tmpVector.y == 0 && tmpVector.z == 0)
-                        arrowIndex = 1;
-                    if (tmpVector.x == 0 && tmpVector.y < 0 && tmpVector.z == 0)
-                        arrowIndex = 2;
-                    if (tmpVector.x < 0 && tmpVector.y == 0 && tmpVector.z == 0)
-                        arrowIndex = 3;
-                    if (tmpVector.x == 0 && tmpVector.y > 0 && tmpVector.z == 0)
-                        arrowIndex = 4;
-                    //
-                    break;
-                case Sides.left:
-                    if (tmpVector.x == 0 && tmpVector.y > 0 && tmpVector.z == 0)
-                        arrowIndex = 1;
-                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z < 0)
-                        arrowIndex = 2;
-                    if (tmpVector.x == 0 && tmpVector.y < 0 && tmpVector.z == 0)
-                        arrowIndex = 3;
-                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z > 0)
-                        arrowIndex = 4;
-                    break;
-                case Sides.right:
-                    if (tmpVector.x == 0 && tmpVector.y < 0 && tmpVector.z == 0)
-                        arrowIndex = 1;
-                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z < 0)
-                        arrowIndex = 2;
-                    if (tmpVector.x == 0 && tmpVector.y > 0 && tmpVector.z == 0)
-                        arrowIndex = 3;
-                    if (tmpVector.x == 0 && tmpVector.y == 0 && tmpVector.z > 0)
-                        arrowIndex = 4;
-                    break;
-                default:
-                    break;
-            }
-
-            //if (tmpVector.x > 0)
-            //    arrowIndex = 1;
-            //if (tmpVector.z < 0)
-            //    arrowIndex = 2;
-            //if (tmpVector.x < 0)
-            //    arrowIndex = 3;
-            //if (tmpVector.z > 0)
-            //    arrowIndex = 4;
-            //if (tmpVector.y < 0)
-            //    arrowIndex = 4;
-            //if (tmpVector.y > 0)
-            //    arrowIndex = 3;
-            //
-
-            Utils.ClearLogConsole();
-
-            switch (arrowIndex)
-            {
-                case 1:
-                    switch (currentSide)
-                    {
-                        case Sides.up:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(1 + " Done");
-                            break;
-                        case Sides.down:
-                        player.transform.localPosition = new Vector3(tmpVector.x * -1, .7f, tmpVector.z);
-                            Debug.Log(2 + " Done");
-                            break;
-                        case Sides.front:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(3 + " Done");
-                            break;
-                        case Sides.back:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(4 + " Done");
-                            break;
-                        case Sides.left:
-                        player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
-                            Debug.Log(5 + " Done");
-                            break;
-                        case Sides.right:
-                        player.transform.localPosition = new Vector3(tmpVector.y * - 1, .7f, tmpVector.z);
-                            Debug.Log(6 + " Done");
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case 2:
-                    switch (currentSide)
-                    {
-                        case Sides.up:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(7 + " Done");
-                            break;
-                        case Sides.down:
-                        player.transform.localPosition = new Vector3(tmpVector.x * - 1, .7f, tmpVector.z);
-                            Debug.Log(8 + " Done");
-                            break;
-                        case Sides.front:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y * - 1);
-                            Debug.Log(9 + " Done");
-                            break;
-                        case Sides.back:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y);
-                            Debug.Log(10 + " Done");
-                            break;
-                        case Sides.left:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(11 + " Done");
-                            break;
-                        case Sides.right:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(12 + " Done");
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case 3:
-                    switch (currentSide)
-                    {
-                        case Sides.up:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(13 + " Done");
-                            break;
-                        case Sides.down:
-                        player.transform.localPosition = new Vector3(tmpVector.x * - 1, .7f, tmpVector.z);
-                            Debug.Log(14 + " Done");
-                            break;
-                        case Sides.front:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y * - 1);
-                            Debug.Log(15 + " Done");
-                            break;
-                        case Sides.back:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(16 + " Done");
-                            break;
-                        case Sides.left:
-                        player.transform.localPosition = new Vector3(tmpVector.y, .7f, tmpVector.z);
-                            Debug.Log(17 + " Done");
-                            break;
-                        case Sides.right:
-                        player.transform.localPosition = new Vector3(tmpVector.y * - 1, .7f, tmpVector.z);
-                            Debug.Log(18 + " Done");
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case 4:
-                    switch (currentSide)
-                    {
-                        case Sides.up:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(19 + " Done");
-                            break;
-                        case Sides.down:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(20 + " Done");
-                            break;
-                        case Sides.front:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y * - 1);
-                            Debug.Log(21 + " Done");
-                            break;
-                        case Sides.back:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.y);
-                            Debug.Log(22 + " Done");
-                            break;
-                        case Sides.left:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(23 + " Done");
-                            break;
-                        case Sides.right:
-                        player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-                            Debug.Log(24 + " Done");
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            Debug.Log("Arrow index: " + arrowIndex);
-            Debug.Log("<color=red>X: " + tmpVector.x + "</color>,      " + "<color=green>Y: " + tmpVector.y + "</color>,       " + "<color=blue>Z: " + tmpVector.z + "</color>");
-            Debug.DrawLine(currentHit.transform.position, previousHit.transform.position, Color.cyan, 1000f);
+            ArrowIndexMain(tmpVector);
 
             arrowsPos.localPosition = new Vector3(-tmpVector.x, -.75f, -tmpVector.z);
             Vector3 playerPos = player.transform.localPosition + new Vector3(0, -1.45f, 0);
@@ -791,5 +551,550 @@ public class TeleportMaster : MonoBehaviour
                 break;
         }
         return true;
+    }
+
+    private void ArrowIndexMain (Vector3 vector)
+    {
+        Utils.ClearLogConsole();
+
+        //Calculate which side/arrow index the player currently has
+        switch (currentSide)
+        {
+            case Sides.up:
+                if (vector.x > 0 && vector.y == 0 && vector.z == 0)
+                    arrowIndex = 1;
+                if (vector.x == 0 && vector.y == 0 && vector.z < 0)
+                    arrowIndex = 2;
+                if (vector.x < 0 && vector.y == 0 && vector.z == 0)
+                    arrowIndex = 3;
+                if (vector.x == 0 && vector.y == 0 && vector.z > 0)
+                    arrowIndex = 4;
+                break;
+            case Sides.down:
+                if (vector.x < 0 && vector.y == 0 && vector.z == 0)
+                    arrowIndex = 1;
+                if (vector.x == 0 && vector.y == 0 && vector.z < 0)
+                    arrowIndex = 2;
+                if (vector.x < 0 && vector.y == 0 && vector.z == 0)
+                    arrowIndex = 3;
+                if (vector.x == 0 && vector.y == 0 && vector.z > 0)
+                    arrowIndex = 4;
+                break;
+            case Sides.front:
+                if (vector.x > 0 && vector.y == 0 && vector.z == 0)
+                    arrowIndex = 1;
+                if (vector.x == 0 && vector.y > 0 && vector.z == 0)
+                    arrowIndex = 2;
+                if (vector.x < 0 && vector.y == 0 && vector.z == 0)
+                    arrowIndex = 3;
+                if (vector.x == 0 && vector.y < 0 && vector.z == 0)
+                    arrowIndex = 4;
+                break;
+            case Sides.back:
+                if (vector.x > 0 && vector.y == 0 && vector.z == 0)
+                    arrowIndex = 1;
+                if (vector.x == 0 && vector.y < 0 && vector.z == 0)
+                    arrowIndex = 2;
+                if (vector.x < 0 && vector.y == 0 && vector.z == 0)
+                    arrowIndex = 3;
+                if (vector.x == 0 && vector.y > 0 && vector.z == 0)
+                    arrowIndex = 4;
+                break;
+            case Sides.left:
+                if (vector.x == 0 && vector.y > 0 && vector.z == 0)
+                    arrowIndex = 1;
+                if (vector.x == 0 && vector.y == 0 && vector.z < 0)
+                    arrowIndex = 2;
+                if (vector.x == 0 && vector.y < 0 && vector.z == 0)
+                    arrowIndex = 3;
+                if (vector.x == 0 && vector.y == 0 && vector.z > 0)
+                    arrowIndex = 4;
+                break;
+            case Sides.right:
+                if (vector.x == 0 && vector.y < 0 && vector.z == 0)
+                    arrowIndex = 1;
+                if (vector.x == 0 && vector.y == 0 && vector.z < 0)
+                    arrowIndex = 2;
+                if (vector.x == 0 && vector.y > 0 && vector.z == 0)
+                    arrowIndex = 3;
+                if (vector.x == 0 && vector.y == 0 && vector.z > 0)
+                    arrowIndex = 4;
+                break;
+        }
+
+        switch (arrowIndex)
+        {
+            case 1:
+                switch (currentSide)
+                {
+                    case Sides.up:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.front:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.down:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.front:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.x * -1, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.x * -1, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.front:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.z, vector.x);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.z, vector.x * - 1);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.back:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.z, vector.x * - 1);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.z, vector.x);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.left:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.y, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.y, vector.z);
+                                break;
+                            case Sides.front:
+                                ChangePlayerPos(vector.z, vector.y * - 1);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.z, vector.y);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.right:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.y * -1, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.y * -1, vector.z);
+                                break;
+                            case Sides.front:
+                                ChangePlayerPos(vector.z, vector.y * - 1);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.z, vector.y);
+                                break;
+                        }
+                        //
+                        break;
+                }
+                break;
+            case 2:
+                switch (currentSide)
+                {
+                    case Sides.up:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.front:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.down:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.front:
+                                ChangePlayerPos(vector.x, vector.z * -1);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.x, vector.z * -1);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.front:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.x, vector.y * -1);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.x, vector.y * -1);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.y, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.y * -1, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.back:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.x, vector.y);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.x, vector.y);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.y, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.y * -1, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.left:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.front:
+                                ChangePlayerPos(vector.z, vector.x);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.z * -1, vector.x);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.right:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.front:
+                                ChangePlayerPos(vector.z * -1, vector.x);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.z, vector.x);
+                                break;
+                        }
+                        //
+                        break;
+                }
+                break;
+            case 3:
+                switch (currentSide)
+                {
+                    case Sides.up:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.front:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.down:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.front:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.x * -1, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.x * -1, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.front:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.z, vector.x);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.z, vector.x * -1);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.back:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.z, vector.x * - 1);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.z, vector.x);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.left:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.y, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.y, vector.z);
+                                break;
+                            case Sides.front:
+                                ChangePlayerPos(vector.z, vector.y * -1);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.z, vector.y);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.right:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.y * -1, vector.z);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.y * -1, vector.z);
+                                break;
+                            case Sides.front:
+                                ChangePlayerPos(vector.z, vector.y * -1);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.z, vector.y);
+                                break;
+                        }
+                        //
+                        break;
+                }
+                break;
+            case 4:
+                switch (currentSide)
+                {
+                    case Sides.up:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.front:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.down:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.front:
+                                ChangePlayerPos(vector.x, vector.z * -1);
+                                break;
+                            case Sides.back:
+                                ChangePlayerPos(vector.x, vector.z * -1);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.x, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.front:
+                        //Done
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                ChangePlayerPos(vector.x, vector.y * -1);
+                                break;
+                            case Sides.down:
+                                ChangePlayerPos(vector.x, vector.y * -1);
+                                break;
+                            case Sides.left:
+                                ChangePlayerPos(vector.y, vector.z);
+                                break;
+                            case Sides.right:
+                                ChangePlayerPos(vector.y * -1, vector.z);
+                                break;
+                        }
+                        //
+                        break;
+                    case Sides.back:
+                                Debug.Log("<color=cyan>Current place in the code!!</color>");
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                break;
+                            case Sides.down:
+                                break;
+                            case Sides.left:
+                                break;
+                            case Sides.right:
+                                break;
+                        }
+                        player.transform.localPosition = new Vector3(vector.x, .7f, vector.y);
+                        break;
+                    case Sides.left:
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                break;
+                            case Sides.down:
+                                break;
+                            case Sides.front:
+                                break;
+                            case Sides.back:
+                                break;
+                        }
+                        player.transform.localPosition = new Vector3(vector.x, .7f, vector.z);
+                        break;
+                    case Sides.right:
+                        switch (previousSide)
+                        {
+                            case Sides.up:
+                                break;
+                            case Sides.down:
+                                break;
+                            case Sides.front:
+                                break;
+                            case Sides.back:
+                                break;
+                        }
+                        player.transform.localPosition = new Vector3(vector.x, .7f, vector.z);
+                        break;
+                }
+                break;
+        }
+
+        Debug.Log("Arrow index: " + arrowIndex);
+        Debug.Log("<color=red>X: " + vector.x + "</color>,      " + "<color=green>Y: " + vector.y + "</color>,       " + "<color=blue>Z: " + vector.z + "</color>");
+        Debug.DrawLine(currentHit.transform.position, previousHit.transform.position, Color.cyan, 1000f);
+    }
+
+    private void ChangePlayerPos (float x, float z)
+    {
+        player.transform.localPosition = new Vector3(x, .7f, z);
     }
 }

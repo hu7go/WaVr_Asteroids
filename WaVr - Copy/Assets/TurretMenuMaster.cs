@@ -47,6 +47,7 @@ public class TurretMenuMaster : MonoBehaviour
                 }
             }
 
+            master.previousSide = master.currentSide;
             master.currentSide = finalSide.sides;
             return;
         }
