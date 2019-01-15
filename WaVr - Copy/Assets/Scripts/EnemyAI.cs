@@ -11,6 +11,8 @@ public class EnemyAI : MonoBehaviour
 
     RaycastHit hit;
     RaycastHit playerHit;
+    RaycastHit tooCloseCast;
+    Vector3 forward;
     int layerMask = 1 << 10;
 
     [SerializeField] private int health = 5;
@@ -22,7 +24,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        objective = GameObject.Find("VRTK_SDKMANAGER");  //needs to change to actual objective
+        //objective = GameObject.Find("VRTK_SDKMANAGER");  //needs to change to actual objective
+        objective = Manager.Instance.referenceTD;
         lookingPos = GameObject.Find("HeadSetFollower").transform;   //is this one needed?
         gun = GetComponent<SpaceGun>();
         StartShooting();  // Start shooting when in range of objective?
@@ -32,12 +35,13 @@ public class EnemyAI : MonoBehaviour
     public void FixedUpdate()
     {
         Movement();
+        TooClose();
         Debug.DrawRay(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, Color.red);
     }
 
     void Movement ()  // add some swaying?
     {
-        transform.LookAt(lookingPos); // look at the objective instead of something more?
+        transform.LookAt(objective.transform); // look at the objective instead of something more?
 
         if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward, out playerHit, range))
         {
@@ -54,12 +58,23 @@ public class EnemyAI : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, objective.transform.position, Time.deltaTime * speed);
     }
 
-    bool TooClose () //make it work
+    private void TooClose () //make it work
     {
+        forward = transform.TransformDirection(Vector3.forward);
+        if (Physics.Raycast(transform.position, forward, out tooCloseCast, 5))
+        {
+            if (tooCloseCast.collider.CompareTag("Enemy"))
+            {
+                tooClose = true;
+            }
+        }
         if (tooClose)
-            return true;
-        else
-            return false;
+        {
+
+            //MAKE IT MOVE
+            //ex. transform.Rotate(Vector3.up *10);
+            tooClose = false;
+        }            
     }
             //Shoot at objective
     public void StartShooting ()

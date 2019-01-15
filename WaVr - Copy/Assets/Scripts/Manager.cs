@@ -94,7 +94,8 @@ public class Manager : MonoBehaviour
 
     [Space(20)]
     public IndexNode[] indexNodes;
-
+    [HideInInspector]
+    public GameObject referenceTD;
     private int killedEnemies;
     private int currentNumberOFenemies = 0;
     private int counter;
@@ -174,7 +175,7 @@ public class Manager : MonoBehaviour
         if (towerDefence)
         {
             int rnd = Random.Range(0, 4);
-            Instantiate(tDObjective,tDObjectiveSpawnPoints[rnd].transform);
+            referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints[rnd].transform);
             StartCoroutine(EnemySpawner());
         }
     }
