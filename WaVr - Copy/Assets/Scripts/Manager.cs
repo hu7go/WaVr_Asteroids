@@ -55,6 +55,11 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject objective;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject confrimDenyButtons;
+    [SerializeField] private GameObject tDObjective;
+    [SerializeField] private GameObject[] tDObjectiveSpawnPoints;
+    [SerializeField] private GameObject enemySpawner;
+    [SerializeField] private GameObject enemyPrefab;
+    private GameObject enemySpawnPoint;
     [SerializeField] private Text timerText;
     [SerializeField] private Text overText;
     [SerializeField] private Text pizzaCounter;
@@ -89,6 +94,7 @@ public class Manager : MonoBehaviour
 
     private int killedEnemies;
     private int currentNumberOFenemies = 0;
+    private int counter;
 
     int minutes;
     int seconds;
@@ -164,24 +170,38 @@ public class Manager : MonoBehaviour
         }
         if (towerDefence)
         {
-            //Instantiate Objective
+            //STEP ONE INSTANTIATE TDOBJECTIVE AT A RANDOM OF FOUR PLACES
+            int rnd = Random.Range(0, 5);
+            Instantiate(tDObjective,tDObjectiveSpawnPoints[rnd].transform);
             StartCoroutine(EnemySpawner());
         }
     }
     private IEnumerator EnemySpawner()
     {
         yield return new WaitForSeconds(15);
-        //Instantiate EnemySpawner
+        //FIX A RANDOM PLACE WHERE IT SPAWNS; THANKS!
+        Instantiate(enemySpawner);
+        counter = 0;
+        enemySpawnPoint = enemySpawner.transform.GetChild(0).gameObject;
         StartCoroutine(SpawnEnemyObjective());
     }
 
     private IEnumerator SpawnEnemyObjective()
     {
         yield return new WaitForSeconds(2);
-        //instantiate Enemy
-        //Keep them coming maybe 5 in a row with delay in betweeen
-        //complete wave go back to "StartSpawningEnemies" for wave 2;
-        //else new function with end result of time + kills?
+        //instantiate Enemy 
+        if (counter < 5)
+        {
+            counter++;
+            Instantiate(enemyPrefab, enemySpawnPoint.transform);
+            StartCoroutine(SpawnEnemyObjective());
+            //complete wave go back to "StartSpawningEnemies" for wave 2;
+            //else new function with end result of time + kills? Calls GAMEOVER from ObjectiveHP script when HP = 0;
+        }
+        else
+        {
+            yield return new WaitForSeconds(5);
+        }
     }
     public void GameOver()
     {

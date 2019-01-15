@@ -122,7 +122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4320997011982870}
   - component: {fileID: 114695334063914696}
-  - component: {fileID: 114654273480289874}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -221,9 +220,9 @@ Transform:
   m_LocalPosition: {x: -5.82, y: 10.34, z: 6.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4596207124488170}
   - {fileID: 4402214306681958}
   - {fileID: 4916198444871498}
-  - {fileID: 4596207124488170}
   - {fileID: 4477679727782190}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -252,7 +251,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.4999998, z: 1.4999998}
   m_Children: []
   m_Father: {fileID: 4320997011982870}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4402616681224386
 Transform:
@@ -318,7 +317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4320997011982870}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4916198444871498
 Transform:
@@ -336,7 +335,7 @@ Transform:
   - {fileID: 4402616681224386}
   - {fileID: 4592853934966170}
   m_Father: {fileID: 4320997011982870}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4956809256797426
 Transform:
@@ -724,18 +723,6 @@ MonoBehaviour:
   GraphTimeMultiplier: 12.5
   GraphIntensityMultiplier: 1.5
   IsLoop: 0
---- !u!114 &114654273480289874
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1323292294712802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3e33eaaba21a1940b623ba6f9cc40fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objective: {fileID: 0}
 --- !u!114 &114695334063914696
 MonoBehaviour:
   m_ObjectHideFlags: 1

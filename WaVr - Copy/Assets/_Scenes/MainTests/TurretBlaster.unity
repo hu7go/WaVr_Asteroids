@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &18986940
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &21916247
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &60251627
@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &95802492
@@ -2143,7 +2143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &164621082
@@ -2420,6 +2420,34 @@ MonoBehaviour:
     UpdateRate: 0.033333335
   VoiceAmplitude: 0
   EnableMouthVertexAnimation: 0
+--- !u!1 &182325446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 182325447}
+  m_Layer: 0
+  m_Name: SpawnFour
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &182325447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 182325446}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22, y: 17.275, z: 23.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1734353785}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &211773044
 GameObject:
   m_ObjectHideFlags: 0
@@ -3562,7 +3590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &297355540
@@ -4171,7 +4199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &356133394
@@ -5024,7 +5052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &441506718
@@ -5402,7 +5430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &524559941
@@ -5686,7 +5714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &552323967
@@ -6357,7 +6385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &612257238
@@ -7779,7 +7807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &777195615
@@ -7991,7 +8019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &793768909
@@ -8104,7 +8132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &796457359
@@ -8259,6 +8287,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbc08cb7e275164c9e4e02596a63712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &835179615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 835179616}
+  m_Layer: 0
+  m_Name: SpawnTwo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &835179616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 835179615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.7, y: -7.185, z: -3.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1734353785}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &835378252
 GameObject:
   m_ObjectHideFlags: 0
@@ -8693,7 +8749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &868106988
@@ -9786,7 +9842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &955174242
@@ -10812,7 +10868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &998083749
@@ -11001,7 +11057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1010674429
@@ -11355,7 +11411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1053353649
@@ -11606,7 +11662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1073333099
@@ -11876,6 +11932,7 @@ MonoBehaviour:
   arrowsTeleport: 1
   teleportMaxLenght: 35
   currentSide: 0
+  previousSide: 5
   reverseTeleport: 0
   newWay: 1
   onlyUp: 0
@@ -12087,7 +12144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1123674353
@@ -12200,7 +12257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1124068950
@@ -13313,7 +13370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1244870720
@@ -13549,6 +13606,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1249199343}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1274782190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1274782191}
+  m_Layer: 0
+  m_Name: SpawnThree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1274782191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1274782190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.9, y: 37.512, z: -4.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1734353785}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1297317424 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4691127480831348, guid: abdc97475fd581b4c93b6705047dad8c,
@@ -13620,7 +13705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1330432474
@@ -13733,7 +13818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1367424447
@@ -14199,6 +14284,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53b07ad62d980a4da9fffff0b05fd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1465535228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1465535229}
+  m_Layer: 0
+  m_Name: SpawnOne
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1465535229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1465535228}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 32.38, y: -3.679, z: -28.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1734353785}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492736437
 GameObject:
   m_ObjectHideFlags: 0
@@ -14265,7 +14378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1492736441
@@ -14483,7 +14596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1512386769
@@ -14888,7 +15001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1586296983
@@ -15001,7 +15114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1593761813
@@ -15114,7 +15227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1601083792
@@ -16636,6 +16749,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1733119430}
   m_Mesh: {fileID: 4300000, guid: 72fd38d3d1566e74b8726177e8de153f, type: 3}
+--- !u!1 &1734353784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1734353785}
+  m_Layer: 0
+  m_Name: ObjectiveSpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1734353785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1734353784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1465535229}
+  - {fileID: 835179616}
+  - {fileID: 1274782191}
+  - {fileID: 182325447}
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1739627176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4248298409189712, guid: abdc97475fd581b4c93b6705047dad8c,
@@ -16830,7 +16975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1786443425
@@ -17640,7 +17785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1870133146
@@ -17753,7 +17898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1884958462
@@ -28958,7 +29103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1936727218
@@ -29660,7 +29805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1961215376
@@ -29909,7 +30054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &1980907183
@@ -31502,7 +31647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &2049975869
@@ -31801,7 +31946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638db0180ef2f438cae6341bf3c73797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_static: 0
+  m_static: 1
   m_staticState: 
   m_activeLightCount: 8
 --- !u!23 &2084266479
@@ -32055,7 +32200,7 @@ MonoBehaviour:
   player: {fileID: 627375558}
   startTimer: 0
   gameStarted: 0
-  towerDefence: 0
+  towerDefence: 1
   startGameWithEnemies: 0
   myTimer: 0
   playerHealth: 10
@@ -32064,6 +32209,17 @@ MonoBehaviour:
   objective: {fileID: 1624812495}
   startButton: {fileID: 1710787614}
   confrimDenyButtons: {fileID: 227425604}
+  tDObjective: {fileID: 1519075984324420, guid: 0fa92dd733d7b194092b79cd7497bea8,
+    type: 2}
+  tDObjectiveSpawnPoints:
+  - {fileID: 1465535228}
+  - {fileID: 835179615}
+  - {fileID: 1274782190}
+  - {fileID: 182325446}
+  enemySpawner: {fileID: 1323292294712802, guid: c49d997be322b8942962251e302393ad,
+    type: 2}
+  enemyPrefab: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636,
+    type: 2}
   timerText: {fileID: 1564587480}
   overText: {fileID: 836148850}
   pizzaCounter: {fileID: 1809437993}
