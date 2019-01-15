@@ -1042,47 +1042,61 @@ public class TeleportMaster : MonoBehaviour
                         //
                         break;
                     case Sides.back:
-                                Debug.Log("<color=cyan>Current place in the code!!</color>");
+                        //Done
                         switch (previousSide)
                         {
                             case Sides.up:
+                                ChangePlayerPos(vector.x, vector.y);
                                 break;
                             case Sides.down:
+                                ChangePlayerPos(vector.x, vector.y);
                                 break;
                             case Sides.left:
+                                ChangePlayerPos(vector.y, vector.z);
                                 break;
                             case Sides.right:
+                                ChangePlayerPos(vector.y * -1, vector.z);
                                 break;
                         }
-                        player.transform.localPosition = new Vector3(vector.x, .7f, vector.y);
+                        //
                         break;
                     case Sides.left:
+                        //Done
                         switch (previousSide)
                         {
                             case Sides.up:
+                                ChangePlayerPos(vector.x, vector.z);
                                 break;
                             case Sides.down:
+                                ChangePlayerPos(vector.x, vector.z);
                                 break;
                             case Sides.front:
+                                ChangePlayerPos(vector.z, vector.x);
                                 break;
                             case Sides.back:
+                                ChangePlayerPos(vector.z * -1, vector.x);
                                 break;
                         }
-                        player.transform.localPosition = new Vector3(vector.x, .7f, vector.z);
+                        //
                         break;
                     case Sides.right:
+                        //Done
                         switch (previousSide)
                         {
                             case Sides.up:
+                                ChangePlayerPos(vector.x, vector.z);
                                 break;
                             case Sides.down:
+                                ChangePlayerPos(vector.x, vector.z);
                                 break;
                             case Sides.front:
+                                ChangePlayerPos(vector.z * -1, vector.x);
                                 break;
                             case Sides.back:
+                                ChangePlayerPos(vector.z, vector.x);
                                 break;
                         }
-                        player.transform.localPosition = new Vector3(vector.x, .7f, vector.z);
+                        //
                         break;
                 }
                 break;
