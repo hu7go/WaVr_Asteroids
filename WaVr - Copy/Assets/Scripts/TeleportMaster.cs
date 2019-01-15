@@ -436,10 +436,8 @@ public class TeleportMaster : MonoBehaviour
             //
 
             arrowIndex = indexPos[0].GetComponent<IndexNode>().index;
-            Debug.Log(arrowIndex);
 
-            arrowsPos.transform.LookAt(indexPos[0].transform.position - new Vector3(0, .75f, 0), Vector3.up);
-            arrowsPos.transform.localRotation *= Quaternion.Euler(0, -90, 0);
+            RotateArrows();
         }
         //
 
@@ -508,10 +506,6 @@ public class TeleportMaster : MonoBehaviour
         List<SideScript> closestSides = currentHit.GetComponent<TurretMenuMaster>().ReturnClosestSide(posToCompare);
         SideScript newSide = new SideScript();
 
-        //foreach (SideScript side in closestSides)
-            //Debug.Log(Vector3.Distance(side.transform.position, previousHit.transform.position));
-
-        //Debug.Log(closestSides[0].sides);
         if (closestSides[0].sides == currentSide || TMP(closestSides[0].sides) == false)
             newSide = closestSides[1];
         else
@@ -563,5 +557,24 @@ public class TeleportMaster : MonoBehaviour
     private void ChangePlayerPos (float x, float z)
     {
         playerParent.transform.localPosition = new Vector3(x, .7f, z);
+    }
+
+    public void ChangeIndex (int newIndex)
+    {
+        arrowIndex = newIndex;
+        for (int i = 0; i < indexPos.Count(); i++)
+        {
+            if (indexPos[i].GetComponent<IndexNode>().index == newIndex)
+            {
+                player.transform.position = indexPos[i].position;
+                break;
+            }
+        }
+    }
+
+    private void RotateArrows ()
+    {
+        arrowsPos.transform.LookAt(indexPos[0].transform.position - new Vector3(0, .75f, 0), Vector3.up);
+        arrowsPos.transform.localRotation *= Quaternion.Euler(0, -90, 0);
     }
 }

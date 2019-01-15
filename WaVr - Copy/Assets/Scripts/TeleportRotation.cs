@@ -369,6 +369,13 @@ public class TeleportRotation : MonoBehaviour
                 if (hit.collider.GetComponent<ChangeSide>() != null)
                     hit.collider.GetComponent<ChangeSide>().DoFunction();
                 //
+
+                if (hit.collider.CompareTag("IndexNode"))
+                {
+                    int newIndex = hit.collider.GetComponent<IndexNode>().index;
+                    if (newIndex != master.arrowIndex)
+                        master.ChangeIndex(newIndex);
+                }
             }
 
             //Not currently in use!
