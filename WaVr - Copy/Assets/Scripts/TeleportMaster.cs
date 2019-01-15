@@ -14,6 +14,7 @@ public class TeleportMaster : MonoBehaviour
     public GameObject playerParent;
     public GameObject player;
     public Transform[] indexPos;
+    public IndexNode[] indexNodes;
     [Space(20)]
     [Tooltip("The position that s looked at when checkin which side the player is currently standing on")]
     public Transform arrowPositionCheck;
@@ -567,14 +568,18 @@ public class TeleportMaster : MonoBehaviour
             if (indexPos[i].GetComponent<IndexNode>().index == newIndex)
             {
                 player.transform.position = indexPos[i].position;
+                RotateArrows(true, i);
                 break;
             }
         }
     }
 
-    private void RotateArrows ()
+    private void RotateArrows(bool switchIndex = false, int index = 1)
     {
-        arrowsPos.transform.LookAt(indexPos[0].transform.position - new Vector3(0, .75f, 0), Vector3.up);
+        if (switchIndex)
+            arrowsPos.transform.LookAt(indexNodes[index].transform.position - new Vector3(0, .75f, 0), Vector3.up);
+        else
+            arrowsPos.transform.LookAt(indexPos[0].position - new Vector3(0, .75f, 0), Vector3.up);
         arrowsPos.transform.localRotation *= Quaternion.Euler(0, -90, 0);
     }
 }

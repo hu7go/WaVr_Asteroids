@@ -55,7 +55,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject objective;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject confrimDenyButtons;
-    [SerializeField] private GameObject tDObjective;
+    [SerializeField] public GameObject tDObjective;
     [SerializeField] private GameObject[] tDObjectiveSpawnPoints;
     [SerializeField] private GameObject enemySpawner;
     [SerializeField] private GameObject enemyPrefab;
@@ -91,6 +91,9 @@ public class Manager : MonoBehaviour
     public VRTK_InteractableObject gun;
     public GameObject gunObj;
     public VRTK_StraightPointerRenderer[] renderers;
+
+    [Space(20)]
+    public IndexNode[] indexNodes;
 
     private int killedEnemies;
     private int currentNumberOFenemies = 0;
@@ -416,6 +419,8 @@ public class Manager : MonoBehaviour
                 stateButtons[1].material = defaultMat;
                 stateButtons[2].material = defaultMat;
 
+                foreach (IndexNode index in indexNodes)
+                    index.Off();
                 break;
             case PointerState.Build:
                 DeactivateRotationArrows();
@@ -423,6 +428,9 @@ public class Manager : MonoBehaviour
                 stateButtons[0].material = defaultMat;
                 stateButtons[1].material = selectedMat;
                 stateButtons[2].material = defaultMat;
+
+                foreach (IndexNode index in indexNodes)
+                    index.Off();
                 break;
             case PointerState.Rotate:
                 ActivateRotationArrows();
@@ -430,6 +438,9 @@ public class Manager : MonoBehaviour
                 stateButtons[0].material = defaultMat;
                 stateButtons[1].material = defaultMat;
                 stateButtons[2].material = selectedMat;
+
+                foreach (IndexNode index in indexNodes)
+                    index.On();
                 break;
             default:
                 break;

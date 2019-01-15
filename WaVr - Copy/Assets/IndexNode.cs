@@ -12,7 +12,6 @@ public class IndexNode : MonoBehaviour
 
     [SerializeField] private Index indexEnum;
     private SphereCollider sCollider;
-    private bool on = true;
     private int myIndex;
     public int index
     {
@@ -25,7 +24,7 @@ public class IndexNode : MonoBehaviour
     private void Start()
     {
         sCollider = GetComponent<SphereCollider>();
-        OnOff();
+        Off();
         switch (indexEnum)
         {
             case Index.one:
@@ -43,13 +42,13 @@ public class IndexNode : MonoBehaviour
         }
     }
 
-    public void OnOff()
+    public void On()
     {
-        if (on)
-            sCollider.enabled = false;
-        else
-            sCollider.enabled = true;
+        sCollider.enabled = true;
+    }
 
-        on = !on;
+    public void Off ()
+    {
+        sCollider.enabled = false;
     }
 }
