@@ -563,11 +563,11 @@ public class TeleportMaster : MonoBehaviour
     public void ChangeIndex (int newIndex)
     {
         arrowIndex = newIndex;
-        for (int i = 0; i < indexPos.Count(); i++)
+        for (int i = 0; i < indexNodes.Count(); i++)
         {
-            if (indexPos[i].GetComponent<IndexNode>().index == newIndex)
+            if (indexNodes[i].GetComponent<IndexNode>().index == newIndex)
             {
-                player.transform.position = indexPos[i].position;
+                player.transform.position = indexNodes[i].transform.position;
                 RotateArrows(true, i);
                 break;
             }
