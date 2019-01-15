@@ -16,6 +16,7 @@ TagManager:
   - TeleportState
   - BuildState
   - RotateState
+  - IndexNode
   layers:
   - Default
   - TransparentFX
