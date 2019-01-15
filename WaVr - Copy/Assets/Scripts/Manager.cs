@@ -171,7 +171,7 @@ public class Manager : MonoBehaviour
         if (towerDefence)
         {
             //STEP ONE INSTANTIATE TDOBJECTIVE AT A RANDOM OF FOUR PLACES
-            int rnd = Random.Range(0, 5);
+            int rnd = Random.Range(0, 4);
             Instantiate(tDObjective,tDObjectiveSpawnPoints[rnd].transform);
             StartCoroutine(EnemySpawner());
         }
@@ -188,10 +188,10 @@ public class Manager : MonoBehaviour
 
     private IEnumerator SpawnEnemyObjective()
     {
-        yield return new WaitForSeconds(2);
         //instantiate Enemy 
         if (counter < 5)
         {
+            yield return new WaitForSeconds(2);
             counter++;
             Instantiate(enemyPrefab, enemySpawnPoint.transform);
             StartCoroutine(SpawnEnemyObjective());
@@ -200,7 +200,8 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(15);
+            StartCoroutine(EnemySpawner());
         }
     }
     public void GameOver()
@@ -264,6 +265,10 @@ public class Manager : MonoBehaviour
         startUI.SetActive(false);
         startTimer = true;
         Destroy(startButton);
+        if (towerDefence)
+        {
+            StartSpawningEnemies();
+        }
     }
     //
 

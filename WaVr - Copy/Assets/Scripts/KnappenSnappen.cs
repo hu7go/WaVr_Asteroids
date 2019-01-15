@@ -21,7 +21,7 @@ public class KnappenSnappen : MonoBehaviour {
 
         if (!snap)
         {
-            transform.parent = rotationGhost.transform;
+            transform.SetParent(rotationGhost.transform);
             if (Manager.Instance.teleportVersion == Manager.TeleVersion.arrowsSide)
             {
                 transform.position = new Vector3(-2, 0, 0.45f);
@@ -33,7 +33,7 @@ public class KnappenSnappen : MonoBehaviour {
         }
         if (snap)
         {
-            transform.parent = sdkManager.transform;
+            transform.SetParent(sdkManager.transform);
             float distance1 = Vector3.Distance(ghost.transform.position, object1.transform.position);
             float distance2 = Vector3.Distance(ghost.transform.position, object2.transform.position);
             float distance3 = Vector3.Distance(ghost.transform.position, object3.transform.position);
