@@ -75,7 +75,7 @@ public class TurretMenuMaster : MonoBehaviour
     }
 
     //Returns a list of obj sorted by the distance to the player
-    public List<SideScript> ReturnClosestSide (TeleportMaster master)
+    public List<SideScript> ReturnClosestSide (Vector3 posToCompareTo)
     {
         List<SideScript> tmpList = new List<SideScript>();
         for (int i = 0; i < sideMenus.Length; i++)
@@ -85,16 +85,11 @@ public class TurretMenuMaster : MonoBehaviour
 
 
         //This sorts the list by distance to the player!
-        tmpList.OrderBy(x => Vector3.Distance(master.previousHit.transform.position, x.transform.position)).ToList();
+        tmpList.OrderBy(x => Vector3.Distance(posToCompareTo, x.transform.position)).ToList();
         tmpList.Sort(delegate (SideScript a, SideScript b)
         {
-            //Debug.Log(master.previousHit.name + " : " +  tmpList.Count());
-
-            //Debug.DrawLine(master.previousHit.transform.position, a.transform.position, Color.blue, 8f);
-            //Debug.DrawLine(master.previousHit.transform.position, b.transform.position, Color.red, 12f);
-
-            return Vector3.Distance(master.previousHit.transform.position, a.transform.position)
-            .CompareTo(Vector3.Distance(master.previousHit.transform.position, b.transform.position));
+            return Vector3.Distance(posToCompareTo, a.transform.position)
+            .CompareTo(Vector3.Distance(posToCompareTo, b.transform.position));
         });
         //
 
