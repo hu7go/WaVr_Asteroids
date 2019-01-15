@@ -170,7 +170,6 @@ public class Manager : MonoBehaviour
         }
         if (towerDefence)
         {
-            //STEP ONE INSTANTIATE TDOBJECTIVE AT A RANDOM OF FOUR PLACES
             int rnd = Random.Range(0, 4);
             Instantiate(tDObjective,tDObjectiveSpawnPoints[rnd].transform);
             StartCoroutine(EnemySpawner());
@@ -179,30 +178,37 @@ public class Manager : MonoBehaviour
     private IEnumerator EnemySpawner()
     {
         yield return new WaitForSeconds(15);
-        //FIX A RANDOM PLACE WHERE IT SPAWNS; THANKS!
-        Instantiate(enemySpawner);
+        Vector3 random = new Vector3(Random.Range(0, 50), Random.Range(0, 50), Random.Range(0, 50));
+        GameObject localEnemySpawner = Instantiate(enemySpawner,random,transform.rotation,transform);
         counter = 0;
-        enemySpawnPoint = enemySpawner.transform.GetChild(0).gameObject;
-        StartCoroutine(SpawnEnemyObjective());
+        enemySpawnPoint = localEnemySpawner.transform.GetChild(0).gameObject;
+        yield return StartCoroutine(SpawnEnemyObjective());
     }
 
     private IEnumerator SpawnEnemyObjective()
     {
-        //instantiate Enemy 
-        if (counter < 5)
+        while (counter < maxNumberOfEnemies)
         {
-            yield return new WaitForSeconds(2);
             counter++;
-            Instantiate(enemyPrefab, enemySpawnPoint.transform);
-            StartCoroutine(SpawnEnemyObjective());
+            yield return new WaitForSeconds(2);
+            print(counter);
+            print("is this thing on");
+            InstantiateEnemy();
             //complete wave go back to "StartSpawningEnemies" for wave 2;
             //else new function with end result of time + kills? Calls GAMEOVER from ObjectiveHP script when HP = 0;
         }
-        else
-        {
-            yield return new WaitForSeconds(15);
-            StartCoroutine(EnemySpawner());
-        }
+        //yield return new WaitForSeconds(15);
+        //RoutineOpener();
+    }
+
+    public void RoutineOpener()
+    {
+        StartCoroutine(EnemySpawner());
+    }
+    public void InstantiateEnemy()
+    {
+        Instantiate(enemyPrefab, enemySpawnPoint.transform);
+        print(enemySpawnPoint);
     }
     public void GameOver()
     {

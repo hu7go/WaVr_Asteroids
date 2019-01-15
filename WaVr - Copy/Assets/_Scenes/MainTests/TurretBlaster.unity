@@ -1887,6 +1887,7 @@ MonoBehaviour:
   rotator: {fileID: 1416219413}
   tpm: {fileID: 1106711025}
   myDirection: 3
+  useIndex: 0
 --- !u!65 &124630213
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2618,6 +2619,7 @@ MonoBehaviour:
   rotator: {fileID: 1416219413}
   tpm: {fileID: 1106711025}
   myDirection: 0
+  useIndex: 0
 --- !u!114 &237699340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3317,6 +3319,7 @@ MonoBehaviour:
   rotator: {fileID: 1416219413}
   tpm: {fileID: 1106711025}
   myDirection: 1
+  useIndex: 0
 --- !u!65 &287024463
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6579,7 +6582,7 @@ Transform:
   - {fileID: 1551485663}
   - {fileID: 373029556}
   - {fileID: 1127223520}
-  m_Father: {fileID: 552794679}
+  m_Father: {fileID: 800689172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &627375560
@@ -7106,6 +7109,7 @@ MonoBehaviour:
   rotator: {fileID: 1416219413}
   tpm: {fileID: 1106711025}
   myDirection: 0
+  useIndex: 0
 --- !u!65 &739239765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8179,6 +8183,35 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 796457355}
   m_Mesh: {fileID: 4300000, guid: 72fd38d3d1566e74b8726177e8de153f, type: 3}
+--- !u!1 &800689171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 800689172}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &800689172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 800689171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 627375559}
+  m_Father: {fileID: 552794679}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &830002968
 GameObject:
   m_ObjectHideFlags: 0
@@ -11237,6 +11270,7 @@ MonoBehaviour:
   rotator: {fileID: 1416219413}
   tpm: {fileID: 1106711025}
   myDirection: 2
+  useIndex: 0
 --- !u!114 &1032543639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11918,7 +11952,9 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  playerParent: {fileID: 800689171}
   player: {fileID: 627375558}
+  indexPos: []
   arrowPositionCheck: {fileID: 841271987}
   arrowsPos: {fileID: 2050727203}
   arrows:
@@ -12727,6 +12763,7 @@ MonoBehaviour:
   rotator: {fileID: 1416219413}
   tpm: {fileID: 1106711025}
   myDirection: 2
+  useIndex: 0
 --- !u!65 &1185845474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15331,6 +15368,7 @@ MonoBehaviour:
   rotator: {fileID: 1416219413}
   tpm: {fileID: 1106711025}
   myDirection: 1
+  useIndex: 0
 --- !u!114 &1602605552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17611,6 +17649,7 @@ MonoBehaviour:
   rotator: {fileID: 1416219413}
   tpm: {fileID: 1106711025}
   myDirection: 3
+  useIndex: 0
 --- !u!114 &1863834121
 MonoBehaviour:
   m_ObjectHideFlags: 0
