@@ -43,7 +43,7 @@ public class EnemyAI : MonoBehaviour
     {
         transform.LookAt(objective.transform); // look at the objective instead of something more?
 
-        if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward, out playerHit, range))
+      /*  if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward, out playerHit, range))
         {
             if (playerHit.collider.tag != "Player") // objective
             {
@@ -51,11 +51,11 @@ public class EnemyAI : MonoBehaviour
                 return;
             }
         }
-
+*/
         var distance = Vector3.Distance(transform.position, objective.transform.position);
 
         if (distance > 10)
-            transform.position = Vector3.Lerp(transform.position, objective.transform.position, Time.deltaTime * speed);
+            transform.position = Vector3.Slerp(transform.position, objective.transform.position, Time.deltaTime * speed);
     }
 
     private void TooClose () //make it work
