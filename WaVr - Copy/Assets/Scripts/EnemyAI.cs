@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.Collections;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -17,14 +18,13 @@ public class EnemyAI : MonoBehaviour
 
     [SerializeField] private int health = 5;
 
-    [HideInInspector] public bool tooClose = false;  //These two aren't used atm and needs to be used so that they aren't inside each other
+    [HideInInspector] public bool tooClose = false;
     [HideInInspector] public Transform pushAwayFrom;
-
+    [ReadOnly]
     private float range = 25;
 
     private void Start()
     {
-        //objective = GameObject.Find("VRTK_SDKMANAGER");  //needs to change to actual objective
         objective = Manager.Instance.referenceTD;
         lookingPos = GameObject.Find("HeadSetFollower").transform;   //is this one needed?
         gun = GetComponent<SpaceGun>();
@@ -43,19 +43,19 @@ public class EnemyAI : MonoBehaviour
     {
         transform.LookAt(objective.transform); // look at the objective instead of something more?
 
-        if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward, out playerHit, range))
+      /*  if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward, out playerHit, range))
         {
             if (playerHit.collider.tag != "Player") // objective
             {
-                transform.position = Vector3.Lerp(transform.position, transform.up, Time.deltaTime * speed);
+                transform.position = Vector3.Slerp(transform.position, transform.up, Time.deltaTime * speed);
                 return;
             }
         }
-
+*/
         var distance = Vector3.Distance(transform.position, objective.transform.position);
 
         if (distance > 10)
-            transform.position = Vector3.Lerp(transform.position, objective.transform.position, Time.deltaTime * speed);
+            transform.position = Vector3.Slerp(transform.position, objective.transform.position, Time.deltaTime * speed);
     }
 
     private void TooClose () //make it work
@@ -72,7 +72,7 @@ public class EnemyAI : MonoBehaviour
         {
 
             //MAKE IT MOVE
-            //ex. transform.Rotate(Vector3.up *10);
+            transform.Rotate(Vector3.up *10);
             tooClose = false;
         }            
     }
@@ -100,5 +100,10 @@ public class EnemyAI : MonoBehaviour
             Manager.Instance.RemoveEnemie();
             Destroy(gameObject);
         }
+    }
+
+    public int ReturnHealth ()
+    {
+        return health;
     }
 }

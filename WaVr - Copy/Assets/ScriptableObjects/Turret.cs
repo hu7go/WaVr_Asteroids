@@ -3,7 +3,7 @@
 [CreateAssetMenu()]
 public class Turret : ScriptableObject
 {
-    public float damage;
+    public int damage;
     public float rangeRadius;
     public float attackSpeed;
     public float rotationSpeed;

@@ -185,6 +185,7 @@ public class Manager : MonoBehaviour
         Vector3 random = new Vector3(Random.Range(0, 50), Random.Range(0, 50), Random.Range(0, 50));
         GameObject localEnemySpawner = Instantiate(enemySpawner,random,transform.rotation,transform);
         counter = 0;
+        localEnemySpawner.transform.parent = null;
         enemySpawnPoint = localEnemySpawner.transform.GetChild(0).gameObject;
         yield return StartCoroutine(SpawnEnemyObjective());
     }
@@ -254,6 +255,10 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position != new Vector3(0, 0, 0))
+            transform.position = new Vector3(0, 0, 0);
+        if (transform.rotation != new Quaternion(0, 0, 0, 0))
+            transform.rotation = new Quaternion(0, 0, 0, 0);
         if (startTimer)
         {
             myTimer += Time.deltaTime;
