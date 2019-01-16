@@ -194,10 +194,10 @@ public class Manager : MonoBehaviour
         counter = 0;
         //enemySpawnPoint = localEnemySpawner.transform.GetChild(0).gameObject;
         enemySpawnPoint = localEnemySpawner;
-        yield return StartCoroutine(SpawnEnemyObjective());
+        yield return StartCoroutine(SpawnEnemyObjective(localEnemySpawner));
     }
 
-    private IEnumerator SpawnEnemyObjective()
+    private IEnumerator SpawnEnemyObjective(GameObject spawner)
     {
         while (counter < maxNumberOfEnemies)
         {
@@ -209,13 +209,11 @@ public class Manager : MonoBehaviour
             //complete wave go back to "StartSpawningEnemies" for wave 2;
             //else new function with end result of time + kills? Calls GAMEOVER from ObjectiveHP script when HP = 0;
         }
-<<<<<<< HEAD
         //yield return new WaitForSeconds(2);
         //localEnemySpawner.transform.GetChild(1).gameObject.SetActive(false);
-        Destroy(localEnemySpawner,2);
 
-=======
->>>>>>> ef2df4667ea818256d0fb5ba1ca786c5c0a59953
+        Destroy(spawner,2);
+
         //yield return new WaitForSeconds(15);
         //RoutineOpener();
     }
