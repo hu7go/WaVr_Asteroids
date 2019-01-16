@@ -11955,6 +11955,7 @@ MonoBehaviour:
   playerParent: {fileID: 800689171}
   player: {fileID: 627375558}
   indexPos: []
+  indexNodes: []
   arrowPositionCheck: {fileID: 841271987}
   arrowsPos: {fileID: 2050727203}
   arrows:
@@ -32290,6 +32291,8 @@ MonoBehaviour:
   renderers:
   - {fileID: 0}
   - {fileID: 0}
+  indexNodes: []
+  referenceTD: {fileID: 0}
 --- !u!4 &2123815492
 Transform:
   m_ObjectHideFlags: 0
