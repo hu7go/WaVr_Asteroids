@@ -60,7 +60,6 @@ public class TurretAI : MonoBehaviour
                 currentTarget = enemies[0];
         }
 
-
         //Spawn laser beam!
         
         if (enemies.Count <= 0)
