@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     RaycastHit playerHit;
     RaycastHit tooCloseCast;
     Vector3 forward;
-    int layerMask = 1 << 10;
+    public LayerMask layerMask;
 
     [SerializeField] private int health = 5;
 
@@ -41,40 +41,35 @@ public class EnemyAI : MonoBehaviour
 
     void Movement ()  // add some swaying?
     {
-        transform.LookAt(objective.transform); // look at the objective instead of something more?
+        transform.LookAt(objective.transform); 
 
-      /*  if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward, out playerHit, range))
-        {
-            if (playerHit.collider.tag != "Player") // objective
-            {
-                transform.position = Vector3.Slerp(transform.position, transform.up, Time.deltaTime * speed);
-                return;
-            }
-        }
-*/
         var distance = Vector3.Distance(transform.position, objective.transform.position);
 
-        if (distance > 10)
-            transform.position = Vector3.Slerp(transform.position, objective.transform.position, Time.deltaTime * speed);
+        if (distance > 7)
+            transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, speed * Time.deltaTime);
+        else
+        {
+
+        }
     }
 
     private void TooClose () //make it work
     {
-        forward = transform.TransformDirection(Vector3.forward);
-        if (Physics.Raycast(transform.position, forward, out tooCloseCast, 5))
-        {
-            if (tooCloseCast.collider.CompareTag("Enemy"))
-            {
-                tooClose = true;
-            }
-        }
-        if (tooClose)
-        {
+        //forward = transform.TransformDirection(Vector3.forward);
+        //if (Physics.Raycast(transform.position, forward, out tooCloseCast, 5))
+        //{
+        //    if (tooCloseCast.collider.CompareTag("Enemy"))
+        //    {
+        //        tooClose = true;
+        //    }
+        //}
+        //if (tooClose)
+        //{
 
-            //MAKE IT MOVE
-            transform.Rotate(Vector3.up *10);
-            tooClose = false;
-        }            
+        //    //MAKE IT MOVE
+        //    transform.Rotate(Vector3.up *10);
+        //    tooClose = false;
+        //}            
     }
             //Shoot at objective
     public void StartShooting ()
@@ -95,10 +90,9 @@ public class EnemyAI : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            //StopCoroutine(Shoot());
-            //ups.UnParent();
-            //Manager.Instance.RemoveEnemie();
-            //Destroy(gameObject);
+            StopCoroutine(Shoot());
+            ups.UnParent();
+            Manager.Instance.RemoveEnemie();
         }
     }
 

@@ -96,13 +96,14 @@ public class Manager : MonoBehaviour
     public IndexNode[] indexNodes;
     [HideInInspector]
     public GameObject referenceTD;
-    GameObject localEnemySpawner;
     private int killedEnemies;
     private int currentNumberOFenemies = 0;
     private int counter;
 
     int minutes;
     int seconds;
+
+    private GameObject enemyParent;
 
     private static bool created = false;
     public static Manager Instance { get; private set; }
@@ -123,6 +124,8 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        enemyParent = new GameObject("enemyParent");
+
         //add a enemyspawnlocation look at objective
         SetPointerState(PointerState.Teleport);
 
@@ -166,12 +169,14 @@ public class Manager : MonoBehaviour
     public void StartSpawningEnemies()
     {
         if(!towerDefence)
-        for (int i = 0; i < maxNumberOfEnemies; i++)
         {
-            if (totalNumberOfEnemiesSpawned >= totalNumberOfEnemiesAllowedToSpawn)
-                return;
+            for (int i = 0; i < maxNumberOfEnemies; i++)
+            {
+                if (totalNumberOfEnemiesSpawned >= totalNumberOfEnemiesAllowedToSpawn)
+                    return;
 
-            Spawn();
+                Spawn();
+            }
         }
         if (towerDefence)
         {
@@ -184,10 +189,11 @@ public class Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(15);
         Vector3 random = new Vector3(Random.Range(0, 50), Random.Range(0, 50), Random.Range(0, 50));
-        localEnemySpawner = Instantiate(enemySpawner,transform.position + new Vector3(0,10,0),transform.rotation); //change back to random when done with testing Instantiate(enemySpawner,random,transform.rotation,transform);
+        GameObject localEnemySpawner = Instantiate(enemySpawner,transform.position + new Vector3(0,10,0),transform.rotation); //change back to random when done with testing Instantiate(enemySpawner,random,transform.rotation,transform);
+        localEnemySpawner.transform.rotation = Quaternion.LookRotation(referenceTD.transform.position, Vector3.up);
         counter = 0;
-        localEnemySpawner.transform.parent = null;
-        enemySpawnPoint = localEnemySpawner.transform.GetChild(0).gameObject;
+        //enemySpawnPoint = localEnemySpawner.transform.GetChild(0).gameObject;
+        enemySpawnPoint = localEnemySpawner;
         yield return StartCoroutine(SpawnEnemyObjective());
     }
 
@@ -203,9 +209,6 @@ public class Manager : MonoBehaviour
             //complete wave go back to "StartSpawningEnemies" for wave 2;
             //else new function with end result of time + kills? Calls GAMEOVER from ObjectiveHP script when HP = 0;
         }
-        //yield return new WaitForSeconds(2);
-        //localEnemySpawner.transform.GetChild(1).gameObject.SetActive(false);
-        Destroy(localEnemySpawner,2);
         //yield return new WaitForSeconds(15);
         //RoutineOpener();
     }
@@ -216,7 +219,7 @@ public class Manager : MonoBehaviour
     }
     public void InstantiateEnemy()
     {
-        Instantiate(enemyPrefab, enemySpawnPoint.transform);
+        Instantiate(enemyPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation, enemyParent.transform);
         //print(enemySpawnPoint);
     }
     public void GameOver()
