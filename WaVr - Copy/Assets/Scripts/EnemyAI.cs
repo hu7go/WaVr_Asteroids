@@ -81,7 +81,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, out hit, range, layerMask))
             gun.Shoot();
-        StartCoroutine(Shoot());
+        //StartCoroutine(Shoot());
     }
 
     private IEnumerator Shoot ()
@@ -95,10 +95,10 @@ public class EnemyAI : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            StopAllCoroutines();
-            ups.UnParent();
-            Manager.Instance.RemoveEnemie();
-            Destroy(gameObject);
+            //StopCoroutine(Shoot());
+            //ups.UnParent();
+            //Manager.Instance.RemoveEnemie();
+            //Destroy(gameObject);
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurretRange : MonoBehaviour
 {
-    TurretAI turret;
+    public TurretAI turret;
 
     private void Awake()
     {
@@ -21,7 +21,6 @@ public class TurretRange : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("I entered range!");
             turret.EnteredRange(other.GetComponent<EnemyAI>());
         }
     }
@@ -30,7 +29,6 @@ public class TurretRange : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("I exited range!");
             turret.ExitedRange(other.GetComponent<EnemyAI>());
         }
     }

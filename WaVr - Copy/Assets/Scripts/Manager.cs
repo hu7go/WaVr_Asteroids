@@ -196,8 +196,8 @@ public class Manager : MonoBehaviour
         {
             counter++;
             yield return new WaitForSeconds(2);
-            print(counter);
-            print("is this thing on");
+            //print(counter);
+            //print("is this thing on");
             InstantiateEnemy();
             //complete wave go back to "StartSpawningEnemies" for wave 2;
             //else new function with end result of time + kills? Calls GAMEOVER from ObjectiveHP script when HP = 0;
@@ -213,7 +213,7 @@ public class Manager : MonoBehaviour
     public void InstantiateEnemy()
     {
         Instantiate(enemyPrefab, enemySpawnPoint.transform);
-        print(enemySpawnPoint);
+        //print(enemySpawnPoint);
     }
     public void GameOver()
     {

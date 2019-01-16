@@ -11955,6 +11955,7 @@ MonoBehaviour:
   playerParent: {fileID: 800689171}
   player: {fileID: 627375558}
   indexPos: []
+  indexNodes: []
   arrowPositionCheck: {fileID: 841271987}
   arrowsPos: {fileID: 2050727203}
   arrows:
@@ -13789,6 +13790,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1330432470}
   m_Mesh: {fileID: 4300000, guid: 87a7172321f03484a9f7bf3cdf05c6dc, type: 3}
+--- !u!1001 &1361237148
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4950091070249130, guid: c170610e8b2e62947a29bb0466d49faa, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 32.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950091070249130, guid: c170610e8b2e62947a29bb0466d49faa, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -2.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950091070249130, guid: c170610e8b2e62947a29bb0466d49faa, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -28.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950091070249130, guid: c170610e8b2e62947a29bb0466d49faa, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950091070249130, guid: c170610e8b2e62947a29bb0466d49faa, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950091070249130, guid: c170610e8b2e62947a29bb0466d49faa, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950091070249130, guid: c170610e8b2e62947a29bb0466d49faa, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950091070249130, guid: c170610e8b2e62947a29bb0466d49faa, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c170610e8b2e62947a29bb0466d49faa, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1367424443
 GameObject:
   m_ObjectHideFlags: 0
@@ -32252,9 +32295,9 @@ MonoBehaviour:
     type: 2}
   tDObjectiveSpawnPoints:
   - {fileID: 1465535228}
-  - {fileID: 835179615}
-  - {fileID: 1274782190}
-  - {fileID: 182325446}
+  - {fileID: 1465535228}
+  - {fileID: 1465535228}
+  - {fileID: 1465535228}
   enemySpawner: {fileID: 1323292294712802, guid: c49d997be322b8942962251e302393ad,
     type: 2}
   enemyPrefab: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636,
@@ -32290,6 +32333,8 @@ MonoBehaviour:
   renderers:
   - {fileID: 0}
   - {fileID: 0}
+  indexNodes: []
+  referenceTD: {fileID: 0}
 --- !u!4 &2123815492
 Transform:
   m_ObjectHideFlags: 0

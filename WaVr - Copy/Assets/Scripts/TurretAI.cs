@@ -18,99 +18,61 @@ public class TurretAI : MonoBehaviour
     public List<EnemyAI> enemies;
     bool shooting = false;
 
+    EnemyAI currentTarget;
+
 	void Start ()
     {
         enemies = new List<EnemyAI>();
-
-        //InvokeRepeating("Calculate", 3, turretInfo.attackSpeed);
 	}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Enemy"))
-    //    {
-    //        enemiesList.Add(other.gameObject);
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Enemy") && enemiesList != null)
-    //    {
-    //        enemiesList.Remove(other.gameObject);
-    //    }
-    //}
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.CompareTag("Enemy") && !enemiesList.Contains(other.gameObject))
-    //    {
-    //        enemiesList.Add(other.gameObject);
-    //    }
-    //}
-
-    private void Calculate()
-    {
-        if (enemiesList == null || enemiesList.Count == 0)
-            return;
-        if (enemiesList.Count > 1)
-        {
-            for (int i = 0; i < enemiesList.Count; i++)
-            {
-                if(Vector3.Distance(enemiesList[i].transform.position, tMuzzle.transform.position) < Vector3.Distance(enemiesList[closest].transform.position, tMuzzle.transform.position))
-                    closest = i;
-                print(enemiesList[closest] + "is closest");
-            }
-        }
-        Shoot();
-    }
-
-    private void Shoot()
-    {
-        //tMuzzle.transform.LookAt(enemiesList[closest].transform.position);
-        Quaternion newRot = Quaternion.LookRotation(enemiesList[closest].transform.position);
-        tMuzzle.transform.rotation = Quaternion.Slerp(tMuzzle.transform.rotation, newRot, turretInfo.rotationSpeed);
-        //Do shooting things
-    }
 
     public void EnteredRange (EnemyAI newEnemy)
     {
         enemies.Add(newEnemy);
-        enemies = enemies.OrderBy(x => Vector3.Distance(tMuzzle.transform.position, newEnemy.transform.position)).ToList();
+        if (enemies.Count > 1)
+            enemies = enemies.OrderBy(x => Vector3.Distance(tMuzzle.transform.position, newEnemy.transform.position)).ToList();
 
         if (!shooting)
         {
-            StartCoroutine(Shooting(newEnemy));
+            shooting = true;
+            currentTarget = enemies[0];
+            StartCoroutine(Shooting());
         }
     }
 
-    public void ExitedRange (EnemyAI enemy)
-    {
-        enemies.Remove(enemy);
-    }
-
-    private IEnumerator Shooting (EnemyAI target)
+    private IEnumerator Shooting ()
     {
         while (shooting)
         {
-            Shoot(target);
             yield return new WaitForSeconds(turretInfo.attackSpeed);
+            Shoot();
         }
     }
 
-    private void Shoot (EnemyAI target)
+    private void Shoot ()
     {
-        target.TakeDamage(turretInfo.damage);
-        if (target.ReturnHealth() <= 0)
+        Debug.Log(currentTarget.name, currentTarget);
+        currentTarget.TakeDamage(turretInfo.damage);
+        if (currentTarget.ReturnHealth() <= 0)
         {
-            enemies.Remove(target);
+            enemies.Remove(currentTarget);
+            Destroy(currentTarget.gameObject);
+            if (enemies.Count > 0)
+                currentTarget = enemies[0];
         }
 
-        //Spawn laser beam!
 
+        //Spawn laser beam!
+        
         if (enemies.Count <= 0)
         {
             shooting = false;
         }
+    }
+
+    public void ExitedRange(EnemyAI enemy)
+    {
+        enemies.Remove(enemy);
+        if (enemies.Count > 1)
+            enemies = enemies.OrderBy(x => Vector3.Distance(tMuzzle.transform.position, enemy.transform.position)).ToList();
     }
 }
