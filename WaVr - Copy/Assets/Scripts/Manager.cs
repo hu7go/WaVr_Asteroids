@@ -175,7 +175,7 @@ public class Manager : MonoBehaviour
         if (towerDefence)
         {
             int rnd = Random.Range(0, 4);
-            referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints[rnd].transform);
+            referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints[1].transform); //change to rnd
             StartCoroutine(EnemySpawner());
         }
     }
@@ -183,7 +183,7 @@ public class Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(15);
         Vector3 random = new Vector3(Random.Range(0, 50), Random.Range(0, 50), Random.Range(0, 50));
-        GameObject localEnemySpawner = Instantiate(enemySpawner,random,transform.rotation,transform);
+        GameObject localEnemySpawner = Instantiate(enemySpawner,transform.position + new Vector3(0,10,0),transform.rotation); //change back to random when done with testing Instantiate(enemySpawner,random,transform.rotation,transform);
         counter = 0;
         localEnemySpawner.transform.parent = null;
         enemySpawnPoint = localEnemySpawner.transform.GetChild(0).gameObject;
