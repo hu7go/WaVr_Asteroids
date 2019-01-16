@@ -58,15 +58,30 @@ public class TurretAI : MonoBehaviour
             Destroy(currentTarget.gameObject);
             if (enemies.Count > 0)
                 currentTarget = enemies[0];
+            else
+            {
+                shooting = false;
+                return;
+            }
         }
 
-
+        tMuzzle.transform.GetChild(0).gameObject.SetActive(true);
+        MuzzleParticle();
         //Spawn laser beam!
         
         if (enemies.Count <= 0)
         {
             shooting = false;
         }
+    }
+    private void MuzzleParticle()
+    {
+        StartCoroutine(StopThatParticle());
+    }
+    IEnumerator StopThatParticle()
+    {
+        yield return new WaitForSeconds(1.5f);
+        tMuzzle.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void ExitedRange(EnemyAI enemy)

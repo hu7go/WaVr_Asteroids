@@ -206,6 +206,7 @@ public class Manager : MonoBehaviour
         //yield return new WaitForSeconds(2);
         //localEnemySpawner.transform.GetChild(1).gameObject.SetActive(false);
         Destroy(localEnemySpawner,2);
+
         //yield return new WaitForSeconds(15);
         //RoutineOpener();
     }
