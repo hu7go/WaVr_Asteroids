@@ -65,8 +65,11 @@ public class TurretAI : MonoBehaviour
             }
         }
 
+<<<<<<< HEAD
         tMuzzle.transform.GetChild(0).gameObject.SetActive(true);
         MuzzleParticle();
+=======
+>>>>>>> ef2df4667ea818256d0fb5ba1ca786c5c0a59953
         //Spawn laser beam!
         
         if (enemies.Count <= 0)
