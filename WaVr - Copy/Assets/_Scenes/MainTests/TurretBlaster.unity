@@ -32291,7 +32291,7 @@ MonoBehaviour:
   objective: {fileID: 1624812495}
   startButton: {fileID: 1710787614}
   confrimDenyButtons: {fileID: 227425604}
-  tDObjective: {fileID: 1519075984324420, guid: 0fa92dd733d7b194092b79cd7497bea8,
+  tDObjective: {fileID: 1634313101031826, guid: 672b29f5582816b4d8792b2849ff4cbf,
     type: 2}
   tDObjectiveSpawnPoints:
   - {fileID: 1465535228}

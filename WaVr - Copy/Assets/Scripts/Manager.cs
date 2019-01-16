@@ -96,6 +96,7 @@ public class Manager : MonoBehaviour
     public IndexNode[] indexNodes;
     [HideInInspector]
     public GameObject referenceTD;
+    GameObject localEnemySpawner;
     private int killedEnemies;
     private int currentNumberOFenemies = 0;
     private int counter;
@@ -183,7 +184,7 @@ public class Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(15);
         Vector3 random = new Vector3(Random.Range(0, 50), Random.Range(0, 50), Random.Range(0, 50));
-        GameObject localEnemySpawner = Instantiate(enemySpawner,transform.position + new Vector3(0,10,0),transform.rotation); //change back to random when done with testing Instantiate(enemySpawner,random,transform.rotation,transform);
+        localEnemySpawner = Instantiate(enemySpawner,transform.position + new Vector3(0,10,0),transform.rotation); //change back to random when done with testing Instantiate(enemySpawner,random,transform.rotation,transform);
         counter = 0;
         localEnemySpawner.transform.parent = null;
         enemySpawnPoint = localEnemySpawner.transform.GetChild(0).gameObject;
@@ -202,6 +203,9 @@ public class Manager : MonoBehaviour
             //complete wave go back to "StartSpawningEnemies" for wave 2;
             //else new function with end result of time + kills? Calls GAMEOVER from ObjectiveHP script when HP = 0;
         }
+        //yield return new WaitForSeconds(2);
+        //localEnemySpawner.transform.GetChild(1).gameObject.SetActive(false);
+        Destroy(localEnemySpawner,2);
         //yield return new WaitForSeconds(15);
         //RoutineOpener();
     }
