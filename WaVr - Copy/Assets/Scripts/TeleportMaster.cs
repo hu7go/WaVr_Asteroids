@@ -581,5 +581,18 @@ public class TeleportMaster : MonoBehaviour
         else
             arrowsPos.transform.LookAt(indexPos[0].position - new Vector3(0, .75f, 0), Vector3.up);
         arrowsPos.transform.localRotation *= Quaternion.Euler(0, -90, 0);
+
+        Vector3 tmp = arrowsPos.rotation.eulerAngles;
+        tmp.x /= 90;
+        tmp.x = Mathf.Round(tmp.x);
+        tmp.x *= 90;
+        tmp.y /= 90;
+        tmp.y = Mathf.Round(tmp.y);
+        tmp.y *= 90;
+        tmp.z /= 90;
+        tmp.z = Mathf.Round(tmp.z);
+        tmp.z *= 90;
+
+        arrowsPos.rotation.SetLookRotation(tmp);
     }
 }
