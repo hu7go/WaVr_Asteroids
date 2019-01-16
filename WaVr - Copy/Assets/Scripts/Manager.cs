@@ -254,6 +254,10 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
+        if (transform.position != new Vector3(0, 0, 0))
+            transform.position = new Vector3(0, 0, 0);
+        if (transform.rotation != new Quaternion(0, 0, 0, 0))
+            transform.rotation = new Quaternion(0, 0, 0, 0);
         if (startTimer)
         {
             myTimer += Time.deltaTime;
