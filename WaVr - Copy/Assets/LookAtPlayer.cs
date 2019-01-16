@@ -9,7 +9,8 @@ public class LookAtPlayer : MonoBehaviour
         upRight,
         upsideDown,
         lyingLeft,
-        lyingRight
+        lyingRight,
+        lyingForward
     }
 
     public SignType signType;
@@ -30,6 +31,9 @@ public class LookAtPlayer : MonoBehaviour
                 break;
             case SignType.lyingRight:
                 transform.LookAt(target, Vector3.right);
+                break;
+            case SignType.lyingForward:
+                transform.LookAt(target, Vector3.forward);
                 break;
             default:
                 break;

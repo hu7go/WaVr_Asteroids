@@ -49,7 +49,7 @@ public class EnemyAI : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, speed * Time.deltaTime);
         else
         {
-
+            //TODO Make it so enemies wont clump up at the end!
         }
     }
 
