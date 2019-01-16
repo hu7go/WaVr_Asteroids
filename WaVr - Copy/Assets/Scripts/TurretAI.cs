@@ -6,7 +6,7 @@ using System.Linq;
 public class TurretAI : MonoBehaviour
 {
     [SerializeField]
-    private GameObject tMuzzle,bullet,enemyParent;
+    private GameObject tMuzzle,bullet,enemyParent,turretSphere;
 
     private Ray range;
     private List<GameObject> enemiesList;
@@ -50,6 +50,7 @@ public class TurretAI : MonoBehaviour
 
     private void Shoot ()
     {
+        turretSphere.transform.LookAt(currentTarget.transform);
         Debug.Log(currentTarget.name, currentTarget);
         currentTarget.TakeDamage(turretInfo.damage);
         if (currentTarget.ReturnHealth() <= 0)
