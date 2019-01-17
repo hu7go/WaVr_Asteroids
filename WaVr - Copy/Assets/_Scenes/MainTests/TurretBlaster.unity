@@ -9277,6 +9277,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1426028887678576, guid: 8c28bc4172c208441bcfb5a659d01834, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063042070239168, guid: 8c28bc4172c208441bcfb5a659d01834, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767185569935818, guid: 8c28bc4172c208441bcfb5a659d01834, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807193941101280, guid: 8c28bc4172c208441bcfb5a659d01834, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4840086396812822, guid: 8c28bc4172c208441bcfb5a659d01834, type: 2}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

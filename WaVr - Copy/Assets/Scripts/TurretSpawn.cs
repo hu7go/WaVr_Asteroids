@@ -76,7 +76,10 @@ public class TurretSpawn : MonoBehaviour
         Vector3 spawn = spawnPos.position + rangeOffset;
 
         if (currentRangeIndicator == null)
+        {
             currentRangeIndicator = Instantiate(turretRange, spawn, spawnPos.rotation, spawnPos);
+            currentRangeIndicator.transform.localScale = new Vector3(turret.rangeRadius, turret.rangeRadius, turret.rangeRadius);
+        }
 
         currentRangeIndicator.SetActive(true);
         currentRangeIndicator.transform.position = spawnPos.position;

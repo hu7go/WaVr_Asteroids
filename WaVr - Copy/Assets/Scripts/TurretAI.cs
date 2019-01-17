@@ -8,12 +8,8 @@ public class TurretAI : MonoBehaviour
     [SerializeField]
     private GameObject tMuzzle,bullet,enemyParent,turretSphere;
 
-    private Ray range;
-    private List<GameObject> enemiesList;
-
     private int closest = 0;
     public Turret turretInfo;
-
 
     public List<EnemyAI> enemies;
     bool shooting = false;
@@ -50,8 +46,19 @@ public class TurretAI : MonoBehaviour
 
     private void Shoot ()
     {
+        if (enemies.Count > 1)
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                if (enemies[i] == null)
+                {
+                    enemies.RemoveAt(i);
+                    i--;
+                }
+            }
+        }
+
         turretSphere.transform.LookAt(currentTarget.transform);
-        Debug.Log(currentTarget.name, currentTarget);
         currentTarget.TakeDamage(turretInfo.damage);
         if (currentTarget.ReturnHealth() <= 0)
         {

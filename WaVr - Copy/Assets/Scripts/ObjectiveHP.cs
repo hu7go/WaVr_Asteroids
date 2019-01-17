@@ -18,16 +18,11 @@ public class ObjectiveHP : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("bullet") && other.gameObject.layer == bulletLayerMask)
+        if (other.gameObject.layer == bulletLayerMask)
         {
             Hp -= 5f;
             Manager.Instance.slider.value = Hp;
             CheckHP();
-        }
-
-        if (!other.CompareTag("bullet"))
-        {
-            return;
         }
     }
 }
