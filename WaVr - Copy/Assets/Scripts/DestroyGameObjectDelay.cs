@@ -3,6 +3,6 @@
 public class DestroyGameObjectDelay : MonoBehaviour {
 
 	void Start () {
-        Destroy(gameObject, 4f);
+        Destroy(gameObject, 2.2f);
 	}
 }
