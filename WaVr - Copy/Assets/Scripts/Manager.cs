@@ -56,7 +56,8 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject confrimDenyButtons;
     [SerializeField] public GameObject tDObjective;
-    [SerializeField] private GameObject[] tDObjectiveSpawnPoints;
+    [SerializeField] private GameObject tDObjectiveSpawnPoints;
+    [SerializeField] private GameObject[] enemySpawnPoints;
     [SerializeField] private GameObject enemySpawner;
     [SerializeField] private GameObject enemyPrefab;
     private GameObject enemySpawnPoint;
@@ -180,16 +181,15 @@ public class Manager : MonoBehaviour
         }
         if (towerDefence)
         {
-            int rnd = Random.Range(0, 4);
-            referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints[1].transform); //change to rnd
+            referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints.transform); //change to rnd
             StartCoroutine(EnemySpawner());
         }
     }
     private IEnumerator EnemySpawner()
     {
         yield return new WaitForSeconds(15);
-        Vector3 random = new Vector3(Random.Range(0, 50), Random.Range(0, 50), Random.Range(0, 50));
-        GameObject localEnemySpawner = Instantiate(enemySpawner,transform.position + new Vector3(0,10,0),transform.rotation); //change back to random when done with testing Instantiate(enemySpawner,random,transform.rotation,transform);
+        int rnd = Random.Range(0, 4);
+        GameObject localEnemySpawner = Instantiate(enemySpawner, enemySpawnPoints[rnd].transform.position,transform.rotation); 
         localEnemySpawner.transform.rotation = Quaternion.LookRotation(referenceTD.transform.position, Vector3.up);
         counter = 0;
         //enemySpawnPoint = localEnemySpawner.transform.GetChild(0).gameObject;
