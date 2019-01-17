@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectiveHP : MonoBehaviour {
     [SerializeField] private float Hp = 100;
@@ -19,6 +20,7 @@ public class ObjectiveHP : MonoBehaviour {
         if (other.CompareTag("bullet"))
         {
             Hp -= 5f;
+            Manager.Instance.slider.value = Hp;
             CheckHP();
         }
     }

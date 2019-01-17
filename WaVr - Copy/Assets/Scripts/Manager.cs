@@ -64,6 +64,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private Text timerText;
     [SerializeField] private Text overText;
     [SerializeField] private Text pizzaCounter;
+    public Slider slider;
 
     [Space(20)]
     [Tooltip("This bool decides if the new UI is used this current scene")]
