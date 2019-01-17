@@ -25,6 +25,12 @@ public class EnemyAI : MonoBehaviour
     [ReadOnly]
     private float range = 25;
 
+    private int randomNmbrX;
+    private int randomNmbrY;
+    private int randomNmbrZ;
+    private float privateSpeed;
+    private float tmpSpeed;
+
     private void Start()
     {
         objective = Manager.Instance.referenceTD;
@@ -32,54 +38,47 @@ public class EnemyAI : MonoBehaviour
         gun = GetComponent<SpaceGun>();
         StartShooting();  // Start shooting when in range of objective?
         ups = GetComponentInChildren<UnparentSound>();
+
+        randomNmbrX = Random.Range(-10, 10);
+        randomNmbrY = Random.Range(-10, 10);
+        randomNmbrZ = Random.Range(-10, 10);
+
+        privateSpeed = speed / 2;
+        tmpSpeed = speed;
     }
 
     public void FixedUpdate()
     {
         Movement();
-        TooClose();
         Debug.DrawRay(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, Color.red);
     }
 
-    void Movement ()  // add some swaying?
+    void Movement ()
     {
         transform.LookAt(objective.transform); 
 
         var distance = Vector3.Distance(transform.position, objective.transform.position);
 
-        if (distance > 7)
-            transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, speed * Time.deltaTime);
-        else
+        //Stops a certain distance away from the target!
+        if (distance > 9)
         {
-            //TODO Make it so enemies wont clump up at the end!
-            transform.RotateAround(objective.transform.position, Vector3.right, speed * Time.deltaTime);
+            if (distance < 25)
+            {
+                tmpSpeed = privateSpeed;
+                transform.RotateAround(objective.transform.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed * 2) * Time.deltaTime);
+            }
+            transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, tmpSpeed * Time.deltaTime);
         }
+        if (distance <= 9)
+            transform.RotateAround(objective.transform.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
     }
 
-    private void TooClose () //make it work
-    {
-        //forward = transform.TransformDirection(Vector3.forward);
-        //if (Physics.Raycast(transform.position, forward, out tooCloseCast, 5))
-        //{
-        //    if (tooCloseCast.collider.CompareTag("Enemy"))
-        //    {
-        //        tooClose = true;
-        //    }
-        //}
-        //if (tooClose)
-        //{
-
-        //    //MAKE IT MOVE
-        //    transform.Rotate(Vector3.up *10);
-        //    tooClose = false;
-        //}            
-    }
-            //Shoot at objective
+    //Shoot at objective
     public void StartShooting ()
     {
         if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, out hit, range, layerMask))
             gun.Shoot();
-        //StartCoroutine(Shoot());
+        StartCoroutine(Shoot());
     }
 
     private IEnumerator Shoot ()

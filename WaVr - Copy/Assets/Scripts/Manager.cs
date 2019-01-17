@@ -238,7 +238,7 @@ public class Manager : MonoBehaviour
         killedEnemies++;
         if (killedEnemies == totalNumberOfEnemiesAllowedToSpawn)
             ObjectiveReached();
-        StartCoroutine(SpawnEnemy());
+        //StartCoroutine(SpawnEnemy());
     }
 
     private IEnumerator SpawnEnemy()

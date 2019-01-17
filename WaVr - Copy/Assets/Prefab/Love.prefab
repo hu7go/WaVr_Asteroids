@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198417381149836320}
   - component: {fileID: 199295720176384438}
   - component: {fileID: 114966851560375598}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Drops (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4231484363602992}
   - component: {fileID: 198931851005885114}
   - component: {fileID: 199015028927948966}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Decals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,8 @@ GameObject:
   - component: {fileID: 23935138126517362}
   - component: {fileID: 114548172735475042}
   - component: {fileID: 114077989839149228}
-  m_Layer: 0
+  - component: {fileID: 64294145237696004}
+  m_Layer: 15
   m_Name: Love
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +75,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4336321912912036}
   - component: {fileID: 114238680333932790}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MeshEffect (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +92,7 @@ GameObject:
   - component: {fileID: 4040670346994140}
   - component: {fileID: 198662583361758910}
   - component: {fileID: 199356852148943764}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Fog (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,6 +210,20 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1634313101031826}
+  m_Mesh: {fileID: 4300000, guid: 31604303e11b7e945acb0262d1a72cbe, type: 3}
+--- !u!64 &64294145237696004
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1634313101031826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 31604303e11b7e945acb0262d1a72cbe, type: 3}
 --- !u!114 &114077989839149228
 MonoBehaviour:
