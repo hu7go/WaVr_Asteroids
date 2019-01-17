@@ -15666,7 +15666,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Press Start To Start....Duh
+  m_Text: Protect the heart at all costs
 --- !u!222 &1624812498
 CanvasRenderer:
   m_ObjectHideFlags: 0

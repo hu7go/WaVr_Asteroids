@@ -311,6 +311,11 @@ public class Manager : MonoBehaviour
         overText.text = ("Well done! You completed it in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds");
     }
 
+    public void ObjectiveFailed()
+    {
+        
+    }
+
     private void FirstPizzaFound()
     {
         pizzaCounter.gameObject.SetActive(true);
