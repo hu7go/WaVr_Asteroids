@@ -24,5 +24,10 @@ public class ObjectiveHP : MonoBehaviour {
             Manager.Instance.slider.value = Hp;
             CheckHP();
         }
+
+        if (!other.CompareTag("bullet"))
+        {
+            return;
+        }
     }
 }
