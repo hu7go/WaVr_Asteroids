@@ -106,6 +106,8 @@ public class Manager : MonoBehaviour
 
     private GameObject enemyParent;
 
+
+
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
