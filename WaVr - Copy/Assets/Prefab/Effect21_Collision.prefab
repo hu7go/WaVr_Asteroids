@@ -109,6 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 483074}
   - component: {fileID: 114696015101734952}
+  - component: {fileID: 114918783830079954}
   m_Layer: 0
   m_Name: Effect21_Collision
   m_TagString: Untagged
@@ -14760,6 +14761,17 @@ MonoBehaviour:
   Speed: 10
   AirDrag: 0.1
   UseGravity: 1
+--- !u!114 &114918783830079954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d332e5b6606db4b973ab44065a6746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114934245441881130
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,4 +1,11 @@
-﻿public interface IQuest
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class IQuest : MonoBehaviour
 {
-    bool Quest();
+    public virtual bool Quest ()
+    {
+        return true;
+    }
 }

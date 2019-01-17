@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ObjectiveHP : MonoBehaviour {
     [SerializeField] private float Hp = 100;
+    [SerializeField] private LayerMask bulletLayerMask;
 
     private void CheckHP()
     {
@@ -17,7 +18,7 @@ public class ObjectiveHP : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("bullet"))
+        if (other.CompareTag("bullet") && other.gameObject.layer == bulletLayerMask)
         {
             Hp -= 5f;
             Manager.Instance.slider.value = Hp;

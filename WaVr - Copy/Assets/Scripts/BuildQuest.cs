@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildQuest : MonoBehaviour, IQuest
+public class BuildQuest : IQuest
 {
-    public bool Quest()
+    public override bool Quest()
     {
         throw new System.NotImplementedException();
     }
