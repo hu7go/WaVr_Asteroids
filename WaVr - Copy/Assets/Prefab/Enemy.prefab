@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143afad9f20a6d1418614ec471f11edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEffect: {fileID: 168890, guid: 2c936a8ea5b0042458c44a79a667c645, type: 2}
   speed: 5
   layerMask:
     serializedVersion: 2

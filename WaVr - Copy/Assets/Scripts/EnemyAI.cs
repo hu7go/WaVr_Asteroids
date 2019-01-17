@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public GameObject deathEffect;
+
     GameObject objective;
     Transform lookingPos;
     SpaceGun gun;
@@ -50,6 +52,7 @@ public class EnemyAI : MonoBehaviour
         else
         {
             //TODO Make it so enemies wont clump up at the end!
+            transform.RotateAround(objective.transform.position, Vector3.right, speed * Time.deltaTime);
         }
     }
 
@@ -93,6 +96,8 @@ public class EnemyAI : MonoBehaviour
             StopCoroutine(Shoot());
             ups.UnParent();
             Manager.Instance.RemoveEnemie();
+
+            Instantiate(deathEffect, transform.position, transform.rotation);
         }
     }
 
