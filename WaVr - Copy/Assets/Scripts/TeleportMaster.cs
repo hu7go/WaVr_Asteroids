@@ -400,7 +400,7 @@ public class TeleportMaster : MonoBehaviour
         {
             playerParent.transform.parent = currentHit.rotator;
 
-            playerParent.transform.localPosition = new Vector3(0, 0.75f, 0);
+            playerParent.transform.localPosition = new Vector3(0, 0/*0.75f*/, 0);
             playerParent.transform.parent.rotation = previousParentRotation;
             for (int i = 0; i < arrowScripts.Length; i++)
                 arrowScripts[i].rotator = currentHit.rotator.gameObject;
