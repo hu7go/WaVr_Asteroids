@@ -51,17 +51,23 @@ public class TurretAI : MonoBehaviour
 
     private void Shoot ()
     {
+        for (int i = enemies.Count -1; i > -1; i--)
+        {
+            if (enemies[i] == null)
+            {
+                enemies.RemoveAt(i);
+            }
+        }
+
         if (enemies.Count > 0)
         {
             if (currentTarget == null)
             {
-                enemies.Remove(currentTarget);
-                if (enemies.Count > 0)
-                    currentTarget = enemies[0];
+                enemies.RemoveAt(0);
+                currentTarget = enemies[0];
             }
 
-            if (enemies.Count > 0)
-                turretSphere.transform.LookAt(currentTarget.transform);
+            turretSphere.transform.LookAt(currentTarget.transform);
             currentTarget.TakeDamage(turretInfo.damage);
             if(!audi.isPlaying)
                 audi.Play();
@@ -69,9 +75,7 @@ public class TurretAI : MonoBehaviour
             {
                 enemies.Remove(currentTarget);
                 Destroy(currentTarget.gameObject);
-                if (enemies.Count > 0)
-                    currentTarget = enemies[0];
-                else
+                if (enemies.Count == 0)
                 {
                     shooting = false;
                     return;
@@ -80,8 +84,6 @@ public class TurretAI : MonoBehaviour
             if (currentTarget == null)
             {
                 enemies.RemoveAt(0);
-                if (enemies.Count > 0)
-                    currentTarget = enemies[0];
             }
 
             tMuzzle.transform.GetChild(0).gameObject.SetActive(true);
@@ -91,6 +93,10 @@ public class TurretAI : MonoBehaviour
             {
                 shooting = false;
             }
+        }
+        else
+        {
+            shooting = false;
         }
     }
 

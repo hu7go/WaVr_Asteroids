@@ -100,17 +100,9 @@ public class Manager : MonoBehaviour
     [Space(10)]
     public UISettings uISettings;
 
-    [System.Serializable]
-    public class QuestSettings
-    {
-        public List<IQuest> questList;
-    }
-    [Space(10)]
-    public QuestSettings questSettings;
-    [Space(10)]
-
     [HideInInspector] public Vector3 teleportOffset;
    
+    [Space(10)]
     public GameObject cameraEye;
     public bool useGhostLine = true;
     public bool positiontrackingOn = true;
@@ -249,10 +241,12 @@ public class Manager : MonoBehaviour
     {
         StartCoroutine(EnemySpawner());
     }
+
     public void InstantiateEnemy()
     {
         Instantiate(turretsAndEnemies.enemyPrefab, turretsAndEnemies.enemySpawnPoint.transform.position, turretsAndEnemies.enemySpawnPoint.transform.rotation, enemyParent.transform);
     }
+
     public void GameOver()
     {
         //if objective dies
@@ -326,7 +320,7 @@ public class Manager : MonoBehaviour
 
     public void ObjectiveFailed()
     {
-        
+        //Game over!
     }
 
     private void FirstPizzaFound()

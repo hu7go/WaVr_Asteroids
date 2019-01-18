@@ -32926,6 +32926,7 @@ GameObject:
   - component: {fileID: 2123815493}
   - component: {fileID: 2123815494}
   - component: {fileID: 2123815495}
+  - component: {fileID: 2123815496}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -32945,7 +32946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enums:
-    teleportVersion: 1
+    teleportVersion: 2
     pointerState: 0
   daydreamSettings:
     usingDayDream: 0
@@ -32955,7 +32956,7 @@ MonoBehaviour:
     renderers: []
   turretsAndEnemies:
     turretHover: 0
-    towerDefence: 0
+    towerDefence: 1
     tDObjective: {fileID: 1634313101031826, guid: 672b29f5582816b4d8792b2849ff4cbf,
       type: 2}
     tDObjectiveSpawnPoints: {fileID: 1697427939}
@@ -33052,11 +33053,9 @@ MonoBehaviour:
     - {fileID: 1788543045}
     - {fileID: 2132287207}
     slider: {fileID: 1901045656}
-    useNewUI: 0
-    newUIButtons: {fileID: 878705121}
+    useNewUI: 1
+    newUIButtons: {fileID: 1551485662}
     arrowsUI: {fileID: 1074536659}
-  questSettings:
-    questList: []
   teleportOffset: {x: 0, y: 0, z: 0}
   cameraEye: {fileID: 1885608655}
   useGhostLine: 1
@@ -33284,6 +33283,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &2123815496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2123815490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248b462ae23b0b84ab66814aeb419b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questList: []
 --- !u!1 &2124508330
 GameObject:
   m_ObjectHideFlags: 0
