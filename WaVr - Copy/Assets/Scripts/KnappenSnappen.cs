@@ -22,7 +22,7 @@ public class KnappenSnappen : MonoBehaviour {
         if (!snap)
         {
             transform.SetParent(rotationGhost.transform);
-            if (Manager.Instance.teleportVersion == Manager.TeleVersion.arrowsSide)
+            if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.arrowsSide)
             {
                 transform.position = new Vector3(-2, 0, 0.45f);
             }

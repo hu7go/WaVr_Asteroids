@@ -104,7 +104,7 @@ public class TurretMenuMaster : MonoBehaviour
             turretButtons.Add(newButton);
             TurretSpawn tmpTurret = newButton.GetComponent<TurretSpawn>();
             tmpTurret.lookAt = Manager.Instance.ReturnPlayer().transform;
-            if (Manager.Instance.teleportVersion == Manager.TeleVersion.anywhere)
+            if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.anywhere)
                 tmpTurret.turretSpawnpos = turretSides[i].transform;
             else
                 tmpTurret.turretSpawnpos = turretSides[i].sideScript.GetComponentInParent<Transform>();

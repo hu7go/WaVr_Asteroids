@@ -32874,132 +32874,131 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8bcd390cf1fad47824e30a9b997a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enums:
+    teleportVersion: 1
+    pointerState: 0
+  daydreamSettings:
+    usingDayDream: 0
+    dayDreamBoxIncreases: []
+    gun: {fileID: 0}
+    gunObj: {fileID: 0}
+    renderers: []
+  turretsAndEnemies:
+    turretHover: 0
+    towerDefence: 0
+    tDObjective: {fileID: 1634313101031826, guid: 672b29f5582816b4d8792b2849ff4cbf,
+      type: 2}
+    tDObjectiveSpawnPoints: {fileID: 1697427939}
+    enemySpawnPoints:
+    - {fileID: 1465535228}
+    - {fileID: 835179615}
+    - {fileID: 1274782190}
+    - {fileID: 182325446}
+    enemySpawner: {fileID: 1323292294712802, guid: c49d997be322b8942962251e302393ad,
+      type: 2}
+    enemyPrefab: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636,
+      type: 2}
+    enemySpawnPoint: {fileID: 0}
+    waveCounter: 0
+    maxNumberOfEnemies: 0
+    totalNumberOfEnemiesAllowedToSpawn: 10
+    totalNumberOfEnemiesSpawned: 0
+    holdingGun: 0
+  graphicsSettings:
+    skybox: {fileID: 2100000, guid: 18b6bf7c06173654ead94eda5ab1abee, type: 2}
+    cubesOn: 1
+    cubes:
+    - {fileID: 1913282215}
+    - {fileID: 1913282243}
+    - {fileID: 1913282271}
+    - {fileID: 1913282187}
+    - {fileID: 1913282107}
+    - {fileID: 996211341}
+    - {fileID: 1913282159}
+    - {fileID: 1913282407}
+    - {fileID: 1913282435}
+    - {fileID: 1913282463}
+    - {fileID: 1599464628}
+    - {fileID: 1913282299}
+    - {fileID: 1913282327}
+    - {fileID: 1913282355}
+    - {fileID: 15339147}
+    - {fileID: 1913281867}
+    - {fileID: 1913281895}
+    - {fileID: 1913281815}
+    - {fileID: 2016081431}
+    - {fileID: 1913281763}
+    - {fileID: 1226375233}
+    - {fileID: 1913282027}
+    - {fileID: 58020962}
+    - {fileID: 1913282079}
+    - {fileID: 1131674242}
+    - {fileID: 1913281923}
+    - {fileID: 307290185}
+    - {fileID: 1913281975}
+    - {fileID: 2024591939}
+    - {fileID: 1913282991}
+    - {fileID: 220291434}
+    - {fileID: 1913282939}
+    - {fileID: 650769681}
+    - {fileID: 1913282887}
+    - {fileID: 814984846}
+    - {fileID: 1913283151}
+    - {fileID: 234361718}
+    - {fileID: 1913283179}
+    - {fileID: 1913283123}
+    - {fileID: 1913283043}
+    - {fileID: 1913283071}
+    - {fileID: 983100699}
+    - {fileID: 1913282595}
+    - {fileID: 1913282623}
+    - {fileID: 1913282651}
+    - {fileID: 213570755}
+    - {fileID: 1913282491}
+    - {fileID: 1296526802}
+    - {fileID: 1913282543}
+    - {fileID: 1913282783}
+    - {fileID: 541705001}
+    - {fileID: 1913282835}
+    - {fileID: 1375193938}
+    - {fileID: 1913282679}
+    - {fileID: 1091861760}
+    - {fileID: 1913282731}
+    asteroids: {fileID: 1842410685}
+    defaultMat: {fileID: 2100000, guid: f5a180e78cba3b64d9cffa9c458a391d, type: 2}
+    selectedMat: {fileID: 2100000, guid: b602a840819640345836c552184b27be, type: 2}
+  uISettings:
+    startUI: {fileID: 1963608503}
+    endUI: {fileID: 2056120666}
+    objective: {fileID: 116886975}
+    startButton: {fileID: 1710787614}
+    confrimDenyButtons: {fileID: 227425604}
+    timerText: {fileID: 1564587480}
+    overText: {fileID: 836148850}
+    pizzaCounter: {fileID: 1809437993}
+    waveCount: {fileID: 1784850581}
+    stateButtons:
+    - {fileID: 965507895}
+    - {fileID: 1788543045}
+    - {fileID: 2132287207}
+    slider: {fileID: 1901045656}
+    useNewUI: 0
+    newUIButtons: {fileID: 878705121}
+    arrowsUI: {fileID: 1074536659}
+  questSettings:
+    questList: []
   teleportOffset: {x: 0, y: 0, z: 0}
-  usingDayDream: 0
-  skybox: {fileID: 2100000, guid: 18b6bf7c06173654ead94eda5ab1abee, type: 2}
-  cubesOn: 1
-  cubes:
-  - {fileID: 1913282215}
-  - {fileID: 1913282243}
-  - {fileID: 1913282271}
-  - {fileID: 1913282187}
-  - {fileID: 1913282107}
-  - {fileID: 996211341}
-  - {fileID: 1913282159}
-  - {fileID: 1913282407}
-  - {fileID: 1913282435}
-  - {fileID: 1913282463}
-  - {fileID: 1599464628}
-  - {fileID: 1913282299}
-  - {fileID: 1913282327}
-  - {fileID: 1913282355}
-  - {fileID: 15339147}
-  - {fileID: 1913281867}
-  - {fileID: 1913281895}
-  - {fileID: 1913281815}
-  - {fileID: 2016081431}
-  - {fileID: 1913281763}
-  - {fileID: 1226375233}
-  - {fileID: 1913282027}
-  - {fileID: 58020962}
-  - {fileID: 1913282079}
-  - {fileID: 1131674242}
-  - {fileID: 1913281923}
-  - {fileID: 307290185}
-  - {fileID: 1913281975}
-  - {fileID: 2024591939}
-  - {fileID: 1913282991}
-  - {fileID: 220291434}
-  - {fileID: 1913282939}
-  - {fileID: 650769681}
-  - {fileID: 1913282887}
-  - {fileID: 814984846}
-  - {fileID: 1913283151}
-  - {fileID: 234361718}
-  - {fileID: 1913283179}
-  - {fileID: 1913283123}
-  - {fileID: 1913283043}
-  - {fileID: 1913283071}
-  - {fileID: 983100699}
-  - {fileID: 1913282595}
-  - {fileID: 1913282623}
-  - {fileID: 1913282651}
-  - {fileID: 213570755}
-  - {fileID: 1913282491}
-  - {fileID: 1296526802}
-  - {fileID: 1913282543}
-  - {fileID: 1913282783}
-  - {fileID: 541705001}
-  - {fileID: 1913282835}
-  - {fileID: 1375193938}
-  - {fileID: 1913282679}
-  - {fileID: 1091861760}
-  - {fileID: 1913282731}
-  asteroids: {fileID: 1842410685}
   cameraEye: {fileID: 1885608655}
   useGhostLine: 1
   positiontrackingOn: 1
   occulus: {fileID: 627375567}
-  teleportVersion: 2
-  turretHover: 1
   player: {fileID: 627375558}
   startTimer: 0
   gameStarted: 0
-  towerDefence: 1
   startGameWithEnemies: 0
   myTimer: 0
   playerHealth: 10
-  startUI: {fileID: 1963608503}
-  endUI: {fileID: 2056120666}
-  objective: {fileID: 1624812495}
-  startButton: {fileID: 1710787614}
-  confrimDenyButtons: {fileID: 227425604}
-  tDObjective: {fileID: 1634313101031826, guid: 672b29f5582816b4d8792b2849ff4cbf,
-    type: 2}
-  tDObjectiveSpawnPoints: {fileID: 1697427939}
-  enemySpawnPoints:
-  - {fileID: 1465535228}
-  - {fileID: 835179615}
-  - {fileID: 1274782190}
-  - {fileID: 182325446}
-  enemySpawner: {fileID: 1323292294712802, guid: c49d997be322b8942962251e302393ad,
-    type: 2}
-  enemyPrefab: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636,
-    type: 2}
-  timerText: {fileID: 1564587480}
-  overText: {fileID: 836148850}
-  pizzaCounter: {fileID: 1809437993}
-  waveCount: {fileID: 1784850581}
-  waveCounter: 0
-  slider: {fileID: 1901045656}
-  useNewUI: 1
-  newUIButtons: {fileID: 1551485662}
-  pointerState: 0
-  arrowsUI: {fileID: 2050727202}
-  stateButtons:
-  - {fileID: 1218326016}
-  - {fileID: 1664182024}
-  - {fileID: 342861309}
-  defaultMat: {fileID: 2100000, guid: f5a180e78cba3b64d9cffa9c458a391d, type: 2}
-  selectedMat: {fileID: 2100000, guid: b602a840819640345836c552184b27be, type: 2}
   nmbrOfPizzas: 5
-  enemy: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636, type: 2}
-  maxNumberOfEnemies: 0
-  totalNumberOfEnemiesAllowedToSpawn: 10
-  totalNumberOfEnemiesSpawned: 0
-  holdingGun: 0
-  dayDreamBoxIncreases:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  gun: {fileID: 0}
-  gunObj: {fileID: 0}
-  renderers:
-  - {fileID: 0}
-  - {fileID: 0}
   indexNodes: []
   referenceTD: {fileID: 0}
 --- !u!4 &2123815492

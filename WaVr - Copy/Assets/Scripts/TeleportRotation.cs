@@ -53,7 +53,7 @@ public class TeleportRotation : MonoBehaviour
         if (Physics.Raycast(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5, 0, 0), out hit))
             prevAsteroidHit = hit;
 
-        if (Manager.Instance.teleportVersion == Manager.TeleVersion.anywhere)
+        if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.anywhere)
             highlightCubes = true;
         else
             highlightCubes = false;
@@ -81,7 +81,7 @@ public class TeleportRotation : MonoBehaviour
         }
         //
 
-        if (canTeleport && Manager.Instance.StartedGame() && !Manager.Instance.holdingGun)
+        if (canTeleport && Manager.Instance.StartedGame() && !Manager.Instance.turretsAndEnemies.holdingGun)
         {
             if (renderOwnLine)
             {
@@ -97,7 +97,7 @@ public class TeleportRotation : MonoBehaviour
 
             //Debug.DrawRay(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward) * 20, Color.white, 10);
 
-            if (Manager.Instance.turretHover)
+            if (Manager.Instance.turretsAndEnemies.turretHover)
             {
                 int layerMask = 1 << 13;
                 if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), layerMask))
@@ -185,17 +185,17 @@ public class TeleportRotation : MonoBehaviour
             
             //If we hit the teleport state button!
             if (hit.collider.CompareTag("TeleportState"))
-                Manager.Instance.SetPointerState(Manager.PointerState.Teleport);
+                Manager.Instance.SetPointerState(Manager.Enums.PointerState.Teleport);
             //
 
             //If we hit the build state button!
             if (hit.collider.CompareTag("BuildState"))
-                Manager.Instance.SetPointerState(Manager.PointerState.Build);
+                Manager.Instance.SetPointerState(Manager.Enums.PointerState.Build);
             //
 
             //If we hit the rotate state button!
             if (hit.collider.CompareTag("RotateState"))
-                Manager.Instance.SetPointerState(Manager.PointerState.Rotate);
+                Manager.Instance.SetPointerState(Manager.Enums.PointerState.Rotate);
             //
 
             //If we hit a pizza!
@@ -233,7 +233,7 @@ public class TeleportRotation : MonoBehaviour
             //
 
             //! If the manager is set to teleport you!
-            if (Manager.Instance.pointerState == Manager.PointerState.Teleport)
+            if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport)
             {
                 //If the target hit has a highlightscript!
                 if (highlightCubes)
@@ -255,7 +255,7 @@ public class TeleportRotation : MonoBehaviour
                     else
                         master.newRot = hit.collider.transform.rotation;
 
-                    if (Manager.Instance.teleportVersion != Manager.TeleVersion.arrowsSide)
+                    if (Manager.Instance.enums.teleportVersion != Manager.Enums.TeleVersion.arrowsSide)
                     {
                         master.newPos = hit.point;
                     }
@@ -264,7 +264,7 @@ public class TeleportRotation : MonoBehaviour
                         master.newPos = hit.point;
                     }
 
-                    if (!Manager.Instance.useNewUI)
+                    if (!Manager.Instance.uISettings.useNewUI)
                         teleportorBuildUI.SetActive(true);
 
                     master.SetHit(hit);
@@ -284,7 +284,7 @@ public class TeleportRotation : MonoBehaviour
                     master.currentAsteroidStandingOn = hit.collider.GetComponent<SideScript>();
 
                     //If we use the new State version of the UI we shoudl teleport instantly uppon clicking on a asteroid!
-                    if (Manager.Instance.useNewUI)
+                    if (Manager.Instance.uISettings.useNewUI)
                         TeleportTrue();
                 }
                 //
@@ -302,7 +302,7 @@ public class TeleportRotation : MonoBehaviour
             //
 
             //! If the manager is set to build on the selected cube!
-            if (Manager.Instance.pointerState == Manager.PointerState.Build)
+            if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Build)
             {
                 //If we hit a UI element that spawns a turret!
                 if (hit.collider.GetComponent<TurretSpawn>() != null)
@@ -317,7 +317,7 @@ public class TeleportRotation : MonoBehaviour
                 //
 
                 //If we hit the build button
-                if (Manager.Instance.useNewUI)
+                if (Manager.Instance.uISettings.useNewUI)
                 {
                     if (hit.collider.GetComponent<SideScript>() != null)
                     {
@@ -363,7 +363,7 @@ public class TeleportRotation : MonoBehaviour
             //
 
             //! If the manager is set to rotate you on the current cube you are standing on!
-            if (Manager.Instance.pointerState == Manager.PointerState.Rotate)
+            if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Rotate)
             {
                 //If its a arrow that determins our rotation!
                 if (hit.collider.GetComponent<ChangeSide>() != null)

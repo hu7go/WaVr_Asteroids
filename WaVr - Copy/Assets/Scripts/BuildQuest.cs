@@ -6,6 +6,6 @@ public class BuildQuest : IQuest
 {
     public override bool Quest()
     {
-        throw new System.NotImplementedException();
+        return true;
     }
 }

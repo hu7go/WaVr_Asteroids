@@ -10,7 +10,7 @@ public class ObjectiveHP : MonoBehaviour
     public void TakeDamage (int damage)
     {
         hp -= damage;
-        Manager.Instance.slider.value = hp;
+        Manager.Instance.uISettings.slider.value = hp;
         CheckHP();
     }
 

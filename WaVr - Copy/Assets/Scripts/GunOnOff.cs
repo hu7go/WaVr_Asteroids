@@ -19,7 +19,7 @@ public class GunOnOff : MonoBehaviour
         {
             gameObject.SetActive(true);
 
-            if (Manager.Instance.usingDayDream)
+            if (Manager.Instance.daydreamSettings.usingDayDream)
                 usingDayDream = true;
 
             spacegun.isGrabbed = true;

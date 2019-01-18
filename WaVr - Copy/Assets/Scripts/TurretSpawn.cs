@@ -42,7 +42,7 @@ public class TurretSpawn : MonoBehaviour
 
         Manager.Instance.ToggleConfirmDenyButtons();
 
-        if (!Manager.Instance.turretHover)
+        if (!Manager.Instance.turretsAndEnemies.turretHover)
             RemoveRangeIndicator();
     }
 
@@ -50,7 +50,7 @@ public class TurretSpawn : MonoBehaviour
     {
         spawnPos = turretSpawnpos;
 
-        if (Manager.Instance.turretHover)
+        if (Manager.Instance.turretsAndEnemies.turretHover)
         {
             Confirm();
             Manager.Instance.ToggleConfirmDenyButtons();

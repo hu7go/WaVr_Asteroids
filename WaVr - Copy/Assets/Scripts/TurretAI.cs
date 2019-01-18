@@ -76,7 +76,6 @@ public class TurretAI : MonoBehaviour
             }
             if (currentTarget == null)
             {
-                Debug.Log("Tewst");
                 enemies.RemoveAt(0);
                 if (enemies.Count > 0)
                     currentTarget = enemies[0];
@@ -106,6 +105,8 @@ public class TurretAI : MonoBehaviour
     public void ExitedRange(EnemyAI enemy)
     {
         enemies.Remove(enemy);
+        if (currentTarget == null)
+            enemies.RemoveAt(0);
         if (enemies.Count > 1)
             enemies = enemies.OrderBy(x => Vector3.Distance(tMuzzle.transform.position, enemy.transform.position)).ToList();
     }

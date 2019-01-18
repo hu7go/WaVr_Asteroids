@@ -20,12 +20,12 @@ public class TurretMenu : MonoBehaviour
     public bool CheckWhichSideCanSeePlayer (bool spawnTurret = true)
     {
         Vector3 offset = new Vector3(0, 0, 0);
-        if (Manager.Instance.teleportVersion == Manager.TeleVersion.arrowsSide && spawnTurret == false)
+        if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.arrowsSide && spawnTurret == false)
             offset = new Vector3(2, 0, 0);
 
         Vector3 startPoint = transform.position + offset;
 
-        if (Manager.Instance.teleportVersion == Manager.TeleVersion.anywhere)
+        if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.anywhere)
         {
             startPoint = teleAnywherePos.position;
             tI.transform = teleAnywherePos;

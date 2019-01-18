@@ -46,7 +46,7 @@ public class EnemyAI : MonoBehaviour
         privateSpeed = speed / 2;
         tmpSpeed = speed;
 
-        health += Manager.Instance.waveCounter;
+        health += Manager.Instance.turretsAndEnemies.waveCounter;
     }
 
     public void FixedUpdate()

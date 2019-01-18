@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SpatialTracking;
 using UnityEngine.UI;
@@ -6,29 +7,110 @@ using VRTK;
 
 public class Manager : MonoBehaviour
 {
-    public enum TeleVersion
+    [System.Serializable]
+    public class Enums
     {
-        anywhere,
-        onTop,
-        arrows,
-        onTopSide,
-        arrowsSide
+        public enum TeleVersion
+        {
+            anywhere,
+            onTop,
+            arrows,
+            onTopSide,
+            arrowsSide
+        }
+        public enum PointerState
+        {
+            Teleport,
+            Build,
+            Rotate
+        }
+        public TeleVersion teleportVersion = TeleVersion.onTop;
+        [Tooltip("This enum decides which state the player is in currently to make sure you can only do one thing at a time!")]
+        public PointerState pointerState;
     }
-    public enum PointerState
+    public Enums enums;
+
+    [System.Serializable]
+    public class DayDreamSettings
     {
-        Teleport,
-        Build,
-        Rotate
+        public bool usingDayDream = false;
+        public BoxCollider[] dayDreamBoxIncreases;
+        public VRTK_InteractableObject gun;
+        public GameObject gunObj;
+        public VRTK_StraightPointerRenderer[] renderers;
     }
+    [Space(10)]
+    public DayDreamSettings daydreamSettings;
+
+    [System.Serializable]
+    public class TurretAndEnemiesSettings
+    {
+        public bool turretHover = false;
+        public bool towerDefence;
+
+        public GameObject tDObjective;
+        public GameObject tDObjectiveSpawnPoints;
+        public GameObject[] enemySpawnPoints;
+        public GameObject enemySpawner;
+        public GameObject enemyPrefab;
+        public GameObject enemySpawnPoint;
+        [HideInInspector] public int waveCounter = 0;
+        public int maxNumberOfEnemies = 0;
+        public int totalNumberOfEnemiesAllowedToSpawn = 10;
+        public int totalNumberOfEnemiesSpawned = 0;
+        public bool holdingGun = false;
+    }
+    [Space(10)]
+    public TurretAndEnemiesSettings turretsAndEnemies;
+
+    [System.Serializable]
+    public class GraphicsSettings
+    {
+        public Material skybox;
+        [Tooltip("Toggle between asteroid and cube meshes")]
+        public bool cubesOn = true;
+        public MeshRenderer[] cubes;
+        public GameObject asteroids;
+        public Material defaultMat;
+        public Material selectedMat;
+    }
+    [Space(10)]
+    public GraphicsSettings graphicsSettings;
+
+    [System.Serializable]
+    public class UISettings
+    {
+        public GameObject startUI;
+        public GameObject endUI;
+        public GameObject objective;
+        public GameObject startButton;
+        public GameObject confrimDenyButtons;
+        public Text timerText;
+        public Text overText;
+        public Text pizzaCounter;
+        public Text waveCount;
+        public MeshRenderer[] stateButtons;
+        public Slider slider;
+        [Tooltip("This bool decides if the new UI is used this current scene")]
+        public bool useNewUI;
+        [Tooltip("The new three button UI for teleporting, building and rotating.")]
+        public GameObject newUIButtons;
+        public GameObject arrowsUI;
+    }
+    [Space(10)]
+    public UISettings uISettings;
+
+    [System.Serializable]
+    public class QuestSettings
+    {
+        public List<IQuest> questList;
+    }
+    [Space(10)]
+    public QuestSettings questSettings;
+    [Space(10)]
 
     [HideInInspector] public Vector3 teleportOffset;
-
-    public bool usingDayDream = false;
-    public Material skybox;
-    [Tooltip("Toggle between asteroid and cube meshes")]
-    public bool cubesOn = true;
-    public MeshRenderer[] cubes;
-    public GameObject asteroids;
+   
     public GameObject cameraEye;
     public bool useGhostLine = true;
     public bool positiontrackingOn = true;
@@ -36,65 +118,20 @@ public class Manager : MonoBehaviour
     public OVRManager occulus;
 
     [Space(20)]
-    public TeleVersion teleportVersion = TeleVersion.onTop;
-
-    [Space(20)]
-    public bool turretHover = false;
-    [Space(20)]
     [SerializeField] private GameObject player;
 
     [Space(20)]
     [SerializeField] private bool startTimer = false;
     [SerializeField] private bool gameStarted = false;
-    [SerializeField] private bool towerDefence;
     [SerializeField] private bool startGameWithEnemies = false;
     [SerializeField] private float myTimer = 0f;
     [SerializeField] private int playerHealth = 10;
-    [SerializeField] private GameObject startUI;
-    [SerializeField] private GameObject endUI;
-    [SerializeField] private GameObject objective;
-    [SerializeField] private GameObject startButton;
-    [SerializeField] private GameObject confrimDenyButtons;
-    [SerializeField] public GameObject tDObjective;
-    [SerializeField] private GameObject tDObjectiveSpawnPoints;
-    [SerializeField] private GameObject[] enemySpawnPoints;
-    [SerializeField] private GameObject enemySpawner;
-    [SerializeField] private GameObject enemyPrefab;
-    private GameObject enemySpawnPoint;
-    [SerializeField] private Text timerText;
-    [SerializeField] private Text overText;
-    [SerializeField] private Text pizzaCounter;
-    [SerializeField] private Text waveCount;
-    [HideInInspector] public int waveCounter = 0;
-    public Slider slider;
 
-    [Space(20)]
-    [Tooltip("This bool decides if the new UI is used this current scene")]
-    public bool useNewUI;
-    [Tooltip("The new three button UI for teleporting, building and rotating.")]
-    [SerializeField] private GameObject newUIButtons;
-    [Tooltip("This enum decides which state the player is in currently to make sure you can only do one thing at a time!")]
-    public PointerState pointerState;
-    [SerializeField] private GameObject arrowsUI;
-    [SerializeField] private MeshRenderer[] stateButtons;
-    [SerializeField] private Material defaultMat;
-    [SerializeField] private Material selectedMat;
     [Space(20)]
     public int nmbrOfPizzas = 0;
 
     [Space(20)]
-    [Header("Enemies:")]
-    [SerializeField] private GameObject enemy;
-    [SerializeField] private int maxNumberOfEnemies = 0;
-    [SerializeField] private int totalNumberOfEnemiesAllowedToSpawn = 10;
-    [SerializeField] private int totalNumberOfEnemiesSpawned = 0;
-    public bool holdingGun = false;
-
-    [Space(20)]
-    public BoxCollider[] dayDreamBoxIncreases;
-    public VRTK_InteractableObject gun;
-    public GameObject gunObj;
-    public VRTK_StraightPointerRenderer[] renderers;
+   
 
     [Space(20)]
     public IndexNode[] indexNodes;
@@ -110,7 +147,6 @@ public class Manager : MonoBehaviour
     private GameObject enemyParent;
 
 
-
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
@@ -124,7 +160,7 @@ public class Manager : MonoBehaviour
         if (!created)
             created = true;
 
-        skybox.SetFloat("_Exposure", 1);
+        graphicsSettings.skybox.SetFloat("_Exposure", 1);
         PositionTracking();
     }
 
@@ -133,22 +169,22 @@ public class Manager : MonoBehaviour
         enemyParent = new GameObject("enemyParent");
 
         //add a enemyspawnlocation look at objective
-        SetPointerState(PointerState.Teleport);
+        SetPointerState(Enums.PointerState.Teleport);
 
         if (startGameWithEnemies)
             StartSpawningEnemies();
 
-        switch (cubesOn)
+        switch (graphicsSettings.cubesOn)
         {
             case true:
-                foreach (MeshRenderer mesh in cubes)
+                foreach (MeshRenderer mesh in graphicsSettings.cubes)
                     mesh.enabled = true;
-                asteroids.SetActive(false);
+                graphicsSettings.asteroids.SetActive(false);
                 break;
             case false:
-                foreach (MeshRenderer mesh in cubes)
+                foreach (MeshRenderer mesh in graphicsSettings.cubes)
                     mesh.enabled = false;
-                asteroids.SetActive(true);
+                graphicsSettings.asteroids.SetActive(true);
                 break;
             default:
                 break;
@@ -157,41 +193,30 @@ public class Manager : MonoBehaviour
 
     public void UsingDayDream()
     {
-        usingDayDream = true;
+        daydreamSettings.usingDayDream = true;
 
-        skybox.SetFloat("_Exposure", 2.5f);
+        graphicsSettings.skybox.SetFloat("_Exposure", 2.5f);
 
-        for (int i = 0; i < dayDreamBoxIncreases.Length; i++)
-            dayDreamBoxIncreases[i].size *= 4;
+        for (int i = 0; i < daydreamSettings.dayDreamBoxIncreases.Length; i++)
+            daydreamSettings.dayDreamBoxIncreases[i].size *= 4;
 
-        gun.grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerPress;
+        daydreamSettings.gun.grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerPress;
     }
 
     public void GrabbedGun()
     {
-        gun.grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.GripPress;
+        daydreamSettings.gun.grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.GripPress;
     }
 
     public void StartSpawningEnemies()
     {
-        if(!towerDefence)
+        if (turretsAndEnemies.towerDefence)
         {
-            maxNumberOfEnemies = 5;
-            for (int i = 0; i < maxNumberOfEnemies; i++)
-            {
-                if (totalNumberOfEnemiesSpawned >= totalNumberOfEnemiesAllowedToSpawn)
-                    return;
-
-                Spawn();
-            }
-        }
-        if (towerDefence)
-        {
-            waveCounter++;
-            waveCount.text = ("Wave: " + waveCounter);
-            maxNumberOfEnemies += 5;
-            if(maxNumberOfEnemies <= 5)
-                referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints.transform); 
+            turretsAndEnemies.waveCounter++;
+            uISettings.waveCount.text = ("Wave: " + turretsAndEnemies.waveCounter);
+            turretsAndEnemies.maxNumberOfEnemies += 5;
+            if(turretsAndEnemies.maxNumberOfEnemies <= 5)
+                referenceTD = Instantiate(turretsAndEnemies.tDObjective, turretsAndEnemies.tDObjectiveSpawnPoints.transform); 
             StartCoroutine(EnemySpawner());
         }
     }
@@ -200,16 +225,16 @@ public class Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(15);
         int rnd = Random.Range(0, 4);
-        GameObject localEnemySpawner = Instantiate(enemySpawner, enemySpawnPoints[0/*rnd*/].transform.position,transform.rotation); 
+        GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[0/*rnd*/].transform.position,transform.rotation); 
         localEnemySpawner.transform.rotation = Quaternion.LookRotation(referenceTD.transform.position, Vector3.up);
         counter = 0;
-        enemySpawnPoint = localEnemySpawner;
+        turretsAndEnemies.enemySpawnPoint = localEnemySpawner;
         yield return StartCoroutine(SpawnEnemyObjective(localEnemySpawner));
     }
 
     private IEnumerator SpawnEnemyObjective(GameObject spawner)
     {
-        while (counter < maxNumberOfEnemies)
+        while (counter < turretsAndEnemies.maxNumberOfEnemies)
         {
             counter++;
             yield return new WaitForSeconds(2);
@@ -226,7 +251,7 @@ public class Manager : MonoBehaviour
     }
     public void InstantiateEnemy()
     {
-        Instantiate(enemyPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation, enemyParent.transform);
+        Instantiate(turretsAndEnemies.enemyPrefab, turretsAndEnemies.enemySpawnPoint.transform.position, turretsAndEnemies.enemySpawnPoint.transform.rotation, enemyParent.transform);
     }
     public void GameOver()
     {
@@ -236,25 +261,11 @@ public class Manager : MonoBehaviour
     public void RemoveEnemy()
     {
         killedEnemies++;
-        if (killedEnemies == maxNumberOfEnemies)
+        if (killedEnemies == turretsAndEnemies.maxNumberOfEnemies)
         {
             StartSpawningEnemies();
             killedEnemies = 0;
         }
-    }
-
-    private IEnumerator SpawnEnemy()
-    {
-        yield return new WaitForSeconds(4);
-        if (totalNumberOfEnemiesSpawned < totalNumberOfEnemiesAllowedToSpawn)
-            Spawn();
-    }
-
-    private void Spawn()
-    {
-        Instantiate(enemy, new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50)), transform.rotation);
-        currentNumberOFenemies++;
-        totalNumberOfEnemiesSpawned++;
     }
 
     public void StartTimer()
@@ -280,21 +291,21 @@ public class Manager : MonoBehaviour
             minutes = (int)myTimer / 60;
             seconds = (int)myTimer % 60;
 
-            timerText.text = minutes.ToString() + ": " + seconds.ToString("00");
+            uISettings.timerText.text = minutes.ToString() + ": " + seconds.ToString("00");
         }
     }
 
     //The function that happens when you click the start game button!
     public void StartGame()
     {
-        if (useNewUI)
-            newUIButtons.SetActive(true);
+        if (uISettings.useNewUI)
+            uISettings.newUIButtons.SetActive(true);
 
         gameStarted = true;
-        startUI.SetActive(false);
+        uISettings.startUI.SetActive(false);
         startTimer = true;
-        Destroy(startButton);
-        if (towerDefence)
+        Destroy(uISettings.startButton);
+        if (turretsAndEnemies.towerDefence)
         {
             StartSpawningEnemies();
         }
@@ -309,8 +320,8 @@ public class Manager : MonoBehaviour
     public void ObjectiveReached()
     {
         startTimer = false;
-        endUI.SetActive(true);
-        overText.text = ("Well done! You completed it in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds");
+        uISettings.endUI.SetActive(true);
+        uISettings.overText.text = ("Well done! You completed it in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds");
     }
 
     public void ObjectiveFailed()
@@ -320,7 +331,7 @@ public class Manager : MonoBehaviour
 
     private void FirstPizzaFound()
     {
-        pizzaCounter.gameObject.SetActive(true);
+        uISettings.pizzaCounter.gameObject.SetActive(true);
     }
 
     public void UpdatePizzaCounter()
@@ -333,19 +344,19 @@ public class Manager : MonoBehaviour
 
         if (nmbrOfPizzas == 5)
         {
-            objective.SetActive(true);
-            pizzaCounter.text = ("The drones are hungry for your pizza!");
+            uISettings.objective.SetActive(true);
+            uISettings.pizzaCounter.text = ("The drones are hungry for your pizza!");
             Invoke("Spawner", 2f);
         }
 
-        pizzaCounter.text = ("Pizza slices: " + nmbrOfPizzas);
+        uISettings.pizzaCounter.text = ("Pizza slices: " + nmbrOfPizzas);
     }
 
     private void Spawner()
     {
-        objective.SetActive(false);
+        uISettings.objective.SetActive(false);
         StartSpawningEnemies();
-        pizzaCounter.gameObject.SetActive(false);
+        uISettings.pizzaCounter.gameObject.SetActive(false);
     }
 
     public void PlayerHit(int damage)
@@ -367,11 +378,11 @@ public class Manager : MonoBehaviour
     {
         if (nmbrOfPizzas == 5)
         {
-            gunObj.SetActive(true);
-            foreach (VRTK_StraightPointerRenderer pointer in renderers)
+            daydreamSettings.gunObj.SetActive(true);
+            foreach (VRTK_StraightPointerRenderer pointer in daydreamSettings.renderers)
                 pointer.enabled = false;
         }
-        gunObj.GetComponent<GunOnOff>().RefreshGun();
+        daydreamSettings.gunObj.GetComponent<GunOnOff>().RefreshGun();
     }
 
     TurretSpawn turretSpawn;
@@ -390,9 +401,9 @@ public class Manager : MonoBehaviour
     public void ToggleConfirmDenyButtons()
     {
         if (!toggle)
-            confrimDenyButtons.SetActive(false);
+            uISettings.confrimDenyButtons.SetActive(false);
         else
-            confrimDenyButtons.SetActive(true);
+            uISettings.confrimDenyButtons.SetActive(true);
 
         toggle = !toggle;
     }
@@ -405,7 +416,7 @@ public class Manager : MonoBehaviour
 
     public void HoldingGun()
     {
-        holdingGun = true;
+        turretsAndEnemies.holdingGun = true;
     }
 
     public void PositionTracking()
@@ -431,38 +442,38 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public void SetPointerState(PointerState newPointerState)
+    public void SetPointerState(Enums.PointerState newPointerState)
     {
-        pointerState = newPointerState;
+        enums.pointerState = newPointerState;
 
         switch (newPointerState)
         {
-            case PointerState.Teleport:
+            case Enums.PointerState.Teleport:
                 DeactivateRotationArrows();
 
-                stateButtons[0].material = selectedMat;
-                stateButtons[1].material = defaultMat;
-                stateButtons[2].material = defaultMat;
+                uISettings.stateButtons[0].material = graphicsSettings.selectedMat;
+                uISettings.stateButtons[1].material = graphicsSettings.defaultMat;
+                uISettings.stateButtons[2].material = graphicsSettings.defaultMat;
 
                 foreach (IndexNode index in indexNodes)
                     index.Off();
                 break;
-            case PointerState.Build:
+            case Enums.PointerState.Build:
                 DeactivateRotationArrows();
 
-                stateButtons[0].material = defaultMat;
-                stateButtons[1].material = selectedMat;
-                stateButtons[2].material = defaultMat;
+                uISettings.stateButtons[0].material = graphicsSettings.defaultMat;
+                uISettings.stateButtons[1].material = graphicsSettings.selectedMat;
+                uISettings.stateButtons[2].material = graphicsSettings.defaultMat;
 
                 foreach (IndexNode index in indexNodes)
                     index.Off();
                 break;
-            case PointerState.Rotate:
+            case Enums.PointerState.Rotate:
                 ActivateRotationArrows();
 
-                stateButtons[0].material = defaultMat;
-                stateButtons[1].material = defaultMat;
-                stateButtons[2].material = selectedMat;
+                uISettings.stateButtons[0].material = graphicsSettings.defaultMat;
+                uISettings.stateButtons[1].material = graphicsSettings.defaultMat;
+                uISettings.stateButtons[2].material = graphicsSettings.selectedMat;
 
                 foreach (IndexNode index in indexNodes)
                     index.On();
@@ -474,11 +485,11 @@ public class Manager : MonoBehaviour
 
     public void ActivateRotationArrows ()
     {
-        arrowsUI.SetActive(true);
+        uISettings.arrowsUI.SetActive(true);
     }
 
     public void DeactivateRotationArrows ()
     {
-        arrowsUI.SetActive(false);
+        uISettings.arrowsUI.SetActive(false);
     }
 }

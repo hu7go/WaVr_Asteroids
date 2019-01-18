@@ -396,7 +396,7 @@ public class TeleportMaster : MonoBehaviour
         //if (Manager.Instance.teleportVersion != Manager.TeleVersion.anywhere)
             //player.transform.parent = currentHit.rotator; ///VI FÅR INTE EN NY ROTATOR UTAN VI ÄR KVAR UNDER DEN FÖRSTA.
 
-        if (Manager.Instance.teleportVersion == Manager.TeleVersion.arrows)
+        if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.arrows)
         {
             playerParent.transform.parent = currentHit.rotator;
 
@@ -408,11 +408,11 @@ public class TeleportMaster : MonoBehaviour
             playerParent.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
 
-        if (Manager.Instance.teleportVersion == Manager.TeleVersion.onTopSide || Manager.Instance.teleportVersion == Manager.TeleVersion.arrowsSide)
+        if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.onTopSide || Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.arrowsSide)
             playerParent.transform.localPosition += new Vector3(2, 0, 0);
 
         //
-        if (Manager.Instance.teleportVersion == Manager.TeleVersion.arrowsSide)
+        if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.arrowsSide)
         {
             playerParent.transform.parent = currentHit.rotator;
 
@@ -443,7 +443,7 @@ public class TeleportMaster : MonoBehaviour
         //
 
         //
-        if (Manager.Instance.teleportVersion == Manager.TeleVersion.onTop)
+        if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.onTop)
         {
             playerParent.transform.localPosition -= new Vector3(0, .75f, 0);
         }
