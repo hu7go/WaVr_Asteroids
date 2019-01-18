@@ -185,12 +185,10 @@ public class Manager : MonoBehaviour
         }
         if (towerDefence)
         {
-            Debug.Log(maxNumberOfEnemies);
             maxNumberOfEnemies += 5;
             if(maxNumberOfEnemies <= 5)
                 referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints.transform); 
             StartCoroutine(EnemySpawner());
-            Debug.Log(maxNumberOfEnemies);
         }
     }
     
@@ -235,7 +233,10 @@ public class Manager : MonoBehaviour
     {
         killedEnemies++;
         if (killedEnemies == maxNumberOfEnemies)
+        {
             StartSpawningEnemies();
+            killedEnemies = 0;
+        }
     }
 
     private IEnumerator SpawnEnemy()
