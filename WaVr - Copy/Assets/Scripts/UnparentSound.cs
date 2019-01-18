@@ -11,13 +11,10 @@ public class UnparentSound : MonoBehaviour {
     public void UnParent()
     {
         transform.parent = null;
-        audi.Play();
-        StartCoroutine(Destroyable());
-    }
-
-    private IEnumerator Destroyable()
-    {
-        yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
+        if(transform.parent == null)
+        {
+            audi.Play();
+            Destroy(gameObject, 3f);
+        }
     }
 }

@@ -7,7 +7,7 @@ public class TurretAI : MonoBehaviour
 {
     [SerializeField]
     private GameObject tMuzzle,bullet,enemyParent,turretSphere;
-
+    private AudioSource audi;
     private int closest = 0;
     public Turret turretInfo;
 
@@ -19,6 +19,7 @@ public class TurretAI : MonoBehaviour
 	void Start ()
     {
         enemies = new List<EnemyAI>();
+        audi = gameObject.GetComponent<AudioSource>();
 	}
 
     public void EnteredRange (EnemyAI newEnemy)
@@ -62,6 +63,8 @@ public class TurretAI : MonoBehaviour
             if (enemies.Count > 0)
                 turretSphere.transform.LookAt(currentTarget.transform);
             currentTarget.TakeDamage(turretInfo.damage);
+            if(!audi.isPlaying)
+                audi.Play();
             if (currentTarget.ReturnHealth() <= 0)
             {
                 enemies.Remove(currentTarget);
