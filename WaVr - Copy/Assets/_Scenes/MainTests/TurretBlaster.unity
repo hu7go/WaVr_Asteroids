@@ -32906,7 +32906,7 @@ MonoBehaviour:
   selectedMat: {fileID: 2100000, guid: b602a840819640345836c552184b27be, type: 2}
   nmbrOfPizzas: 5
   enemy: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636, type: 2}
-  maxNumberOfEnemies: 5
+  maxNumberOfEnemies: 0
   totalNumberOfEnemiesAllowedToSpawn: 10
   totalNumberOfEnemiesSpawned: 0
   holdingGun: 0
