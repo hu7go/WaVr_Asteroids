@@ -63,6 +63,12 @@ public class SpaceGun : MonoBehaviour
                 Destroy(newEffect, 1f);
             }
 
+            if (target.collider.tag == "Objective")
+            {
+                target.collider.GetComponent<ObjectiveHP>().TakeDamage(damage);
+                return;
+            }
+
             if (target.collider.tag == "Player")
                 Manager.Instance.PlayerHit(damage);
             else if (target.collider.tag == "Enemy")

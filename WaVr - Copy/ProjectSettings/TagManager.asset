@@ -17,6 +17,7 @@ TagManager:
   - BuildState
   - RotateState
   - IndexNode
+  - Objective
   layers:
   - Default
   - TransparentFX
