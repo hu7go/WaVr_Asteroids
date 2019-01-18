@@ -186,6 +186,7 @@ public class Manager : MonoBehaviour
         if (towerDefence)
         {
             maxNumberOfEnemies += 5;
+            if(maxNumberOfEnemies < 5)
             referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints.transform); 
             StartCoroutine(EnemySpawner());
         }
