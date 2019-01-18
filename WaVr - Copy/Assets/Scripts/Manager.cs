@@ -65,7 +65,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private Text overText;
     [SerializeField] private Text pizzaCounter;
     [SerializeField] private Text waveCount;
-    private float waveCounter = 0;
+    [HideInInspector] public int waveCounter = 0;
     public Slider slider;
 
     [Space(20)]
@@ -200,7 +200,7 @@ public class Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(15);
         int rnd = Random.Range(0, 4);
-        GameObject localEnemySpawner = Instantiate(enemySpawner, enemySpawnPoints[rnd].transform.position,transform.rotation); 
+        GameObject localEnemySpawner = Instantiate(enemySpawner, enemySpawnPoints[0/*rnd*/].transform.position,transform.rotation); 
         localEnemySpawner.transform.rotation = Quaternion.LookRotation(referenceTD.transform.position, Vector3.up);
         counter = 0;
         enemySpawnPoint = localEnemySpawner;

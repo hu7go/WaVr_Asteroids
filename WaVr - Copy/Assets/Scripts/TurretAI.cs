@@ -40,51 +40,63 @@ public class TurretAI : MonoBehaviour
         while (shooting)
         {
             yield return new WaitForSeconds(turretInfo.attackSpeed);
+            if (currentTarget == null)
+                enemies.Remove(currentTarget);
+            if (enemies.Count > 0)
+                currentTarget = enemies[0];
             Shoot();
         }
     }
 
     private void Shoot ()
     {
-        if (enemies.Count > 1)
+        if (enemies.Count > 0)
         {
-            for (int i = 0; i < enemies.Count; i++)
+            if (currentTarget == null)
             {
-                if (enemies[i] == null)
+                enemies.Remove(currentTarget);
+                if (enemies.Count > 0)
+                    currentTarget = enemies[0];
+            }
+
+            if (enemies.Count > 0)
+                turretSphere.transform.LookAt(currentTarget.transform);
+            currentTarget.TakeDamage(turretInfo.damage);
+            if (currentTarget.ReturnHealth() <= 0)
+            {
+                enemies.Remove(currentTarget);
+                Destroy(currentTarget.gameObject);
+                if (enemies.Count > 0)
+                    currentTarget = enemies[0];
+                else
                 {
-                    enemies.RemoveAt(i);
-                    i--;
+                    shooting = false;
+                    return;
                 }
             }
-        }
+            if (currentTarget == null)
+            {
+                Debug.Log("Tewst");
+                enemies.RemoveAt(0);
+                if (enemies.Count > 0)
+                    currentTarget = enemies[0];
+            }
 
-        turretSphere.transform.LookAt(currentTarget.transform);
-        currentTarget.TakeDamage(turretInfo.damage);
-        if (currentTarget.ReturnHealth() <= 0)
-        {
-            enemies.Remove(currentTarget);
-            Destroy(currentTarget.gameObject);
-            if (enemies.Count > 0)
-                currentTarget = enemies[0];
-            else
+            tMuzzle.transform.GetChild(0).gameObject.SetActive(true);
+            MuzzleParticle();
+
+            if (enemies.Count <= 0)
             {
                 shooting = false;
-                return;
             }
         }
-
-        tMuzzle.transform.GetChild(0).gameObject.SetActive(true);
-        MuzzleParticle();
-        
-        if (enemies.Count <= 0)
-        {
-            shooting = false;
-        }
     }
+
     private void MuzzleParticle()
     {
         StartCoroutine(StopThatParticle());
     }
+
     IEnumerator StopThatParticle()
     {
         yield return new WaitForSeconds(1.5f);

@@ -473,7 +473,7 @@ MonoBehaviour:
   hitEffect: {fileID: 1704180388046014, guid: 4b54e8290d71b4c44b7150c693c83575, type: 2}
   animationsOn: 0
   spawnEffect: 0
-  spread: 1
+  spread: 0
   isGrabbed: 0
 --- !u!135 &135478810515858670
 SphereCollider:

@@ -45,6 +45,8 @@ public class EnemyAI : MonoBehaviour
 
         privateSpeed = speed / 2;
         tmpSpeed = speed;
+
+        health += Manager.Instance.waveCounter;
     }
 
     public void FixedUpdate()
