@@ -64,6 +64,8 @@ public class Manager : MonoBehaviour
     [SerializeField] private Text timerText;
     [SerializeField] private Text overText;
     [SerializeField] private Text pizzaCounter;
+    [SerializeField] private Text waveCount;
+    private float waveCounter = 0;
     public Slider slider;
 
     [Space(20)]
@@ -185,6 +187,8 @@ public class Manager : MonoBehaviour
         }
         if (towerDefence)
         {
+            waveCounter++;
+            waveCount.text = ("Wave: " + waveCounter);
             maxNumberOfEnemies += 5;
             if(maxNumberOfEnemies <= 5)
                 referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints.transform); 
