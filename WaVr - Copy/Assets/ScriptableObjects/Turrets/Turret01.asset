@@ -15,4 +15,4 @@ MonoBehaviour:
   rangeRadius: 1.5
   attackSpeed: 2
   rotationSpeed: 2
-  model: {fileID: 1426028887678576, guid: 8c28bc4172c208441bcfb5a659d01834, type: 2}
+  model: {fileID: 1057945144274050, guid: 748e5410026f5bf488036e08a15c09db, type: 2}

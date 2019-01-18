@@ -32955,7 +32955,7 @@ MonoBehaviour:
     gunObj: {fileID: 0}
     renderers: []
   turretsAndEnemies:
-    turretHover: 0
+    turretHover: 1
     towerDefence: 1
     tDObjective: {fileID: 1634313101031826, guid: 672b29f5582816b4d8792b2849ff4cbf,
       type: 2}
@@ -33055,7 +33055,7 @@ MonoBehaviour:
     slider: {fileID: 1901045656}
     useNewUI: 1
     newUIButtons: {fileID: 1551485662}
-    arrowsUI: {fileID: 1074536659}
+    arrowsUI: {fileID: 2050727202}
   teleportOffset: {x: 0, y: 0, z: 0}
   cameraEye: {fileID: 1885608655}
   useGhostLine: 1
