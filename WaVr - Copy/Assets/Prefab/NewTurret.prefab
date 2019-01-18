@@ -60,6 +60,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1140907617733234
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4935374260180924}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1209612944984450
 GameObject:
   m_ObjectHideFlags: 1
@@ -279,7 +294,7 @@ Transform:
   m_LocalPosition: {x: -45.49375, y: -92.59529, z: 2.1857643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4888203099182432}
+  - {fileID: 4935374260180924}
   m_Father: {fileID: 4745551751967414}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -430,12 +445,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1209612944984450}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 66.55562, z: 64.13723}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.000022888184, y: 0.000022888187, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4947025327821090}
-  m_Father: {fileID: 4129045427729266}
+  m_Father: {fileID: 4935374260180924}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4898860632321706
@@ -451,6 +466,20 @@ Transform:
   m_Father: {fileID: 4701361632458464}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4935374260180924
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140907617733234}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 66.55562, z: 64.13723}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4888203099182432}
+  m_Father: {fileID: 4129045427729266}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4947025327821090
 Transform:
   m_ObjectHideFlags: 1
@@ -987,7 +1016,7 @@ MonoBehaviour:
   tMuzzle: {fileID: 1349674357644654}
   bullet: {fileID: 0}
   enemyParent: {fileID: 0}
-  turretSphere: {fileID: 1209612944984450}
+  turretSphere: {fileID: 1140907617733234}
   turretInfo: {fileID: 11400000, guid: fa920dbf2ca503a4bb9a09b9d950e27f, type: 2}
   enemies: []
 --- !u!114 &114933149515271872
