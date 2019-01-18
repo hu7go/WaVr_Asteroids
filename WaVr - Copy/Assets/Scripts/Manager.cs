@@ -83,7 +83,7 @@ public class Manager : MonoBehaviour
     [Space(20)]
     [Header("Enemies:")]
     [SerializeField] private GameObject enemy;
-    [SerializeField] private int maxNumberOfEnemies = 5;
+    [SerializeField] private int maxNumberOfEnemies = 0;
     [SerializeField] private int totalNumberOfEnemiesAllowedToSpawn = 10;
     [SerializeField] private int totalNumberOfEnemiesSpawned = 0;
     public bool holdingGun = false;
@@ -174,6 +174,7 @@ public class Manager : MonoBehaviour
     {
         if(!towerDefence)
         {
+            maxNumberOfEnemies = 5;
             for (int i = 0; i < maxNumberOfEnemies; i++)
             {
                 if (totalNumberOfEnemiesSpawned >= totalNumberOfEnemiesAllowedToSpawn)
@@ -184,7 +185,8 @@ public class Manager : MonoBehaviour
         }
         if (towerDefence)
         {
-            referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints.transform); //change to rnd
+            maxNumberOfEnemies += 5;
+            referenceTD = Instantiate(tDObjective,tDObjectiveSpawnPoints.transform); 
             StartCoroutine(EnemySpawner());
         }
     }
@@ -195,7 +197,6 @@ public class Manager : MonoBehaviour
         GameObject localEnemySpawner = Instantiate(enemySpawner, enemySpawnPoints[rnd].transform.position,transform.rotation); 
         localEnemySpawner.transform.rotation = Quaternion.LookRotation(referenceTD.transform.position, Vector3.up);
         counter = 0;
-        //enemySpawnPoint = localEnemySpawner.transform.GetChild(0).gameObject;
         enemySpawnPoint = localEnemySpawner;
         yield return StartCoroutine(SpawnEnemyObjective(localEnemySpawner));
     }
@@ -206,19 +207,11 @@ public class Manager : MonoBehaviour
         {
             counter++;
             yield return new WaitForSeconds(2);
-            //print(counter);
-            //print("is this thing on");
             InstantiateEnemy();
-            //complete wave go back to "StartSpawningEnemies" for wave 2;
-            //else new function with end result of time + kills? Calls GAMEOVER from ObjectiveHP script when HP = 0;
         }
-        //yield return new WaitForSeconds(2);
-        //localEnemySpawner.transform.GetChild(1).gameObject.SetActive(false);
+            //if objective now completed new function with end result of time + kills? Calls GAMEOVER from ObjectiveHP script when HP = 0;
 
         Destroy(spawner,2);
-
-        //yield return new WaitForSeconds(15);
-        //RoutineOpener();
     }
 
     public void RoutineOpener()
@@ -228,20 +221,17 @@ public class Manager : MonoBehaviour
     public void InstantiateEnemy()
     {
         Instantiate(enemyPrefab, enemySpawnPoint.transform.position, enemySpawnPoint.transform.rotation, enemyParent.transform);
-        //print(enemySpawnPoint);
     }
     public void GameOver()
     {
         //if objective dies
     }
 
-    public void RemoveEnemie()
+    public void RemoveEnemy()
     {
-        currentNumberOFenemies--;
         killedEnemies++;
-        if (killedEnemies == totalNumberOfEnemiesAllowedToSpawn)
-            ObjectiveReached();
-        //StartCoroutine(SpawnEnemy());
+        if (killedEnemies == maxNumberOfEnemies)
+            StartSpawningEnemies();
     }
 
     private IEnumerator SpawnEnemy()
