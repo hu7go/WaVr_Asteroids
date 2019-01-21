@@ -339,7 +339,7 @@ public class TeleportMaster : MonoBehaviour
 
     protected void TeleportFade()
     {
-        GetComponent<VRTK_HeadsetFade>().Fade(Color.black, fadeTime);
+        //? GetComponent<VRTK_HeadsetFade>().Fade(Color.black, fadeTime);
         Invoke("ActualTeleport", fadeTime);
     }
 
@@ -420,7 +420,7 @@ public class TeleportMaster : MonoBehaviour
             playerParent.transform.localPosition -= new Vector3(0, .75f, 0);
         }
 
-        GetComponent<VRTK_HeadsetFade>().Unfade(fadeTime);
+        //? GetComponent<VRTK_HeadsetFade>().Unfade(fadeTime);
 
         ghostLine = false;
 

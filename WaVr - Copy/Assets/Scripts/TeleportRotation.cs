@@ -472,4 +472,9 @@ public class TeleportRotation : MonoBehaviour
                 break;
         }
     }
+
+    public void CanTeleport ()
+    {
+        canTeleport = true;
+    }
 }
