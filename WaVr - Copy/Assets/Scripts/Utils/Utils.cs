@@ -2,6 +2,7 @@
 using System.Reflection;
 using System;
 
+#if (UNITY_EDITOR)
 public static class Utils
 {
     static MethodInfo _clearConsoleMethod;
@@ -24,3 +25,4 @@ public static class Utils
         clearConsoleMethod.Invoke(new object(), null);
     }
 }
+#endif

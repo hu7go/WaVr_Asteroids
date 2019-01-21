@@ -17,10 +17,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Scenes/MainTests/FeelingOnTop02.unity
     guid: e85b1436fdcc92649b565abf7a5c3a32
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/MainTests/TopSide04.unity
     guid: d0107606c347082438b528abddab2f57
   - enabled: 0
     path: Assets/_Scenes/MainTests/ArrowSide05.unity
     guid: e449c3a6f5aac7748ae04613b2a17894
+  - enabled: 1
+    path: Assets/_Scenes/MainTests/NoSecret.unity
+    guid: 235b04e276c4da7488e4c03a1f736a59
   m_configObjects: {}

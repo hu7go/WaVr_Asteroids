@@ -56,8 +56,8 @@ public class Manager : MonoBehaviour
         public GameObject enemySpawnPoint;
         [HideInInspector] public int waveCounter = 0;
         public int maxNumberOfEnemies = 0;
-        public int totalNumberOfEnemiesAllowedToSpawn = 10;
-        public int totalNumberOfEnemiesSpawned = 0;
+        //!? public int totalNumberOfEnemiesAllowedToSpawn = 10;
+        //!? public int totalNumberOfEnemiesSpawned = 0;
         public bool holdingGun = false;
     }
     [Space(10)]
@@ -107,6 +107,7 @@ public class Manager : MonoBehaviour
     public bool useGhostLine = true;
     public bool positiontrackingOn = true;
 
+    //This is used for when position tracking is off!
     public OVRManager occulus;
 
     [Space(20)]
@@ -115,6 +116,7 @@ public class Manager : MonoBehaviour
     [Space(20)]
     [SerializeField] private bool startTimer = false;
     [SerializeField] private bool gameStarted = false;
+    //If its true the game will spawn enemies from the start!
     [SerializeField] private bool startGameWithEnemies = false;
     [SerializeField] private float myTimer = 0f;
     [SerializeField] private int playerHealth = 10;
@@ -123,14 +125,11 @@ public class Manager : MonoBehaviour
     public int nmbrOfPizzas = 0;
 
     [Space(20)]
-   
-
-    [Space(20)]
     public IndexNode[] indexNodes;
     [HideInInspector]
     public GameObject referenceTD;
     private int killedEnemies;
-    private int currentNumberOFenemies = 0;
+    //!? private int currentNumberOFenemies = 0;
     private int counter;
 
     int minutes;
@@ -187,7 +186,7 @@ public class Manager : MonoBehaviour
     {
         daydreamSettings.usingDayDream = true;
 
-        graphicsSettings.skybox.SetFloat("_Exposure", 2.5f);
+        graphicsSettings.skybox.SetFloat("_Exposure", 3f);
 
         for (int i = 0; i < daydreamSettings.dayDreamBoxIncreases.Length; i++)
             daydreamSettings.dayDreamBoxIncreases[i].size *= 4;

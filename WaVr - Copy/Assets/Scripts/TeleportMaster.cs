@@ -71,10 +71,12 @@ public class TeleportMaster : MonoBehaviour
         Invoke("ClearConsole", .01f);
     }
 
+#if (UNITY_EDITOR)
     public void ClearConsole ()
     {
         Utils.ClearLogConsole();
     }
+#endif
 
     public void Update()
     {
