@@ -5,17 +5,16 @@ using VRTK;
 public class TeleportRotation : MonoBehaviour
 {
     public TeleportMaster master;
-    [SerializeField] private VRTK_CustomRaycast cr;
 
     [Space(20)]
-
     public List<GameObject> hands;
     public GameObject[] parents = new GameObject[2];
-    public GameObject teleportorBuildUI;
+    [SerializeField] private GameObject teleportorBuildUI;
     private GameObject currentHand;
 
-    public bool canTeleport = false;
+    private bool canTeleport = false;
     private bool switchedHands;
+    private VRTK_CustomRaycast cr;
     RaycastHit hit;
     RaycastHit previousHit;
     RaycastHit asteroidHit;
@@ -24,9 +23,10 @@ public class TeleportRotation : MonoBehaviour
     RaycastHit tempPrevAsteroidHit;
     RaycastHit tempAsteroidHit;
     RaycastHit ghostLineHit;
+    //Maybe does nothing!
     RaycastHit ghostLinePrevHit;
     Ray ray;
-    public bool highlightCubes = false;
+    private bool highlightCubes = false;
 
     LineRenderer line;
     Vector3[] linePos;
@@ -35,7 +35,7 @@ public class TeleportRotation : MonoBehaviour
 
     RaycastHit tmpPrev = new RaycastHit();
 
-    int startLayerMask = 1 << 14;
+    public LayerMask startLayerMask;
     RaycastHit startHit;
     RaycastHit lineNotHit;
 
@@ -52,16 +52,12 @@ public class TeleportRotation : MonoBehaviour
         if (cr == null)
             cr = GetComponent<VRTK_CustomRaycast>();
 
-        UpdateLineRenderer();
-
         line = GetComponent<LineRenderer>();
         linePos = new Vector3[2];
-
-        //Debug.DrawRay(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5,0,0));
+        UpdateLineRenderer();
 
         if (Physics.Raycast(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5, 0, 0), out hit))
             prevAsteroidHit = hit;
-
         if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.anywhere)
             highlightCubes = true;
         else
@@ -90,75 +86,14 @@ public class TeleportRotation : MonoBehaviour
         }
         //
 
+        //This handles all the teleporting and clicking of buttons!
         if (canTeleport && Manager.Instance.StartedGame() && !Manager.Instance.turretsAndEnemies.holdingGun)
         {
-            if (renderOwnLine)
-            {
-                line.enabled = true;
-                line.SetPositions(linePos);
-            }
-
-            ray = new Ray(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward));
-
-            Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out hit, master.GetMaxLenght());
-            Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out lineNotHit, master.GetMaxLenght() * 20);
-
-            cr.CustomRaycast(ray, out hit, master.GetMaxLenght());
-
-            if (renderOwnLine)
-            {
-                if (hit.collider == null && lineNotHit.collider == null)
-                    lineVersion = LineVersion.nothing;
-                if (hit.collider == null && lineNotHit.collider != null)
-                    lineVersion = LineVersion.outOfRange;
-                if (hit.collider != null)
-                    lineVersion = LineVersion.hit;
-
-                ChangeLineVersion();
-            }
-
-            if (Manager.Instance.turretsAndEnemies.turretHover)
-            {
-                int layerMask = 1 << 13;
-                if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), layerMask))
-                {
-                    if (tmpPrev.collider != null)
-                    {
-                        if (buildButtonTarget.collider != tmpPrev.collider)
-                        {
-                        tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
-                        }
-                    }
-
-                    buildButtonTarget.collider.GetComponent<TurretSpawn>().ShowRangeIndicator();
-                    tmpPrev = buildButtonTarget;
-                }
-                else
-                {
-                    if (tmpPrev.collider != null)
-                        tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
-                }
-            }
-
-            if (highlightCubes)
-            {
-                if (hit.collider != null)
-                    if (hit.collider.GetComponentInChildren<CubeHighlight>() != null)
-                    {
-                        if (previousHit.collider != null)
-                            if (previousHit.collider != hit.collider)
-                                previousHit.collider.GetComponentInChildren<CubeHighlight>().StopRender();
-
-                        previousHit = hit;
-                        previousHit.collider.GetComponentInChildren<CubeHighlight>().Render();
-                    }
-                if (hit.collider == null)
-                    if (previousHit.collider != null)
-                        previousHit.collider.GetComponentInChildren<CubeHighlight>().StopRender();
-            }
+            TeleportStuff ();
         }
     }
 
+    //This function checks which VR headset you are currently using!
     private void SwtichHands()
     {
         if (parents[0] == enabled && parents[0].activeInHierarchy)
@@ -175,6 +110,7 @@ public class TeleportRotation : MonoBehaviour
             //renderOwnLine = false;
             return;
         }
+        //Using DayDream!
         if (parents[2] == enabled && parents[2].activeInHierarchy)
         {
             if (hands[2] != null)
@@ -191,18 +127,82 @@ public class TeleportRotation : MonoBehaviour
             return;
     }
 
-    public void CanTeleport()
+    private void TeleportStuff ()
     {
-        canTeleport = true;
+        if (renderOwnLine)
+        {
+            line.enabled = true;
+            line.SetPositions(linePos);
+        }
+
+        ray = new Ray(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward));
+
+        Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out hit, master.GetMaxLenght());
+        Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out lineNotHit, master.GetMaxLenght() * 20);
+
+        cr.CustomRaycast(ray, out hit, master.GetMaxLenght());
+
+        if (renderOwnLine)
+        {
+            if (hit.collider != null)
+                SetLineEnd(hit);
+
+            if (hit.collider == null && lineNotHit.collider == null)
+                lineVersion = LineVersion.nothing;
+            if (hit.collider == null && lineNotHit.collider != null)
+                lineVersion = LineVersion.outOfRange;
+            if (hit.collider != null)
+                lineVersion = LineVersion.hit;
+
+            ChangeLineVersion();
+        }
+
+        if (Manager.Instance.turretsAndEnemies.turretHover)
+        {
+            int layerMask = 1 << 13;
+            if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), layerMask))
+            {
+                if (tmpPrev.collider != null)
+                {
+                    if (buildButtonTarget.collider != tmpPrev.collider)
+                    {
+                        tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
+                    }
+                }
+
+                buildButtonTarget.collider.GetComponent<TurretSpawn>().ShowRangeIndicator();
+                tmpPrev = buildButtonTarget;
+            }
+            else
+            {
+                if (tmpPrev.collider != null)
+                    tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
+            }
+        }
+
+        if (highlightCubes)
+        {
+            if (hit.collider != null)
+                if (hit.collider.GetComponentInChildren<CubeHighlight>() != null)
+                {
+                    if (previousHit.collider != null)
+                        if (previousHit.collider != hit.collider)
+                            previousHit.collider.GetComponentInChildren<CubeHighlight>().StopRender();
+
+                    previousHit = hit;
+                    previousHit.collider.GetComponentInChildren<CubeHighlight>().Render();
+                }
+            if (hit.collider == null)
+                if (previousHit.collider != null)
+                    previousHit.collider.GetComponentInChildren<CubeHighlight>().StopRender();
+        }
     }
 
+    //This happens when let go of the trigger on the controller to either teleport or click on a button!
     public void StartTeleport()
     {
         if (hit.collider)
         {
-            //line.endColor = Color.green;
-            //line.startColor = Color.green;
-            
             //If we hit the teleport state button!
             if (hit.collider.CompareTag("TeleportState"))
                 Manager.Instance.SetPointerState(Manager.Enums.PointerState.Teleport);
@@ -407,18 +407,12 @@ public class TeleportRotation : MonoBehaviour
             if (renderOwnLine)
                 SetLineEnd(hit);
         }
-        else
-        {
-            line.endColor = Color.red;
-            line.startColor = Color.red;
-        }
         canTeleport = false;
         if (renderOwnLine)
             line.enabled = false;
     }
 
     bool tmp = false;
-
     public void TeleportTrue (bool ghost = false)
     {
         if (ghost)
@@ -462,6 +456,7 @@ public class TeleportRotation : MonoBehaviour
         GetComponent<VRTK_StraightPointerRenderer>().maximumLength = master.GetMaxLenght();
     }
 
+    //Changes the color of the ray/laser based on what you are pointing at!
     void ChangeLineVersion ()
     {
         switch (lineVersion)
