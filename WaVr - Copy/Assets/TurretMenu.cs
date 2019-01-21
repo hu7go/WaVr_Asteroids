@@ -20,6 +20,7 @@ public class TurretMenu : MonoBehaviour
     public bool CheckWhichSideCanSeePlayer (bool spawnTurret = true)
     {
         Vector3 offset = new Vector3(0, 0, 0);
+        //This check is done for if its a veersion where you stand of to the side and need to check which side of a asteroid is closest!
         if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.arrowsSide && spawnTurret == false)
             offset = new Vector3(2, 0, 0);
 
@@ -39,14 +40,10 @@ public class TurretMenu : MonoBehaviour
 
         if (Physics.Linecast(startPoint, pos.position, out hit))
         {
-            if (hit.collider.tag == "Player")
-            {
+            if (hit.collider.CompareTag("Player"))
                 check = true;
-            }
             else
-            {
                 check = false;
-            }
         }
 
         return check;
@@ -67,9 +64,7 @@ public class TurretMenu : MonoBehaviour
         tI.sideScript = GetComponent<SideScript>();
 
         if (tmp)
-        {
             return tI.sideScript;
-        }
 
         if (CheckWhichSideCanSeePlayer(spawningTurret))
             return tI.sideScript;

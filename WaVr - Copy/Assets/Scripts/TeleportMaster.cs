@@ -6,39 +6,36 @@ using System.Linq;
 
 public class TeleportMaster : MonoBehaviour
 {
-    public Transform headsetFollower;
+    //!? public Transform headsetFollower;
 
+    //need to check when these are used and if they are necessary!
     public UnityEvent StartTeleport;
     public UnityEvent CanTeleport;
+    //
 
     public GameObject playerParent;
     public GameObject player;
-    public Transform[] indexPos;
-    public IndexNode[] indexNodes;
+    [SerializeField] private Transform[] indexPos;
+    [SerializeField] private IndexNode[] indexNodes;
     [Space(20)]
     [Tooltip("The position that s looked at when checkin which side the player is currently standing on")]
     public Transform arrowPositionCheck;
     private Quaternion previousParentRotation;
-    public Transform arrowsPos;
-    public GameObject[] arrows;
+    [SerializeField] private Transform arrowsPos;
+    //!? public GameObject[] arrows;
     public ChangeSide[] arrowScripts;
     public bool ghostLine;
     public bool arrowsTeleport;
 
     [SerializeField] private float teleportMaxLenght = 100f;
-
-    /*
-    [SerializeField] public bool dash = false;
-    [SerializeField] protected float dashSpeed = 50;
-    */
-    //[SerializeField] protected bool reverseRotation;
+    private float OGMaxLenght;
 
     [Space(20)]
     public Sides currentSide = Sides.up;
     public Sides previousSide = Sides.right;
     [SerializeField] public bool reverseTeleport = false;
-    public bool newWay;
-    public bool onlyUp;
+    [SerializeField] private bool newWay;
+    [SerializeField] private bool onlyUp;
 
     [HideInInspector] public Vector3 newPos;
     [HideInInspector] public Quaternion newRot;
@@ -49,7 +46,7 @@ public class TeleportMaster : MonoBehaviour
     //The asteroid you are currently standing on!
     [HideInInspector] public SideScript currentAsteroidStandingOn;
 
-    public VRTK_StraightPointerRenderer pointer;
+    [SerializeField] private VRTK_StraightPointerRenderer pointer;
     VRTK_InteractUse use;
     VRTK_InteractGrab grab;
 
@@ -61,6 +58,8 @@ public class TeleportMaster : MonoBehaviour
 
     private void Start()
     {
+        OGMaxLenght = teleportMaxLenght;
+
         currentAsteroidStandingOn = firstAsteroid;
         currentHit = firstAsteroid;
 
@@ -138,11 +137,8 @@ public class TeleportMaster : MonoBehaviour
                                     tempZ = -90;
                                 }
                                 break;
-                            default:
-                                break;
                         }
                         break;
-
                     case Sides.down:
                         switch (otherSide)
                         {
@@ -173,12 +169,8 @@ public class TeleportMaster : MonoBehaviour
                                 if (reverseTeleport)
                                     tempX = -90;
                                 break;
-
-                            default:
-                                break;
                         }
                         break;
-
                     case Sides.front:
                         switch (otherSide)
                         {
@@ -209,11 +201,8 @@ public class TeleportMaster : MonoBehaviour
                                     tempZ = 90;
                                 }
                                 break;
-                            default:
-                                break;
                         }
                         break;
-
                     case Sides.back:
                         switch (otherSide)
                         {
@@ -244,11 +233,8 @@ public class TeleportMaster : MonoBehaviour
                                     tempZ = 270;
                                 }
                                 break;
-                            default:
-                                break;
                         }
                         break;
-
                     case Sides.left:
                         switch (otherSide)
                         {
@@ -276,11 +262,8 @@ public class TeleportMaster : MonoBehaviour
                                     tempZ = -90;
                                 }
                                 break;
-                            default:
-                                break;
                         }
                         break;
-
                     case Sides.right:
                         switch (otherSide)
                         {
@@ -307,11 +290,7 @@ public class TeleportMaster : MonoBehaviour
                                 break;
                             case Sides.right:
                                 break;
-                            default:
-                                break;
                         }
-                        break;
-                    default:
                         break;
                 }
             tempRot = new Vector3(tempX, tempY, tempZ);
@@ -319,7 +298,7 @@ public class TeleportMaster : MonoBehaviour
                 newRot = Quaternion.Euler(tempRot);
             if (arrowsTeleport)
                 previousParentRotation = playerParent.transform.parent.rotation;
-            Teleport();
+            TeleportFade();
         }
         else
             return;
@@ -356,13 +335,13 @@ public class TeleportMaster : MonoBehaviour
             tempX = 180;
     }
 
-    protected void Teleport()
+    protected void TeleportFade()
     {
         GetComponent<VRTK_HeadsetFade>().Fade(Color.black, fadeTime);
         Invoke("ActualTeleport", fadeTime);
     }
 
-    void ActualTeleport ()
+    void Teleport ()
     {
         if (!arrowsTeleport)
         {
@@ -387,15 +366,8 @@ public class TeleportMaster : MonoBehaviour
                 playerParent.transform.rotation = newRot;
             }
         }
-        //if (arrowsTeleport)
-        //{
-        //    player.transform.rotation = newRot;
-        //}
 
-        //TODO: fix this!!! it should only happen in the version where it is needed
-        //if (Manager.Instance.teleportVersion != Manager.TeleVersion.anywhere)
-            //player.transform.parent = currentHit.rotator; ///VI FÅR INTE EN NY ROTATOR UTAN VI ÄR KVAR UNDER DEN FÖRSTA.
-
+        //! If the teleport version is set to arrows!
         if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.arrows)
         {
             playerParent.transform.parent = currentHit.rotator;
@@ -407,6 +379,7 @@ public class TeleportMaster : MonoBehaviour
 
             playerParent.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
+        //
 
         if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.onTopSide || Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.arrowsSide)
             playerParent.transform.localPosition += new Vector3(2, 0, 0);
@@ -422,16 +395,13 @@ public class TeleportMaster : MonoBehaviour
 
             playerParent.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-            //Vector3 tmpVector = GetClosestSide().sideOffset;
-            //player.transform.localPosition = new Vector3(tmpVector.x, .7f, tmpVector.z);
-
             Vector3 tmpVector = GetClosestSide(previousHit.transform.position).transform.localPosition * 3.636363f;
 
             arrowPositionCheck.localPosition = new Vector3(-tmpVector.x, -tmpVector.y + .7f, -tmpVector.z);
 
             playerParent.transform.position = currentHit.transform.position;
 
-            //
+            //Sorts the available positions by its distance to the player!
             indexPos = indexPos.OrderBy(x => Vector3.Distance(previousHit.transform.position, x.position)).ToArray();
             player.transform.position = indexPos[0].position;
             //
@@ -483,7 +453,7 @@ public class TeleportMaster : MonoBehaviour
 
     public void ReseMaxLenght ()
     {
-        teleportMaxLenght = 35;
+        teleportMaxLenght = OGMaxLenght;
     }
 
     public float GetMaxLenght()
@@ -582,6 +552,7 @@ public class TeleportMaster : MonoBehaviour
             arrowsPos.transform.LookAt(indexPos[0].position - new Vector3(0, .75f, 0), Vector3.up);
         arrowsPos.transform.localRotation *= Quaternion.Euler(0, -90, 0);
 
+        //This makes sure that all the arrows are always in degrees of 90! ie 0, 90, 180, 270...
         Vector3 tmp = arrowsPos.rotation.eulerAngles;
         tmp.x /= 90;
         tmp.x = Mathf.Round(tmp.x);
@@ -592,6 +563,7 @@ public class TeleportMaster : MonoBehaviour
         tmp.z /= 90;
         tmp.z = Mathf.Round(tmp.z);
         tmp.z *= 90;
+        //
 
         arrowsPos.rotation.SetLookRotation(tmp);
     }
