@@ -37,7 +37,16 @@ public class TeleportRotation : MonoBehaviour
 
     int startLayerMask = 1 << 14;
     RaycastHit startHit;
+    RaycastHit lineNotHit;
 
+    public enum LineVersion
+    {
+        nothing,
+        outOfRange,
+        hit
+    }
+    public LineVersion lineVersion;
+    
     private void Start()
     {
         if (cr == null)
@@ -92,10 +101,21 @@ public class TeleportRotation : MonoBehaviour
             ray = new Ray(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward));
 
             Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out hit, master.GetMaxLenght());
+            Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out lineNotHit, master.GetMaxLenght() * 20);
 
             cr.CustomRaycast(ray, out hit, master.GetMaxLenght());
 
-            //Debug.DrawRay(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward) * 20, Color.white, 10);
+            if (renderOwnLine)
+            {
+                if (hit.collider == null && lineNotHit.collider == null)
+                    lineVersion = LineVersion.nothing;
+                if (hit.collider == null && lineNotHit.collider != null)
+                    lineVersion = LineVersion.outOfRange;
+                if (hit.collider != null)
+                    lineVersion = LineVersion.hit;
+
+                ChangeLineVersion();
+            }
 
             if (Manager.Instance.turretsAndEnemies.turretHover)
             {
@@ -145,14 +165,14 @@ public class TeleportRotation : MonoBehaviour
         {
             currentHand = hands[0];
             switchedHands = true;
-            renderOwnLine = false;
+            //renderOwnLine = false;
             return;
         }
         if (parents[1] == enabled && parents[1].activeInHierarchy)
         {
             currentHand = hands[1];
             switchedHands = true;
-            renderOwnLine = false;
+            //renderOwnLine = false;
             return;
         }
         if (parents[2] == enabled && parents[2].activeInHierarchy)
@@ -180,8 +200,8 @@ public class TeleportRotation : MonoBehaviour
     {
         if (hit.collider)
         {
-            line.endColor = Color.green;
-            line.startColor = Color.green;
+            //line.endColor = Color.green;
+            //line.startColor = Color.green;
             
             //If we hit the teleport state button!
             if (hit.collider.CompareTag("TeleportState"))
@@ -440,5 +460,21 @@ public class TeleportRotation : MonoBehaviour
     void UpdateLineRenderer ()
     {
         GetComponent<VRTK_StraightPointerRenderer>().maximumLength = master.GetMaxLenght();
+    }
+
+    void ChangeLineVersion ()
+    {
+        switch (lineVersion)
+        {
+            case LineVersion.nothing:
+                line.material.SetColor("_BaseColor", Color.cyan);
+                break;
+            case LineVersion.outOfRange:
+                line.material.SetColor("_BaseColor", Color.red);
+                break;
+            case LineVersion.hit:
+                line.material.SetColor("_BaseColor", Color.green);
+                break;
+        }
     }
 }
