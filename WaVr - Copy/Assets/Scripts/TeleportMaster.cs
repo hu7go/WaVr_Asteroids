@@ -523,8 +523,6 @@ public class TeleportMaster : MonoBehaviour
                     return false;
                 else
                     return true;
-            default:
-                break;
         }
         return true;
     }
@@ -550,26 +548,20 @@ public class TeleportMaster : MonoBehaviour
 
     private void RotateArrows(bool switchIndex = false, int index = 1)
     {
-        if (switchIndex)
-            arrowsPos.transform.LookAt(indexNodes[index].transform.position - new Vector3(0, .75f, 0), Vector3.up);
-        else
-            arrowsPos.transform.LookAt(indexPos[0].position - new Vector3(0, .75f, 0), Vector3.up);
-        arrowsPos.transform.localRotation *= Quaternion.Euler(0, -90, 0);
-
-        //This makes sure that all the arrows are always in degrees of 90! ie 0, 90, 180, 270...
-        Vector3 tmp = arrowsPos.rotation.eulerAngles;
-        tmp.x /= 90;
-        tmp.x = Mathf.Round(tmp.x);
-        tmp.x *= 90;
-        tmp.y /= 90;
-        tmp.y = Mathf.Round(tmp.y);
-        tmp.y *= 90;
-        tmp.z /= 90;
-        tmp.z = Mathf.Round(tmp.z);
-        tmp.z *= 90;
-        //
-        Debug.Log(tmp);
-        arrowsPos.localRotation = Quaternion.Euler(tmp);
-        //arrowsPos.localRotation.SetLookRotation(tmp);
+        switch (arrowIndex)
+        {
+            case 1:
+                arrowsPos.localRotation = Quaternion.Euler(0, 0, 0);
+                break;
+            case 2:
+                arrowsPos.localRotation = Quaternion.Euler(0, 90, 0);
+                break;
+            case 3:
+                arrowsPos.localRotation = Quaternion.Euler(0, 180, 0);
+                break;
+            case 4:
+                arrowsPos.localRotation = Quaternion.Euler(0, 270, 0);
+                break;
+        }
     }
 }
