@@ -13,11 +13,11 @@ public class ManagerEditor : Editor
         DrawDefaultInspector();
         Manager mS = (Manager)target;
 
-        //foldOutTest = EditorGUILayout.Foldout(foldOutTest, "Test");
-        //if (foldOutTest)
-        //{
-
-        //}
+        if (GUILayout.Button("Start spawing enemies!"))
+        {
+            if (mS.StartedGame())
+                mS.StartSpawningEnemies();
+        }
     }
 
 }

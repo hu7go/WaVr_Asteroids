@@ -101,8 +101,9 @@ public class Manager : MonoBehaviour
     public UISettings uISettings;
 
     [HideInInspector] public Vector3 teleportOffset;
-   
+
     [Space(10)]
+    public UIManager uiManager;
     public GameObject cameraEye;
     public bool useGhostLine = true;
     public bool positiontrackingOn = true;
@@ -161,9 +162,6 @@ public class Manager : MonoBehaviour
 
         //add a enemyspawnlocation look at objective
         SetPointerState(Enums.PointerState.Teleport);
-
-        if (startGameWithEnemies)
-            StartSpawningEnemies();
 
         switch (graphicsSettings.cubesOn)
         {

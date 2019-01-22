@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    //TODO: make it so that i dont have to set it in the inspector, it spawns in when it is needed!
     //The pointer points towards a object if its not visible by the camera!
     [SerializeField] private GameObject pointer;
 
