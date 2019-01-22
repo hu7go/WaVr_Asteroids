@@ -9,7 +9,9 @@ public class TeleportMaster : MonoBehaviour
     //!? public Transform headsetFollower;
 
     //need to check when these are used and if they are necessary!
+    [Tooltip("This is for when you release the trigger for teleporting!")]
     public UnityEvent StartTeleport;
+    [Tooltip("This happens when you start pressing the trigger for teleporting!")]
     public UnityEvent CanTeleport;
     //
 
@@ -339,8 +341,8 @@ public class TeleportMaster : MonoBehaviour
 
     protected void TeleportFade()
     {
-        //? GetComponent<VRTK_HeadsetFade>().Fade(Color.black, fadeTime);
-        Invoke("ActualTeleport", fadeTime);
+        GetComponent<VRTK_HeadsetFade>().Fade(Color.black, fadeTime);
+        Invoke("Teleport", fadeTime);
     }
 
     void Teleport ()
@@ -420,7 +422,7 @@ public class TeleportMaster : MonoBehaviour
             playerParent.transform.localPosition -= new Vector3(0, .75f, 0);
         }
 
-        //? GetComponent<VRTK_HeadsetFade>().Unfade(fadeTime);
+        GetComponent<VRTK_HeadsetFade>().Unfade(fadeTime);
 
         ghostLine = false;
 
