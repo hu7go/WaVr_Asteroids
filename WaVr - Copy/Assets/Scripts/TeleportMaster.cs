@@ -568,7 +568,8 @@ public class TeleportMaster : MonoBehaviour
         tmp.z = Mathf.Round(tmp.z);
         tmp.z *= 90;
         //
-
-        arrowsPos.rotation.SetLookRotation(tmp);
+        Debug.Log(tmp);
+        arrowsPos.localRotation = Quaternion.Euler(tmp);
+        //arrowsPos.localRotation.SetLookRotation(tmp);
     }
 }

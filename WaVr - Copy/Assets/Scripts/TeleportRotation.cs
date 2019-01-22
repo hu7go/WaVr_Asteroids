@@ -390,12 +390,14 @@ public class TeleportRotation : MonoBehaviour
                     hit.collider.GetComponent<ChangeSide>().DoFunction();
                 //
 
+                //If its a index node that changes our position relative to the current cube/asteroid!
                 if (hit.collider.CompareTag("IndexNode"))
                 {
                     int newIndex = hit.collider.GetComponent<IndexNode>().index;
                     if (newIndex != master.arrowIndex)
                         master.ChangeIndex(newIndex);
                 }
+                //
             }
 
             //Not currently in use!
