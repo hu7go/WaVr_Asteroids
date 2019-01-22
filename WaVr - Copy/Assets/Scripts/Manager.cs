@@ -298,10 +298,6 @@ public class Manager : MonoBehaviour
         uISettings.startUI.SetActive(false);
         startTimer = true;
         Destroy(uISettings.startButton);
-        if (turretsAndEnemies.towerDefence)
-        {
-            StartSpawningEnemies();
-        }
     }
     //
 
