@@ -53,7 +53,7 @@ public class Manager : MonoBehaviour
         public GameObject[] enemySpawnPoints;
         public GameObject enemySpawner;
         public GameObject enemyPrefab;
-        public GameObject enemySpawnPoint;
+        [HideInInspector] public GameObject enemySpawnPoint;
         [HideInInspector] public int waveCounter = 0;
         public int maxNumberOfEnemies = 0;
         //!? public int totalNumberOfEnemiesAllowedToSpawn = 10;
@@ -184,7 +184,7 @@ public class Manager : MonoBehaviour
     {
         daydreamSettings.usingDayDream = true;
 
-        graphicsSettings.skybox.SetFloat("_Exposure", 2f);
+        graphicsSettings.skybox.SetFloat("_Exposure", 2.5f);
 
         for (int i = 0; i < daydreamSettings.dayDreamBoxIncreases.Length; i++)
             daydreamSettings.dayDreamBoxIncreases[i].size *= 4;

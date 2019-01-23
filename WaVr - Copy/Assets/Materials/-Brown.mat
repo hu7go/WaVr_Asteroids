@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: -Brown
   m_Shader: {fileID: 4800000, guid: 722fdd6b84219cc489603060652374ab, type: 3}
   m_ShaderKeywords: DYNAMIC_AMBIENT MAX_LIGHT_COUNT_8 SPECULAR SPECULAR_FIXED_MED
@@ -85,6 +86,6 @@ Material:
     - _Wrap: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.176, g: 0.05077987, b: 0.025735848, a: 1}
+    - _BaseColor: {r: 0.2735849, g: 0.048631277, b: 0.0064524733, a: 1}
     - _Color: {r: 0.92941177, g: 0.30980393, b: 0.0627451, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
