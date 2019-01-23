@@ -6,8 +6,6 @@ using UnityEditor;
 [CustomEditor(typeof(Manager))]
 public class ManagerEditor : Editor
 {
-    bool foldOutTest = false;
-
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();

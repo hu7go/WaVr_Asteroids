@@ -6,7 +6,6 @@ using System.Linq;
 
 public class TeleportMaster : MonoBehaviour
 {
-    //!? public Transform headsetFollower;
 
     //need to check when these are used and if they are necessary!
     [Tooltip("This is for when you release the trigger for teleporting!")]
@@ -24,7 +23,6 @@ public class TeleportMaster : MonoBehaviour
     public Transform arrowPositionCheck;
     private Quaternion previousParentRotation;
     [SerializeField] private Transform arrowsPos;
-    //!? public GameObject[] arrows;
     public ChangeSide[] arrowScripts;
     public bool ghostLine;
     public bool arrowsTeleport;
@@ -361,7 +359,7 @@ public class TeleportMaster : MonoBehaviour
         {
             if(currentHit.GetComponent<AsteroidRot>() != null)
             {
-                playerParent.transform.position = currentHit.GetComponent<AsteroidRot>().ReturnCurrentTeleportPos(currentSide).position + new Vector3(0, -.75f, 0);
+                playerParent.transform.position = currentHit.GetComponent<AsteroidRot>().ReturnCurrentTeleportPos(currentSide).position + new Vector3(0, -(Manager.Instance.RetAsteroidSize()*.5f), 0);
                 playerParent.transform.rotation = currentHit.GetComponent<AsteroidRot>().ReturnCurrentTeleportPos(currentSide).rotation;
             }
             else
@@ -401,7 +399,7 @@ public class TeleportMaster : MonoBehaviour
 
             Vector3 tmpVector = GetClosestSide(previousHit.transform.position).transform.localPosition * 3.636363f;
 
-            arrowPositionCheck.localPosition = new Vector3(-tmpVector.x, -tmpVector.y + .7f, -tmpVector.z);
+            arrowPositionCheck.localPosition = new Vector3(-tmpVector.x, -tmpVector.y + Manager.Instance.RetAsteroidSize()*.5f, -tmpVector.z);
 
             playerParent.transform.position = currentHit.transform.position;
 
@@ -419,7 +417,7 @@ public class TeleportMaster : MonoBehaviour
         //
         if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.onTop)
         {
-            playerParent.transform.localPosition -= new Vector3(0, .75f, 0);
+            playerParent.transform.localPosition -= new Vector3(0, Manager.Instance.RetAsteroidSize()*.5f, 0);
         }
 
         GetComponent<VRTK_HeadsetFade>().Unfade(fadeTime);
@@ -529,6 +527,7 @@ public class TeleportMaster : MonoBehaviour
 
     private void ChangePlayerPos (float x, float z)
     {
+        //TODO: Might need to change the ".7f" to "Manager.Instance.RetAsteroidSize()*.5f"!
         playerParent.transform.localPosition = new Vector3(x, .7f, z);
     }
 

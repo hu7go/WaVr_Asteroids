@@ -2,7 +2,7 @@
 
 public class AsteroidSize : MonoBehaviour
 {
-    public float scaleSize = 5;
+    private float scaleSize = 5;
     private float minRot = - 22;
     private float maxRot = 22;
 
@@ -11,6 +11,7 @@ public class AsteroidSize : MonoBehaviour
 
 	void Start ()
     {
+        scaleSize = Manager.Instance.RetAsteroidSize();
         gameObject.transform.localScale = new Vector3(scaleSize, scaleSize, scaleSize);
 
         if (controlledRotation)

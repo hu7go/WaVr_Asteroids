@@ -7,6 +7,7 @@ using VRTK;
 
 public class Manager : MonoBehaviour
 {
+
     [System.Serializable]
     public class Enums
     {
@@ -100,8 +101,10 @@ public class Manager : MonoBehaviour
     [Space(10)]
     public UISettings uISettings;
 
-    [HideInInspector] public Vector3 teleportOffset;
+    [Space(10)]
+    [SerializeField] private float asteroidSize = 1f;
 
+    [HideInInspector] public Vector3 teleportOffset;
     [Space(10)]
     public UIManager uiManager;
     public GameObject cameraEye;
@@ -130,7 +133,6 @@ public class Manager : MonoBehaviour
     [HideInInspector]
     public GameObject referenceTD;
     private int killedEnemies;
-    //!? private int currentNumberOFenemies = 0;
     private int counter;
 
     int minutes;
@@ -478,5 +480,10 @@ public class Manager : MonoBehaviour
     public void DeactivateRotationArrows ()
     {
         uISettings.arrowsUI.SetActive(false);
+    }
+
+    public float RetAsteroidSize ()
+    {
+        return asteroidSize;
     }
 }
