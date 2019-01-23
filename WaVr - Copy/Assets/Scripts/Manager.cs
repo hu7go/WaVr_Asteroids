@@ -184,7 +184,7 @@ public class Manager : MonoBehaviour
     {
         daydreamSettings.usingDayDream = true;
 
-        graphicsSettings.skybox.SetFloat("_Exposure", 2.5f);
+        graphicsSettings.skybox.SetFloat("_Exposure", 2f);
 
         for (int i = 0; i < daydreamSettings.dayDreamBoxIncreases.Length; i++)
             daydreamSettings.dayDreamBoxIncreases[i].size *= 4;
