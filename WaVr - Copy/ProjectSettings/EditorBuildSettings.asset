@@ -24,6 +24,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/MainTests/ArrowSide05.unity
     guid: e449c3a6f5aac7748ae04613b2a17894
   - enabled: 1
-    path: Assets/_Scenes/MainTests/NoSecret.unity
+    path: Assets/_Scenes/CurrentScenes/NoSecret.unity
     guid: 235b04e276c4da7488e4c03a1f736a59
   m_configObjects: {}

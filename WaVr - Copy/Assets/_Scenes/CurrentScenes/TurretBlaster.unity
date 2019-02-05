@@ -4754,6 +4754,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 760335250}
+--- !u!1001 &382778685
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4944264343027272, guid: 204cf6e7bfdf17146bcb46419c99e994, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944264343027272, guid: 204cf6e7bfdf17146bcb46419c99e994, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944264343027272, guid: 204cf6e7bfdf17146bcb46419c99e994, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944264343027272, guid: 204cf6e7bfdf17146bcb46419c99e994, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944264343027272, guid: 204cf6e7bfdf17146bcb46419c99e994, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944264343027272, guid: 204cf6e7bfdf17146bcb46419c99e994, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944264343027272, guid: 204cf6e7bfdf17146bcb46419c99e994, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944264343027272, guid: 204cf6e7bfdf17146bcb46419c99e994, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 204cf6e7bfdf17146bcb46419c99e994, type: 3}
 --- !u!1 &389520129
 GameObject:
   m_ObjectHideFlags: 0
@@ -19930,6 +19971,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: AsteroidCluster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 23893688887356528, guid: abdc97475fd581b4c93b6705047dad8c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d192f4c50d3fa4745b0f56ee4df77325, type: 2}
+    - target: {fileID: 23614742508797022, guid: abdc97475fd581b4c93b6705047dad8c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2788c34609085864c88742f89205a7b0, type: 2}
+    - target: {fileID: 23576978199429738, guid: abdc97475fd581b4c93b6705047dad8c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d192f4c50d3fa4745b0f56ee4df77325, type: 2}
+    - target: {fileID: 23510691453595378, guid: abdc97475fd581b4c93b6705047dad8c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2788c34609085864c88742f89205a7b0, type: 2}
+    - target: {fileID: 23101062953283660, guid: abdc97475fd581b4c93b6705047dad8c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2788c34609085864c88742f89205a7b0, type: 2}
+    - target: {fileID: 23096907108264004, guid: abdc97475fd581b4c93b6705047dad8c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d192f4c50d3fa4745b0f56ee4df77325, type: 2}
     - target: {fileID: 4897080994296900, guid: abdc97475fd581b4c93b6705047dad8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -23352,36 +23423,6 @@ PrefabInstance:
       propertyPath: playerEyeNoPositionTracking
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 23576978199429738, guid: abdc97475fd581b4c93b6705047dad8c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d192f4c50d3fa4745b0f56ee4df77325, type: 2}
-    - target: {fileID: 23096907108264004, guid: abdc97475fd581b4c93b6705047dad8c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d192f4c50d3fa4745b0f56ee4df77325, type: 2}
-    - target: {fileID: 23101062953283660, guid: abdc97475fd581b4c93b6705047dad8c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2788c34609085864c88742f89205a7b0, type: 2}
-    - target: {fileID: 23510691453595378, guid: abdc97475fd581b4c93b6705047dad8c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2788c34609085864c88742f89205a7b0, type: 2}
-    - target: {fileID: 23893688887356528, guid: abdc97475fd581b4c93b6705047dad8c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d192f4c50d3fa4745b0f56ee4df77325, type: 2}
-    - target: {fileID: 23614742508797022, guid: abdc97475fd581b4c93b6705047dad8c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2788c34609085864c88742f89205a7b0, type: 2}
     m_RemovedComponents:
     - {fileID: 114584182827829832, guid: abdc97475fd581b4c93b6705047dad8c, type: 3}
     - {fileID: 114736733590663216, guid: abdc97475fd581b4c93b6705047dad8c, type: 3}
@@ -36354,12 +36395,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 1
-  actualBoundaries: {fileID: 389520129}
-  actualHeadset: {fileID: 1885608655}
-  actualLeftController: {fileID: 1196770118}
-  actualRightController: {fileID: 978709909}
-  modelAliasLeftController: {fileID: 246864186}
-  modelAliasRightController: {fileID: 1498892560}
+  actualBoundaries: {fileID: 0}
+  actualHeadset: {fileID: 0}
+  actualLeftController: {fileID: 0}
+  actualRightController: {fileID: 0}
+  modelAliasLeftController: {fileID: 0}
+  modelAliasRightController: {fileID: 0}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
