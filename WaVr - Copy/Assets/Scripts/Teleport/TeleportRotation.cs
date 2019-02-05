@@ -272,13 +272,9 @@ public class TeleportRotation : MonoBehaviour
                         master.newRot = hit.collider.transform.rotation;
 
                     if (Manager.Instance.enums.teleportVersion != Manager.Enums.TeleVersion.arrowsSide)
-                    {
                         master.newPos = hit.point;
-                    }
                     else
-                    {
                         master.newPos = hit.point;
-                    }
 
                     if (!Manager.Instance.uISettings.useNewUI)
                         teleportorBuildUI.SetActive(true);
@@ -305,7 +301,7 @@ public class TeleportRotation : MonoBehaviour
                 }
                 //
 
-                //If we hit the teleport button
+                //If we hit the teleport button. Not currently in use!
                 if (hit.collider.CompareTag("TeleButton"))
                 {
                     DisableTeleMenu();
@@ -320,6 +316,14 @@ public class TeleportRotation : MonoBehaviour
             //! If the manager is set to build on the selected cube!
             if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Build)
             {
+                if (hit.collider.GetComponent<SideScript>().gameObject == master.currentHit.gameObject)
+                {
+                    canTeleport = false;
+                    if (renderOwnLine)
+                        line.enabled = false;
+                    return;
+                }
+
                 //If we hit a UI element that spawns a turret!
                 if (hit.collider.GetComponent<TurretSpawn>() != null)
                 {
