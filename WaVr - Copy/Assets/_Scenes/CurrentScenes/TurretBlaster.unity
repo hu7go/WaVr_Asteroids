@@ -13196,7 +13196,7 @@ GameObject:
   - component: {fileID: 1112303199}
   m_Layer: 14
   m_Name: Cube
-  m_TagString: StartButton
+  m_TagString: RestartButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16688,7 +16688,6 @@ MonoBehaviour:
   object3: {fileID: 1107437118}
   object4: {fileID: 1652842309}
   snap: 1
-  freeze: 0
 --- !u!223 &1551485665
 Canvas:
   m_ObjectHideFlags: 0
@@ -36112,6 +36111,7 @@ MonoBehaviour:
   myTimer: 0
   indexNodes: []
   referenceTD: {fileID: 0}
+  objectiveHealth: 100
 --- !u!4 &2123815492
 Transform:
   m_ObjectHideFlags: 0
@@ -36842,12 +36842,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 1
-  actualBoundaries: {fileID: 389520129}
-  actualHeadset: {fileID: 1885608655}
-  actualLeftController: {fileID: 1196770118}
-  actualRightController: {fileID: 978709909}
-  modelAliasLeftController: {fileID: 246864186}
-  modelAliasRightController: {fileID: 1498892560}
+  actualBoundaries: {fileID: 0}
+  actualHeadset: {fileID: 0}
+  actualLeftController: {fileID: 0}
+  actualRightController: {fileID: 0}
+  modelAliasLeftController: {fileID: 0}
+  modelAliasRightController: {fileID: 0}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem

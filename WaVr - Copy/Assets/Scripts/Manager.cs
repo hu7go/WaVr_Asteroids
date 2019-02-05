@@ -161,6 +161,7 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        enemiesSpawned = new List<GameObject>();
         enemyParent = new GameObject("enemyParent");
 
         //add a enemyspawnlocation look at objective
