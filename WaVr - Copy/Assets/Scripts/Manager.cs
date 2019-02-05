@@ -252,6 +252,9 @@ public class Manager : MonoBehaviour
     public void GameOver()
     {
         //if objective dies
+
+        StopCoroutine("EnemySpawner");
+        StopCoroutine("SpawnEnemyObjective");
         startTimer = false;
         myTimer = 0;
         objectiveHealth = 100;
