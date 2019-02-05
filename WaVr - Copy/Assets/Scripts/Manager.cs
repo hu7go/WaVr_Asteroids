@@ -215,11 +215,11 @@ public class Manager : MonoBehaviour
             uISettings.waveCount.text = ("Wave: " + turretsAndEnemies.waveCounter);
             turretsAndEnemies.maxNumberOfEnemies += 5;
             if(turretsAndEnemies.maxNumberOfEnemies <= 5)
-                referenceTD = Instantiate(turretsAndEnemies.tDObjective, turretsAndEnemies.tDObjectiveSpawnPoints.transform); 
+                referenceTD = Instantiate(turretsAndEnemies.tDObjective, turretsAndEnemies.tDObjectiveSpawnPoints.transform);
             StartCoroutine(EnemySpawner());
         }
     }
-    
+
     private IEnumerator EnemySpawner()
     {
         countdown = true;
