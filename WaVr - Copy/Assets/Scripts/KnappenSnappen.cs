@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-public class KnappenSnappen : MonoBehaviour {
+public class KnappenSnappen : MonoBehaviour
+{
     [SerializeField]
     private GameObject ghost;
 
@@ -15,10 +16,10 @@ public class KnappenSnappen : MonoBehaviour {
     private GameObject object1, object2, object3, object4;
 
     public bool snap;
-    public bool freeze = false;
 
     //if ghost object is closer to one of the "objects" then snap the UIthing to the closest "object" to ghost
-    void Update () {
+    void Update ()
+    {
 
         if (!snap)
         {
@@ -32,7 +33,7 @@ public class KnappenSnappen : MonoBehaviour {
                 transform.position = new Vector3(0, 0, 0.45f);
             }
         }
-        if (snap && !freeze)
+        if (snap && !Manager.Instance.freeze)
         {
             transform.SetParent(sdkManager.transform);
             float distance1 = Vector3.Distance(ghost.transform.position, object1.transform.position);

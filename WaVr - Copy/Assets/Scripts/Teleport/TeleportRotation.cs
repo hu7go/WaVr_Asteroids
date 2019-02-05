@@ -129,6 +129,8 @@ public class TeleportRotation : MonoBehaviour
 
     private void TeleportStuff ()
     {
+        Manager.Instance.freeze = true;
+
         if (renderOwnLine)
         {
             line.enabled = true;
@@ -201,6 +203,8 @@ public class TeleportRotation : MonoBehaviour
     //This happens when let go of the trigger on the controller to either teleport or click on a button!
     public void StartTeleport()
     {
+        Manager.Instance.freeze = false;
+
         if (hit.collider)
         {
             //If we hit the teleport state button!

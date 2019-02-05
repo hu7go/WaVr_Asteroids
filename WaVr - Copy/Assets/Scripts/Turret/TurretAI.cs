@@ -51,6 +51,14 @@ public class TurretAI : MonoBehaviour
 
     private void Shoot ()
     {
+        //This should stop the turret from trying to shot at nothing and instead clear the list and start over!
+        if (enemies.Count > 0 && currentTarget == null)
+        {
+            enemies.Clear();
+            return;
+        }
+        //
+
         for (int i = enemies.Count -1; i > -1; i--)
         {
             if (enemies[i] == null)
