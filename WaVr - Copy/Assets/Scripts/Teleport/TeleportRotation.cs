@@ -316,7 +316,7 @@ public class TeleportRotation : MonoBehaviour
             //! If the manager is set to build on the selected cube!
             if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Build)
             {
-                if (hit.collider.GetComponent<SideScript>().gameObject == master.currentHit.gameObject)
+                if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
                 {
                     canTeleport = false;
                     if (renderOwnLine)
