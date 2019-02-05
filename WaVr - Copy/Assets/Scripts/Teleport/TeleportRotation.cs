@@ -207,6 +207,11 @@ public class TeleportRotation : MonoBehaviour
 
         if (hit.collider)
         {
+            //If we press the restart button after we have died!
+            if (hit.collider.CompareTag("RestartButton"))
+                Manager.Instance.Restarter();
+            //
+
             //If we hit the teleport state button!
             if (hit.collider.CompareTag("TeleportState"))
                 Manager.Instance.SetPointerState(Manager.Enums.PointerState.Teleport);

@@ -32673,7 +32673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1915356075
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36015,7 +36015,6 @@ MonoBehaviour:
     enemySpawnPoint: {fileID: 0}
     waveCounter: 0
     maxNumberOfEnemies: 0
-    holdingGun: 0
   graphicsSettings:
     skybox: {fileID: 2100000, guid: 18b6bf7c06173654ead94eda5ab1abee, type: 2}
     cubesOn: 1
@@ -36082,12 +36081,13 @@ MonoBehaviour:
   uISettings:
     startUI: {fileID: 1963608503}
     endUI: {fileID: 2056120666}
+    tdendUI: {fileID: 1915356074}
     objective: {fileID: 116886975}
     startButton: {fileID: 1710787614}
     confrimDenyButtons: {fileID: 227425604}
+    tdGameOverText: {fileID: 1202138559}
     timerText: {fileID: 1564587480}
     overText: {fileID: 836148850}
-    pizzaCounter: {fileID: 1809437993}
     waveCount: {fileID: 1784850581}
     stateButtons:
     - {fileID: 965507895}
@@ -36105,12 +36105,11 @@ MonoBehaviour:
   positiontrackingOn: 1
   occulus: {fileID: 627375567}
   player: {fileID: 627375558}
+  freeze: 0
   startTimer: 0
   gameStarted: 0
   startGameWithEnemies: 0
   myTimer: 0
-  playerHealth: 10
-  nmbrOfPizzas: 5
   indexNodes: []
   referenceTD: {fileID: 0}
 --- !u!4 &2123815492

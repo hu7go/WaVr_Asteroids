@@ -131,6 +131,10 @@ public class Manager : MonoBehaviour
     public GameObject referenceTD;
     private int killedEnemies;
     private int counter;
+    private int lifeLeft = 3;
+    [HideInInspector]
+    public float objectiveHealth = 100;
+    private List<GameObject> enemiesSpawned;
 
     int minutes;
     int seconds;
@@ -240,22 +244,42 @@ public class Manager : MonoBehaviour
 
     public void InstantiateEnemy()
     {
-        Instantiate(turretsAndEnemies.enemyPrefab, turretsAndEnemies.enemySpawnPoint.transform.position, turretsAndEnemies.enemySpawnPoint.transform.rotation, enemyParent.transform);
+        GameObject spawnedEnemy = Instantiate(turretsAndEnemies.enemyPrefab, turretsAndEnemies.enemySpawnPoint.transform.position, turretsAndEnemies.enemySpawnPoint.transform.rotation, enemyParent.transform);
+        enemiesSpawned.Add(spawnedEnemy);
     }
 
     public void GameOver()
     {
         //if objective dies
         startTimer = false;
-        uISettings.tdendUI.SetActive(true);
-        uISettings.tdGameOverText.text = "this is a sentence";
-
+        myTimer = 0;
+        objectiveHealth = 100;
+        uISettings.slider.value = objectiveHealth;
+        for (var i = enemiesSpawned.Count - 1; i > -1; i--)
+        {
+            if (enemiesSpawned[i] == null)
+            {
+                enemiesSpawned.RemoveAt(i);
+            }
+        }
+        foreach (GameObject obj in enemiesSpawned)
+        {
+            Destroy(obj);
+        }
+        if(lifeLeft > 0)
+        {
+            uISettings.tdendUI.SetActive(true);
+            uISettings.tdGameOverText.text = "You died, you have "+lifeLeft+" lives left";
+        }
+        if(lifeLeft == 0)
+            uISettings.tdGameOverText.text = "You died. Thanks for playing!";
     }
     public void Restarter()
     {
+        startTimer = true;
         uISettings.tdendUI.SetActive(false);
         killedEnemies = 0;
-        
+        RoutineOpener();
     }
 
     public void RemoveEnemy()

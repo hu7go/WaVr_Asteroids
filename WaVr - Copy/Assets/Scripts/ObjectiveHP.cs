@@ -2,7 +2,6 @@
 
 public class ObjectiveHP : MonoBehaviour
 {
-    [SerializeField] private float hp = 100;
     private float startingHp;
     [SerializeField] private LayerMask bulletLayerMask;
     AudioSource hb1;
@@ -15,21 +14,21 @@ public class ObjectiveHP : MonoBehaviour
         hb1 = audios[0];
         hb2 = audios[1];
         hb3 = audios[2];
-        startingHp = hp;
+        startingHp = Manager.Instance.objectiveHealth;
         if (!hb1.isPlaying)
             hb1.Play();
     }
 
     public void TakeDamage (int damage)
     {
-        hp -= damage;
-        Manager.Instance.uISettings.slider.value = hp;
+        Manager.Instance.objectiveHealth -= damage;
+        Manager.Instance.uISettings.slider.value = Manager.Instance.objectiveHealth;
         CheckHP();
     }
 
     private void CheckHP()
     {
-        if (hp <= startingHp * 0.75f && hp > startingHp * 0.5f)
+        if (Manager.Instance.objectiveHealth <= startingHp * 0.75f && Manager.Instance.objectiveHealth > startingHp * 0.5f)
         {
             if (hb1.isPlaying)
                 hb1.Stop();
@@ -37,7 +36,7 @@ public class ObjectiveHP : MonoBehaviour
                 hb2.Play();
             return;
         }
-        if (hp <= startingHp * 0.5f && hp > startingHp * 0.25f)
+        if (Manager.Instance.objectiveHealth <= startingHp * 0.5f && Manager.Instance.objectiveHealth > startingHp * 0.25f)
         {
             if (hb2.isPlaying)
                 hb2.Stop();
@@ -46,10 +45,9 @@ public class ObjectiveHP : MonoBehaviour
             return;
         }
 
-        if(hp <= 0)
+        if(Manager.Instance.objectiveHealth <= 0)
         {
             Manager.Instance.GameOver();
-            hp = 100;
             Destroy(gameObject);
         }
     }
