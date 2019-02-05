@@ -7,6 +7,6 @@ public class HeartRotation : MonoBehaviour
         if(Manager.Instance.turretsAndEnemies.heartrotator)
             gameObject.transform.LookAt(Manager.Instance.ReturnPlayer().transform);
         if (!Manager.Instance.turretsAndEnemies.heartrotator)
-            gameObject.transform.Rotate(0, 1, 0);
+            gameObject.transform.Rotate(0, 0, 1);
     }
 }

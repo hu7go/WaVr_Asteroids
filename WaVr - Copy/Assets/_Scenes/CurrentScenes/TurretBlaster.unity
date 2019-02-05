@@ -36079,7 +36079,7 @@ MonoBehaviour:
   turretsAndEnemies:
     turretHover: 1
     towerDefence: 1
-    tDObjective: {fileID: 1526898509418765339, guid: 344dc9feb1ce7f34b8db110d25d632a5,
+    tDObjective: {fileID: 1634313101031826, guid: 672b29f5582816b4d8792b2849ff4cbf,
       type: 3}
     tDObjectiveSpawnPoints: {fileID: 1697427939}
     enemySpawnPoints:
@@ -36094,7 +36094,6 @@ MonoBehaviour:
     enemySpawnPoint: {fileID: 0}
     waveCounter: 0
     maxNumberOfEnemies: 0
-    heartrotator: 0
   graphicsSettings:
     skybox: {fileID: 2100000, guid: 18b6bf7c06173654ead94eda5ab1abee, type: 2}
     cubesOn: 1
