@@ -56,7 +56,7 @@ public class Manager : MonoBehaviour
         [HideInInspector] public GameObject enemySpawnPoint;
         [HideInInspector] public int waveCounter = 0;
         public int maxNumberOfEnemies = 0;
-        public bool heartRotate = false;
+        public bool heartrotator = false;
         //!? public int totalNumberOfEnemiesAllowedToSpawn = 10;
         //!? public int totalNumberOfEnemiesSpawned = 0;
     }
