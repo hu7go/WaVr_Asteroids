@@ -49,6 +49,7 @@ public class ObjectiveHP : MonoBehaviour
         if(hp <= 0)
         {
             Manager.Instance.GameOver();
+            hp = 100;
             Destroy(gameObject);
         }
     }
