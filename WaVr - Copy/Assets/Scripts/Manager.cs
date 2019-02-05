@@ -7,7 +7,6 @@ using VRTK;
 
 public class Manager : MonoBehaviour
 {
-
     [System.Serializable]
     public class Enums
     {
@@ -141,6 +140,8 @@ public class Manager : MonoBehaviour
 
     private GameObject enemyParent;
 
+    [Space(20)]
+    private List<GameObject> turrets;
 
     private static bool created = false;
     public static Manager Instance { get; private set; }
@@ -161,6 +162,7 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        turrets = new List<GameObject>();
         enemiesSpawned = new List<GameObject>();
         enemyParent = new GameObject("enemyParent");
 
@@ -277,6 +279,8 @@ public class Manager : MonoBehaviour
         }
         if(lifeLeft == 0)
             uISettings.tdGameOverText.text = "You died. Thanks for playing!";
+
+        ClearTurrets();
     }
     public void Restarter()
     {
@@ -460,5 +464,19 @@ public class Manager : MonoBehaviour
     public float RetAsteroidSize ()
     {
         return asteroidSize;
+    }
+
+    public void BuiltTurret (GameObject newTurret)
+    {
+        turrets.Add(newTurret);
+    }
+
+    public void ClearTurrets ()
+    {
+        foreach (GameObject turret in turrets)
+        {
+            Destroy(turret);
+        }
+        turrets.Clear();
     }
 }

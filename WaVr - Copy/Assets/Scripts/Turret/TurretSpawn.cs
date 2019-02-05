@@ -25,12 +25,15 @@ public class TurretSpawn : MonoBehaviour
             transform.LookAt(lookAt);
     }
 
+    //Spawns the actual turret!
     public void Confirm ()
     {
+
         currentTurret = Instantiate(turret.model, spawnPos);
         master.SpawnedTurret(index);
 
         Manager.Instance.ToggleConfirmDenyButtons();
+        Manager.Instance.BuiltTurret(currentTurret);
 
         RemoveRangeIndicator();
     }
