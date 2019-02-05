@@ -5795,7 +5795,7 @@ MonoBehaviour:
   m_showFPS: 1
   m_maxShadowCasters: 1
   m_daydreamLighting: 1
-  m_uiEnabled: 1
+  m_uiEnabled: 0
   m_globalAmbientUp: {r: 0.1, g: 0.1, b: 0.2, a: 1}
   m_globalAmbientDn: {r: 0.05, g: 0.05, b: 0.025, a: 1}
   m_fogLinear: {x: 0, y: 100, z: 1, w: 0.1}
@@ -33791,8 +33791,8 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020599054}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 0
   m_LightProbeUsage: 0
@@ -33822,7 +33822,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0.1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -33831,7 +33831,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.010307312
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -35460,7 +35460,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096650780}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2d22e9cb8935bf4699e2781a681d6aa, type: 3}
   m_Name: 
@@ -35608,6 +35608,7 @@ MonoBehaviour:
     useNewUI: 1
     newUIButtons: {fileID: 1551485662}
     arrowsUI: {fileID: 2050727202}
+  asteroidSize: 1
   teleportOffset: {x: 0, y: 0, z: 0}
   uiManager: {fileID: 2096650785}
   cameraEye: {fileID: 1885608655}

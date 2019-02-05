@@ -297,6 +297,7 @@ public class Manager : MonoBehaviour
         gameStarted = true;
         uISettings.startUI.SetActive(false);
         startTimer = true;
+        StartSpawningEnemies(); // remove later
         Destroy(uISettings.startButton);
     }
     //

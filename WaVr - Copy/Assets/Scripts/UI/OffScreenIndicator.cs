@@ -12,13 +12,14 @@ public class OffScreenIndicator : MonoBehaviour
     }
 
     //! Both these functions will trigger if you look at the obj with the unity editor scene camera!
-    private void OnBecameVisible()
-    {
-        uiManager.Visible();
-    }
+    //Fix!!!!!
+    //private void OnBecameVisible()
+    //{
+    //    uiManager.Visible();
+    //}
 
-    private void OnBecameInvisible()
-    {
-        uiManager.NotVisible(transform);
-    }
+    //private void OnBecameInvisible()
+    //{
+    //    uiManager.NotVisible(transform);
+    //}
 }
