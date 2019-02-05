@@ -59,7 +59,6 @@ public class Manager : MonoBehaviour
         public int maxNumberOfEnemies = 0;
         //!? public int totalNumberOfEnemiesAllowedToSpawn = 10;
         //!? public int totalNumberOfEnemiesSpawned = 0;
-        public bool holdingGun = false;
     }
     [Space(10)]
     public TurretAndEnemiesSettings turretsAndEnemies;
@@ -90,7 +89,6 @@ public class Manager : MonoBehaviour
         public Text tdGameOverText;
         public Text timerText;
         public Text overText;
-        public Text pizzaCounter;
         public Text waveCount;
         public MeshRenderer[] stateButtons;
         public Slider slider;
@@ -126,10 +124,6 @@ public class Manager : MonoBehaviour
     //If its true the game will spawn enemies from the start!
     [SerializeField] private bool startGameWithEnemies = false;
     [SerializeField] private float myTimer = 0f;
-    [SerializeField] private int playerHealth = 10;
-
-    [Space(20)]
-    public int nmbrOfPizzas = 0;
 
     [Space(20)]
     public IndexNode[] indexNodes;
@@ -252,10 +246,16 @@ public class Manager : MonoBehaviour
     public void GameOver()
     {
         //if objective dies
-        
+        startTimer = false;
         uISettings.tdendUI.SetActive(true);
         uISettings.tdGameOverText.text = "this is a sentence";
 
+    }
+    public void Restarter()
+    {
+        uISettings.tdendUI.SetActive(false);
+        killedEnemies = 0;
+        
     }
 
     public void RemoveEnemy()
@@ -307,7 +307,6 @@ public class Manager : MonoBehaviour
         StartSpawningEnemies(); // remove later
         Destroy(uISettings.startButton);
     }
-    //
 
     public bool StartedGame()
     {
@@ -321,66 +320,11 @@ public class Manager : MonoBehaviour
         uISettings.overText.text = ("Well done! You completed it in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds");
     }
 
-    public void ObjectiveFailed()
-    {
-        //Game over!
-    }
-
-    private void FirstPizzaFound()
-    {
-        uISettings.pizzaCounter.gameObject.SetActive(true);
-    }
-
-    public void UpdatePizzaCounter()
-    {
-        if (nmbrOfPizzas < 5)
-            nmbrOfPizzas++;
-
-        if (nmbrOfPizzas == 1)
-            FirstPizzaFound();
-
-        if (nmbrOfPizzas == 5)
-        {
-            uISettings.objective.SetActive(true);
-            uISettings.pizzaCounter.text = ("The drones are hungry for your pizza!");
-            Invoke("Spawner", 2f);
-        }
-
-        uISettings.pizzaCounter.text = ("Pizza slices: " + nmbrOfPizzas);
-    }
-
-    private void Spawner()
-    {
-        uISettings.objective.SetActive(false);
-        StartSpawningEnemies();
-        uISettings.pizzaCounter.gameObject.SetActive(false);
-    }
-
-    public void PlayerHit(int damage)
-    {
-        playerHealth -= damage;
-
-        if (playerHealth <= 0)
-        {
-            //Lose State!
-        }
-    }
-
     public GameObject ReturnPlayer()
     {
         return player;
     }
 
-    public void RefreshGun()
-    {
-        if (nmbrOfPizzas == 5)
-        {
-            daydreamSettings.gunObj.SetActive(true);
-            foreach (VRTK_StraightPointerRenderer pointer in daydreamSettings.renderers)
-                pointer.enabled = false;
-        }
-        daydreamSettings.gunObj.GetComponent<GunOnOff>().RefreshGun();
-    }
 
     TurretSpawn turretSpawn;
 
@@ -409,11 +353,6 @@ public class Manager : MonoBehaviour
     {
         if (useGhostLine)
             GetComponent<GhostLine>().UpdateLine();
-    }
-
-    public void HoldingGun()
-    {
-        turretsAndEnemies.holdingGun = true;
     }
 
     public void PositionTracking()

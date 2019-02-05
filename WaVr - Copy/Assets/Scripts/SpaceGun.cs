@@ -69,9 +69,8 @@ public class SpaceGun : MonoBehaviour
                 return;
             }
 
-            if (target.collider.tag == "Player")
-                Manager.Instance.PlayerHit(damage);
-            else if (target.collider.tag == "Enemy")
+            
+            if (target.collider.tag == "Enemy")
                 target.collider.GetComponent<EnemyAI>().TakeDamage(damage);
         }
     }

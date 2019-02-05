@@ -87,7 +87,7 @@ public class TeleportRotation : MonoBehaviour
         //
 
         //This handles all the teleporting and clicking of buttons!
-        if (canTeleport && Manager.Instance.StartedGame() && !Manager.Instance.turretsAndEnemies.holdingGun)
+        if (canTeleport && Manager.Instance.StartedGame())
         {
             TeleportStuff ();
         }
@@ -216,19 +216,6 @@ public class TeleportRotation : MonoBehaviour
             //If we hit the rotate state button!
             if (hit.collider.CompareTag("RotateState"))
                 Manager.Instance.SetPointerState(Manager.Enums.PointerState.Rotate);
-            //
-
-            //If we hit a pizza!
-            if (hit.collider.CompareTag("Pizza"))
-            {
-                //Do some pizza shit
-                Manager.Instance.UpdatePizzaCounter();
-                hit.collider.gameObject.SetActive(false);
-                Manager.Instance.ReturnPlayer().GetComponent<AudioSource>().Play();
-                Manager.Instance.RefreshGun();
-                hit = new RaycastHit();
-                return;
-            }
             //
 
             //If we hit the ghost line to the previous asteroid
