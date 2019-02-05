@@ -9190,6 +9190,7 @@ GameObject:
   - component: {fileID: 82582429768666154}
   - component: {fileID: 82669623809710610}
   - component: {fileID: 82599970993668604}
+  - component: {fileID: 3635544157082953505}
   m_Layer: 15
   m_Name: Love
   m_TagString: Objective
@@ -9288,7 +9289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d7fa600aa865c4d8d8720920940792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 20
   bulletLayerMask:
     serializedVersion: 2
     m_Bits: 4096
@@ -9594,6 +9594,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3635544157082953505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634313101031826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc639f2b5d6c568458cbb2f790750c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1725387269613768
 GameObject:
   m_ObjectHideFlags: 0
