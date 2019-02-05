@@ -127,7 +127,6 @@ public class Manager : MonoBehaviour
     [SerializeField] private bool startGameWithEnemies = false;
     [SerializeField] private float myTimer = 0f;
     [SerializeField] private float countdownTimer = 20;
-    private bool countdown;
     [Space(20)]
     public IndexNode[] indexNodes;
     [HideInInspector]
@@ -142,7 +141,7 @@ public class Manager : MonoBehaviour
     int minutes ,minutes2;
     int seconds,seconds2;
 
-    private GameObject enemyParent;
+    [HideInInspector] public GameObject enemyParent;
 
     [Space(20)]
     private List<GameObject> turrets;
@@ -216,48 +215,31 @@ public class Manager : MonoBehaviour
             turretsAndEnemies.maxNumberOfEnemies += 5;
             if(turretsAndEnemies.maxNumberOfEnemies <= 5)
                 referenceTD = Instantiate(turretsAndEnemies.tDObjective, turretsAndEnemies.tDObjectiveSpawnPoints.transform);
-            StartCoroutine(EnemySpawner());
+
+            EnemySpawner();
         }
     }
 
-    private IEnumerator EnemySpawner()
+    private void EnemySpawner ()
     {
-        countdown = true;
-        yield return new WaitForSeconds(0);
-        countdown = false;
         int rnd = Random.Range(0, 4);
-        GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[0/*rnd*/].transform.position,transform.rotation);
+        GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[0/*rnd*/].transform.position, transform.rotation);
         //Starts the spawning process for the enemies!
         localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20);
         //
         localEnemySpawner.transform.rotation = Quaternion.LookRotation(referenceTD.transform.position, Vector3.up);
         counter = 0;
         turretsAndEnemies.enemySpawnPoint = localEnemySpawner;
-        yield return StartCoroutine(SpawnEnemyObjective(localEnemySpawner));
-    }
-
-    private IEnumerator SpawnEnemyObjective(GameObject spawner)
-    {
-        while (counter < turretsAndEnemies.maxNumberOfEnemies)
-        {
-            counter++;
-            yield return new WaitForSeconds(2);
-            InstantiateEnemy();
-        }
-            //if objective now completed new function with end result of time + kills? Calls GAMEOVER from ObjectiveHP script when HP = 0;
-
-        Destroy(spawner,2);
     }
 
     public void RoutineOpener()
     {
-        StartCoroutine(EnemySpawner());
+        EnemySpawner();
     }
 
-    public void InstantiateEnemy()
+    public void InstantiateEnemy(GameObject newEnemy)
     {
-        GameObject spawnedEnemy = Instantiate(turretsAndEnemies.enemyPrefab, turretsAndEnemies.enemySpawnPoint.transform.position, turretsAndEnemies.enemySpawnPoint.transform.rotation, enemyParent.transform);
-        enemiesSpawned.Add(spawnedEnemy);
+        enemiesSpawned.Add(newEnemy);
     }
 
     public void GameOver()
@@ -333,17 +315,6 @@ public class Manager : MonoBehaviour
             seconds = (int)myTimer % 60;
 
             uISettings.timerText.text = minutes.ToString() + ": " + seconds.ToString("00");
-        }
-
-        if (countdown)
-        {
-            countdownTimer -= Time.deltaTime;
-
-            minutes2 = (int)countdownTimer / 60;
-            seconds2 = (int)countdownTimer % 60;
-
-            uISettings.countDownText.text = minutes2.ToString() + ": " + seconds2.ToString("00");
-           // uISettings.objectiveCountDownText.text = minutes2.ToString() + ": " + seconds2.ToString("00");
         }
     }
 

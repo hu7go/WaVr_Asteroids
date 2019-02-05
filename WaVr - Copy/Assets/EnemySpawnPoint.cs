@@ -14,6 +14,7 @@ public class EnemySpawnPoint : MonoBehaviour
     public void StartSpawner (float newTime)
     {
         timer = newTime;
+        start = true;
     }
 
     private void Update()
@@ -22,6 +23,7 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             timer -= Time.deltaTime;
             timerText.text = timer.ToString("00");
+            Manager.Instance.uISettings.countDownText.text = timer.ToString("00");
 
             if (timer <= 0)
             {
