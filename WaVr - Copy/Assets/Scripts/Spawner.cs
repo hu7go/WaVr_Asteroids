@@ -6,24 +6,19 @@ public class Spawner : MonoBehaviour
 {
     public GameObject enemy;
 
-    private int counter;
+    private int counter = 0;
 
     private void Start()
     {
-        StartCoroutine(Spawn());
+        Invoke("Spawn", 2);
     }
 
-    private IEnumerator Spawn ()
+    private void Spawn ()
     {
-        if (counter <= Manager.Instance.turretsAndEnemies.maxNumberOfEnemies)
-        {
-            yield return new WaitForSeconds(2);
+        if (counter < Manager.Instance.turretsAndEnemies.maxNumberOfEnemies)
             SpawEnemy();
-        }
         else
-        {
             Destroy(gameObject, 2);
-        }
     }
 
     public void SpawEnemy()
@@ -31,5 +26,6 @@ public class Spawner : MonoBehaviour
         counter++;
         GameObject newEnemy = Instantiate(enemy, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
         Manager.Instance.InstantiateEnemy(newEnemy);
+        Invoke("Spawn", 2);
     }
 }

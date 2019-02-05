@@ -11,6 +11,8 @@ public class EnemySpawnPoint : MonoBehaviour
     private float timer;
     private bool start = false;
 
+    private bool spawned = false;
+
     public void StartSpawner (float newTime)
     {
         timer = newTime;
@@ -25,10 +27,11 @@ public class EnemySpawnPoint : MonoBehaviour
             timerText.text = timer.ToString("00");
             Manager.Instance.uISettings.countDownText.text = timer.ToString("00");
 
-            if (timer <= 0)
+            if (timer <= 0 && spawned == false)
             {
                 timerText.gameObject.SetActive(false);
                 Instantiate(spawer, transform);
+                spawned = true;
             }
         }
     }

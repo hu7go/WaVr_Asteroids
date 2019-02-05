@@ -54,9 +54,9 @@ public class Manager : MonoBehaviour
         public GameObject enemySpawner;
         public GameObject enemyPrefab;
         [HideInInspector] public GameObject enemySpawnPoint;
-        [HideInInspector] public int waveCounter = 0;
         public int maxNumberOfEnemies = 0;
         public bool heartrotator = false;
+        public int waveCounter = 0;
         //!? public int totalNumberOfEnemiesAllowedToSpawn = 10;
         //!? public int totalNumberOfEnemiesSpawned = 0;
     }
@@ -222,14 +222,26 @@ public class Manager : MonoBehaviour
 
     private void EnemySpawner ()
     {
+        if (turretsAndEnemies.waveCounter > 4)
+        {
+            if (enemiesSpawned.Count == 0)
+            {
+                ObjectiveReached();
+            }
+            return;
+        }
+
         int rnd = Random.Range(0, 4);
-        GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[0/*rnd*/].transform.position, transform.rotation);
+        GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[turretsAndEnemies.waveCounter - 1].transform.position, transform.rotation);
         //Starts the spawning process for the enemies!
         localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20);
         //
         localEnemySpawner.transform.rotation = Quaternion.LookRotation(referenceTD.transform.position, Vector3.up);
         counter = 0;
         turretsAndEnemies.enemySpawnPoint = localEnemySpawner;
+
+        //This start the next wave after x amount of time!
+        Invoke("StartSpawningEnemies", 30);
     }
 
     public void RoutineOpener()
