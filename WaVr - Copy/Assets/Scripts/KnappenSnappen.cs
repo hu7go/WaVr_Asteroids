@@ -15,6 +15,7 @@ public class KnappenSnappen : MonoBehaviour {
     private GameObject object1, object2, object3, object4;
 
     public bool snap;
+    public bool freeze = false;
 
     //if ghost object is closer to one of the "objects" then snap the UIthing to the closest "object" to ghost
     void Update () {
@@ -31,7 +32,7 @@ public class KnappenSnappen : MonoBehaviour {
                 transform.position = new Vector3(0, 0, 0.45f);
             }
         }
-        if (snap)
+        if (snap && !freeze)
         {
             transform.SetParent(sdkManager.transform);
             float distance1 = Vector3.Distance(ghost.transform.position, object1.transform.position);
