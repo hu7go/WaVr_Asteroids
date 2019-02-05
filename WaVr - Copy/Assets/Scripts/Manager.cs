@@ -83,9 +83,11 @@ public class Manager : MonoBehaviour
     {
         public GameObject startUI;
         public GameObject endUI;
+        public GameObject tdendUI;
         public GameObject objective;
         public GameObject startButton;
         public GameObject confrimDenyButtons;
+        public Text tdGameOverText;
         public Text timerText;
         public Text overText;
         public Text pizzaCounter;
@@ -118,6 +120,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject player;
 
     [Space(20)]
+    public bool freeze = false;
     [SerializeField] private bool startTimer = false;
     [SerializeField] private bool gameStarted = false;
     //If its true the game will spawn enemies from the start!
@@ -249,6 +252,10 @@ public class Manager : MonoBehaviour
     public void GameOver()
     {
         //if objective dies
+        
+        uISettings.tdendUI.SetActive(true);
+        uISettings.tdGameOverText.text = "this is a sentence";
+
     }
 
     public void RemoveEnemy()
