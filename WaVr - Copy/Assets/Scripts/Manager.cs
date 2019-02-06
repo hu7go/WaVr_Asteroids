@@ -272,8 +272,9 @@ public class Manager : MonoBehaviour
 
         int rnd = Random.Range(0, 4);
         GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[turretsAndEnemies.waveCounter - 1].transform.position, transform.rotation);
-        //Starts the spawning process for the enemies!
-        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20);
+        //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
+        //                                                             X   '...            Y               ...'
+        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies);
         //
         localEnemySpawner.transform.rotation = Quaternion.LookRotation(objective.transform.position, Vector3.up);
         counter = 0;

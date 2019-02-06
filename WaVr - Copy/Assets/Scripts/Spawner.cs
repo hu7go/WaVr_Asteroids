@@ -6,6 +6,8 @@ public class Spawner : MonoBehaviour
 {
     public GameObject enemy;
 
+    private EnemySpawnPoint master;
+    private int numberOfEnemies;
     private int counter = 0;
 
     private void Start()
@@ -18,12 +20,18 @@ public class Spawner : MonoBehaviour
         transform.LookAt(Manager.Instance.ReturnPlayer().transform);
     }
 
+    public void Initialize (EnemySpawnPoint m, int n)
+    {
+        master = m;
+        numberOfEnemies = n;
+    }
+
     private void Spawn ()
     {
-        if (counter < Manager.Instance.turretsAndEnemies.maxNumberOfEnemies)
+        if (counter < numberOfEnemies)
             SpawEnemy();
         else
-            Destroy(gameObject, 2);
+            master.Destroy();
     }
 
     public void SpawEnemy()

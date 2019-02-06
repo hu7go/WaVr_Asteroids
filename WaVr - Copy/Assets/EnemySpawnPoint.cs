@@ -19,16 +19,21 @@ public class EnemySpawnPoint : MonoBehaviour
 
     private Color currentColor;
 
-    public void StartSpawner (float newTime)
+    private int numberOfEnemies;
+
+    public void StartSpawner (float newTime, int n)
     {
         timer = newTime;
         start = true;
+        numberOfEnemies = n;
     }
 
     private void Update()
     {
         if (start)
         {
+            transform.LookAt(Manager.Instance.ReturnPlayer().transform);
+
             currentColor = purple;
 
             timer -= Time.deltaTime;
@@ -65,15 +70,20 @@ public class EnemySpawnPoint : MonoBehaviour
 
             if (timer <= 0 && spawned == false)
             {
-                //preSpawn.gameObject
-
+                currentColor = purple;
                 timerText.gameObject.SetActive(false);
                 Manager.Instance.uISettings.countDownText.text = "00";
-                Instantiate(spawer, transform);
+                GameObject tmp = Instantiate(spawer, transform);
+                tmp.GetComponent<Spawner>().Initialize(this, numberOfEnemies);
                 spawned = true;
             }
 
             preSpawn.material.SetColor("_TintColor", currentColor); 
         }
+    }
+
+    public void Destroy ()
+    {
+        Destroy(gameObject);
     }
 }
