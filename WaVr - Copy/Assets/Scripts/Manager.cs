@@ -66,13 +66,28 @@ public class Manager : MonoBehaviour
     [System.Serializable]
     public class GraphicsSettings
     {
-        public Material skybox;
+        public enum WorldVersion
+        {
+            //Normal stary night skybox
+            one,
+            //Big planet close up skybox
+            two,
+            //Either skybox but a ship somewhere in the midst of the asteroids that you have to get around in order to getto certain asteroids!
+            three
+        }
+
         [Tooltip("Toggle between asteroid and cube meshes")]
         public bool cubesOn = true;
         public MeshRenderer[] cubes;
         public GameObject asteroids;
         public Material defaultMat;
         public Material selectedMat;
+
+        [Space(20)]
+        public WorldVersion worldVersion = WorldVersion.one;
+        public Material skyboxOne;
+        public Material skyboxTwo;
+        public GameObject spaceShip;
     }
     [Space(10)]
     public GraphicsSettings graphicsSettings;
@@ -130,7 +145,7 @@ public class Manager : MonoBehaviour
     [Space(20)]
     public IndexNode[] indexNodes;
     [HideInInspector]
-    public GameObject referenceTD;
+    public GameObject objective;
     private int killedEnemies;
     private int counter;
     private int lifeLeft = 3;
@@ -146,6 +161,8 @@ public class Manager : MonoBehaviour
     [Space(20)]
     private List<GameObject> turrets;
 
+    [HideInInspector] public bool spawnedFirstTurret = false;
+
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
@@ -159,8 +176,30 @@ public class Manager : MonoBehaviour
         if (!created)
             created = true;
 
-        graphicsSettings.skybox.SetFloat("_Exposure", 1);
+        SetWorldVersion();
+
+        graphicsSettings.skyboxOne.SetFloat("_Exposure", 1);
         PositionTracking();
+    }
+
+    public void SetWorldVersion ()
+    {
+        switch (graphicsSettings.worldVersion)
+        {
+            case GraphicsSettings.WorldVersion.one:
+                RenderSettings.skybox = graphicsSettings.skyboxOne;
+                graphicsSettings.spaceShip.SetActive(false);
+                break;
+            case GraphicsSettings.WorldVersion.two:
+                RenderSettings.skybox = graphicsSettings.skyboxTwo;
+                graphicsSettings.spaceShip.SetActive(false);
+                break;
+            case GraphicsSettings.WorldVersion.three:
+                //The skybox version is not decided!
+                RenderSettings.skybox = graphicsSettings.skyboxOne;
+                graphicsSettings.spaceShip.SetActive(true);
+                break;
+        }
     }
 
     private void Start()
@@ -171,6 +210,8 @@ public class Manager : MonoBehaviour
 
         //add a enemyspawnlocation look at objective
         SetPointerState(Enums.PointerState.Teleport);
+
+        objective = Instantiate(turretsAndEnemies.tDObjective, turretsAndEnemies.tDObjectiveSpawnPoints.transform);
 
         switch (graphicsSettings.cubesOn)
         {
@@ -193,7 +234,7 @@ public class Manager : MonoBehaviour
     {
         daydreamSettings.usingDayDream = true;
 
-        graphicsSettings.skybox.SetFloat("_Exposure", 2.5f);
+        graphicsSettings.skyboxOne.SetFloat("_Exposure", 2.5f);
 
         for (int i = 0; i < daydreamSettings.dayDreamBoxIncreases.Length; i++)
             daydreamSettings.dayDreamBoxIncreases[i].size *= 4;
@@ -213,8 +254,6 @@ public class Manager : MonoBehaviour
             turretsAndEnemies.waveCounter++;
             uISettings.waveCount.text = ("Wave: " + turretsAndEnemies.waveCounter);
             turretsAndEnemies.maxNumberOfEnemies += 5;
-            if(turretsAndEnemies.maxNumberOfEnemies <= 5)
-                referenceTD = Instantiate(turretsAndEnemies.tDObjective, turretsAndEnemies.tDObjectiveSpawnPoints.transform);
 
             EnemySpawner();
         }
@@ -236,7 +275,7 @@ public class Manager : MonoBehaviour
         //Starts the spawning process for the enemies!
         localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20);
         //
-        localEnemySpawner.transform.rotation = Quaternion.LookRotation(referenceTD.transform.position, Vector3.up);
+        localEnemySpawner.transform.rotation = Quaternion.LookRotation(objective.transform.position, Vector3.up);
         counter = 0;
         turretsAndEnemies.enemySpawnPoint = localEnemySpawner;
 
@@ -339,8 +378,16 @@ public class Manager : MonoBehaviour
         gameStarted = true;
         uISettings.startUI.SetActive(false);
         startTimer = true;
-        StartSpawningEnemies(); // remove later
         Destroy(uISettings.startButton);
+    }
+
+    public void StartEnemyWaves ()
+    {
+        if (spawnedFirstTurret == false)
+        {
+            StartSpawningEnemies();
+            spawnedFirstTurret = true;
+        }
     }
 
     public bool StartedGame()

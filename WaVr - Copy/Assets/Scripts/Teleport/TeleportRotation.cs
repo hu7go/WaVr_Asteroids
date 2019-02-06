@@ -316,17 +316,13 @@ public class TeleportRotation : MonoBehaviour
             //! If the manager is set to build on the selected cube!
             if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Build)
             {
-                if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
-                {
-                    canTeleport = false;
-                    if (renderOwnLine)
-                        line.enabled = false;
-                    return;
-                }
-
-                //If we hit a UI element that spawns a turret!
+                
+                //If we hit a UI element that spawns a turret, which will spawn a turret at the selected location!
                 if (hit.collider.GetComponent<TurretSpawn>() != null)
                 {
+                    if (Manager.Instance.spawnedFirstTurret == false)
+                        Manager.Instance.StartEnemyWaves();
+
                     master.ReseMaxLenght();
                     UpdateLineRenderer();
 
@@ -339,8 +335,18 @@ public class TeleportRotation : MonoBehaviour
                 //If we hit the build button
                 if (Manager.Instance.uISettings.useNewUI)
                 {
+                    //If we hit a asteroid to build on it!
                     if (hit.collider.GetComponent<SideScript>() != null)
                     {
+                        if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
+                        {
+                            canTeleport = false;
+                            if (renderOwnLine)
+                                line.enabled = false;
+                            return;
+                        }
+
+
                         master.currentHit = hit.collider.GetComponent<SideScript>();
 
                         prevAsteroidHit = tempPrevAsteroidHit;

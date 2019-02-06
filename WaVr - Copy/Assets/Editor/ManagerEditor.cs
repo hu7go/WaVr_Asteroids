@@ -6,6 +6,8 @@ using UnityEditor;
 [CustomEditor(typeof(Manager))]
 public class ManagerEditor : Editor
 {
+    int wv = 1;
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -15,6 +17,27 @@ public class ManagerEditor : Editor
         {
             if (mS.StartedGame())
                 mS.StartSpawningEnemies();
+        }
+
+        if (GUILayout.Button("Switch world version"))
+        {
+            switch (wv)
+            {
+                case 1:
+                    mS.graphicsSettings.worldVersion = Manager.GraphicsSettings.WorldVersion.one;
+                    break;
+                case 2:
+                    mS.graphicsSettings.worldVersion = Manager.GraphicsSettings.WorldVersion.two;
+                    break;
+                case 3:
+                    mS.graphicsSettings.worldVersion = Manager.GraphicsSettings.WorldVersion.three;
+                    wv = 0;
+                    break;
+            }
+
+            mS.SetWorldVersion();
+
+            wv++;
         }
     }
 

@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        objective = Manager.Instance.referenceTD;
+        objective = Manager.Instance.objective;
         lookingPos = GameObject.Find("HeadSetFollower").transform;   //is this one needed?
         gun = GetComponent<SpaceGun>();
         StartShooting();  // Start shooting when in range of objective?

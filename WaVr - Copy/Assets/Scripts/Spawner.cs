@@ -13,6 +13,11 @@ public class Spawner : MonoBehaviour
         Invoke("Spawn", 2);
     }
 
+    private void Update()
+    {
+        transform.LookAt(Manager.Instance.ReturnPlayer().transform);
+    }
+
     private void Spawn ()
     {
         if (counter < Manager.Instance.turretsAndEnemies.maxNumberOfEnemies)
