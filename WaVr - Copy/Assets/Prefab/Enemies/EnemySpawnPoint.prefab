@@ -129,6 +129,30 @@ MonoBehaviour:
   timerText: {fileID: 5378888966069286952}
   red: {r: 1, g: 0.21226418, b: 0.21226418, a: 1}
   purple: {r: 0.80400795, g: 0.61960787, b: 1, a: 1}
+  colorAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0023847576
+      value: 1.0054364
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9964142
+      value: 0.0074157715
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8449509903568745141
 GameObject:
   m_ObjectHideFlags: 0

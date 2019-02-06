@@ -96,9 +96,10 @@ public class EnemyAI : MonoBehaviour
         {
             StopCoroutine(Shoot());
             ups.UnParent();
-            Manager.Instance.RemoveEnemy();
 
             Instantiate(deathEffect, transform.position, transform.rotation);
+            Manager.Instance.RemoveEnemy();
+            Destroy(gameObject);
         }
     }
 

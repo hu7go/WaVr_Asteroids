@@ -151,7 +151,7 @@ public class Manager : MonoBehaviour
     private int lifeLeft = 3;
     [HideInInspector]
     public float objectiveHealth = 100;
-    private List<GameObject> enemiesSpawned;
+    [SerializeField] private List<GameObject> enemiesSpawned;
 
     int minutes ,minutes2;
     int seconds,seconds2;
@@ -162,6 +162,8 @@ public class Manager : MonoBehaviour
     private List<GameObject> turrets;
 
     [HideInInspector] public bool spawnedFirstTurret = false;
+
+    [SerializeField] private int numberOfEnemies = 0;
 
     private static bool created = false;
     public static Manager Instance { get; private set; }
@@ -263,9 +265,9 @@ public class Manager : MonoBehaviour
     {
         if (turretsAndEnemies.waveCounter > 4)
         {
-            if (enemiesSpawned.Count == 0)
+            if (numberOfEnemies <= 0 || enemiesSpawned.Count == 0)
             {
-                ObjectiveReached();
+                //ObjectiveReached();
             }
             return;
         }
@@ -281,7 +283,7 @@ public class Manager : MonoBehaviour
         turretsAndEnemies.enemySpawnPoint = localEnemySpawner;
 
         //This start the next wave after x amount of time!
-        Invoke("StartSpawningEnemies", 30);
+        //Invoke("StartSpawningEnemies", 30);
     }
 
     public void RoutineOpener()
@@ -292,6 +294,8 @@ public class Manager : MonoBehaviour
     public void InstantiateEnemy(GameObject newEnemy)
     {
         enemiesSpawned.Add(newEnemy);
+
+        AddEnemy();
     }
 
     public void GameOver()
@@ -330,16 +334,31 @@ public class Manager : MonoBehaviour
         startTimer = true;
         uISettings.tdendUI.SetActive(false);
         killedEnemies = 0;
+        turretsAndEnemies.waveCounter = 0;
         RoutineOpener();
+    }
+
+    public void AddEnemy ()
+    {
+        numberOfEnemies++;
     }
 
     public void RemoveEnemy()
     {
-        killedEnemies++;
-        if (killedEnemies == turretsAndEnemies.maxNumberOfEnemies)
+        numberOfEnemies--;
+
+        Invoke("ClearNullRefs", .2f);
+    }
+
+    public void ClearNullRefs ()
+    {
+        for (var i = enemiesSpawned.Count - 1; i > -1; i--)
+            if (enemiesSpawned[i] == null)
+                enemiesSpawned.RemoveAt(i);
+
+        if (turretsAndEnemies.waveCounter > 4 && (numberOfEnemies <= 0 || enemiesSpawned.Count == 0))
         {
-            StartSpawningEnemies();
-            killedEnemies = 0;
+            ObjectiveReached();
         }
     }
 

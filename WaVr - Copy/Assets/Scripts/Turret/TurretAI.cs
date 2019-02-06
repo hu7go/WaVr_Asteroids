@@ -60,12 +60,8 @@ public class TurretAI : MonoBehaviour
         //
 
         for (int i = enemies.Count -1; i > -1; i--)
-        {
             if (enemies[i] == null)
-            {
                 enemies.RemoveAt(i);
-            }
-        }
 
         if (enemies.Count > 0)
         {
@@ -82,7 +78,7 @@ public class TurretAI : MonoBehaviour
             if (currentTarget.ReturnHealth() <= 0)
             {
                 enemies.Remove(currentTarget);
-                Destroy(currentTarget.gameObject);
+                //Destroy(currentTarget.gameObject);
                 if (enemies.Count == 0)
                 {
                     shooting = false;

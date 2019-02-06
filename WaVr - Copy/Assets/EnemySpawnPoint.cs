@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
+
     public GameObject spawer;
     public MeshRenderer preSpawn;
     public Text timerText;
@@ -16,9 +17,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public Color red = Color.red;
     public Color purple = Color.magenta;
-
     private Color currentColor;
-
     private int numberOfEnemies;
 
     public void StartSpawner (float newTime, int n)
@@ -38,32 +37,36 @@ public class EnemySpawnPoint : MonoBehaviour
 
             timer -= Time.deltaTime;
             timerText.text = timer.ToString("00");
-            if (spawned == true)
+            if (spawned == false)
                 Manager.Instance.uISettings.countDownText.text = timer.ToString("00");
 
             if (timer <= 10)
                 currentColor = red;
+            if (timer <= 8)
+                currentColor = purple;
             if (timer <= 6)
-                currentColor = purple;
+                currentColor = red;
             if (timer <= 4)
-                currentColor = red;
+                currentColor = purple;
             if (timer <= 3)
-                currentColor = purple;
+                currentColor = red;
             if (timer <= 2.5f)
-                currentColor = red;
+                currentColor = purple;
             if (timer <= 2f)
-                currentColor = purple;
+                currentColor = red;
             if (timer <= 1.5f)
-                currentColor = red;
+                currentColor = purple;
             if (timer <= 1.25f)
-                currentColor = purple;
+                currentColor = red;
             if (timer <= 1f)
-                currentColor = red;
-            if (timer <= .75f)
                 currentColor = purple;
-            if (timer <= .5f)
+            if (timer <= .75f)
                 currentColor = red;
-            if (timer <= .25f)
+            if (timer <= .5f)
+                currentColor = purple;
+            if (timer <= .35f)
+                currentColor = red;
+            if (timer <= .2f)
                 currentColor = purple;
             if (timer <= .1f)
                 currentColor = red;
@@ -84,6 +87,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public void Destroy ()
     {
+        Manager.Instance.StartSpawningEnemies();
         Destroy(gameObject);
     }
 }
