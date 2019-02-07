@@ -141,7 +141,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public void Destroy ()
     {
-        Manager.Instance.StartSpawningEnemies();
+        StartCoroutine(Manager.Instance.SpawnThemNewEnemies());
         Destroy(gameObject);
     }
 }

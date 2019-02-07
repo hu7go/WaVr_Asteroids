@@ -152,6 +152,7 @@ public class Manager : MonoBehaviour
     public float objectiveHealth = 100;
     private List<GameObject> enemiesSpawned;
 
+    public int Masterhealth;
     int minutes ,minutes2;
     int seconds,seconds2;
 
@@ -260,6 +261,11 @@ public class Manager : MonoBehaviour
 
             EnemySpawner();
         }
+    }
+    public IEnumerator SpawnThemNewEnemies()
+    {
+        yield return new WaitForSeconds(15);
+        StartSpawningEnemies();
     }
 
     private void EnemySpawner ()
