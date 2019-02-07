@@ -39,7 +39,7 @@ public class TurretMenuMaster : MonoBehaviour
 
             foreach (SideScript side in tmpList)
             {
-                Debug.DrawLine(side.transform.position, master.arrowPositionCheck.position, Color.blue, 10f);
+                //Debug.DrawLine(side.transform.position, master.arrowPositionCheck.position, Color.blue, 10f);
                 if (distance > Vector3.Distance(side.transform.position, master.arrowPositionCheck.position))
                 {
                     distance = Vector3.Distance(side.transform.position, master.arrowPositionCheck.position);

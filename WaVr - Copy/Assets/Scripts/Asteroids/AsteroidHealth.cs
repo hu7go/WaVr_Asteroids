@@ -13,7 +13,7 @@ public class AsteroidHealth : MonoBehaviour
 
     public void Start()
     {
-        asteroid.postition = transform;
+        asteroid.postition = transform.position;
         asteroid.health = 100;
         asteroid.alive = true;
 
@@ -44,7 +44,7 @@ public class AsteroidHealth : MonoBehaviour
 [System.Serializable]
 public struct AsteroidInfo
 {
-    public Transform postition;
+    public Vector3 postition;
     [Range(0 , 100)]
     public int health;
     public bool alive;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
@@ -18,13 +19,8 @@ public class EnemySpawnPoint : MonoBehaviour
     private Color currentColor;
     private int numberOfEnemies;
 
-    private List<AsteroidHealth> asteroidList;
-    private List<AsteroidHealth> sortedList;
-
-    private void Start()
-    {
-        asteroidList = new List<AsteroidHealth>();
-    }
+    public List<AsteroidHealth> asteroidList;
+    public List<AsteroidHealth> sortedList;
 
     public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList)
     {
@@ -38,8 +34,53 @@ public class EnemySpawnPoint : MonoBehaviour
 
     void SortList ()
     {
-        //Sort list based on distance!
+        sortedList = new List<AsteroidHealth>();
+        //Sort list based on distance! from the previouse target!!!!
 
+        AsteroidHealth currentTarget = new AsteroidHealth();
+
+        Vector3 currentPos = new Vector3();
+
+        for (int i = 0; i < asteroidList.Count; i++)
+        {
+            //Special case if we are in the first position!
+            if (i == 0)
+                currentPos = transform.position;
+            else
+                currentPos = currentTarget.asteroid.postition;
+            //
+
+            //Sorts the list from the current asteroid to the closest one!
+            asteroidList.OrderBy(x => Vector3.Distance(currentPos, x.asteroid.postition)).ToList();
+            asteroidList.Sort(delegate (AsteroidHealth a, AsteroidHealth b)
+            {
+                return Vector3.Distance(currentPos, a.asteroid.postition)
+                .CompareTo(Vector3.Distance(currentPos, b.asteroid.postition));
+            });
+            //
+
+            //Checks if the the next asteroid already exist in the list we have!
+            int c = 0;
+            if (sortedList.Contains(currentTarget))
+            {
+                while (sortedList.Contains(currentTarget))
+                {
+                    currentTarget = asteroidList[c];
+                    c++;
+                }
+            }
+            else
+            {
+                currentTarget = asteroidList[0];
+            }
+            //
+
+            Debug.Log(currentTarget);
+
+            sortedList.Add(currentTarget);
+
+            Debug.DrawLine(currentPos, currentTarget.asteroid.postition, Color.cyan, 10000);
+        }
     }
 
     private void Update()
