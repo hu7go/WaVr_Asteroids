@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class SpaceGun : MonoBehaviour
 {
+    public enum Shooter
+    {
+        turret,
+        enemy
+    }
+
+    public Shooter shooter = Shooter.turret;
+
+    [Space(20)]
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform muzzle;
     [Tooltip("Damage dealt per bullet hit.")]
@@ -22,9 +31,7 @@ public class SpaceGun : MonoBehaviour
     int layerMask = 1 << 11;
 
     private Vector3 fireDirection;
-    /// <summary>
-    /// This is Start
-    /// </summary>
+
     private void Start()
     {
         layerMask = ~layerMask;
@@ -53,7 +60,7 @@ public class SpaceGun : MonoBehaviour
 
         GameObject tmpBullet = Instantiate(bullet, muzzle.position, muzzle.rotation * Quaternion.Euler(fireDirection));
 
-        Debug.DrawRay(muzzle.position, tmpBullet.transform.forward * 150, Color.cyan, 1f);
+        //Debug.DrawRay(muzzle.position, tmpBullet.transform.forward * 150, Color.cyan, 1f);
 
         if (Physics.Raycast(muzzle.position, tmpBullet.transform.forward, out target, 150, layerMask))
         {
@@ -69,9 +76,10 @@ public class SpaceGun : MonoBehaviour
                 return;
             }
 
-            
-            if (target.collider.tag == "Enemy")
-                target.collider.GetComponent<EnemyAI>().TakeDamage(damage);
+
+            if (shooter == Shooter.turret)
+                if (target.collider.tag == "Enemy")
+                    target.collider.GetComponent<EnemyAI>().TakeDamage(damage);
         }
     }
 

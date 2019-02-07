@@ -21,23 +21,30 @@ public class ManagerEditor : Editor
 
         if (GUILayout.Button("Switch world version"))
         {
-            switch (wv)
+            if (EditorApplication.isPlaying)
             {
-                case 1:
-                    mS.graphicsSettings.worldVersion = Manager.GraphicsSettings.WorldVersion.one;
-                    break;
-                case 2:
-                    mS.graphicsSettings.worldVersion = Manager.GraphicsSettings.WorldVersion.two;
-                    break;
-                case 3:
-                    mS.graphicsSettings.worldVersion = Manager.GraphicsSettings.WorldVersion.three;
-                    wv = 0;
-                    break;
+                switch (wv)
+                {
+                    case 1:
+                        mS.graphicsSettings.worldVersion = Manager.GraphicsSettings.WorldVersion.one;
+                        break;
+                    case 2:
+                        mS.graphicsSettings.worldVersion = Manager.GraphicsSettings.WorldVersion.two;
+                        break;
+                    case 3:
+                        mS.graphicsSettings.worldVersion = Manager.GraphicsSettings.WorldVersion.three;
+                        wv = 0;
+                        break;
+                }
+
+                mS.SetWorldVersion();
+
+                wv++;
             }
-
-            mS.SetWorldVersion();
-
-            wv++;
+            else
+            {
+                Debug.Log("Not currently in play mode!");
+            }
         }
     }
 

@@ -57,8 +57,6 @@ public class Manager : MonoBehaviour
         public int maxNumberOfEnemies = 0;
         public bool heartrotator = false;
         public int waveCounter = 0;
-        //!? public int totalNumberOfEnemiesAllowedToSpawn = 10;
-        //!? public int totalNumberOfEnemiesSpawned = 0;
     }
     [Space(10)]
     public TurretAndEnemiesSettings turretsAndEnemies;
@@ -151,7 +149,7 @@ public class Manager : MonoBehaviour
     private int lifeLeft = 3;
     [HideInInspector]
     public float objectiveHealth = 100;
-    [SerializeField] private List<GameObject> enemiesSpawned;
+    private List<GameObject> enemiesSpawned;
 
     int minutes ,minutes2;
     int seconds,seconds2;
@@ -163,7 +161,7 @@ public class Manager : MonoBehaviour
 
     [HideInInspector] public bool spawnedFirstTurret = false;
 
-    [SerializeField] private int numberOfEnemies = 0;
+    private int numberOfEnemies = 0;
 
     private static bool created = false;
     public static Manager Instance { get; private set; }
@@ -356,7 +354,7 @@ public class Manager : MonoBehaviour
             if (enemiesSpawned[i] == null)
                 enemiesSpawned.RemoveAt(i);
 
-        if (turretsAndEnemies.waveCounter > 4 && (numberOfEnemies <= 0 || enemiesSpawned.Count == 0))
+        if (turretsAndEnemies.waveCounter > 4 && (/*numberOfEnemies <= 0 ||*/ enemiesSpawned.Count == 0))
         {
             ObjectiveReached();
         }

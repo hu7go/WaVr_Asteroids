@@ -72,13 +72,14 @@ public class TurretAI : MonoBehaviour
             }
 
             turretSphere.transform.LookAt(currentTarget.transform);
+            //The shooting part!
             currentTarget.TakeDamage(turretInfo.damage);
+            //
             if(!audi.isPlaying)
                 audi.Play();
             if (currentTarget.ReturnHealth() <= 0)
             {
                 enemies.Remove(currentTarget);
-                //Destroy(currentTarget.gameObject);
                 if (enemies.Count == 0)
                 {
                     shooting = false;

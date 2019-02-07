@@ -7,7 +7,6 @@ public class EnemyAI : MonoBehaviour
     public GameObject deathEffect;
 
     GameObject objective;
-    Transform lookingPos;
     SpaceGun gun;
     UnparentSound ups;
     public float speed = 1;
@@ -34,7 +33,6 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         objective = Manager.Instance.objective;
-        lookingPos = GameObject.Find("HeadSetFollower").transform;   //is this one needed?
         gun = GetComponent<SpaceGun>();
         StartShooting();  // Start shooting when in range of objective?
         ups = GetComponentInChildren<UnparentSound>();
@@ -52,7 +50,7 @@ public class EnemyAI : MonoBehaviour
     public void FixedUpdate()
     {
         Movement();
-        Debug.DrawRay(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, Color.red);
+        //Debug.DrawRay(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, Color.red);
     }
 
     void Movement ()
