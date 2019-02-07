@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
-
     public GameObject spawer;
     public MeshRenderer preSpawn;
     public Text timerText;
