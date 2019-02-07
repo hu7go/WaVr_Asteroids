@@ -42,9 +42,7 @@ public class ManagerEditor : Editor
                 wv++;
             }
             else
-            {
                 Debug.Log("Not currently in play mode!");
-            }
         }
     }
 
