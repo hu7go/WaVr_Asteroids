@@ -9234,6 +9234,24 @@ MonoBehaviour:
   m_static: 0
   m_staticState: 
   m_activeLightCount: 8
+--- !u!1 &803528685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3347163611318291071, guid: e6f06e5d81529214bad13ef2e5bca45a,
+    type: 3}
+  m_PrefabInstance: {fileID: 803528681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &803528686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803528685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462ca55a73e47064f9c96370d0eb8623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &814984846 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 23127515307403338, guid: abdc97475fd581b4c93b6705047dad8c,
@@ -36197,6 +36215,7 @@ MonoBehaviour:
     maxNumberOfEnemies: 0
     heartrotator: 0
     waveCounter: 0
+    currentActiveSpawner: {fileID: 0}
   graphicsSettings:
     cubesOn: 1
     cubes:
@@ -36301,10 +36320,10 @@ MonoBehaviour:
   indexNodes: []
   objective: {fileID: 0}
   objectiveHealth: 100
-  enemiesSpawned: []
+  Masterhealth: 0
   enemyParent: {fileID: 0}
   spawnedFirstTurret: 0
-  numberOfEnemies: 0
+  asteroidList: []
 --- !u!4 &2123815492
 Transform:
   m_ObjectHideFlags: 0
