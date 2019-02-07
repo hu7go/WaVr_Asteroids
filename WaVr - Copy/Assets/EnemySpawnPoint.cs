@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
@@ -17,21 +18,28 @@ public class EnemySpawnPoint : MonoBehaviour
     private Color currentColor;
     private int numberOfEnemies;
 
-    public List<AsteroidInfo> asteroidList;
+    private List<AsteroidHealth> asteroidList;
+    private List<AsteroidHealth> sortedList;
 
     private void Start()
     {
-        asteroidList = new List<AsteroidInfo>();
+        asteroidList = new List<AsteroidHealth>();
     }
 
-    public void StartSpawner (float newTime, int n, List<AsteroidInfo> newList)
+    public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList)
     {
         asteroidList = newList;
-        //Sort list based on distance!
+        SortList();
 
         timer = newTime;
         start = true;
         numberOfEnemies = n;
+    }
+
+    void SortList ()
+    {
+        //Sort list based on distance!
+
     }
 
     private void Update()

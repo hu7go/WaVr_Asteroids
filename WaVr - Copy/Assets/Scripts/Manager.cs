@@ -164,6 +164,8 @@ public class Manager : MonoBehaviour
 
     private int numberOfEnemies = 0;
 
+    public List<AsteroidHealth> asteroidList;
+
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
@@ -275,7 +277,7 @@ public class Manager : MonoBehaviour
         GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[turretsAndEnemies.waveCounter - 1].transform.position, transform.rotation);
         //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
         //                                                             X   '...            Y               ...'
-        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies);
+        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList);
         //
         localEnemySpawner.transform.rotation = Quaternion.LookRotation(objective.transform.position, Vector3.up);
         counter = 0;

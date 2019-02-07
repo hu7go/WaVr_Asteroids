@@ -18,6 +18,7 @@ public class AsteroidHealth : MonoBehaviour
         asteroid.alive = true;
 
         rend = GetComponent<MeshRenderer>();
+        Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
     }
 
     public void TakeDamage (int damage)
@@ -30,8 +31,8 @@ public class AsteroidHealth : MonoBehaviour
 
     void UpdateColor ()
     {
-        Color.RGBToHSV(rend.material.color, out h, out s, out v);
-        s = asteroid.health;
+        s = (float)asteroid.health / 100;
+        rend.material.SetColor("_Color", Color.HSVToRGB(h, s, v)); 
     }
 
     public AsteroidInfo GetInfo ()
@@ -44,6 +45,7 @@ public class AsteroidHealth : MonoBehaviour
 public struct AsteroidInfo
 {
     public Transform postition;
+    [Range(0 , 100)]
     public int health;
     public bool alive;
 }
