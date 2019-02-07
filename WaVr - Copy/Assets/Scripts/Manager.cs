@@ -57,6 +57,7 @@ public class Manager : MonoBehaviour
         public int maxNumberOfEnemies = 0;
         public bool heartrotator = false;
         public int waveCounter = 0;
+        public Transform currentActiveSpawner;
     }
     [Space(10)]
     public TurretAndEnemiesSettings turretsAndEnemies;
