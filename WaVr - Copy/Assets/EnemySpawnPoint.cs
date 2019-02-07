@@ -20,8 +20,18 @@ public class EnemySpawnPoint : MonoBehaviour
     private Color currentColor;
     private int numberOfEnemies;
 
-    public void StartSpawner (float newTime, int n)
+    public List<AsteroidInfo> asteroidList;
+
+    private void Start()
     {
+        asteroidList = new List<AsteroidInfo>();
+    }
+
+    public void StartSpawner (float newTime, int n, List<AsteroidInfo> newList)
+    {
+        asteroidList = newList;
+        //Sort list based on distance!
+
         timer = newTime;
         start = true;
         numberOfEnemies = n;

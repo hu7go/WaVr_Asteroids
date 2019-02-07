@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     private int numberOfEnemies;
     private int counter = 0;
 
+
     private void Start()
     {
         Invoke("Spawn", 2);
