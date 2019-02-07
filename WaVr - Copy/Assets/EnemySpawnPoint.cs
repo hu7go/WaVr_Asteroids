@@ -61,9 +61,9 @@ public class EnemySpawnPoint : MonoBehaviour
 
             //Checks if the the next asteroid already exist in the list we have!
             int c = 0;
-            if (sortedList.Contains(currentTarget))
+            if (sortedList.Contains(currentTarget) || currentTarget.asteroid.alive == false)
             {
-                while (sortedList.Contains(currentTarget))
+                while (sortedList.Contains(currentTarget) || currentTarget.asteroid.alive == false)
                 {
                     currentTarget = asteroidList[c];
                     c++;
@@ -75,11 +75,9 @@ public class EnemySpawnPoint : MonoBehaviour
             }
             //
 
-            Debug.Log(currentTarget);
-
             sortedList.Add(currentTarget);
 
-            Debug.DrawLine(currentPos, currentTarget.asteroid.postition, Color.cyan, 10000);
+            Debug.DrawLine(currentPos, currentTarget.asteroid.postition, new Color(Random.Range(0, 255), Random.Range(0, 255), Random.Range(0, 255)), 120);
         }
     }
 
@@ -133,7 +131,7 @@ public class EnemySpawnPoint : MonoBehaviour
                 timerText.gameObject.SetActive(false);
                 Manager.Instance.uISettings.countDownText.text = "00";
                 GameObject tmp = Instantiate(spawer, transform);
-                tmp.GetComponent<Spawner>().Initialize(this, numberOfEnemies);
+                tmp.GetComponent<Spawner>().Initialize(this, numberOfEnemies, sortedList);
                 spawned = true;
             }
 

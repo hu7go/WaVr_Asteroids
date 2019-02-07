@@ -254,7 +254,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 32768
-  health: 10
+  health: 11
   tooClose: 0
   pushAwayFrom: {fileID: 0}
 --- !u!54 &54986258024544824
@@ -299,16 +299,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64788d37b48704d468003e08e93bbbfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooter: 1
   bullet: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
   muzzle: {fileID: 4775546638652990}
-  damage: 1
-  fireRate: 3
+  damage: 10
+  fireRate: 1
   hitEffect: {fileID: 1704180388046014, guid: 4b54e8290d71b4c44b7150c693c83575, type: 3}
-  animationsOn: 0
   spawnEffect: 0
-  spread: 0
-  isGrabbed: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!82 &82513290732291978
 AudioSource:
   m_ObjectHideFlags: 0

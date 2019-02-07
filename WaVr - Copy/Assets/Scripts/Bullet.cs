@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        if (other.gameObject.tag == "Asteroid")
+            Destroy(gameObject);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     public GameObject deathEffect;
 
-    GameObject objective;
+    Transform objective;
     SpaceGun gun;
     UnparentSound ups;
     public float speed = 1;
@@ -30,9 +31,12 @@ public class EnemyAI : MonoBehaviour
     private float privateSpeed;
     private float tmpSpeed;
 
+    private List<AsteroidHealth> objectiveOrder;
+    int objIndex = 0;
+
     private void Start()
     {
-        objective = Manager.Instance.objective;
+        objective = Manager.Instance.objective.transform;
         gun = GetComponent<SpaceGun>();
         StartShooting();  // Start shooting when in range of objective?
         ups = GetComponentInChildren<UnparentSound>();
@@ -47,6 +51,11 @@ public class EnemyAI : MonoBehaviour
         health += Manager.Instance.turretsAndEnemies.waveCounter;
     }
 
+    public void Initialize (List<AsteroidHealth> newList)
+    {
+        objectiveOrder = newList;
+    }
+
     public void FixedUpdate()
     {
         Movement();
@@ -55,9 +64,22 @@ public class EnemyAI : MonoBehaviour
 
     void Movement ()
     {
-        transform.LookAt(objective.transform); 
+        //This needs to check if the current objective target is still alive and if not change to the next one in the list that is alive!
+        //! might not work right now, needs testing!
+        if (objectiveOrder[objIndex].asteroid.alive == true)
+        {
+            objective = objectiveOrder[objIndex].transform;
+        }
+        else
+        {
+            objIndex++;
+            objective = objectiveOrder[objIndex].transform;
+        }
+        //
 
-        var distance = Vector3.Distance(transform.position, objective.transform.position);
+        transform.LookAt(objective); 
+
+        var distance = Vector3.Distance(transform.position, objective.position);
 
         //Stops a certain distance away from the target!
         if (distance > 9)
@@ -65,12 +87,12 @@ public class EnemyAI : MonoBehaviour
             if (distance < 25)
             {
                 tmpSpeed = privateSpeed;
-                transform.RotateAround(objective.transform.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed * 2) * Time.deltaTime);
+                transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed * 2) * Time.deltaTime);
             }
-            transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, tmpSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
         }
         if (distance <= 9)
-            transform.RotateAround(objective.transform.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
+            transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
     }
 
     //Shoot at objective
