@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Asteriod
   - Enemy
   - pickUp
   - Pizza
@@ -19,6 +18,8 @@ TagManager:
   - IndexNode
   - Objective
   - RestartButton
+  - Asteroid
+  - Asteriod
   layers:
   - Default
   - TransparentFX

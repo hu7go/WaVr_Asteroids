@@ -232,6 +232,11 @@ public class Manager : MonoBehaviour
             default:
                 break;
         }
+
+        for (int i = 0; i < asteroidList.Count; i++)
+        {
+            Masterhealth += asteroidList[i].asteroid.health;
+        }
     }
 
     public void UsingDayDream()

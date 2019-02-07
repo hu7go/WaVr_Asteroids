@@ -19,11 +19,6 @@ public class AsteroidHealth : MonoBehaviour
 
         rend = GetComponent<MeshRenderer>();
         Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
-
-        for (int i = 0; i < Manager.Instance.asteroidList.Count; i++)
-        {
-            Manager.Instance.Masterhealth += Manager.Instance.asteroidList[i].asteroid.health;
-        }
     }
 
     public void TakeDamage (int damage)
@@ -47,6 +42,7 @@ public class AsteroidHealth : MonoBehaviour
     {
         return asteroid;
     }
+
     private void CheckHP()
     {
         if (Manager.Instance.Masterhealth <= 0)

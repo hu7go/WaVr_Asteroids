@@ -34,7 +34,7 @@ public class SpaceGun : MonoBehaviour
 
         fireDirection = muzzle.forward;
 
-        //GameObject tmpBullet = Instantiate(bullet, muzzle.position, muzzle.rotation * Quaternion.Euler(fireDirection));
+        GameObject tmpBullet = Instantiate(bullet, muzzle.position, muzzle.rotation * Quaternion.Euler(fireDirection));
 
         //Debug.DrawRay(muzzle.position, tmpBullet.transform.forward * 150, Color.cyan, 1f);
 
@@ -47,7 +47,6 @@ public class SpaceGun : MonoBehaviour
                 Destroy(newEffect, 1f);
             }
 
-            Debug.Log("Test hit!");
             target.collider.GetComponent<AsteroidHealth>().TakeDamage(damage);
         }
     }

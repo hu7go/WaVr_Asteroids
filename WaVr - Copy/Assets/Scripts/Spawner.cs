@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Spawner : MonoBehaviour
 {
     public GameObject enemy;
+    [Tooltip("The time it takes before the next enemy spawns!")]public float spawnTime = 1f;
 
     private EnemySpawnPoint master;
     private int numberOfEnemies;
@@ -12,7 +13,7 @@ public class Spawner : MonoBehaviour
     private List<AsteroidHealth> objecctiveOrder;
     private void Start()
     {
-        Invoke("Spawn", 2);
+        Invoke("Spawn", spawnTime);
     }
 
     private void Update()
@@ -41,6 +42,6 @@ public class Spawner : MonoBehaviour
         GameObject newEnemy = Instantiate(enemy, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
         newEnemy.GetComponent<EnemyAI>().Initialize(objecctiveOrder);
         Manager.Instance.InstantiateEnemy(newEnemy);
-        Invoke("Spawn", 2);
+        Invoke("Spawn", spawnTime);
     }
 }

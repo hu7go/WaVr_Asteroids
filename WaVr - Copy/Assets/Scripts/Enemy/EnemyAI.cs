@@ -108,6 +108,7 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(gun.RetunrFireRate(), gun.RetunrFireRate() + 2));
         StartShooting();
     }
+
     //from turrets
     public void TakeDamage (int damage)
     {

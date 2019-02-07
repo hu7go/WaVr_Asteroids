@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 4f);
     }
 
     private void FixedUpdate()
@@ -18,6 +18,8 @@ public class Bullet : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Asteroid")
+        {
             Destroy(gameObject);
+        }
     }
 }
