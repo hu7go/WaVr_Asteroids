@@ -254,7 +254,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 32768
-  health: 3
+  health: 10
   tooClose: 0
   pushAwayFrom: {fileID: 0}
 --- !u!54 &54986258024544824

@@ -253,7 +253,7 @@ public class Manager : MonoBehaviour
         {
             turretsAndEnemies.waveCounter++;
             uISettings.waveCount.text = ("Wave: " + turretsAndEnemies.waveCounter);
-            turretsAndEnemies.maxNumberOfEnemies += 5;
+            turretsAndEnemies.maxNumberOfEnemies = 20;
 
             EnemySpawner();
         }
@@ -354,7 +354,7 @@ public class Manager : MonoBehaviour
             if (enemiesSpawned[i] == null)
                 enemiesSpawned.RemoveAt(i);
 
-        if (turretsAndEnemies.waveCounter > 4 && (/*numberOfEnemies <= 0 ||*/ enemiesSpawned.Count == 0))
+        if (turretsAndEnemies.waveCounter > 4 && (enemiesSpawned.Count == 0))
         {
             ObjectiveReached();
         }
