@@ -341,8 +341,11 @@ public class TeleportRotation : MonoBehaviour
                         if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
                         {
                             //Healers Go here!
-                            GameObject healer = Instantiate(Manager.Instance.turretsAndEnemies.healer, master.currentAsteroidStandingOn.transform);
-                            healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
+                            if(master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
+                            {
+                                GameObject healer = Instantiate(Manager.Instance.turretsAndEnemies.healer, master.currentAsteroidStandingOn.transform);
+                                healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
+                            }
                             canTeleport = false;
                             if (renderOwnLine)
                                 line.enabled = false;
