@@ -98,9 +98,9 @@ public class EnemyAI : MonoBehaviour
             {
                 objIndex++;
                 objective = objectiveOrder[objIndex].transform;
-                spawner.CheckForNewPath();
             }
             //
+            spawner.CheckForNewPath();
 
             distance = Vector3.Distance(transform.position, objective.position);
 

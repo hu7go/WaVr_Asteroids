@@ -24,7 +24,8 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(Manager.Instance.ReturnPlayer().transform);
+        if (objecctiveOrder[0] != null)
+            transform.LookAt(objecctiveOrder[0].asteroid.postition);
     }
 
     public void Initialize (EnemySpawnPoint m, int n, List<AsteroidHealth> newList, float newThreshHold)

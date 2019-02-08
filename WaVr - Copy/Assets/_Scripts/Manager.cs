@@ -245,7 +245,7 @@ public class Manager : MonoBehaviour
 
     public void UpdateHealth (float damage)
     {
-        masterCurrentHealth -= damage;
+        masterCurrentHealth += damage;
         uISettings.healthSlider.value = masterCurrentHealth;
 
         if (masterCurrentHealth <= 0)

@@ -37,7 +37,6 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold)
     {
-        pathThread = new Thread(SortList);
         spawnerPosition = transform.position;
 
         asteroidList = newList;
@@ -60,18 +59,18 @@ public class EnemySpawnPoint : MonoBehaviour
 
     private IEnumerator StartPathFinding ()
     {
+        pathThread = new Thread(SortList);
         pathThread.Start();
+
         while (pathThread.IsAlive)
         {
             yield return null;
         }
 
-        float tmp = Random.Range(0, 255);
-
         for (int i = 0; i < sortedList.Count; i++)
         {
             if (i + 1 < sortedList.Count)
-                Debug.DrawLine(sortedList[i].asteroid.postition, sortedList[i + 1].asteroid.postition, new Color(tmp, tmp, tmp), 25);
+                Debug.DrawLine(sortedList[i].asteroid.postition, sortedList[i + 1].asteroid.postition, new Color(255, 0, 100), 5);
         }
     }
 
@@ -141,7 +140,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
         if (start)
         {
-            transform.LookAt(sortedList[0].asteroid.postition);
+            transform.LookAt(Manager.Instance.ReturnPlayer().transform);
 
             currentColor = purple;
 

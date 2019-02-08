@@ -27,8 +27,14 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
         if (asteroid.health <= 0)
             asteroid.alive = false;
 
-        Manager.Instance.UpdateHealth(damage);
+        Manager.Instance.UpdateHealth(-damage);
 
+        UpdateColor();
+    }
+
+    public void Heal (float newHealth)
+    {
+        Manager.Instance.UpdateHealth(newHealth);
         UpdateColor();
     }
 
