@@ -36,6 +36,11 @@ public class EnemyAI : MonoBehaviour
 
     private float healthThreshHold;
 
+    private bool seekAndDestroy = true;
+    private Transform home;
+
+    private float distance;
+
     private void Start()
     {
         gun = GetComponent<SpaceGun>();
@@ -52,49 +57,79 @@ public class EnemyAI : MonoBehaviour
         health += Manager.Instance.turretsAndEnemies.waveCounter;
     }
 
-    public void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold)
+    public void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold, Transform newHome)
     {
         objectiveOrder = newList;
         healthThreshHold = newHealthThreshHold;
+        home = newHome;
     }
 
     public void FixedUpdate()
     {
+        CheckHealthThreshHold();
         Movement();
         //Debug.DrawRay(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, Color.red);
+    }
+
+    private void CheckHealthThreshHold()
+    {
+        if (((Manager.Instance.masterCurrentHealth / Manager.Instance.masterMaxHealth) * 100) <= healthThreshHold)
+        {
+            seekAndDestroy = false;
+            objective = home;
+        }
     }
 
     void Movement ()
     {
         //This needs to check if the current objective target is still alive and if not change to the next one in the list that is alive!
         //! might not work right now, needs testing!
-        if (objectiveOrder[objIndex].asteroid.alive == true)
+
+
+        if (seekAndDestroy == true)
         {
-            objective = objectiveOrder[objIndex].transform;
+            if (objectiveOrder[objIndex].asteroid.alive == true)
+            {
+                objective = objectiveOrder[objIndex].transform;
+            }
+            else
+            {
+                objIndex++;
+                objective = objectiveOrder[objIndex].transform;
+            }
+            //
+
+            distance = Vector3.Distance(transform.position, objective.position);
+
+            transform.LookAt(objective);
+
+
+            //Stops a certain distance away from the target!
+            if (distance > 9)
+            {
+                if (distance < 25)
+                {
+                    tmpSpeed = privateSpeed;
+                    transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed * 2) * Time.deltaTime);
+                }
+                transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+            }
+            if (distance <= 9)
+                transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
         }
         else
         {
-            objIndex++;
-            objective = objectiveOrder[objIndex].transform;
-        }
-        //
+            distance = Vector3.Distance(transform.position, objective.position);
 
-        transform.LookAt(objective); 
-
-        float distance = Vector3.Distance(transform.position, objective.position);
-
-        //Stops a certain distance away from the target!
-        if (distance > 9)
-        {
-            if (distance < 25)
+            if (distance < 2)
             {
-                tmpSpeed = privateSpeed;
-                transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed * 2) * Time.deltaTime);
+                Kill();
             }
-            transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+            }
         }
-        if (distance <= 9)
-            transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
     }
 
     //Shoot at objective
@@ -117,13 +152,18 @@ public class EnemyAI : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            StopCoroutine(Shoot());
-            ups.UnParent();
-
             Instantiate(deathEffect, transform.position, transform.rotation);
-            Manager.Instance.RemoveEnemy();
-            Destroy(gameObject);
+            Kill();
         }
+    }
+
+    void Kill()
+    {
+        StopCoroutine(Shoot());
+        ups.UnParent();
+
+        Manager.Instance.RemoveEnemy();
+        Destroy(gameObject);
     }
 
     public int ReturnHealth ()

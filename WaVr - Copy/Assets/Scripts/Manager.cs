@@ -152,7 +152,9 @@ public class Manager : MonoBehaviour
     public float objectiveHealth = 100;
     private List<GameObject> enemiesSpawned;
 
-    public float masterHealth;
+    public float masterCurrentHealth;
+    public float masterMaxHealth;
+
     int minutes ,minutes2;
     int seconds,seconds2;
 
@@ -233,18 +235,20 @@ public class Manager : MonoBehaviour
 
         for (int i = 0; i < asteroidList.Count; i++)
         {
-            masterHealth += asteroidList[i].asteroid.health;
+            masterCurrentHealth += asteroidList[i].asteroid.health;
         }
-        uISettings.healthSlider.maxValue = masterHealth;
-        uISettings.healthSlider.value = masterHealth;
+        uISettings.healthSlider.maxValue = masterCurrentHealth;
+        uISettings.healthSlider.value = masterCurrentHealth;
+
+        masterMaxHealth = masterCurrentHealth;
     }
 
     public void UpdateHealth (float damage)
     {
-        masterHealth -= damage;
-        uISettings.healthSlider.value = masterHealth;
+        masterCurrentHealth -= damage;
+        uISettings.healthSlider.value = masterCurrentHealth;
 
-        if (masterHealth <= 0)
+        if (masterCurrentHealth <= 0)
             GameOver();
     }
 
@@ -291,7 +295,7 @@ public class Manager : MonoBehaviour
         GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[turretsAndEnemies.waveCounter - 1].transform.position, transform.rotation);
         //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
         //                                                             X   '...            Y               ...'
-        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList);
+        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, 95);
         //
 
         turretsAndEnemies.currentActiveSpawner = localEnemySpawner.transform;
@@ -391,6 +395,7 @@ public class Manager : MonoBehaviour
         return startTimer;
     }
 
+    //! Update Function!!!!!
     private void Update()
     {
         if (transform.position != new Vector3(0, 0, 0))
@@ -407,6 +412,7 @@ public class Manager : MonoBehaviour
             uISettings.timerText.text = minutes.ToString() + ": " + seconds.ToString("00");
         }
     }
+    //! !!!!!
 
     //The function that happens when you click the start game button!
     public void StartGame()

@@ -27,7 +27,9 @@ public class EnemySpawnPoint : MonoBehaviour
 
     private GameObject probe;
 
-    public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList)
+    private float threshHold;
+
+    public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold)
     {
         asteroidList = newList;
         SortList();
@@ -35,6 +37,8 @@ public class EnemySpawnPoint : MonoBehaviour
         timer = newTime;
         start = true;
         numberOfEnemies = n;
+
+        threshHold = newThreshHold;
 
         probe = Instantiate(probePrefab, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
         probe.GetComponent<Probe>().Instantiate(sortedList[0].asteroid.postition, transform.position);
@@ -85,7 +89,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
             sortedList.Add(currentTarget);
 
-            Debug.DrawLine(currentPos, currentTarget.asteroid.postition, Color.green, 120);
+            Debug.DrawLine(currentPos, currentTarget.asteroid.postition, Color.green, 20);
         }
     }
 
@@ -141,7 +145,7 @@ public class EnemySpawnPoint : MonoBehaviour
                 timerText.gameObject.SetActive(false);
                 Manager.Instance.uISettings.countDownText.text = "00";
                 GameObject tmp = Instantiate(spawer, transform);
-                tmp.GetComponent<Spawner>().Initialize(this, numberOfEnemies, sortedList);
+                tmp.GetComponent<Spawner>().Initialize(this, numberOfEnemies, sortedList, threshHold);
                 spawned = true;
             }
 
