@@ -37783,11 +37783,14 @@ MonoBehaviour:
       type: 3}
     enemyPrefab: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636,
       type: 3}
+    healer: {fileID: 1076756149515054808, guid: b4f1dc514fa6efa4da229c92b790c913,
+      type: 3}
     enemySpawnPoint: {fileID: 0}
-    maxNumberOfEnemies: 0
-    heartrotator: 0
+    maxNumberOfEnemies: 20
+    heartrotator: 1
     waveCounter: 0
-    currentActiveSpawner: {fileID: 0}
+    currentActiveSpawner: {fileID: 1465535229}
+    asteroidHealth: 200
   graphicsSettings:
     cubesOn: 1
     cubes:
@@ -37857,7 +37860,7 @@ MonoBehaviour:
   uISettings:
     startUI: {fileID: 1963608503}
     endUI: {fileID: 2056120666}
-    tdEndUI: {fileID: 0}
+    tdEndUI: {fileID: 1915356074}
     objective: {fileID: 116886975}
     startButton: {fileID: 1710787614}
     confrimDenyButtons: {fileID: 227425604}
@@ -37870,7 +37873,7 @@ MonoBehaviour:
     - {fileID: 965507895}
     - {fileID: 1788543045}
     - {fileID: 2132287207}
-    healthSlider: {fileID: 0}
+    healthSlider: {fileID: 1901045656}
     useNewUI: 1
     newUIButtons: {fileID: 1551485662}
     arrowsUI: {fileID: 2050727202}
@@ -37891,10 +37894,18 @@ MonoBehaviour:
   indexNodes: []
   objective: {fileID: 0}
   objectiveHealth: 100
-  masterHealth: 0
+  masterCurrentHealth: 0
+  masterMaxHealth: 0
   enemyParent: {fileID: 0}
   spawnedFirstTurret: 0
   asteroidList: []
+  healerInfoTemplate:
+    postition: {x: 0, y: 0, z: 0}
+    health: 0
+    regenSpeed: 3
+    regenValue: 1
+    alive: 0
+    startHealing: 0
 --- !u!4 &2123815492
 Transform:
   m_ObjectHideFlags: 0
