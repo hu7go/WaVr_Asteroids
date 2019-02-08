@@ -16,11 +16,6 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
         hI.alive = true;
     }
 
-    void Update()
-    {
-        if (hI.alive == false)
-            Destroy(gameObject);
-    }
     public void SpawnAHealer(GameObject currentCube)
     {
         myAsteroid = currentCube.GetComponentInChildren<AsteroidHealth>();
@@ -36,6 +31,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
         {
             hI.alive = false;
             CancelInvoke();
+            Destroy(gameObject);
         }
     }
     private void Heal()
@@ -43,7 +39,10 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
         if (myAsteroid.asteroid.health < Manager.Instance.turretsAndEnemies.asteroidHealth)
             myAsteroid.asteroid.health += hI.regenValue;
         if (myAsteroid.asteroid.health >= Manager.Instance.turretsAndEnemies.asteroidHealth)
+        {
+            myAsteroid.asteroid.alive = true;
             CancelInvoke();
+        }
     }
 }
 
