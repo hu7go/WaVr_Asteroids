@@ -52,6 +52,7 @@ public class Manager : MonoBehaviour
         public GameObject[] enemySpawnPoints;
         public GameObject enemySpawner;
         public GameObject enemyPrefab;
+        public GameObject healer;
         [HideInInspector] public GameObject enemySpawnPoint;
         public int maxNumberOfEnemies = 0;
         public bool heartrotator = false;

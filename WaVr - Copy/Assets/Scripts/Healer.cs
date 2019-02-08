@@ -17,7 +17,10 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
             Destroy(gameObject);
 
     }
-
+    public void SpawnAHealer(GameObject currentCube)
+    {
+        
+    }
     public void TakeDamage(float damage)
     {
         hI.health -= damage;
