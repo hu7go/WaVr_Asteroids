@@ -340,6 +340,8 @@ public class TeleportRotation : MonoBehaviour
                     {
                         if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
                         {
+                            //Healers Go here!
+
                             canTeleport = false;
                             if (renderOwnLine)
                                 line.enabled = false;
