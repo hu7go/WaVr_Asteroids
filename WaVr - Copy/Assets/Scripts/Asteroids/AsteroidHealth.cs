@@ -14,7 +14,7 @@ public class AsteroidHealth : MonoBehaviour
     public void Start()
     {
         asteroid.postition = transform.position;
-        asteroid.health = 100;
+        asteroid.health = Manager.Instance.turretsAndEnemies.asteroidHealth;
         asteroid.alive = true;
 
         rend = GetComponent<MeshRenderer>();
@@ -34,7 +34,7 @@ public class AsteroidHealth : MonoBehaviour
 
     void UpdateColor ()
     {
-        s = (float)asteroid.health / 100;
+        s = (asteroid.health / 100) / (Manager.Instance.turretsAndEnemies.asteroidHealth / 100);
         rend.material.SetColor("_Color", Color.HSVToRGB(h, s, v)); 
     }
 
@@ -48,7 +48,6 @@ public class AsteroidHealth : MonoBehaviour
 public struct AsteroidInfo
 {
     public Vector3 postition;
-    [Range(0 , 100)]
-    public int health;
+    public float health;
     public bool alive;
 }

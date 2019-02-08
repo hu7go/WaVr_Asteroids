@@ -57,6 +57,8 @@ public class Manager : MonoBehaviour
         public bool heartrotator = false;
         public int waveCounter = 0;
         public Transform currentActiveSpawner;
+
+        public float asteroidHealth = 200;
     }
     [Space(10)]
     public TurretAndEnemiesSettings turretsAndEnemies;
@@ -150,7 +152,7 @@ public class Manager : MonoBehaviour
     public float objectiveHealth = 100;
     private List<GameObject> enemiesSpawned;
 
-    public int masterHealth;
+    public float masterHealth;
     int minutes ,minutes2;
     int seconds,seconds2;
 
@@ -321,8 +323,10 @@ public class Manager : MonoBehaviour
         StopCoroutine("SpawnEnemyObjective");
         startTimer = false;
         myTimer = 0;
+        //This needs to be changed at some point!
         objectiveHealth = 100;
         uISettings.healthSlider.value = objectiveHealth;
+        //
         for (var i = enemiesSpawned.Count - 1; i > -1; i--)
         {
             if (enemiesSpawned[i] == null)

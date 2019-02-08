@@ -77,7 +77,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
             sortedList.Add(currentTarget);
 
-            Debug.DrawLine(currentPos, currentTarget.asteroid.postition, new Color(Random.Range(0, 255), Random.Range(0, 255), Random.Range(0, 255)), 120);
+            Debug.DrawLine(currentPos, currentTarget.asteroid.postition, Color.green, 120);
         }
     }
 
