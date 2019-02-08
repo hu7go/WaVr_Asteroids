@@ -170,6 +170,8 @@ public class Manager : MonoBehaviour
 
     public List<AsteroidHealth> asteroidList;
 
+    public HealerInfo healerInfoTemplate;
+
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
