@@ -19274,7 +19274,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: e1d453fffc69fec458def8ed84943afa, type: 3}
     m_FontSize: 1
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 224
     m_Alignment: 4
@@ -37767,8 +37767,6 @@ MonoBehaviour:
   daydreamSettings:
     usingDayDream: 0
     dayDreamBoxIncreases: []
-    gun: {fileID: 0}
-    gunObj: {fileID: 0}
     renderers: []
   turretsAndEnemies:
     turretHover: 1
@@ -37787,7 +37785,6 @@ MonoBehaviour:
       type: 3}
     enemySpawnPoint: {fileID: 0}
     maxNumberOfEnemies: 20
-    heartrotator: 1
     waveCounter: 0
     currentActiveSpawner: {fileID: 1465535229}
     asteroidHealth: 200
@@ -37901,7 +37898,7 @@ MonoBehaviour:
   asteroidList: []
   healerInfoTemplate:
     postition: {x: 0, y: 0, z: 0}
-    health: 0
+    health: 100
     regenSpeed: 3
     regenValue: 1
     alive: 0

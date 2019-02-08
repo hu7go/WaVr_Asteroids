@@ -35,8 +35,6 @@ public class Manager : MonoBehaviour
     {
         public bool usingDayDream = false;
         public BoxCollider[] dayDreamBoxIncreases;
-        public VRTK_InteractableObject gun;
-        public GameObject gunObj;
         public VRTK_StraightPointerRenderer[] renderers;
     }
     [Space(10)]
@@ -55,7 +53,6 @@ public class Manager : MonoBehaviour
         public GameObject healer;
         [HideInInspector] public GameObject enemySpawnPoint;
         public int maxNumberOfEnemies = 0;
-        public bool heartrotator = false;
         public int waveCounter = 0;
         public Transform currentActiveSpawner;
 
@@ -263,13 +260,6 @@ public class Manager : MonoBehaviour
 
         for (int i = 0; i < daydreamSettings.dayDreamBoxIncreases.Length; i++)
             daydreamSettings.dayDreamBoxIncreases[i].size *= 4;
-
-        daydreamSettings.gun.grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.TriggerPress;
-    }
-
-    public void GrabbedGun()
-    {
-        daydreamSettings.gun.grabOverrideButton = VRTK_ControllerEvents.ButtonAlias.GripPress;
     }
 
     public void StartSpawningEnemies()
