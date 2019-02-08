@@ -55,32 +55,28 @@ public class Spawner : MonoBehaviour
 
     bool startedPathFinding = false;
 
-    public void NewPath ()
+    public void CheckForNewPath ()
     {
         if (startedPathFinding == false)
         {
-            StartCoroutine(Test());
+            startedPathFinding = true;
+
+            master.FindPath();
+            StartCoroutine(WaitForPath());
         }
     }
 
-    private IEnumerator Test ()
+    private IEnumerator WaitForPath ()
     {
-        startedPathFinding = true;
-
-        List<AsteroidHealth> newPath = master.ReturnPath();
-
-        Debug.Log(newPath);
-
-        while (newPath.Count < Manager.Instance.asteroidList.Count)
+        while (master.foundPath == false)
         {
             yield return null;
         }
 
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].SetPath(newPath);
+            enemies[i].SetPath(master.sortedList);
         }
-
         startedPathFinding = false;
     }
 }

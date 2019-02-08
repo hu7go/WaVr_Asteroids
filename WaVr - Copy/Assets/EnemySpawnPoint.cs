@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Collections;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
@@ -23,16 +24,16 @@ public class EnemySpawnPoint : MonoBehaviour
     private int numberOfEnemies;
 
     private List<AsteroidHealth> asteroidList;
-    private List<AsteroidHealth> sortedList;
+    [HideInInspector] public List<AsteroidHealth> sortedList;
 
     [Space(20)]
     public GameObject probePrefab;
 
     private GameObject probe;
-
     private float threshHold;
-
     private Vector3 spawnerPosition;
+
+    [HideInInspector] public bool foundPath = false;
 
     public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold)
     {
@@ -41,7 +42,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
         asteroidList = newList;
 
-        StartListSorting();
+        FindPath();
 
         timer = newTime;
         start = true;
@@ -52,37 +53,32 @@ public class EnemySpawnPoint : MonoBehaviour
         probe = Instantiate(probePrefab, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
     }
 
-    void StartListSorting ()
+    public void FindPath ()
     {
-        if (pathThread.IsAlive)
-        {
-            Debug.Log("its already going!");
-        }
-        pathThread.Start();
+        StartCoroutine(StartPathFinding());
     }
 
-    public List<AsteroidHealth> ReturnPath()
+    private IEnumerator StartPathFinding ()
     {
-        StartListSorting();
-        while (pathThread.IsAlive == true)
+        pathThread.Start();
+        while (pathThread.IsAlive)
         {
-            Debug.Log("rasdasdad");
-            return null;
+            yield return null;
         }
+
+        float tmp = Random.Range(0, 255);
 
         for (int i = 0; i < sortedList.Count; i++)
         {
             if (i + 1 < sortedList.Count)
-                Debug.DrawLine(sortedList[i].asteroid.postition, sortedList[i + 1].asteroid.postition, Color.green, 20);
+                Debug.DrawLine(sortedList[i].asteroid.postition, sortedList[i + 1].asteroid.postition, new Color(tmp, tmp, tmp), 25);
         }
-
-        Debug.Log(sortedList.Count);
-
-        return sortedList;
     }
 
+    //! Happens on a separate thread!!
     void SortList ()
     {
+        foundPath = false;
         //Sort list based on distance! from the previouse target!!!!
         sortedList = new List<AsteroidHealth>();
 
@@ -125,9 +121,10 @@ public class EnemySpawnPoint : MonoBehaviour
             //
 
             sortedList.Add(currentTarget);
-
         }
+        foundPath = true;
     }
+    //
 
     bool startedProbe = false;
 

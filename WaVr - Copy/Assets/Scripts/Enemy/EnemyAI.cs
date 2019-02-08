@@ -98,7 +98,7 @@ public class EnemyAI : MonoBehaviour
             {
                 objIndex++;
                 objective = objectiveOrder[objIndex].transform;
-                spawner.NewPath();
+                spawner.CheckForNewPath();
             }
             //
 
