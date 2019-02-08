@@ -85,7 +85,7 @@ public class EnemySpawnPoint : MonoBehaviour
     {
         if (start)
         {
-            transform.LookAt(Manager.Instance.ReturnPlayer().transform);
+            transform.LookAt(sortedList[0].asteroid.postition);
 
             currentColor = purple;
 

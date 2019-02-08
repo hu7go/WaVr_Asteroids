@@ -36,7 +36,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        objective = Manager.Instance.objective.transform;
         gun = GetComponent<SpaceGun>();
         StartShooting();  // Start shooting when in range of objective?
         ups = GetComponentInChildren<UnparentSound>();

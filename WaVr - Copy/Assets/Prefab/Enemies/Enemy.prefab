@@ -302,8 +302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
   muzzle: {fileID: 4775546638652990}
-  damage: 5
-  fireRate: 1
+  damage: 1
+  fireRate: 0.5
   hitEffect: {fileID: 1704180388046014, guid: 4b54e8290d71b4c44b7150c693c83575, type: 3}
   spawnEffect: 0
   layerMask:

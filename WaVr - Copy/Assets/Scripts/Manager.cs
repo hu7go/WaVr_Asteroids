@@ -48,7 +48,6 @@ public class Manager : MonoBehaviour
         public bool turretHover = false;
         public bool towerDefence;
 
-        public GameObject tDObjective;
         public GameObject tDObjectiveSpawnPoints;
         public GameObject[] enemySpawnPoints;
         public GameObject enemySpawner;
@@ -96,18 +95,17 @@ public class Manager : MonoBehaviour
     {
         public GameObject startUI;
         public GameObject endUI;
-        public GameObject tdendUI;
+        public GameObject tdEndUI;
         public GameObject objective;
         public GameObject startButton;
         public GameObject confrimDenyButtons;
         public Text tdGameOverText;
         public Text timerText;
         public Text countDownText;
-        public Text objectiveCountDownText;
         public Text overText;
         public Text waveCount;
         public MeshRenderer[] stateButtons;
-        public Slider slider;
+        public Slider healthSlider;
         [Tooltip("This bool decides if the new UI is used this current scene")]
         public bool useNewUI;
         [Tooltip("The new three button UI for teleporting, building and rotating.")]
@@ -152,7 +150,7 @@ public class Manager : MonoBehaviour
     public float objectiveHealth = 100;
     private List<GameObject> enemiesSpawned;
 
-    public int Masterhealth;
+    public int masterHealth;
     int minutes ,minutes2;
     int seconds,seconds2;
 
@@ -215,8 +213,6 @@ public class Manager : MonoBehaviour
         //add a enemyspawnlocation look at objective
         SetPointerState(Enums.PointerState.Teleport);
 
-        objective = Instantiate(turretsAndEnemies.tDObjective, turretsAndEnemies.tDObjectiveSpawnPoints.transform);
-
         switch (graphicsSettings.cubesOn)
         {
             case true:
@@ -235,8 +231,19 @@ public class Manager : MonoBehaviour
 
         for (int i = 0; i < asteroidList.Count; i++)
         {
-            Masterhealth += asteroidList[i].asteroid.health;
+            masterHealth += asteroidList[i].asteroid.health;
         }
+        uISettings.healthSlider.maxValue = masterHealth;
+        uISettings.healthSlider.value = masterHealth;
+    }
+
+    public void UpdateHealth (int damage)
+    {
+        masterHealth -= damage;
+        uISettings.healthSlider.value = masterHealth;
+
+        if (masterHealth <= 0)
+            GameOver();
     }
 
     public void UsingDayDream()
@@ -276,13 +283,7 @@ public class Manager : MonoBehaviour
     private void EnemySpawner ()
     {
         if (turretsAndEnemies.waveCounter > 4)
-        {
-            if (numberOfEnemies <= 0 || enemiesSpawned.Count == 0)
-            {
-                //ObjectiveReached();
-            }
             return;
-        }
 
         int rnd = Random.Range(0, 4);
         GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[turretsAndEnemies.waveCounter - 1].transform.position, transform.rotation);
@@ -290,7 +291,9 @@ public class Manager : MonoBehaviour
         //                                                             X   '...            Y               ...'
         localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList);
         //
-        localEnemySpawner.transform.rotation = Quaternion.LookRotation(objective.transform.position, Vector3.up);
+
+        turretsAndEnemies.currentActiveSpawner = localEnemySpawner.transform;
+
         counter = 0;
         turretsAndEnemies.enemySpawnPoint = localEnemySpawner;
 
@@ -319,7 +322,7 @@ public class Manager : MonoBehaviour
         startTimer = false;
         myTimer = 0;
         objectiveHealth = 100;
-        uISettings.slider.value = objectiveHealth;
+        uISettings.healthSlider.value = objectiveHealth;
         for (var i = enemiesSpawned.Count - 1; i > -1; i--)
         {
             if (enemiesSpawned[i] == null)
@@ -333,7 +336,7 @@ public class Manager : MonoBehaviour
         }
         if(lifeLeft > 0)
         {
-            uISettings.tdendUI.SetActive(true);
+            uISettings.tdEndUI.SetActive(true);
             uISettings.tdGameOverText.text = "You died, you have "+lifeLeft+" lives left";
         }
         if(lifeLeft == 0)
@@ -344,7 +347,7 @@ public class Manager : MonoBehaviour
     public void Restarter()
     {
         startTimer = true;
-        uISettings.tdendUI.SetActive(false);
+        uISettings.tdEndUI.SetActive(false);
         killedEnemies = 0;
         turretsAndEnemies.waveCounter = 0;
         RoutineOpener();

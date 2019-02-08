@@ -26,10 +26,10 @@ public class AsteroidHealth : MonoBehaviour
         asteroid.health -= damage;
         if (asteroid.health <= 0)
             asteroid.alive = false;
-        Manager.Instance.objectiveHealth -= damage;
-        Manager.Instance.uISettings.slider.value = Manager.Instance.Masterhealth;
+
+        Manager.Instance.UpdateHealth(damage);
+
         UpdateColor();
-        CheckHP();
     }
 
     void UpdateColor ()
@@ -41,12 +41,6 @@ public class AsteroidHealth : MonoBehaviour
     public AsteroidInfo GetInfo ()
     {
         return asteroid;
-    }
-
-    private void CheckHP()
-    {
-        if (Manager.Instance.Masterhealth <= 0)
-            Manager.Instance.GameOver();
     }
 }
 
