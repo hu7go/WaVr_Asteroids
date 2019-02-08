@@ -239,7 +239,7 @@ public class Manager : MonoBehaviour
         uISettings.healthSlider.value = masterHealth;
     }
 
-    public void UpdateHealth (int damage)
+    public void UpdateHealth (float damage)
     {
         masterHealth -= damage;
         uISettings.healthSlider.value = masterHealth;

@@ -34,6 +34,8 @@ public class EnemyAI : MonoBehaviour
     private List<AsteroidHealth> objectiveOrder;
     int objIndex = 0;
 
+    private float healthThreshHold;
+
     private void Start()
     {
         gun = GetComponent<SpaceGun>();
@@ -50,9 +52,10 @@ public class EnemyAI : MonoBehaviour
         health += Manager.Instance.turretsAndEnemies.waveCounter;
     }
 
-    public void Initialize (List<AsteroidHealth> newList)
+    public void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold)
     {
         objectiveOrder = newList;
+        healthThreshHold = newHealthThreshHold;
     }
 
     public void FixedUpdate()
@@ -78,7 +81,7 @@ public class EnemyAI : MonoBehaviour
 
         transform.LookAt(objective); 
 
-        var distance = Vector3.Distance(transform.position, objective.position);
+        float distance = Vector3.Distance(transform.position, objective.position);
 
         //Stops a certain distance away from the target!
         if (distance > 9)

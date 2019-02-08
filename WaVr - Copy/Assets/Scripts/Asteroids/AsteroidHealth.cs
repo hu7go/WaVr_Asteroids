@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidHealth : MonoBehaviour
+public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 {
     public AsteroidInfo asteroid;
     private MeshRenderer rend;
@@ -21,7 +21,7 @@ public class AsteroidHealth : MonoBehaviour
         Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
     }
 
-    public void TakeDamage (int damage)
+    public void TakeDamage (float damage)
     {
         asteroid.health -= damage;
         if (asteroid.health <= 0)

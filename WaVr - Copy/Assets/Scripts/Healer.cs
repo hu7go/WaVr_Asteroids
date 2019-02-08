@@ -20,7 +20,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
 
     public void TakeDamage(float damage)
     {
-        hI.health -= (int)damage;
+        hI.health -= damage;
 
         if (hI.health <= 0)
             hI.alive = false;
@@ -32,7 +32,7 @@ public struct HealerInfo
 {
     public Vector3 postition;
     [Range(0, 100)]
-    public int health;
+    public float health;
     public float regenSpeed;
     public float regenValue;
     public bool alive;

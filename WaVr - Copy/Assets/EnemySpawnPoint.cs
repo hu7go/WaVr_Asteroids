@@ -19,8 +19,13 @@ public class EnemySpawnPoint : MonoBehaviour
     private Color currentColor;
     private int numberOfEnemies;
 
-    public List<AsteroidHealth> asteroidList;
-    public List<AsteroidHealth> sortedList;
+    private List<AsteroidHealth> asteroidList;
+    private List<AsteroidHealth> sortedList;
+
+    [Space(20)]
+    public GameObject probePrefab;
+
+    private GameObject probe;
 
     public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList)
     {
@@ -30,6 +35,9 @@ public class EnemySpawnPoint : MonoBehaviour
         timer = newTime;
         start = true;
         numberOfEnemies = n;
+
+        probe = Instantiate(probePrefab, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
+        probe.GetComponent<Probe>().Instantiate(sortedList[0].asteroid.postition, transform.position);
     }
 
     void SortList ()
@@ -127,6 +135,8 @@ public class EnemySpawnPoint : MonoBehaviour
 
             if (timer <= 0 && spawned == false)
             {
+                probe.GetComponent<Probe>().Return(transform.position);
+
                 currentColor = purple;
                 timerText.gameObject.SetActive(false);
                 Manager.Instance.uISettings.countDownText.text = "00";
@@ -142,6 +152,6 @@ public class EnemySpawnPoint : MonoBehaviour
     public void Destroy ()
     {
         StartCoroutine(Manager.Instance.SpawnThemNewEnemies());
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }
