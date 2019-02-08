@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Spawner : MonoBehaviour
     private float threshHold;
 
     private List<AsteroidHealth> objecctiveOrder;
+
+    private List<EnemyAI> enemies = new List<EnemyAI>();
 
     private void Start()
     {
@@ -44,8 +47,40 @@ public class Spawner : MonoBehaviour
     {
         counter++;
         GameObject newEnemy = Instantiate(enemy, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
-        newEnemy.GetComponent<EnemyAI>().Initialize(objecctiveOrder, threshHold, master.transform);
+        newEnemy.GetComponent<EnemyAI>().Initialize(objecctiveOrder, threshHold, master, this);
+        enemies.Add(newEnemy.GetComponent<EnemyAI>());
         Manager.Instance.InstantiateEnemy(newEnemy);
         Invoke("Spawn", spawnTime);
+    }
+
+    bool startedPathFinding = false;
+
+    public void NewPath ()
+    {
+        if (startedPathFinding == false)
+        {
+            StartCoroutine(Test());
+        }
+    }
+
+    private IEnumerator Test ()
+    {
+        startedPathFinding = true;
+
+        List<AsteroidHealth> newPath = master.ReturnPath();
+
+        Debug.Log(newPath);
+
+        while (newPath.Count < Manager.Instance.asteroidList.Count)
+        {
+            yield return null;
+        }
+
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].SetPath(newPath);
+        }
+
+        startedPathFinding = false;
     }
 }

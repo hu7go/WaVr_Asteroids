@@ -2,9 +2,12 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
+    Thread pathThread;
+
     public GameObject spawer;
     public MeshRenderer preSpawn;
     public Text timerText;
@@ -29,10 +32,16 @@ public class EnemySpawnPoint : MonoBehaviour
 
     private float threshHold;
 
+    private Vector3 spawnerPosition;
+
     public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold)
     {
+        pathThread = new Thread(SortList);
+        spawnerPosition = transform.position;
+
         asteroidList = newList;
-        SortList();
+
+        StartListSorting();
 
         timer = newTime;
         start = true;
@@ -41,13 +50,41 @@ public class EnemySpawnPoint : MonoBehaviour
         threshHold = newThreshHold;
 
         probe = Instantiate(probePrefab, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
-        probe.GetComponent<Probe>().Instantiate(sortedList[0].asteroid.postition, transform.position);
+    }
+
+    void StartListSorting ()
+    {
+        if (pathThread.IsAlive)
+        {
+            Debug.Log("its already going!");
+        }
+        pathThread.Start();
+    }
+
+    public List<AsteroidHealth> ReturnPath()
+    {
+        StartListSorting();
+        while (pathThread.IsAlive == true)
+        {
+            Debug.Log("rasdasdad");
+            return null;
+        }
+
+        for (int i = 0; i < sortedList.Count; i++)
+        {
+            if (i + 1 < sortedList.Count)
+                Debug.DrawLine(sortedList[i].asteroid.postition, sortedList[i + 1].asteroid.postition, Color.green, 20);
+        }
+
+        Debug.Log(sortedList.Count);
+
+        return sortedList;
     }
 
     void SortList ()
     {
-        sortedList = new List<AsteroidHealth>();
         //Sort list based on distance! from the previouse target!!!!
+        sortedList = new List<AsteroidHealth>();
 
         AsteroidHealth currentTarget = new AsteroidHealth();
 
@@ -57,7 +94,7 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             //Special case if we are in the first position!
             if (i == 0)
-                currentPos = transform.position;
+                currentPos = spawnerPosition;
             else
                 currentPos = currentTarget.asteroid.postition;
             //
@@ -89,12 +126,22 @@ public class EnemySpawnPoint : MonoBehaviour
 
             sortedList.Add(currentTarget);
 
-            Debug.DrawLine(currentPos, currentTarget.asteroid.postition, Color.green, 20);
         }
     }
 
+    bool startedProbe = false;
+
     private void Update()
     {
+        if (startedProbe == false)
+        {
+            if (pathThread.IsAlive == false)
+            {
+                probe.GetComponent<Probe>().Instantiate(sortedList[0].asteroid.postition, transform.position);
+                startedProbe = true;
+            }
+        }
+
         if (start)
         {
             transform.LookAt(sortedList[0].asteroid.postition);

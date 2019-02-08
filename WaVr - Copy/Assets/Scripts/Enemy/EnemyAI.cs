@@ -41,6 +41,8 @@ public class EnemyAI : MonoBehaviour
 
     private float distance;
 
+    Spawner spawner;
+
     private void Start()
     {
         gun = GetComponent<SpaceGun>();
@@ -57,11 +59,12 @@ public class EnemyAI : MonoBehaviour
         health += Manager.Instance.turretsAndEnemies.waveCounter;
     }
 
-    public void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold, Transform newHome)
+    public void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner)
     {
         objectiveOrder = newList;
         healthThreshHold = newHealthThreshHold;
-        home = newHome;
+        home = newMaster.transform;
+        spawner = newSpawner;
     }
 
     public void FixedUpdate()
@@ -85,7 +88,6 @@ public class EnemyAI : MonoBehaviour
         //This needs to check if the current objective target is still alive and if not change to the next one in the list that is alive!
         //! might not work right now, needs testing!
 
-
         if (seekAndDestroy == true)
         {
             if (objectiveOrder[objIndex].asteroid.alive == true)
@@ -96,13 +98,11 @@ public class EnemyAI : MonoBehaviour
             {
                 objIndex++;
                 objective = objectiveOrder[objIndex].transform;
+                spawner.NewPath();
             }
             //
 
             distance = Vector3.Distance(transform.position, objective.position);
-
-            transform.LookAt(objective);
-
 
             //Stops a certain distance away from the target!
             if (distance > 9)
@@ -130,6 +130,8 @@ public class EnemyAI : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
             }
         }
+
+        transform.LookAt(objective);
     }
 
     //Shoot at objective
@@ -169,5 +171,10 @@ public class EnemyAI : MonoBehaviour
     public int ReturnHealth ()
     {
         return health;
+    }
+
+    public void SetPath (List<AsteroidHealth> newPath)
+    {
+        objectiveOrder = newPath;
     }
 }
