@@ -43,6 +43,13 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
             myAsteroid.Heal(hI.regenValue);
             yield return new WaitForSeconds(hI.regenSpeed);
         }
+
+        //Ifall kuben blir max hp, förstör Healer
+        if (myAsteroid.asteroid.health == Manager.Instance.turretsAndEnemies.asteroidHealth)
+        {
+            myAsteroid.asteroid.beingHealed = false;
+            Destroy(gameObject);
+        }
     }
 }
 
