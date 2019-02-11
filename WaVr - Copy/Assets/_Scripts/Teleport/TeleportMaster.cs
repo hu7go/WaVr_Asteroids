@@ -426,6 +426,12 @@ public class TeleportMaster : MonoBehaviour
 
         Manager.Instance.teleportOffset = currentHit.transform.position;
         Manager.Instance.UpdateAsteroidLine();
+
+        if (currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
+        {
+            GameObject healer = Instantiate(Manager.Instance.turretsAndEnemies.healer,currentAsteroidStandingOn.transform);
+            healer.GetComponent<Healer>().SpawnAHealer(currentAsteroidStandingOn.gameObject);
+        }
     }
 
     public void AsteroidToBuildOn ()
