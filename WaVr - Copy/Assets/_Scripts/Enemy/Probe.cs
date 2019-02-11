@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Probe : MonoBehaviour
 {
@@ -26,9 +24,7 @@ public class Probe : MonoBehaviour
         {
 
             if (distance > 4)
-            {
                 transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
-            }
             else
             {
                 Vector3 tmp = target;
