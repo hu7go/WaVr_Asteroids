@@ -429,7 +429,7 @@ public class TeleportMaster : MonoBehaviour
 
         if (currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
         {
-            GameObject healer = Instantiate(Manager.Instance.turretsAndEnemies.healer,currentAsteroidStandingOn.transform);
+            GameObject healer = Instantiate(Manager.Instance.tAe.healer,currentAsteroidStandingOn.transform);
             healer.GetComponent<Healer>().SpawnAHealer(currentAsteroidStandingOn.gameObject);
         }
     }

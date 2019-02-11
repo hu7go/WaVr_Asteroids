@@ -46,7 +46,6 @@ public class Manager : MonoBehaviour
         public bool turretHover = false;
         public bool towerDefence;
 
-        public GameObject tDObjectiveSpawnPoints;
         public GameObject[] enemySpawnPoints;
         public GameObject enemySpawner;
         public GameObject enemyPrefab;
