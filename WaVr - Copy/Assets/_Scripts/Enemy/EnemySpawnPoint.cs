@@ -33,10 +33,14 @@ public class EnemySpawnPoint : MonoBehaviour
     private float threshHold;
     private Vector3 spawnerPosition;
 
+    int waveIndex;
+
     [HideInInspector] public bool foundPath = false;
 
-    public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold)
+    public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex)
     {
+        waveIndex = newWaveIndex;
+
         spawnerPosition = transform.position;
 
         asteroidList = newList;
@@ -68,13 +72,13 @@ public class EnemySpawnPoint : MonoBehaviour
             yield return null;
         }
 
-        for (int i = 0; i < sortedList.Count; i++)
-        {
-            if (i == 0)
-                Debug.DrawLine(transform.position, sortedList[i].asteroid.postition, new Color(255, 0, 100), 5);
-            if (i + 1 < sortedList.Count)
-                Debug.DrawLine(sortedList[i].asteroid.postition, sortedList[i + 1].asteroid.postition, new Color(255, 0, 100), 5);
-        }
+        //for (int i = 0; i < sortedList.Count; i++)
+        //{
+        //    if (i == 0)
+        //        Debug.DrawLine(transform.position, sortedList[i].asteroid.postition, new Color(255, 0, 100), 5);
+        //    if (i + 1 < sortedList.Count)
+        //        Debug.DrawLine(sortedList[i].asteroid.postition, sortedList[i + 1].asteroid.postition, new Color(255, 0, 100), 5);
+        //}
     }
 
     //! Happens on a separate thread!!
@@ -192,7 +196,7 @@ public class EnemySpawnPoint : MonoBehaviour
                 timerText.gameObject.SetActive(false);
                 Manager.Instance.uISettings.countDownText.text = "00";
                 GameObject tmp = Instantiate(spawer, transform);
-                tmp.GetComponent<Spawner>().Initialize(this, numberOfEnemies, sortedList, threshHold);
+                tmp.GetComponent<Spawner>().Initialize(this, numberOfEnemies, sortedList, threshHold, waveIndex);
                 spawned = true;
             }
 

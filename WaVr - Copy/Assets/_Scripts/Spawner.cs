@@ -19,6 +19,8 @@ public class Spawner : MonoBehaviour
 
     private List<EnemyAI> enemies = new List<EnemyAI>();
 
+    private int waveIndex;
+
     private void Start()
     {
         Invoke("Spawn", spawnTime);
@@ -32,12 +34,13 @@ public class Spawner : MonoBehaviour
             transform.LookAt(objecctiveOrder[0].asteroid.postition);
     }
 
-    public void Initialize (EnemySpawnPoint m, int n, List<AsteroidHealth> newList, float newThreshHold)
+    public void Initialize (EnemySpawnPoint m, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex)
     {
+        waveIndex = newWaveIndex;
         objecctiveOrder = newList;
         master = m;
-        numberOfEnemies = Manager.Instance.waves[Manager.Instance.tAe.waveCounter].numberOfEnemies;
-        threshHold = Manager.Instance.waves[Manager.Instance.tAe.waveCounter].damageThreshHold;
+        numberOfEnemies = (int)Manager.Instance.waves[waveIndex].numberOfEnemies;
+        threshHold = Manager.Instance.waves[waveIndex].damageThreshHold;
     }
 
     private void Spawn ()
@@ -53,10 +56,10 @@ public class Spawner : MonoBehaviour
         counter++;
         GameObject newEnemy = Instantiate(enemy, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
         EnemyAI tmp = newEnemy.GetComponent<EnemyAI>();
-        tmp.Initialize(objecctiveOrder, threshHold, master, this, Manager.Instance.tAe.waveCounter);
+        tmp.Initialize(objecctiveOrder, threshHold, master, this, waveIndex);
         enemies.Add(tmp);
-        Manager.Instance.waves[Manager.Instance.tAe.waveCounter].enemies.Add(tmp);
-        Manager.Instance.InstantiateEnemy(newEnemy);
+        Manager.Instance.waves[waveIndex].enemies.Add(tmp);
+        Manager.Instance.InstantiateEnemy(newEnemy, waveIndex);
         Invoke("Spawn", spawnTime);
     }
 

@@ -141,7 +141,7 @@ public class EnemyAI : MonoBehaviour
     public void StartShooting ()
     {
         if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, out hit, range, layerMask))
-            gun.Shoot();
+            gun.Shoot(waveIndex);
         StartCoroutine(Shoot());
     }
 
@@ -168,7 +168,7 @@ public class EnemyAI : MonoBehaviour
         ups.UnParent();
 
         Manager.Instance.waves[waveIndex].enemies.Remove(this);
-        Manager.Instance.RemoveEnemy();
+        Manager.Instance.RemoveEnemy(waveIndex);
         Destroy(gameObject);
     }
 

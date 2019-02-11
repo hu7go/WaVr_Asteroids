@@ -171,6 +171,9 @@ public class Manager : MonoBehaviour
 
     public List<Wave> waves;
 
+    public float minWaveWaitTime = 20;
+    public float maxWaveWaitTime = 40;
+
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
@@ -264,11 +267,21 @@ public class Manager : MonoBehaviour
             daydreamSettings.dayDreamBoxIncreases[i].size *= 4;
     }
 
+    public IEnumerator SpawnThemNewEnemies()
+    {
+        //! Delay before next wave!
+        float waveDelayPercent = (waves[tAe.waveCounter - 1].currentNumberOfEnemies / waves[tAe.waveCounter - 1].numberOfEnemies);
+
+        if (waveDelayPercent == 0)
+            waveDelayPercent = .1f;
+        yield return new WaitForSeconds(minWaveWaitTime + (maxWaveWaitTime * waveDelayPercent));
+        StartSpawningEnemies();
+    }
+
     public void StartSpawningEnemies()
     {
         if (tAe.towerDefence)
         {
-            tAe.waveCounter++;
             uISettings.waveCount.text = ("Wave: " + tAe.waveCounter);
             tAe.maxNumberOfEnemies = 20;
 
@@ -276,30 +289,16 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public IEnumerator SpawnThemNewEnemies()
-    {
-        //! Delay before next wave!
-
-        float waveDelayPercent = ((waves[tAe.waveCounter].currentNumberOfEnemies / waves[tAe.waveCounter].numberOfEnemies));
-
-        Debug.Log(waveDelayPercent);
-        if (waveDelayPercent == 0)
-            waveDelayPercent = .1f;
-        yield return new WaitForSeconds(20 / waveDelayPercent);
-        StartSpawningEnemies();
-    }
-
     private void EnemySpawner ()
     {
         if (tAe.waveCounter > 4)
             return;
 
-        GameObject localEnemySpawner = Instantiate(tAe.enemySpawner, tAe.enemySpawnPoints[tAe.waveCounter - 1].transform.position, transform.rotation);
-        //When the master health variable gets to this percent the enemies turn back!
-        int enemyDestructionPercent = 95 - ((tAe.waveCounter - 1) * 15);
+        GameObject localEnemySpawner = Instantiate(tAe.enemySpawner, tAe.enemySpawnPoints[tAe.waveCounter].transform.position, transform.rotation);
+        waves[tAe.waveCounter].index = tAe.waveCounter;
         //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
         //                                                             X   '...            Y               ...'
-        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, waves[tAe.waveCounter].numberOfEnemies, asteroidList, (int)waves[tAe.waveCounter].damageThreshHold);
+        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, (int)waves[tAe.waveCounter].numberOfEnemies, asteroidList, (int)waves[tAe.waveCounter].damageThreshHold, waves[tAe.waveCounter].index);
         //localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, enemyDestructionPercent);
         //
 
@@ -310,6 +309,8 @@ public class Manager : MonoBehaviour
 
         //This start the next wave after x amount of time!
         //Invoke("StartSpawningEnemies", 30);
+
+        tAe.waveCounter++;
     }
 
     public void RoutineOpener()
@@ -317,11 +318,22 @@ public class Manager : MonoBehaviour
         EnemySpawner();
     }
 
-    public void InstantiateEnemy(GameObject newEnemy)
+    public void InstantiateEnemy(GameObject newEnemy, int index)
     {
+        waves[index].currentNumberOfEnemies++;
+
         enemiesSpawned.Add(newEnemy);
 
-        AddEnemy();
+        numberOfEnemies++;
+    }
+
+    public void RemoveEnemy(int index)
+    {
+        waves[index].currentNumberOfEnemies--;
+
+        numberOfEnemies--;
+
+        Invoke("ClearNullRefs", .2f);
     }
 
     public void GameOver()
@@ -357,6 +369,7 @@ public class Manager : MonoBehaviour
 
         ClearTurrets();
     }
+
     public void Restarter()
     {
         startTimer = true;
@@ -364,18 +377,6 @@ public class Manager : MonoBehaviour
         killedEnemies = 0;
         tAe.waveCounter = 0;
         RoutineOpener();
-    }
-
-    public void AddEnemy ()
-    {
-        numberOfEnemies++;
-    }
-
-    public void RemoveEnemy()
-    {
-        numberOfEnemies--;
-
-        Invoke("ClearNullRefs", .2f);
     }
 
     public void ClearNullRefs ()
@@ -583,12 +584,12 @@ public class Manager : MonoBehaviour
 }
 
 [System.Serializable]
-public struct Wave
+public class Wave
 {
     public int index;
-    public int numberOfEnemies;
+    public float numberOfEnemies;
     public float damageThreshHold;
-    /*[HideInInspector]*/ public int currentNumberOfEnemies;
+    [HideInInspector] public float currentNumberOfEnemies;
     [HideInInspector] public List<EnemyAI> enemies;
     [HideInInspector] public float damageDone;
 }

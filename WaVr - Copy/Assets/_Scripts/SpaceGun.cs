@@ -6,7 +6,7 @@ public class SpaceGun : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform muzzle;
     [Tooltip("Damage dealt per bullet hit.")]
-    [SerializeField] private int damage = 1;
+    [SerializeField] private float damage = 1;
     [SerializeField] private float fireRate = 1;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private bool spawnEffect = true;
@@ -23,7 +23,7 @@ public class SpaceGun : MonoBehaviour
         muzzleOriginalRot = muzzle.rotation;
     }
 
-    public void Shoot ()
+    public void Shoot (int waveIndex)
     {
         if (!canFire)
             return;
@@ -35,9 +35,6 @@ public class SpaceGun : MonoBehaviour
         fireDirection = muzzle.forward;
 
         GameObject tmpBullet = Instantiate(bullet, muzzle.position, muzzle.rotation * Quaternion.Euler(fireDirection));
-
-        //Debug.DrawRay(muzzle.position, tmpBullet.transform.forward * 150, Color.cyan, 1f);
-
 
         if (Physics.Raycast(muzzle.position, muzzle.transform.forward, out target, 150, layerMask))
         {
