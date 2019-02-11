@@ -588,7 +588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c9e8ade08375c43b57ac1c54a59060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalOpening: {fileID: 114608280383680316}
   enemy: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636, type: 3}
+  spawnTime: 1
 --- !u!1 &1802715388629488
 GameObject:
   m_ObjectHideFlags: 0

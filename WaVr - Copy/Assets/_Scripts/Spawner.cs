@@ -4,6 +4,8 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
+    public RFX4_ScaleCurves portalOpening;
+
     public GameObject enemy;
     [Tooltip("The time it takes before the next enemy spawns!")]public float spawnTime = 1f;
 
@@ -20,6 +22,8 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         Invoke("Spawn", spawnTime);
+
+        portalOpening.GraphTimeMultiplier = (Manager.Instance.turretsAndEnemies.maxNumberOfEnemies * spawnTime) + 3;
     }
 
     private void Update()
