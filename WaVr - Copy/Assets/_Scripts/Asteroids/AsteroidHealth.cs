@@ -6,6 +6,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 {
     public AsteroidInfo asteroid;
     private MeshRenderer rend;
+    private Healer myHealer;
 
     float h;
     float s;
@@ -16,6 +17,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
         asteroid.postition = transform.position;
         asteroid.health = Manager.Instance.turretsAndEnemies.asteroidHealth;
         asteroid.alive = true;
+        asteroid.beingHealed = false;
 
         rend = GetComponent<MeshRenderer>();
         Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
@@ -23,6 +25,12 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 
     public void TakeDamage (float damage)
     {
+        if (asteroid.beingHealed == true)
+        {
+            myHealer.TakeDamage(damage);
+            return;
+        }
+
         asteroid.health -= damage;
         if (asteroid.health <= 0)
             asteroid.alive = false;
@@ -56,4 +64,5 @@ public struct AsteroidInfo
     public Vector3 postition;
     public float health;
     public bool alive;
+    public bool beingHealed;
 }

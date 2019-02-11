@@ -19,6 +19,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
     public void SpawnAHealer(GameObject currentCube)
     {
         myAsteroid = currentCube.GetComponentInChildren<AsteroidHealth>();
+        myAsteroid.asteroid.beingHealed = true;
         if (myAsteroid.asteroid.health < Manager.Instance.turretsAndEnemies.asteroidHealth)
             StartCoroutine(IHeal());
     }
@@ -29,6 +30,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
 
         if (hI.health <= 0)
         {
+            myAsteroid.asteroid.beingHealed = false;
             hI.alive = false;
             CancelInvoke();
             Destroy(gameObject);
