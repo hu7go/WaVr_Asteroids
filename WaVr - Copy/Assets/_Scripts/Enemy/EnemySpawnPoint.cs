@@ -29,7 +29,7 @@ public class EnemySpawnPoint : MonoBehaviour
     [Space(20)]
     public GameObject probePrefab;
 
-    private GameObject probe;
+    private List<GameObject> probes = new List<GameObject>();
     private float threshHold;
     private Vector3 spawnerPosition;
 
@@ -53,7 +53,21 @@ public class EnemySpawnPoint : MonoBehaviour
 
         threshHold = newThreshHold;
 
-        probe = Instantiate(probePrefab, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
+        StartCoroutine(ProbeSpawn());
+    }
+
+    private IEnumerator ProbeSpawn ()
+    {
+        yield return new WaitForSeconds(.5f);
+        int i = 0;
+        while (i < 3)
+        {
+            GameObject newProbe = Instantiate(probePrefab, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
+            newProbe.GetComponent<Probe>().Instantiate(sortedList, transform.position);
+            probes.Add(newProbe);
+            i++;
+            yield return new WaitForSeconds(3);
+        }
     }
 
     public void FindPath ()
@@ -71,14 +85,6 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             yield return null;
         }
-
-        //for (int i = 0; i < sortedList.Count; i++)
-        //{
-        //    if (i == 0)
-        //        Debug.DrawLine(transform.position, sortedList[i].asteroid.postition, new Color(255, 0, 100), 5);
-        //    if (i + 1 < sortedList.Count)
-        //        Debug.DrawLine(sortedList[i].asteroid.postition, sortedList[i + 1].asteroid.postition, new Color(255, 0, 100), 5);
-        //}
     }
 
     //! Happens on a separate thread!!
@@ -141,7 +147,11 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             if (pathThread.IsAlive == false)
             {
-                probe.GetComponent<Probe>().Instantiate(sortedList[0].asteroid.postition, transform.position);
+                for (int i = 0; i < probes.Count; i++)
+                {
+                    Debug.Log("Test " + i);
+                    probes[i].GetComponent<Probe>().Instantiate(sortedList, transform.position);
+                }
                 startedProbe = true;
             }
         }
@@ -190,7 +200,8 @@ public class EnemySpawnPoint : MonoBehaviour
 
             if (timer <= 0 && spawned == false)
             {
-                probe.GetComponent<Probe>().Return(transform.position);
+                foreach (GameObject tmpProbe in probes)
+                    tmpProbe.GetComponent<Probe>().Return(transform.position);
 
                 currentColor = purple;
                 timerText.gameObject.SetActive(false);

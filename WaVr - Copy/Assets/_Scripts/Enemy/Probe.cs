@@ -1,40 +1,57 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Probe : MonoBehaviour
 {
     public float speed = 3;
-    private Vector3 target;
+    private List<AsteroidHealth> targets;
+    private Vector3 currentTarget;
     private Vector3 secondaryTarget;
     private float distance;
 
     private bool probe = true;
+    private bool forward = true;
 
-    public void Instantiate (Vector3 newPos, Vector3 secondary)
+    int index = 0;
+
+    public void Instantiate (List<AsteroidHealth> newPosOrder, Vector3 secondary)
     {
-        target = newPos;
+        targets = newPosOrder;
+        currentTarget = targets[0].asteroid.postition;
         secondaryTarget = secondary;
     }
 
     private void Update()
     {
-        transform.LookAt(target);
-        distance = Vector3.Distance(transform.position, target);
+        transform.LookAt(currentTarget);
+        distance = Vector3.Distance(transform.position, currentTarget);
 
         if (probe)
         {
-
             if (distance > 4)
-                transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, currentTarget, speed * Time.deltaTime);
             else
             {
-                Vector3 tmp = target;
-                target = secondaryTarget;
-                secondaryTarget = tmp;
+                if (forward)
+                    index++;
+                else
+                    index--;
+
+                if (index >= 2)
+                    forward = false;
+                else if (index <= 0)
+                    forward = true;
+
+                currentTarget = targets[index].asteroid.postition;
+
+                //Vector3 tmp = targets;
+                //targets = secondaryTarget;
+                //secondaryTarget = tmp;
             }
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, currentTarget, speed * Time.deltaTime);
             if (distance < 2)
             {
                 speed *= 2;
@@ -47,6 +64,6 @@ public class Probe : MonoBehaviour
     public void Return(Vector3 pos)
     {
         probe = false;
-        target = pos;
+        currentTarget = pos;
     }
 }
