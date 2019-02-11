@@ -11,14 +11,14 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
     {
         hI = Manager.Instance.healerInfoTemplate;
         transform.position += hI.postition;
-        hI.health = 100;
     }
 
     public void SpawnAHealer(GameObject currentCube)
     {
         myAsteroid = currentCube.GetComponentInChildren<AsteroidHealth>();
         myAsteroid.asteroid.beingHealed = true;
-        if (myAsteroid.asteroid.health < Manager.Instance.turretsAndEnemies.asteroidHealth)
+        myAsteroid.myHealer = this;
+        if (myAsteroid.asteroid.health < Manager.Instance.tAe.asteroidHealth)
             StartCoroutine(IHeal());
     }
 
@@ -37,7 +37,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
     {
         myAsteroid.asteroid.alive = true;
 
-        while (myAsteroid.asteroid.health < Manager.Instance.turretsAndEnemies.asteroidHealth)
+        while (myAsteroid.asteroid.health < Manager.Instance.tAe.asteroidHealth)
         {
             myAsteroid.asteroid.health += hI.regenValue;
             myAsteroid.Heal(hI.regenValue);
@@ -45,7 +45,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
         }
 
         //Ifall kuben blir max hp, förstör Healer
-        if (myAsteroid.asteroid.health == Manager.Instance.turretsAndEnemies.asteroidHealth)
+        if (myAsteroid.asteroid.health == Manager.Instance.tAe.asteroidHealth)
         {
             myAsteroid.asteroid.beingHealed = false;
             Destroy(gameObject);

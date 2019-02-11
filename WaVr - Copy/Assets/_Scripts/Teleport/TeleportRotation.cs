@@ -159,7 +159,7 @@ public class TeleportRotation : MonoBehaviour
             ChangeLineVersion();
         }
 
-        if (Manager.Instance.turretsAndEnemies.turretHover)
+        if (Manager.Instance.tAe.turretHover)
         {
             int layerMask = 1 << 13;
             if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), layerMask))
@@ -343,7 +343,7 @@ public class TeleportRotation : MonoBehaviour
                             //Healers Go here!
                             if(master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
                             {
-                                GameObject healer = Instantiate(Manager.Instance.turretsAndEnemies.healer, master.currentAsteroidStandingOn.transform);
+                                GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
                                 healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
                             }
                             canTeleport = false;

@@ -6,7 +6,8 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 {
     public AsteroidInfo asteroid;
     private MeshRenderer rend;
-    private Healer myHealer;
+    [HideInInspector] public Healer myHealer;
+    private TurretMenuMaster turretMaster;
 
     float h;
     float s;
@@ -14,10 +15,9 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 
     public void Start()
     {
-        asteroid.postition = transform.position;
-        asteroid.health = Manager.Instance.turretsAndEnemies.asteroidHealth;
-        asteroid.alive = true;
-        asteroid.beingHealed = false;
+        turretMaster = GetComponentInParent<TurretMenuMaster>();
+
+        asteroid = new AsteroidInfo(transform.position, Manager.Instance.tAe.asteroidHealth, true, false);
 
         rend = GetComponent<MeshRenderer>();
         Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
@@ -33,7 +33,10 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 
         asteroid.health -= damage;
         if (asteroid.health <= 0)
+        {
+            turretMaster.AsteroidDied();
             asteroid.alive = false;
+        }
 
         Manager.Instance.UpdateHealth(-damage);
 
@@ -48,7 +51,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 
     void UpdateColor ()
     {
-        s = (asteroid.health / 100) / (Manager.Instance.turretsAndEnemies.asteroidHealth / 100);
+        s = (asteroid.health / 100) / (Manager.Instance.tAe.asteroidHealth / 100);
         rend.material.SetColor("_Color", Color.HSVToRGB(h, s, v)); 
     }
 
@@ -65,4 +68,12 @@ public struct AsteroidInfo
     public float health;
     public bool alive;
     public bool beingHealed;
+
+    public AsteroidInfo(Vector3 postition, float health, bool alive, bool beingHealed)
+    {
+        this.postition = postition;
+        this.health = health;
+        this.alive = alive;
+        this.beingHealed = beingHealed;
+    }
 }

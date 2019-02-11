@@ -23,7 +23,7 @@ public class Spawner : MonoBehaviour
     {
         Invoke("Spawn", spawnTime);
 
-        portalOpening.GraphTimeMultiplier = (Manager.Instance.turretsAndEnemies.maxNumberOfEnemies * spawnTime) + 3;
+        portalOpening.GraphTimeMultiplier = (Manager.Instance.tAe.maxNumberOfEnemies * spawnTime) + 5;
     }
 
     private void Update()
@@ -36,8 +36,8 @@ public class Spawner : MonoBehaviour
     {
         objecctiveOrder = newList;
         master = m;
-        numberOfEnemies = n;
-        threshHold = newThreshHold;
+        numberOfEnemies = Manager.Instance.waves[Manager.Instance.tAe.waveCounter].numberOfEnemies;
+        threshHold = Manager.Instance.waves[Manager.Instance.tAe.waveCounter].damageThreshHold;
     }
 
     private void Spawn ()
@@ -52,8 +52,10 @@ public class Spawner : MonoBehaviour
     {
         counter++;
         GameObject newEnemy = Instantiate(enemy, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
-        newEnemy.GetComponent<EnemyAI>().Initialize(objecctiveOrder, threshHold, master, this);
-        enemies.Add(newEnemy.GetComponent<EnemyAI>());
+        EnemyAI tmp = newEnemy.GetComponent<EnemyAI>();
+        tmp.Initialize(objecctiveOrder, threshHold, master, this, Manager.Instance.tAe.waveCounter);
+        enemies.Add(tmp);
+        Manager.Instance.waves[Manager.Instance.tAe.waveCounter].enemies.Add(tmp);
         Manager.Instance.InstantiateEnemy(newEnemy);
         Invoke("Spawn", spawnTime);
     }

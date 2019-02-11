@@ -107,6 +107,7 @@ public class EnemySpawnPoint : MonoBehaviour
             //
 
             //Checks if the the next asteroid already exist in the list we have!
+            //!? The "currentTarget.asteroid.alive" check might be nececary to take away, it might be causeing some performance issues when there is only a few asteroids left!
             int c = 0;
             if (sortedList.Contains(currentTarget) || currentTarget.asteroid.alive == false)
             {

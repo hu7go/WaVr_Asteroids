@@ -13,6 +13,9 @@ public class TurretMenuMaster : MonoBehaviour
 
     public bool[] turretBuilt;
 
+    //The turrets on this cube!
+    private List<TurretStruct> turrets = new List<TurretStruct>();
+
     private void Start()
     {
         sideMenus = GetComponentsInChildren<TurretMenu>();
@@ -189,8 +192,10 @@ public class TurretMenuMaster : MonoBehaviour
         }
     }
 
-    public void SpawnedTurret (int index)
+    public void SpawnedTurret (int index, GameObject turretObj)
     {
+        TurretStruct turret = new TurretStruct(turretObj, index);
+
         switch (index)
         {
             case 0:
@@ -214,6 +219,19 @@ public class TurretMenuMaster : MonoBehaviour
             default:
                 break;
         }
+
+        turrets.Add(turret);
+    }
+
+    public void AsteroidDied ()
+    {
+        foreach (TurretStruct turret in turrets)
+        {
+            turretBuilt[turret.index] = false;
+            Destroy(turret.turret);
+        }
+
+        turrets.Clear();
     }
 
     public void RemoveButtons ()
@@ -223,5 +241,17 @@ public class TurretMenuMaster : MonoBehaviour
         turretButtons.Clear();
         turretSides.Clear();
         menuPos.Clear();
+    }
+}
+
+public struct TurretStruct
+{
+    public GameObject turret;
+    public int index;
+
+    public TurretStruct(GameObject turret, int index)
+    {
+        this.turret = turret;
+        this.index = index;
     }
 }

@@ -43,6 +43,8 @@ public class EnemyAI : MonoBehaviour
 
     Spawner spawner;
 
+    int waveIndex;
+
     private void Start()
     {
         gun = GetComponent<SpaceGun>();
@@ -56,15 +58,16 @@ public class EnemyAI : MonoBehaviour
         privateSpeed = speed / 2;
         tmpSpeed = speed;
 
-        health += Manager.Instance.turretsAndEnemies.waveCounter;
+        health += Manager.Instance.tAe.waveCounter;
     }
 
-    public void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner)
+    public void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
     {
         objectiveOrder = newList;
         healthThreshHold = newHealthThreshHold;
         home = newMaster.transform;
         spawner = newSpawner;
+        waveIndex = newWaveIndex;
     }
 
     public void FixedUpdate()
@@ -164,6 +167,7 @@ public class EnemyAI : MonoBehaviour
         StopCoroutine(Shoot());
         ups.UnParent();
 
+        Manager.Instance.waves[waveIndex].enemies.Remove(this);
         Manager.Instance.RemoveEnemy();
         Destroy(gameObject);
     }
