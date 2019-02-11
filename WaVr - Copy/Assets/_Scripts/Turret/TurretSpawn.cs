@@ -28,7 +28,6 @@ public class TurretSpawn : MonoBehaviour
     //Spawns the actual turret!
     public void Confirm ()
     {
-
         currentTurret = Instantiate(turret.model, spawnPos);
         master.SpawnedTurret(index);
 

@@ -62,6 +62,7 @@ public class EnemySpawnPoint : MonoBehaviour
         pathThread = new Thread(SortList);
         pathThread.Start();
 
+
         while (pathThread.IsAlive)
         {
             yield return null;
@@ -69,6 +70,8 @@ public class EnemySpawnPoint : MonoBehaviour
 
         for (int i = 0; i < sortedList.Count; i++)
         {
+            if (i == 0)
+                Debug.DrawLine(transform.position, sortedList[i].asteroid.postition, new Color(255, 0, 100), 5);
             if (i + 1 < sortedList.Count)
                 Debug.DrawLine(sortedList[i].asteroid.postition, sortedList[i + 1].asteroid.postition, new Color(255, 0, 100), 5);
         }

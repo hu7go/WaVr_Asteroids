@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour
 
     private void CheckHealthThreshHold()
     {
-        if (((Manager.Instance.masterCurrentHealth / Manager.Instance.masterMaxHealth) * 100) <= healthThreshHold)
+        if (Manager.Instance.healthPercent <= healthThreshHold)
         {
             seekAndDestroy = false;
             objective = home;

@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 168890, guid: 2c936a8ea5b0042458c44a79a667c645, type: 3}
-  speed: 1
+  speed: 10
   layerMask:
     serializedVersion: 2
     m_Bits: 32768

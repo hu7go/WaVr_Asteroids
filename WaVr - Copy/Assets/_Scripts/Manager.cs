@@ -150,8 +150,9 @@ public class Manager : MonoBehaviour
     public float objectiveHealth = 100;
     private List<GameObject> enemiesSpawned;
 
-    public float masterCurrentHealth;
-    public float masterMaxHealth;
+    [HideInInspector] public float masterCurrentHealth;
+    [HideInInspector] public float masterMaxHealth;
+    public float healthPercent;
 
     int minutes ,minutes2;
     int seconds,seconds2;
@@ -286,9 +287,13 @@ public class Manager : MonoBehaviour
 
         int rnd = Random.Range(0, 4);
         GameObject localEnemySpawner = Instantiate(turretsAndEnemies.enemySpawner, turretsAndEnemies.enemySpawnPoints[turretsAndEnemies.waveCounter - 1].transform.position, transform.rotation);
+        //When the master health variable gets to this percent the enemies turn back!
+        int enemyDestructionPercent = 95 - ((turretsAndEnemies.waveCounter - 1) * 15);
+        enemyDestructionPercent = 0;
+        Debug.Log(enemyDestructionPercent);
         //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
         //                                                             X   '...            Y               ...'
-        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, 0);
+        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, enemyDestructionPercent);
         //
 
         turretsAndEnemies.currentActiveSpawner = localEnemySpawner.transform;
@@ -391,6 +396,8 @@ public class Manager : MonoBehaviour
     //! Update Function!!!!!
     private void Update()
     {
+        healthPercent = ((masterCurrentHealth / masterMaxHealth) * 100);
+
         if (transform.position != new Vector3(0, 0, 0))
             transform.position = new Vector3(0, 0, 0);
         if (transform.rotation != new Quaternion(0, 0, 0, 0))
