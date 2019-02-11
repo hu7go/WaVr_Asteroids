@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Healer : MonoBehaviour, ITakeDamage<float>
@@ -11,9 +10,8 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
     void Start()
     {
         hI = Manager.Instance.healerInfoTemplate;
-
+        transform.position += hI.postition;
         hI.health = 100;
-        hI.alive = true;
     }
 
     public void SpawnAHealer(GameObject currentCube)
@@ -31,8 +29,6 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
         if (hI.health <= 0)
         {
             myAsteroid.asteroid.beingHealed = false;
-            hI.alive = false;
-            CancelInvoke();
             Destroy(gameObject);
         }
     }
@@ -47,20 +43,12 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
             myAsteroid.Heal(hI.regenValue);
             yield return new WaitForSeconds(hI.regenSpeed);
         }
-    }
 
-    private void Heal()
-    {
-        if (myAsteroid.asteroid.health >= Manager.Instance.turretsAndEnemies.asteroidHealth)
+        //Ifall kuben blir max hp, förstör Healer
+        if (myAsteroid.asteroid.health == Manager.Instance.turretsAndEnemies.asteroidHealth)
         {
-            CancelInvoke();
-        }
-
-        myAsteroid.asteroid.health += hI.regenValue;
-
-        if (myAsteroid.asteroid.health > 0)
-        {
-            myAsteroid.asteroid.alive = true;
+            myAsteroid.asteroid.beingHealed = false;
+            Destroy(gameObject);
         }
     }
 }
@@ -73,6 +61,4 @@ public struct HealerInfo
     public float health;
     public float regenSpeed;
     public float regenValue;
-    public bool alive;
-    public bool startHealing;
 }
