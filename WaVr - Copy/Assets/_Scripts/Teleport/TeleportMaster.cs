@@ -458,10 +458,8 @@ public class TeleportMaster : MonoBehaviour
 
     public void ReseMaxLenght () => teleportMaxLenght = OGMaxLenght;
 
-    public float GetMaxLenght()
-    {
-        return teleportMaxLenght;
-    }
+    //This will Return teleportMaxLenght without the "Return".. Hopefully...
+    public float GetMaxLenght() => teleportMaxLenght;
 
     public void DDTest() => playerParent.transform.position += new Vector3(1, 0, 1);
 
