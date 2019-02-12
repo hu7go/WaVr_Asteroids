@@ -448,10 +448,7 @@ public class TeleportRotation : MonoBehaviour
         tmp = true;
     }
 
-    public void DisableTeleMenu ()
-    {
-        teleportorBuildUI.SetActive(false);
-    }
+    public void DisableTeleMenu () => teleportorBuildUI.SetActive(false);
 
     public void SetLineEnd (RaycastHit hit)
     {
@@ -465,10 +462,7 @@ public class TeleportRotation : MonoBehaviour
         line.SetPositions(linePos);
     }
 
-    void UpdateLineRenderer ()
-    {
-        GetComponent<VRTK_StraightPointerRenderer>().maximumLength = master.GetMaxLenght();
-    }
+    void UpdateLineRenderer () => GetComponent<VRTK_StraightPointerRenderer>().maximumLength = master.GetMaxLenght();
 
     //Changes the color of the ray/laser based on what you are pointing at!
     void ChangeLineVersion ()
@@ -487,8 +481,5 @@ public class TeleportRotation : MonoBehaviour
         }
     }
 
-    public void CanTeleport ()
-    {
-        canTeleport = true;
-    }
+    public void CanTeleport () => canTeleport = true;
 }
