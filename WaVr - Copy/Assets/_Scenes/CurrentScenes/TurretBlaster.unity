@@ -1946,7 +1946,7 @@ GameObject:
   - component: {fileID: 116886978}
   - component: {fileID: 116886977}
   m_Layer: 5
-  m_Name: Objective (1)
+  m_Name: NoBuildText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2006,10 +2006,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'The drones are hungry for your pizza!
-
-
-    Shoot them!'
+  m_Text: You can't build here
 --- !u!222 &116886978
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2813,12 +2810,6 @@ MonoBehaviour:
     UpdateRate: 0.033333335
   VoiceAmplitude: 0
   EnableMouthVertexAnimation: 0
---- !u!1 &182325446 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3710674367426411864, guid: 886d0717a5f5403438f2e8a298661ee6,
-    type: 3}
-  m_PrefabInstance: {fileID: 3710674367253261726}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &211773044
 GameObject:
   m_ObjectHideFlags: 0
@@ -9365,12 +9356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbc08cb7e275164c9e4e02596a63712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &835179615 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3710674367508707777, guid: 886d0717a5f5403438f2e8a298661ee6,
-    type: 3}
-  m_PrefabInstance: {fileID: 3710674367253261726}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &835378252
 GameObject:
   m_ObjectHideFlags: 0
@@ -15439,12 +15424,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1249199343}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1274782190 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3710674366338206832, guid: 886d0717a5f5403438f2e8a298661ee6,
-    type: 3}
-  m_PrefabInstance: {fileID: 3710674367253261726}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &1296526802 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 23228085899659036, guid: abdc97475fd581b4c93b6705047dad8c,
@@ -16184,19 +16163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53b07ad62d980a4da9fffff0b05fd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1465535228 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3710674365992232802, guid: 886d0717a5f5403438f2e8a298661ee6,
-    type: 3}
-  m_PrefabInstance: {fileID: 3710674367253261726}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1465535230 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3710674365992232800, guid: 886d0717a5f5403438f2e8a298661ee6,
     type: 3}
   m_PrefabInstance: {fileID: 3710674367253261726}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465535228}
+  m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9a225efaab6c2d45a4b4601d17f2722, type: 3}
@@ -20273,6 +20246,85 @@ MonoBehaviour:
   _head: {fileID: 303226634}
   _ears: {fileID: 1184522387}
   wireframe: 0
+--- !u!1 &1895543770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1895543771}
+  - component: {fileID: 1895543773}
+  - component: {fileID: 1895543772}
+  m_Layer: 5
+  m_Name: NowHealing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1895543771
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895543770}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.049999997, y: 0.049999997, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2096650781}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1895543772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895543770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e1d453fffc69fec458def8ed84943afa, type: 3}
+    m_FontSize: 1
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Now Healing Cube
+--- !u!222 &1895543773
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895543770}
+  m_CullTransparentMesh: 0
 --- !u!1 &1898912398
 GameObject:
   m_ObjectHideFlags: 0
@@ -37737,6 +37789,7 @@ RectTransform:
   - {fileID: 62804143}
   - {fileID: 416996971}
   - {fileID: 1915356075}
+  - {fileID: 1895543771}
   m_Father: {fileID: 1499136160}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37835,6 +37888,7 @@ GameObject:
   - component: {fileID: 2123815494}
   - component: {fileID: 2123815495}
   - component: {fileID: 2123815496}
+  - component: {fileID: 2123815497}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -37864,20 +37918,12 @@ MonoBehaviour:
   tAe:
     turretHover: 1
     towerDefence: 1
-    enemySpawnPoints:
-    - {fileID: 1465535228}
-    - {fileID: 835179615}
-    - {fileID: 1274782190}
-    - {fileID: 182325446}
     enemySpawner: {fileID: 5776658466668388448, guid: 149f84ed15bb6e64b99141c45eb17398,
-      type: 3}
-    enemyPrefab: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636,
       type: 3}
     healer: {fileID: 1076756149515054808, guid: b4f1dc514fa6efa4da229c92b790c913,
       type: 3}
     enemySpawnPoint: {fileID: 0}
-    maxNumberOfEnemies: 20
-    waveCounter: 0
+    waveCount: 0
     currentActiveSpawner: {fileID: 1465535230}
     asteroidHealth: 200
     spawnPoints: []
@@ -38052,27 +38098,31 @@ MonoBehaviour:
     regenSpeed: 1
     regenValue: 4
   waves:
-  - index: 0
-    numberOfEnemies: 20
+  - maxNumberOfEnemies: 0
     damageThreshHold: 95
+    spawnPosition: {fileID: 0}
+    enemyTypes: []
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
-  - index: 1
-    numberOfEnemies: 20
+  - maxNumberOfEnemies: 0
     damageThreshHold: 80
+    spawnPosition: {fileID: 0}
+    enemyTypes: []
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
-  - index: 2
-    numberOfEnemies: 20
+  - maxNumberOfEnemies: 0
     damageThreshHold: 65
+    spawnPosition: {fileID: 0}
+    enemyTypes: []
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
-  - index: 3
-    numberOfEnemies: 20
+  - maxNumberOfEnemies: 0
     damageThreshHold: 50
+    spawnPosition: {fileID: 0}
+    enemyTypes: []
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
@@ -38310,6 +38360,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questList: []
+--- !u!114 &2123815497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123815490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0188656bac6b7149ac5e782afc3968b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDelayTime: 8
+  noBuildText: {fileID: 116886975}
+  nowHealingText: {fileID: 1895543770}
 --- !u!1 &2124508330
 GameObject:
   m_ObjectHideFlags: 0
