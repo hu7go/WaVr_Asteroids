@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Collections;
+using System;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
@@ -99,8 +100,6 @@ public class EnemySpawnPoint : MonoBehaviour
 
         for (int i = 0; i < asteroidList.Count; i++)
         {
-            Debug.Log(asteroidList.Count);
-            Debug.Log("Testing how many times this loop goes!");
             //Special case if we are in the first position!
             if (i == 0)
                 currentPos = spawnerPosition;
@@ -118,33 +117,32 @@ public class EnemySpawnPoint : MonoBehaviour
             //The first element of the asteroid list is always the closest to the current asteroid!
             if (sortedList.Contains(asteroidList[0]) || asteroidList[0].asteroid.alive == false)
             {
-                Debug.Log("Where is the break!");
-
                 int j = 0;
 
                 if (i != 56)
                 {
-                    while (sortedList.Contains(asteroidList[j]) || asteroidList[j].asteroid.alive == false)
+                    try
                     {
-                        Debug.Log("Where is the break!");
-
-                        if (asteroidList[j] == null)
+                        while (sortedList.Contains(asteroidList[j]) || asteroidList[j].asteroid.alive == false)
                         {
-                            Debug.Log("Wth");
+                            Debug.Log("How many times does this thing do?: " + j);
+                            j++;
+                            if (j >= sortedList.Count + 1)
+                                j = 0;
                         }
-
-                        j++;
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("Caught a error: " + j);
+                        Debug.Log(e, this);
+                        throw;
                     }
                 }
-
-                Debug.Log("Where is the break!");
 
                 currentTarget = asteroidList[j];
             }
             else
             {
-                Debug.Log("Where is the break!");
-
                 currentTarget = asteroidList[0];
             }
 
@@ -167,8 +165,6 @@ public class EnemySpawnPoint : MonoBehaviour
             //
             #endregion
 
-            Debug.Log("Where is the break!");
-
             sortedList.Add(currentTarget);
         }
 
@@ -181,6 +177,10 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             Debug.Log(sortedList.Count);
             mySpawner.UpdatePath(sortedList);
+        }
+        else
+        {
+            Debug.Log("Spawner has not spawned yet!");
         }
     }
     //

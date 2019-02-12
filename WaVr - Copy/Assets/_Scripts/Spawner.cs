@@ -96,10 +96,11 @@ public class Spawner : MonoBehaviour
 
     public void UpdatePath (List<AsteroidHealth> newList)
     {
-        Debug.Log("test");
+        Debug.Log("testing path updateing");
         objectiveOrder = newList;
         for (int i = 0; i < enemies.Count; i++)
         {
+            Debug.Log("Testing stuffs paths n that");
             enemies[i].SetPath(objectiveOrder);
         }
     }

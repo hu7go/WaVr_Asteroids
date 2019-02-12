@@ -302,7 +302,6 @@ public class Manager : MonoBehaviour
         tAe.spawnPoints.Add(tmpSpawnPoint);
         //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
         //                                                             X   '...            Y               ...'
-        Debug.Log(asteroidList.Count);
         tmpSpawnPoint.StartSpawner(20, (int)waves[tAe.waveCounter].numberOfEnemies, asteroidList, (int)waves[tAe.waveCounter].damageThreshHold, waves[tAe.waveCounter].index);
         //localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, enemyDestructionPercent);
         //
@@ -589,7 +588,6 @@ public class Manager : MonoBehaviour
 
     public void UpdatePath (Vector3 pos)
     {
-
         tAe.currentActiveSpawner.FindPath(pos);
 
         //foreach (EnemySpawnPoint spawnPoint in tAe.spawnPoints)
