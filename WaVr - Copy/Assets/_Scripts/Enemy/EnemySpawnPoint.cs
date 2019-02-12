@@ -40,11 +40,14 @@ public class EnemySpawnPoint : MonoBehaviour
 
     private Spawner mySpawner;
 
-    public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex)
+    private Wave myWaveInfo;
+
+    public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex, Wave newWave)
     {
+        myWaveInfo = newWave;
+
         waveIndex = newWaveIndex;
 
-        //asteroidList.Clear();
         asteroidList = newList;
 
         FindPath(transform.position);
@@ -81,8 +84,6 @@ public class EnemySpawnPoint : MonoBehaviour
 
     private IEnumerator StartPathFinding ()
     {
-        //sortedList.Clear();
-
         pathThread = new Thread(SortList);
         pathThread.Start();
 
@@ -117,24 +118,13 @@ public class EnemySpawnPoint : MonoBehaviour
             //The first element of the asteroid list is always the closest to the current asteroid!
             if (sortedList.Contains(asteroidList[0]) || asteroidList[0].asteroid.alive == false)
             {
-                try
+                for (int j = 0; j < asteroidList.Count; j++)
                 {
-                    for (int j = 0; j < asteroidList.Count; j++)
+                    if (!sortedList.Contains(asteroidList[j]) && asteroidList[j].asteroid.alive == true)
                     {
-                        if (!sortedList.Contains(asteroidList[j]) && asteroidList[j].asteroid.alive == true)
-                        {
-                            Debug.Log("How many times does this thing do?: " + j);
-
-                            currentTarget = asteroidList[j];
-                            break;
-                        }
+                        currentTarget = asteroidList[j];
+                        break;
                     }
-                }
-                catch (Exception e)
-                {
-                    Debug.Log("Caught a error: ");
-                    Debug.Log(e, this);
-                    throw;
                 }
             }
             else
@@ -223,7 +213,7 @@ public class EnemySpawnPoint : MonoBehaviour
                 Manager.Instance.uISettings.countDownText.text = "00";
                 GameObject tmp = Instantiate(spawer, transform);
                 mySpawner = tmp.GetComponent<Spawner>();
-                mySpawner.Initialize(this, numberOfEnemies, sortedList, threshHold, waveIndex);
+                mySpawner.Initialize(this, numberOfEnemies, sortedList, threshHold, waveIndex, myWaveInfo);
                 spawned = true;
             }
 

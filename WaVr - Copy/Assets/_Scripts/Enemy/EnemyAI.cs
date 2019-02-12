@@ -31,8 +31,7 @@ public class EnemyAI : MonoBehaviour
     private float privateSpeed;
     private float tmpSpeed;
 
-    [SerializeField] private List<AsteroidHealth> objectiveOrder;
-    int objIndex = 0;
+    private List<AsteroidHealth> objectiveOrder;
 
     private float healthThreshHold;
 
@@ -58,7 +57,7 @@ public class EnemyAI : MonoBehaviour
         privateSpeed = speed / 2;
         tmpSpeed = speed;
 
-        health += Manager.Instance.tAe.waveCounter;
+        health += Manager.Instance.tAe.waveCount;
     }
 
     public void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
@@ -88,22 +87,8 @@ public class EnemyAI : MonoBehaviour
 
     void Movement ()
     {
-        //This needs to check if the current objective target is still alive and if not change to the next one in the list that is alive!
-        //! might not work right now, needs testing!
-
         if (seekAndDestroy == true)
         {
-            if (objectiveOrder[objIndex].asteroid.alive == true)
-            {
-                objective = objectiveOrder[objIndex].transform;
-            }
-            else
-            {
-                objIndex++;
-                objective = objectiveOrder[objIndex].transform;
-            }
-            //
-
             objective = objectiveOrder[0].transform;
 
             distance = Vector3.Distance(transform.position, objective.position);
