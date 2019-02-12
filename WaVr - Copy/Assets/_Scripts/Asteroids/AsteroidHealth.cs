@@ -23,6 +23,8 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
         Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
     }
 
+    bool tmp = false;
+
     public void TakeDamage (float damage)
     {
         if (asteroid.beingHealed == true)
@@ -36,6 +38,11 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
         {
             turretMaster.AsteroidDied();
             asteroid.alive = false;
+            if (tmp == false)
+            {
+                Manager.Instance.UpdatePath(transform.position);
+                tmp = true;
+            }
         }
 
         Manager.Instance.UpdateHealth(-damage);

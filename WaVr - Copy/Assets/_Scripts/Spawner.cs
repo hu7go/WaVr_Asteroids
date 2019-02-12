@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
 
     private float threshHold;
 
-    private List<AsteroidHealth> objecctiveOrder;
+    private List<AsteroidHealth> objectiveOrder;
 
     private List<EnemyAI> enemies = new List<EnemyAI>();
 
@@ -30,14 +30,14 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (objecctiveOrder[0] != null)
-            transform.LookAt(objecctiveOrder[0].asteroid.postition);
+        if (objectiveOrder[0] != null)
+            transform.LookAt(objectiveOrder[0].asteroid.postition);
     }
 
     public void Initialize (EnemySpawnPoint m, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex)
     {
         waveIndex = newWaveIndex;
-        objecctiveOrder = newList;
+        objectiveOrder = newList;
         master = m;
         numberOfEnemies = (int)Manager.Instance.waves[waveIndex].numberOfEnemies;
         threshHold = Manager.Instance.waves[waveIndex].damageThreshHold;
@@ -56,7 +56,7 @@ public class Spawner : MonoBehaviour
         counter++;
         GameObject newEnemy = Instantiate(enemy, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
         EnemyAI tmp = newEnemy.GetComponent<EnemyAI>();
-        tmp.Initialize(objecctiveOrder, threshHold, master, this, waveIndex);
+        tmp.Initialize(objectiveOrder, threshHold, master, this, waveIndex);
         enemies.Add(tmp);
         Manager.Instance.waves[waveIndex].enemies.Add(tmp);
         Manager.Instance.InstantiateEnemy(newEnemy, waveIndex);
@@ -67,11 +67,13 @@ public class Spawner : MonoBehaviour
 
     public void CheckForNewPath ()
     {
+        Debug.Log("Started checking path!");
+
         if (startedPathFinding == false)
         {
             startedPathFinding = true;
 
-            master.FindPath();
+            //master.FindPath();
             StartCoroutine(WaitForPath());
         }
     }
@@ -88,5 +90,17 @@ public class Spawner : MonoBehaviour
             enemies[i].SetPath(master.sortedList);
         }
         startedPathFinding = false;
+
+        Debug.Log("Stoped checking path!");
+    }
+
+    public void UpdatePath (List<AsteroidHealth> newList)
+    {
+        Debug.Log("test");
+        objectiveOrder = newList;
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].SetPath(objectiveOrder);
+        }
     }
 }
