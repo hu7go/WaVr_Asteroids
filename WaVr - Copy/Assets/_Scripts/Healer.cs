@@ -45,10 +45,11 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
         }
 
         //Ifall kuben blir max hp, förstör Healer
-        if (myAsteroid.asteroid.health == Manager.Instance.tAe.asteroidHealth)
+        if (myAsteroid.asteroid.health >= Manager.Instance.tAe.asteroidHealth)
         {
             myAsteroid.asteroid.beingHealed = false;
             Destroy(gameObject);
+            myAsteroid.asteroid.health = Manager.Instance.tAe.asteroidHealth;
         }
     }
 }

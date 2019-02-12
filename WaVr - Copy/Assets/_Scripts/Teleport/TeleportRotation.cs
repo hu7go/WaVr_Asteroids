@@ -209,12 +209,18 @@ public class TeleportRotation : MonoBehaviour
         {
             //If we press the restart button after we have died!
             if (hit.collider.CompareTag("RestartButton"))
+            {
+                master.RemoveTurretButtonsOnAsteroid();
                 Manager.Instance.Restarter();
+            }
             //
 
             //If we hit the teleport state button!
             if (hit.collider.CompareTag("TeleportState"))
+            {
+                master.RemoveTurretButtonsOnAsteroid();
                 Manager.Instance.SetPointerState(Manager.Enums.PointerState.Teleport);
+            }
             //
 
             //If we hit the build state button!
@@ -224,7 +230,10 @@ public class TeleportRotation : MonoBehaviour
 
             //If we hit the rotate state button!
             if (hit.collider.CompareTag("RotateState"))
+            {
+                master.RemoveTurretButtonsOnAsteroid();
                 Manager.Instance.SetPointerState(Manager.Enums.PointerState.Rotate);
+            }
             //
 
             //If we hit the ghost line to the previous asteroid
@@ -260,6 +269,8 @@ public class TeleportRotation : MonoBehaviour
                 //If the target hit is has a sidescript attached to determin where we teleport!
                 if (hit.collider.GetComponent<SideScript>() != null)
                 {
+                    master.RemoveTurretButtonsOnAsteroid();
+
                     if (hit.collider == asteroidHit.collider)
                         return;
 
@@ -316,7 +327,8 @@ public class TeleportRotation : MonoBehaviour
             //! If the manager is set to build on the selected cube!
             if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Build)
             {
-                
+                master.RemoveTurretButtonsOnAsteroid();
+
                 //If we hit a UI element that spawns a turret, which will spawn a turret at the selected location!
                 if (hit.collider.GetComponent<TurretSpawn>() != null)
                 {
@@ -347,7 +359,8 @@ public class TeleportRotation : MonoBehaviour
                         }
                         if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
                         {
-                            //TODO add a call for Manager that should handle a text prompt "Can't build a turret on a dead cube"
+                            //TODO: add a call for Manager that should handle a text prompt "Can't build a turret on a dead cube"
+                            canTeleport = false;
                             if (renderOwnLine)
                                 line.enabled = false;
                             return;
