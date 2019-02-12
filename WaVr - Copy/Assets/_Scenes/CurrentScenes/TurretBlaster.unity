@@ -37980,16 +37980,23 @@ MonoBehaviour:
     dayDreamBoxIncreases: []
     renderers: []
   tAe:
-    turretHover: 0
-    towerDefence: 0
-    enemySpawnPoints: []
-    enemySpawner: {fileID: 0}
-    enemyPrefab: {fileID: 0}
-    healer: {fileID: 0}
+    turretHover: 1
+    towerDefence: 1
+    enemySpawnPoints:
+    - {fileID: 1465535228}
+    - {fileID: 835179615}
+    - {fileID: 1274782190}
+    - {fileID: 182325446}
+    enemySpawner: {fileID: 1323292294712802, guid: c49d997be322b8942962251e302393ad,
+      type: 3}
+    enemyPrefab: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636,
+      type: 3}
+    healer: {fileID: 1076756149515054808, guid: b4f1dc514fa6efa4da229c92b790c913,
+      type: 3}
     enemySpawnPoint: {fileID: 0}
-    maxNumberOfEnemies: 0
+    maxNumberOfEnemies: 20
     waveCounter: 0
-    currentActiveSpawner: {fileID: 0}
+    currentActiveSpawner: {fileID: 1465535229}
     asteroidHealth: 200
   graphicsSettings:
     cubesOn: 1
@@ -38161,7 +38168,33 @@ MonoBehaviour:
     health: 100
     regenSpeed: 3
     regenValue: 1
-  waves: []
+  waves:
+  - index: 0
+    numberOfEnemies: 20
+    damageThreshHold: 95
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+  - index: 1
+    numberOfEnemies: 20
+    damageThreshHold: 80
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+  - index: 2
+    numberOfEnemies: 20
+    damageThreshHold: 65
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+  - index: 3
+    numberOfEnemies: 20
+    damageThreshHold: 50
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+  minWaveWaitTime: 20
+  maxWaveWaitTime: 40
 --- !u!4 &2123815492
 Transform:
   m_ObjectHideFlags: 0
