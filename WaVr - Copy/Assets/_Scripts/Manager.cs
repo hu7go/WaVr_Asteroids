@@ -46,13 +46,10 @@ public class Manager : MonoBehaviour
         public bool turretHover = false;
         public bool towerDefence;
 
-        public GameObject[] enemySpawnPoints;
         public GameObject enemySpawner;
-        public GameObject enemyPrefab;
         public GameObject healer;
         [HideInInspector] public GameObject enemySpawnPoint;
-        public int maxNumberOfEnemies = 0;
-        public int waveCounter = 0;
+        public int waveCount = 0;
         public EnemySpawnPoint currentActiveSpawner;
 
         public float asteroidHealth = 200;
@@ -171,7 +168,10 @@ public class Manager : MonoBehaviour
     public List<AsteroidHealth> asteroidList;
     public HealerInfo healerInfoTemplate;
 
+    [Header("Control the waves!")]
+    [Space(20)]
     public List<Wave> waves;
+    [Space(20)]
 
     public float minWaveWaitTime = 20;
     public float maxWaveWaitTime = 40;
@@ -272,7 +272,7 @@ public class Manager : MonoBehaviour
     public IEnumerator SpawnThemNewEnemies()
     {
         //! Delay before next wave!
-        float waveDelayPercent = (waves[tAe.waveCounter - 1].currentNumberOfEnemies / waves[tAe.waveCounter - 1].numberOfEnemies);
+        float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].maxNumberOfEnemies);
 
         if (waveDelayPercent == 0)
             waveDelayPercent = .1f;
@@ -284,8 +284,7 @@ public class Manager : MonoBehaviour
     {
         if (tAe.towerDefence)
         {
-            uISettings.waveCount.text = ("Wave: " + tAe.waveCounter);
-            tAe.maxNumberOfEnemies = 20;
+            uISettings.waveCount.text = ("Wave: " + tAe.waveCount);
 
             EnemySpawner();
         }
@@ -293,16 +292,15 @@ public class Manager : MonoBehaviour
 
     private void EnemySpawner ()
     {
-        if (tAe.waveCounter > 4)
+        if (tAe.waveCount > waves.Count + 1)
             return;
 
-        GameObject localEnemySpawner = Instantiate(tAe.enemySpawner, tAe.enemySpawnPoints[tAe.waveCounter].transform.position, transform.rotation);
-        waves[tAe.waveCounter].index = tAe.waveCounter;
+        GameObject localEnemySpawner = Instantiate(tAe.enemySpawner, waves[tAe.waveCount].spawnPosition.position, transform.rotation);
         EnemySpawnPoint tmpSpawnPoint = localEnemySpawner.GetComponent<EnemySpawnPoint>();
         tAe.spawnPoints.Add(tmpSpawnPoint);
         //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
         //                                                             X   '...            Y               ...'
-        tmpSpawnPoint.StartSpawner(20, (int)waves[tAe.waveCounter].numberOfEnemies, asteroidList, (int)waves[tAe.waveCounter].damageThreshHold, waves[tAe.waveCounter].index);
+        tmpSpawnPoint.StartSpawner(20, (int)waves[tAe.waveCount].maxNumberOfEnemies, asteroidList, (int)waves[tAe.waveCount].damageThreshHold, tAe.waveCount, waves[tAe.waveCount]);
         //localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, enemyDestructionPercent);
         //
 
@@ -314,7 +312,7 @@ public class Manager : MonoBehaviour
         //This start the next wave after x amount of time!
         //Invoke("StartSpawningEnemies", 30);
 
-        tAe.waveCounter++;
+        tAe.waveCount++;
     }
 
     public void RoutineOpener()
@@ -379,7 +377,7 @@ public class Manager : MonoBehaviour
         startTimer = true;
         uISettings.tdEndUI.SetActive(false);
         killedEnemies = 0;
-        tAe.waveCounter = 0;
+        tAe.waveCount = 0;
         RoutineOpener();
     }
 
@@ -389,7 +387,7 @@ public class Manager : MonoBehaviour
             if (enemiesSpawned[i] == null)
                 enemiesSpawned.RemoveAt(i);
 
-        if (tAe.waveCounter > 4 && (enemiesSpawned.Count == 0))
+        if (tAe.waveCount > waves.Count + 1 && (enemiesSpawned.Count == 0))
         {
             ObjectiveReached();
         }
@@ -588,21 +586,18 @@ public class Manager : MonoBehaviour
 
     public void UpdatePath (Vector3 pos)
     {
+        //This currently only works with one active portal at a time!
         tAe.currentActiveSpawner.FindPath(pos);
-
-        //foreach (EnemySpawnPoint spawnPoint in tAe.spawnPoints)
-        //{
-        //    spawnPoint.FindPath(pos);
-        //}
     }
 }
 
 [System.Serializable]
 public class Wave
 {
-    public int index;
-    public float numberOfEnemies;
+    public float maxNumberOfEnemies;
     public float damageThreshHold;
+    public Transform spawnPosition;
+    public List<Enemies> enemyTypes;
     [HideInInspector] public float currentNumberOfEnemies;
     [HideInInspector] public List<EnemyAI> enemies;
     [HideInInspector] public float damageDone;
