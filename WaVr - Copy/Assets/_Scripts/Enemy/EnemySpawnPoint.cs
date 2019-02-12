@@ -117,8 +117,6 @@ public class EnemySpawnPoint : MonoBehaviour
             //The first element of the asteroid list is always the closest to the current asteroid!
             if (sortedList.Contains(asteroidList[0]) || asteroidList[0].asteroid.alive == false)
             {
-                //int j = 0;
-
                 try
                 {
                     for (int j = 0; j < asteroidList.Count; j++)
@@ -131,13 +129,6 @@ public class EnemySpawnPoint : MonoBehaviour
                             break;
                         }
                     }
-
-                    //while (sortedList.Contains(asteroidList[j]) || asteroidList[j].asteroid.alive == false)
-                    //{
-                    //    j++;
-                    //    if (j >= sortedList.Count + 1)
-                    //        j = 0;
-                    //}
                 }
                 catch (Exception e)
                 {
@@ -151,40 +142,14 @@ public class EnemySpawnPoint : MonoBehaviour
                 currentTarget = asteroidList[0];
             }
 
-            #region
-            //Checks if the the next asteroid already exist in the list we have!
-            //!? The "currentTarget.asteroid.alive" check might be nececary to take away, it might be causeing some performance issues when there is only a few asteroids left!
-            //int c = 0;
-            //if (sortedList.Contains(currentTarget) /*|| currentTarget.asteroid.alive == false*/)
-            //{
-            //    while (sortedList.Contains(currentTarget)/* || currentTarget.asteroid.alive == false*/)
-            //    {
-            //        currentTarget = asteroidList[c];
-            //        c++;
-            //    }
-            //}
-            //else
-            //{
-            //    currentTarget = asteroidList[0];
-            //}
-            //
-            #endregion
-
             sortedList.Add(currentTarget);
         }
 
         foundPath = true;
 
-        Debug.Log(sortedList.Count);
-
         if (mySpawner != null)
         {
-            Debug.Log(sortedList.Count);
             mySpawner.UpdatePath(sortedList);
-        }
-        else
-        {
-            Debug.Log("Spawner has not spawned yet!");
         }
     }
     //
@@ -263,6 +228,12 @@ public class EnemySpawnPoint : MonoBehaviour
             }
 
             preSpawn.material.SetColor("_TintColor", currentColor); 
+
+            if (spawned == true)
+            {
+                currentColor = purple;
+                preSpawn.material.SetColor("_TintColor", currentColor);
+            }
         }
     }
 

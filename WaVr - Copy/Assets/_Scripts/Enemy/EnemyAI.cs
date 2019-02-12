@@ -31,7 +31,7 @@ public class EnemyAI : MonoBehaviour
     private float privateSpeed;
     private float tmpSpeed;
 
-    private List<AsteroidHealth> objectiveOrder;
+    [SerializeField] private List<AsteroidHealth> objectiveOrder;
     int objIndex = 0;
 
     private float healthThreshHold;
@@ -103,6 +103,8 @@ public class EnemyAI : MonoBehaviour
                 objective = objectiveOrder[objIndex].transform;
             }
             //
+
+            objective = objectiveOrder[0].transform;
 
             distance = Vector3.Distance(transform.position, objective.position);
 
