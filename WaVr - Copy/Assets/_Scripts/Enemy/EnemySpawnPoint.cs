@@ -117,29 +117,34 @@ public class EnemySpawnPoint : MonoBehaviour
             //The first element of the asteroid list is always the closest to the current asteroid!
             if (sortedList.Contains(asteroidList[0]) || asteroidList[0].asteroid.alive == false)
             {
-                int j = 0;
+                //int j = 0;s
 
-                if (i != 56)
+                try
                 {
-                    try
+                    for (int j = 0; j < asteroidList.Count; j++)
                     {
-                        while (sortedList.Contains(asteroidList[j]) || asteroidList[j].asteroid.alive == false)
+                        if (sortedList.Contains(asteroidList[j]) && asteroidList[j].asteroid.alive == true)
                         {
                             Debug.Log("How many times does this thing do?: " + j);
-                            j++;
-                            if (j >= sortedList.Count + 1)
-                                j = 0;
+
+                            currentTarget = asteroidList[j];
+                            break;
                         }
                     }
-                    catch (Exception e)
-                    {
-                        Debug.Log("Caught a error: " + j);
-                        Debug.Log(e, this);
-                        throw;
-                    }
-                }
 
-                currentTarget = asteroidList[j];
+                    //while (sortedList.Contains(asteroidList[j]) || asteroidList[j].asteroid.alive == false)
+                    //{
+                    //    j++;
+                    //    if (j >= sortedList.Count + 1)
+                    //        j = 0;
+                    //}
+                }
+                catch (Exception e)
+                {
+                    Debug.Log("Caught a error: ");
+                    Debug.Log(e, this);
+                    throw;
+                }
             }
             else
             {
