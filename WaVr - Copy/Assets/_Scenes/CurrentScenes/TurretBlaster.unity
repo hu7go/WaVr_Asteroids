@@ -38948,10 +38948,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 1
-  actualBoundaries: {fileID: 0}
-  actualHeadset: {fileID: 0}
-  actualLeftController: {fileID: 0}
-  actualRightController: {fileID: 0}
+  actualBoundaries: {fileID: 389520129}
+  actualHeadset: {fileID: 1885608655}
+  actualLeftController: {fileID: 1196770118}
+  actualRightController: {fileID: 978709909}
   modelAliasLeftController: {fileID: 0}
   modelAliasRightController: {fileID: 0}
   cachedSystemSDKInfo:
