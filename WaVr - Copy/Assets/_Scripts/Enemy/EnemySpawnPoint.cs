@@ -37,15 +37,16 @@ public class EnemySpawnPoint : MonoBehaviour
 
     [HideInInspector] public bool foundPath = false;
 
+    private Spawner mySpawner;
+
     public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex)
     {
         waveIndex = newWaveIndex;
 
-        spawnerPosition = transform.position;
-
+        //asteroidList.Clear();
         asteroidList = newList;
 
-        FindPath();
+        FindPath(transform.position);
 
         timer = newTime;
         start = true;
@@ -70,21 +71,21 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
-    public void FindPath ()
+    public void FindPath (Vector3 pos)
     {
+        spawnerPosition = pos;
+
         StartCoroutine(StartPathFinding());
     }
 
     private IEnumerator StartPathFinding ()
     {
+        //sortedList.Clear();
+
         pathThread = new Thread(SortList);
         pathThread.Start();
 
-
-        while (pathThread.IsAlive)
-        {
-            yield return null;
-        }
+        yield return null;
     }
 
     //! Happens on a separate thread!!
@@ -93,19 +94,18 @@ public class EnemySpawnPoint : MonoBehaviour
         foundPath = false;
         //Sort list based on distance! from the previouse target!!!!
         sortedList = new List<AsteroidHealth>();
-
         AsteroidHealth currentTarget = new AsteroidHealth();
-
         Vector3 currentPos = new Vector3();
 
         for (int i = 0; i < asteroidList.Count; i++)
         {
+            Debug.Log(asteroidList.Count);
+            Debug.Log("Testing how many times this loop goes!");
             //Special case if we are in the first position!
             if (i == 0)
                 currentPos = spawnerPosition;
             else
                 currentPos = currentTarget.asteroid.postition;
-            //
 
             //Sorts the list from the current asteroid to the closest one!
             asteroidList.OrderBy(x => Vector3.Distance(currentPos, x.asteroid.postition)).ToList();
@@ -114,28 +114,74 @@ public class EnemySpawnPoint : MonoBehaviour
                 return Vector3.Distance(currentPos, a.asteroid.postition)
                 .CompareTo(Vector3.Distance(currentPos, b.asteroid.postition));
             });
-            //
 
-            //Checks if the the next asteroid already exist in the list we have!
-            //!? The "currentTarget.asteroid.alive" check might be nececary to take away, it might be causeing some performance issues when there is only a few asteroids left!
-            int c = 0;
-            if (sortedList.Contains(currentTarget) || currentTarget.asteroid.alive == false)
+            //The first element of the asteroid list is always the closest to the current asteroid!
+            if (sortedList.Contains(asteroidList[0]) || asteroidList[0].asteroid.alive == false)
             {
-                while (sortedList.Contains(currentTarget) || currentTarget.asteroid.alive == false)
+                Debug.Log("Where is the break!");
+
+                int j = 0;
+
+                if (i != 56)
                 {
-                    currentTarget = asteroidList[c];
-                    c++;
+                    while (sortedList.Contains(asteroidList[j]) || asteroidList[j].asteroid.alive == false)
+                    {
+                        Debug.Log("Where is the break!");
+
+                        if (asteroidList[j] == null)
+                        {
+                            Debug.Log("Wth");
+                        }
+
+                        j++;
+                    }
                 }
+
+                Debug.Log("Where is the break!");
+
+                currentTarget = asteroidList[j];
             }
             else
             {
+                Debug.Log("Where is the break!");
+
                 currentTarget = asteroidList[0];
             }
+
+            #region
+            //Checks if the the next asteroid already exist in the list we have!
+            //!? The "currentTarget.asteroid.alive" check might be nececary to take away, it might be causeing some performance issues when there is only a few asteroids left!
+            //int c = 0;
+            //if (sortedList.Contains(currentTarget) /*|| currentTarget.asteroid.alive == false*/)
+            //{
+            //    while (sortedList.Contains(currentTarget)/* || currentTarget.asteroid.alive == false*/)
+            //    {
+            //        currentTarget = asteroidList[c];
+            //        c++;
+            //    }
+            //}
+            //else
+            //{
+            //    currentTarget = asteroidList[0];
+            //}
             //
+            #endregion
+
+            Debug.Log("Where is the break!");
 
             sortedList.Add(currentTarget);
         }
+
         foundPath = true;
+
+        Debug.Log(mySpawner);
+        Debug.Log(sortedList.Count);
+
+        if (mySpawner != null)
+        {
+            Debug.Log(sortedList.Count);
+            mySpawner.UpdatePath(sortedList);
+        }
     }
     //
 
@@ -207,7 +253,8 @@ public class EnemySpawnPoint : MonoBehaviour
                 timerText.gameObject.SetActive(false);
                 Manager.Instance.uISettings.countDownText.text = "00";
                 GameObject tmp = Instantiate(spawer, transform);
-                tmp.GetComponent<Spawner>().Initialize(this, numberOfEnemies, sortedList, threshHold, waveIndex);
+                mySpawner = tmp.GetComponent<Spawner>();
+                mySpawner.Initialize(this, numberOfEnemies, sortedList, threshHold, waveIndex);
                 spawned = true;
             }
 
@@ -218,6 +265,29 @@ public class EnemySpawnPoint : MonoBehaviour
     public void Destroy ()
     {
         StartCoroutine(Manager.Instance.SpawnThemNewEnemies());
-        //Destroy(gameObject);
+    }
+
+    //Debuging stuffs
+
+    [HideInInspector] public bool drawPath = false;
+
+    private void OnDrawGizmos()
+    {
+        if (drawPath)
+        {
+            for (int i = 0; i < sortedList.Count; i++)
+            {
+                if (i == 0)
+                {
+                    Gizmos.color = new Color(100, 50 + (i * 2), 0);
+                    Gizmos.DrawLine(transform.position, sortedList[i].asteroid.postition);
+                }
+                if (i - 1 >= 0)
+                {
+                    Gizmos.color = new Color(100, 50 + (i * 2), 0);
+                    Gizmos.DrawLine(sortedList[i - 1].asteroid.postition, sortedList[i].asteroid.postition);
+                }
+            }
+        }
     }
 }

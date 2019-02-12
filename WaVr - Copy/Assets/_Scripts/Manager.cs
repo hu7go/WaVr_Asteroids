@@ -53,9 +53,11 @@ public class Manager : MonoBehaviour
         [HideInInspector] public GameObject enemySpawnPoint;
         public int maxNumberOfEnemies = 0;
         public int waveCounter = 0;
-        public Transform currentActiveSpawner;
+        public EnemySpawnPoint currentActiveSpawner;
 
         public float asteroidHealth = 200;
+
+        [HideInInspector] public List<EnemySpawnPoint> spawnPoints = new List<EnemySpawnPoint>();
     }
     [Space(10)]
     [Tooltip("The turrets and enemies settings!")]
@@ -296,13 +298,16 @@ public class Manager : MonoBehaviour
 
         GameObject localEnemySpawner = Instantiate(tAe.enemySpawner, tAe.enemySpawnPoints[tAe.waveCounter].transform.position, transform.rotation);
         waves[tAe.waveCounter].index = tAe.waveCounter;
+        EnemySpawnPoint tmpSpawnPoint = localEnemySpawner.GetComponent<EnemySpawnPoint>();
+        tAe.spawnPoints.Add(tmpSpawnPoint);
         //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
         //                                                             X   '...            Y               ...'
-        localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, (int)waves[tAe.waveCounter].numberOfEnemies, asteroidList, (int)waves[tAe.waveCounter].damageThreshHold, waves[tAe.waveCounter].index);
+        Debug.Log(asteroidList.Count);
+        tmpSpawnPoint.StartSpawner(20, (int)waves[tAe.waveCounter].numberOfEnemies, asteroidList, (int)waves[tAe.waveCounter].damageThreshHold, waves[tAe.waveCounter].index);
         //localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, enemyDestructionPercent);
         //
 
-        tAe.currentActiveSpawner = localEnemySpawner.transform;
+        tAe.currentActiveSpawner = tmpSpawnPoint;
 
         counter = 0;
         tAe.enemySpawnPoint = localEnemySpawner;
@@ -580,6 +585,17 @@ public class Manager : MonoBehaviour
             Destroy(turret);
         }
         turrets.Clear();
+    }
+
+    public void UpdatePath (Vector3 pos)
+    {
+
+        tAe.currentActiveSpawner.FindPath(pos);
+
+        //foreach (EnemySpawnPoint spawnPoint in tAe.spawnPoints)
+        //{
+        //    spawnPoint.FindPath(pos);
+        //}
     }
 }
 

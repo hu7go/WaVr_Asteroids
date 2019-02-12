@@ -103,7 +103,6 @@ public class EnemyAI : MonoBehaviour
                 objective = objectiveOrder[objIndex].transform;
             }
             //
-            spawner.CheckForNewPath();
 
             distance = Vector3.Distance(transform.position, objective.position);
 
@@ -180,5 +179,24 @@ public class EnemyAI : MonoBehaviour
     public void SetPath (List<AsteroidHealth> newPath)
     {
         objectiveOrder = newPath;
+    }
+
+    //Debuging stuffs!
+
+    [HideInInspector] public bool drawPath = false;
+
+    private void OnDrawGizmos()
+    {
+        if (drawPath)
+        {
+            for (int i = 0; i < objectiveOrder.Count; i++)
+            {
+                if (i - 1 >= 0)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawLine(objectiveOrder[i - 1].asteroid.postition, objectiveOrder[i].asteroid.postition);
+                }
+            }
+        }
     }
 }
