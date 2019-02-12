@@ -454,31 +454,19 @@ public class TeleportMaster : MonoBehaviour
             currentHit = newHit.collider.GetComponent<SideScript>();
     }
 
-    public void IncreaseMaxLenght ()
-    {
-        teleportMaxLenght += 10;
-    }
+    public void IncreaseMaxLenght () => teleportMaxLenght += 10;
 
-    public void ReseMaxLenght ()
-    {
-        teleportMaxLenght = OGMaxLenght;
-    }
+    public void ReseMaxLenght () => teleportMaxLenght = OGMaxLenght;
 
     public float GetMaxLenght()
     {
         return teleportMaxLenght;
     }
 
-    public void DDTest()
-    {
-        playerParent.transform.position += new Vector3(1, 0, 1);
-    }
+    public void DDTest() => playerParent.transform.position += new Vector3(1, 0, 1);
 
     //This is for when we rotate to see which side of the asteroid we are standing on!
-    public void ChechWhichSideIsClosest ()
-    {
-        currentAsteroidStandingOn.GetComponent<TurretMenuMaster>().CheckSides(this, false);
-    }
+    public void ChechWhichSideIsClosest () => currentAsteroidStandingOn.GetComponent<TurretMenuMaster>().CheckSides(this, false);
 
     public SideScript GetClosestSide (Vector3 posToCompare)
     {
@@ -531,11 +519,8 @@ public class TeleportMaster : MonoBehaviour
         return true;
     }
 
-    private void ChangePlayerPos (float x, float z)
-    {
-        //TODO: Might need to change the ".7f" to "Manager.Instance.RetAsteroidSize()*.5f"!
-        playerParent.transform.localPosition = new Vector3(x, .7f, z);
-    }
+    //TODO: Might need to change the ".7f" to "Manager.Instance.RetAsteroidSize()*.5f"!
+    private void ChangePlayerPos (float x, float z) => playerParent.transform.localPosition = new Vector3(x, .7f, z);
 
     public void ChangeIndex (int newIndex)
     {
