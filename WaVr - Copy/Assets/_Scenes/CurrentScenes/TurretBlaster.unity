@@ -16922,7 +16922,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.136, y: -0.095}
+  m_AnchoredPosition: {x: -0.153, y: -0.148}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564587480
@@ -17664,7 +17664,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Protect the heart at all costs
+  m_Text: Protect the world at all costs
 --- !u!222 &1624812498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19144,7 +19144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.139, y: -0.027999997}
+  m_AnchoredPosition: {x: -0.15599999, y: -0.08100012}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1784850581
@@ -38952,8 +38952,8 @@ MonoBehaviour:
   actualHeadset: {fileID: 1885608655}
   actualLeftController: {fileID: 1196770118}
   actualRightController: {fileID: 978709909}
-  modelAliasLeftController: {fileID: 0}
-  modelAliasRightController: {fileID: 0}
+  modelAliasLeftController: {fileID: 246864186}
+  modelAliasRightController: {fileID: 1498892560}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
