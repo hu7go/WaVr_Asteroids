@@ -16265,6 +16265,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1465535229}
+  - component: {fileID: 1465535230}
   m_Layer: 0
   m_Name: SpawnOne
   m_TagString: Untagged
@@ -16286,6 +16287,27 @@ Transform:
   m_Father: {fileID: 1734353785}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1465535230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465535228}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a225efaab6c2d45a4b4601d17f2722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawer: {fileID: 0}
+  preSpawn: {fileID: 0}
+  timerText: {fileID: 0}
+  red: {r: 1, g: 0, b: 0, a: 1}
+  purple: {r: 1, g: 0, b: 1, a: 1}
+  sortedList: []
+  probePrefab: {fileID: 0}
+  foundPath: 0
+  drawPath: 0
 --- !u!1 &1492736437
 GameObject:
   m_ObjectHideFlags: 0
@@ -37980,17 +38002,25 @@ MonoBehaviour:
     dayDreamBoxIncreases: []
     renderers: []
   tAe:
-    turretHover: 0
-    towerDefence: 0
-    enemySpawnPoints: []
-    enemySpawner: {fileID: 0}
-    enemyPrefab: {fileID: 0}
-    healer: {fileID: 0}
+    turretHover: 1
+    towerDefence: 1
+    enemySpawnPoints:
+    - {fileID: 1465535228}
+    - {fileID: 835179615}
+    - {fileID: 1274782190}
+    - {fileID: 182325446}
+    enemySpawner: {fileID: 5776658466668388448, guid: 149f84ed15bb6e64b99141c45eb17398,
+      type: 3}
+    enemyPrefab: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636,
+      type: 3}
+    healer: {fileID: 1076756149515054808, guid: b4f1dc514fa6efa4da229c92b790c913,
+      type: 3}
     enemySpawnPoint: {fileID: 0}
-    maxNumberOfEnemies: 0
+    maxNumberOfEnemies: 20
     waveCounter: 0
-    currentActiveSpawner: {fileID: 0}
+    currentActiveSpawner: {fileID: 1465535230}
     asteroidHealth: 200
+    spawnPoints: []
   graphicsSettings:
     cubesOn: 1
     cubes:
@@ -38161,7 +38191,33 @@ MonoBehaviour:
     health: 100
     regenSpeed: 3
     regenValue: 1
-  waves: []
+  waves:
+  - index: 0
+    numberOfEnemies: 20
+    damageThreshHold: 95
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+  - index: 1
+    numberOfEnemies: 20
+    damageThreshHold: 80
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+  - index: 2
+    numberOfEnemies: 20
+    damageThreshHold: 65
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+  - index: 3
+    numberOfEnemies: 20
+    damageThreshHold: 50
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+  minWaveWaitTime: 20
+  maxWaveWaitTime: 40
 --- !u!4 &2123815492
 Transform:
   m_ObjectHideFlags: 0
@@ -38896,8 +38952,8 @@ MonoBehaviour:
   actualHeadset: {fileID: 1885608655}
   actualLeftController: {fileID: 1196770118}
   actualRightController: {fileID: 978709909}
-  modelAliasLeftController: {fileID: 246864186}
-  modelAliasRightController: {fileID: 1498892560}
+  modelAliasLeftController: {fileID: 0}
+  modelAliasRightController: {fileID: 0}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
