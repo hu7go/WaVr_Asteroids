@@ -340,18 +340,18 @@ public class TeleportRotation : MonoBehaviour
                     {
                         if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
                         {
-                            //Healers Go here!
-                            /*if(master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
-                            {
-                                GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
-                                healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
-                            }*/
                             canTeleport = false;
                             if (renderOwnLine)
                                 line.enabled = false;
                             return;
                         }
-
+                        if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
+                        {
+                            //TODO add a call for Manager that should handle a text prompt "Can't build a turret on a dead cube"
+                            if (renderOwnLine)
+                                line.enabled = false;
+                            return;
+                        }
 
                         master.currentHit = hit.collider.GetComponent<SideScript>();
 
