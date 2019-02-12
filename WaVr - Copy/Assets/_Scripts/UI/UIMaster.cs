@@ -7,32 +7,39 @@ public class UIMaster : MonoBehaviour
 {
     public delegate void Function();
     //public Function myFunction;
-
+    public float textDelayTime = 8;
     [SerializeField]
-    private Text noBuildText;
+    private GameObject noBuildText;
     [SerializeField]
-    private Text nowHealingText;
+    private GameObject nowHealingText;
 
     void Start()
     {
-        Fun(Fun2, Fun3);
+        TextOnDelayOff(NobuildTextStart, NobuildTextStop);
     }
 
-    public void Fun (Function newFuntion, Function myFunkytion)
+    public IEnumerator TextOnDelayOff (Function firstFunction, Function secondFunction)
     {
-        newFuntion();
-        myFunkytion();
+        firstFunction();
+        yield return new WaitForSeconds(textDelayTime);
+        secondFunction();
     }
 
-    private void Fun2 ()
+    public void NobuildTextStart()
     {
-
+        noBuildText.GetComponent<Text>().text = "You can't build here, asteroid is dead";
+        noBuildText.SetActive(true);
     }
 
-    private void Fun3()
+    public void NobuildTextStop() => noBuildText.SetActive(false);
+
+    private void NowHealingTextStart()
     {
-
+        nowHealingText.GetComponent<Text>().text = "Now healing this asteroid";
+        nowHealingText.SetActive(true);
     }
+
+    private void NowHealingTextStop() => nowHealingText.SetActive(false);
 
     void Update()
     {
