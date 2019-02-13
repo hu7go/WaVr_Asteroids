@@ -5,35 +5,66 @@ using UnityEngine;
 public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 {
     public AsteroidInfo asteroid;
+    private MeshRenderer rend;
     [HideInInspector] public Healer myHealer;
     private TurretMenuMaster turretMaster;
-
+    Color colorStart;
+    Color colorEnd;
+    Color switcher;
+    Color red;
     float h;
     float s;
     float v;
-
-    private MeshRenderer meshRender;
-
-    private float colorAmount = 0;
-    private string colorString = "_HealAmount";
-
+    float rate;
+    float i;
+    bool healing;
+    bool takingDamage;
+    private Renderer renderers;
     public void Start()
     {
-        meshRender = GetComponent<MeshRenderer>();
+        colorStart = new Color(h, s, v);
+        colorEnd = new Color(h, s, v);
+        red = new Color(360, 100, 50);
+        renderers = GetComponent<Renderer>();
+
+
         turretMaster = GetComponentInParent<TurretMenuMaster>();
 
         asteroid = new AsteroidInfo(transform.position, Manager.Instance.tAe.asteroidHealth, true, false);
 
-        Color.RGBToHSV(meshRender.material.GetColor("_Color"), out h, out s, out v);
+        rend = GetComponent<MeshRenderer>();
+        Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
     }
 
     bool tmp = false;
-
-    public void TakeDamage (float damage)
+    void Update()
     {
-        colorString = "_Damage";
-        colorAmount += 1;
-
+        if (healing)
+        {
+            i += Time.deltaTime * rate;
+            colorEnd = new Color(h, s * (Manager.Instance.tAe.asteroidHealth / 100) * 100, v);
+            renderers.material.color = Color.Lerp(colorStart, colorEnd, Mathf.PingPong(i * 2, 1));
+            if (i >= 2)
+                i = 0;
+            renderers.material.color = Color.Lerp(colorEnd, colorStart, Mathf.PingPong(i * 2, 1));
+            if (i >= 2)
+                i = 0;
+        }
+        if (takingDamage)
+        {
+            i += Time.deltaTime * rate;
+            colorEnd = new Color(h, s * (Manager.Instance.tAe.asteroidHealth / 100) * 100, v);
+            renderers.material.color = Color.Lerp(colorEnd, red, Mathf.PingPong(i * 2, 1));
+            if (i >= 2)
+                i = 0;
+            colorEnd = new Color(h, s * (Manager.Instance.tAe.asteroidHealth / 100) * 100, v);
+            renderers.material.color = Color.Lerp(red, colorEnd, Mathf.PingPong(i * 2, 1));
+            if (i >= 2)
+                i = 0;
+        }
+    }
+    public void TakeDamage(float damage)
+    {
         if (asteroid.beingHealed == true)
         {
             myHealer.TakeDamage(damage);
@@ -56,29 +87,32 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 
         UpdateColor();
     }
-
-    public void Heal (float newHealth)
+    public IEnumerator HealingVisual()
     {
-        colorString = "_Heal";
-        colorAmount += 1;
-
+        healing = true;
+        yield return new WaitForSeconds(8);
+        healing = false;
+    }
+    public IEnumerator DamageVisual()
+    {
+        takingDamage = true;
+        yield return new WaitForSeconds(8);
+        takingDamage = false;
+    }
+    public void Heal(float newHealth)
+    {
         Manager.Instance.UpdateHealth(newHealth);
+        StartCoroutine(HealingVisual());
         UpdateColor();
     }
 
-    public void Update()
-    {
-        colorAmount = Mathf.Lerp(colorAmount, 0, Time.deltaTime);
-        meshRender.material.SetFloat(colorString, colorAmount);
-    }
-
-    void UpdateColor ()
+    void UpdateColor()
     {
         s = (asteroid.health / 100) / (Manager.Instance.tAe.asteroidHealth / 100);
-        meshRender.material.SetColor("_Color", Color.HSVToRGB(h, s, v)); 
+        rend.material.SetColor("_Color", Color.HSVToRGB(h, s, v));
     }
 
-    public AsteroidInfo GetInfo ()
+    public AsteroidInfo GetInfo()
     {
         return asteroid;
     }
