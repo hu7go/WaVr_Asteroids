@@ -257,8 +257,6 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public void Destroy ()
     {
-        Debug.Log("Test");
-
         StartCoroutine(Manager.Instance.SpawnThemNewEnemies());
     }
 
