@@ -77,7 +77,7 @@ public class EnemySpawnPoint : MonoBehaviour
         while (time < 1)
         {
             time += Time.deltaTime / timeToMove;
-            arrowRenderer.material.color = Color.Lerp(arrowRenderer.material.color, newColor, time / (timeToMove * 2));
+            arrowRenderer.material.color = Color.Lerp(arrowRenderer.material.color, newColor, time / (timeToMove * timeToMove));
             yield return null;
         }
     }
@@ -240,7 +240,8 @@ public class EnemySpawnPoint : MonoBehaviour
                 spawned = true;
             }
 
-            preSpawn.material.SetColor("_TintColor", currentColor); 
+            if (preSpawn != null)
+                preSpawn.material.SetColor("_TintColor", currentColor); 
 
             if (spawned == true)
             {
@@ -250,7 +251,8 @@ public class EnemySpawnPoint : MonoBehaviour
                     done = true;
                     StartCoroutine(ArrowColor(7, Color.green, 1));
                 }
-                preSpawn.material.SetColor("_TintColor", currentColor);
+                if (preSpawn != null)
+                    preSpawn.material.SetColor("_TintColor", currentColor);
             }
         }
     }

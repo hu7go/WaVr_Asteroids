@@ -275,13 +275,14 @@ public class Manager : MonoBehaviour
     {
         //! Delay before next wave!
         float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].maxNumberOfEnemies);
-        Debug.Log("Testing new wave before: " + waveDelayPercent + " : " + myTimer + " : " + minWaveWaitTime +  " : " + maxWaveWaitTime + " : " + waveDelayPercent);
+        //Debug.Log("Testing new wave before: " + waveDelayPercent + " : " + myTimer + " : " + minWaveWaitTime +  " : " + maxWaveWaitTime + " : " + waveDelayPercent);
 
         if (waveDelayPercent == 0)
             waveDelayPercent = .1f;
+
         yield return new WaitForSeconds(minWaveWaitTime + (maxWaveWaitTime * waveDelayPercent));
 
-        Debug.Log("Testing new wave before");
+        Debug.Log("Testing new wave AFTER!!");
 
         StartSpawningEnemies();
     }
