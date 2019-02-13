@@ -352,6 +352,13 @@ public class TeleportRotation : MonoBehaviour
                     {
                         if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
                         {
+                            if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
+                            {
+                                GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
+                                healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
+                                UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
+                                StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
+                            }
                             canTeleport = false;
                             if (renderOwnLine)
                                 line.enabled = false;
