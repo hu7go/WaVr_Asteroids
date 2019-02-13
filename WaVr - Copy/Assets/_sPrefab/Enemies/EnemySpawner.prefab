@@ -525,6 +525,7 @@ GameObject:
   - component: {fileID: 4320997011982870}
   - component: {fileID: 114695334063914696}
   - component: {fileID: 5372160040600501959}
+  - component: {fileID: 5269521721957275176}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -589,8 +590,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portalOpening: {fileID: 114608280383680316}
-  enemy: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636, type: 3}
   spawnTime: 1
+--- !u!95 &5269521721957275176
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323292294712802}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 389e43f3f1485884cabd9678a5811211, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1802715388629488
 GameObject:
   m_ObjectHideFlags: 0
