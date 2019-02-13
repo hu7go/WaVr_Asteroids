@@ -5,7 +5,6 @@ using UnityEngine;
 public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 {
     public AsteroidInfo asteroid;
-    private MeshRenderer rend;
     [HideInInspector] public Healer myHealer;
     private TurretMenuMaster turretMaster;
 
@@ -13,20 +12,28 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
     float s;
     float v;
 
+    private MeshRenderer meshRender;
+
+    private float colorAmount = 0;
+    private string colorString = "_HealAmount";
+
     public void Start()
     {
+        meshRender = GetComponent<MeshRenderer>();
         turretMaster = GetComponentInParent<TurretMenuMaster>();
 
         asteroid = new AsteroidInfo(transform.position, Manager.Instance.tAe.asteroidHealth, true, false);
 
-        rend = GetComponent<MeshRenderer>();
-        Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
+        Color.RGBToHSV(meshRender.material.GetColor("_Color"), out h, out s, out v);
     }
 
     bool tmp = false;
 
     public void TakeDamage (float damage)
     {
+        colorString = "_Damage";
+        colorAmount += 1;
+
         if (asteroid.beingHealed == true)
         {
             myHealer.TakeDamage(damage);
@@ -52,14 +59,23 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 
     public void Heal (float newHealth)
     {
+        colorString = "_Heal";
+        colorAmount += 1;
+
         Manager.Instance.UpdateHealth(newHealth);
         UpdateColor();
+    }
+
+    public void Update()
+    {
+        colorAmount = Mathf.Lerp(colorAmount, 0, Time.deltaTime);
+        meshRender.material.SetFloat(colorString, colorAmount);
     }
 
     void UpdateColor ()
     {
         s = (asteroid.health / 100) / (Manager.Instance.tAe.asteroidHealth / 100);
-        rend.material.SetColor("_Color", Color.HSVToRGB(h, s, v)); 
+        meshRender.material.SetColor("_Color", Color.HSVToRGB(h, s, v)); 
     }
 
     public AsteroidInfo GetInfo ()

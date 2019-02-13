@@ -11,15 +11,10 @@ public class Spawner : MonoBehaviour
     private EnemySpawnPoint master;
     private int numberOfEnemies;
     private int counter = 0;
-
     private float threshHold;
-
     private List<AsteroidHealth> objectiveOrder;
-
     private List<EnemyAI> enemies = new List<EnemyAI>();
-
     private int waveIndex;
-
     private Wave myWaveInfo;
 
     private void Start()
@@ -66,44 +61,11 @@ public class Spawner : MonoBehaviour
         Invoke("Spawn", spawnTime);
     }
 
-    bool startedPathFinding = false;
-
-    public void CheckForNewPath ()
-    {
-        Debug.Log("Started checking path!");
-
-        if (startedPathFinding == false)
-        {
-            startedPathFinding = true;
-
-            //master.FindPath();
-            StartCoroutine(WaitForPath());
-        }
-    }
-
-    private IEnumerator WaitForPath ()
-    {
-        while (master.foundPath == false)
-        {
-            yield return null;
-        }
-
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            enemies[i].SetPath(master.sortedList);
-        }
-        startedPathFinding = false;
-
-        Debug.Log("Stoped checking path!");
-    }
-
     public void UpdatePath (List<AsteroidHealth> newList)
     {
-        Debug.Log("testing path updateing");
         objectiveOrder = newList;
         for (int i = 0; i < enemies.Count; i++)
         {
-            Debug.Log("Testing stuffs paths n that");
             enemies[i].SetPath(objectiveOrder);
         }
     }
