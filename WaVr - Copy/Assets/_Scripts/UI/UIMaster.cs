@@ -15,7 +15,7 @@ public class UIMaster : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(TextOnDelayOff(NobuildTextStart, NobuildTextStop));
+        //StartCoroutine(TextOnDelayOff(NobuildTextStart, NobuildTextStop));
     }
 
     public IEnumerator TextOnDelayOff (Function firstFunction, Function secondFunction)
