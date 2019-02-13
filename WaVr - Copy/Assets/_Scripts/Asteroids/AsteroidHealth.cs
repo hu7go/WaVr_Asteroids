@@ -8,17 +8,12 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
     private MeshRenderer rend;
     [HideInInspector] public Healer myHealer;
     private TurretMenuMaster turretMaster;
-    Color colorStart;
-    Color colorEnd;
-    Color switcher;
     Color red;
     float h;
     float s;
     float v;
-    float rate;
-    float i;
-    bool healing;
-    bool takingDamage;
+
+    Color currentColor;
 
     public void Start()
     {
@@ -32,11 +27,10 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
         rend = GetComponent<MeshRenderer>();
         Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
 
-        colorStart = rend.material.GetColor("_Color");
-        colorEnd = rend.material.GetColor("_Color");
     }
 
     bool tmp = false;
+    bool damageBool = false;
 
     public void TakeDamage(float damage)
     {
@@ -46,7 +40,11 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
             return;
         }
 
-        StartCoroutine(DamageVisual(.1f));
+        if (damageBool == false)
+        {
+            damageBool = true;
+            StartCoroutine(DamageVisual(.05f));
+        }
 
         asteroid.health -= damage;
         if (asteroid.health <= 0)
@@ -67,62 +65,42 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 
     public IEnumerator HealingVisual(float newTime)
     {
-        float t = 0;
+        rend.material.color = Color.green;
+        yield return new WaitForSeconds(newTime);
+        rend.material.color = currentColor;
 
-        Color tmpColor = rend.material.GetColor("_Color");
-
-        while (t < 1)
-        {
-            t += Time.deltaTime / (newTime / 2);
-
-            rend.material.color = Color.Lerp(rend.material.GetColor("_Color"), Color.green, t);
-            yield return null;
-        }
-
-        while (t < 1)
-        {
-            t += Time.deltaTime / (newTime / 2);
-
-            i += Time.deltaTime * rate;
-            rend.material.color = Color.Lerp(rend.material.GetColor("_Color"), tmpColor, t);
-            yield return null;
-        }
+        healingBool = false;
     }
+
 
     public IEnumerator DamageVisual(float newTime)
     {
-        float t = 0;
+        rend.material.color = Color.white;
+        yield return new WaitForSeconds(newTime);
+        rend.material.color = currentColor;
 
-        Color tmpColor = rend.material.GetColor("_Color");
-
-        while (t < 1)
-        {
-            t += Time.deltaTime / (newTime / 2);
-
-            rend.material.color = Color.Lerp(rend.material.GetColor("_Color"), Color.red, t);
-            yield return null;
-        }
-
-        while (t < 1)
-        {
-            t += Time.deltaTime / (newTime / 2);
-
-            rend.material.color = Color.Lerp(rend.material.GetColor("_Color"), tmpColor, t);
-            yield return null;
-        }
+        damageBool = false;
     }
+
+    bool healingBool = false;
 
     public void Heal(float newHealth)
     {
         Manager.Instance.UpdateHealth(newHealth);
-        StartCoroutine(HealingVisual(.1f));
+        if (healingBool == false)
+        {
+            healingBool = true;
+            StartCoroutine(HealingVisual(.1f));
+        }
         UpdateColor();
     }
 
     void UpdateColor()
     {
         s = (asteroid.health / 100) / (Manager.Instance.tAe.asteroidHealth / 100);
-        rend.material.SetColor("_Color", Color.HSVToRGB(h, s, v));
+        if (damageBool  == false && healingBool == false)
+            rend.material.SetColor("_Color", Color.HSVToRGB(h, s, v));
+        currentColor = Color.HSVToRGB(h, s, v);
     }
 
     public AsteroidInfo GetInfo()
