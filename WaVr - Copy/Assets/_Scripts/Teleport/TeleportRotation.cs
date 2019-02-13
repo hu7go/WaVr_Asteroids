@@ -352,7 +352,7 @@ public class TeleportRotation : MonoBehaviour
                     {
                         if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
                         {
-                            if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
+                            if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false)
                             {
                                 GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
                                 healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
