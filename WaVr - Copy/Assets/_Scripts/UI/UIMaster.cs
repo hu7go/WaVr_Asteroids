@@ -15,7 +15,7 @@ public class UIMaster : MonoBehaviour
 
     void Start()
     {
-        TextOnDelayOff(NobuildTextStart, NobuildTextStop);
+        StartCoroutine(TextOnDelayOff(NobuildTextStart, NobuildTextStop));
     }
 
     public IEnumerator TextOnDelayOff (Function firstFunction, Function secondFunction)
@@ -33,13 +33,13 @@ public class UIMaster : MonoBehaviour
 
     public void NobuildTextStop() => noBuildText.SetActive(false);
 
-    private void NowHealingTextStart()
+    public void NowHealingTextStart()
     {
         nowHealingText.GetComponent<Text>().text = "Now healing this asteroid";
         nowHealingText.SetActive(true);
     }
 
-    private void NowHealingTextStop() => nowHealingText.SetActive(false);
+    public void NowHealingTextStop() => nowHealingText.SetActive(false);
 
     void Update()
     {

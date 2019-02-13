@@ -360,7 +360,8 @@ public class TeleportRotation : MonoBehaviour
                         if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
                         {
                             //TODO: add a call for Manager that should handle a text prompt "Can't build a turret on a dead cube"
-                            Manager.Instance.gameObject.GetComponent<UIMaster>().TextOnDelayOff(Manager.Instance.gameObject.GetComponent<UIMaster>().NobuildTextStart, Manager.Instance.gameObject.GetComponent<UIMaster>().NobuildTextStop);
+                            UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
+                            StartCoroutine(uImaster.TextOnDelayOff(uImaster.NobuildTextStart, uImaster.NobuildTextStop));
                             canTeleport = false;
                             if (renderOwnLine)
                                 line.enabled = false;

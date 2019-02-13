@@ -431,6 +431,8 @@ public class TeleportMaster : MonoBehaviour
         {
             GameObject healer = Instantiate(Manager.Instance.tAe.healer,currentAsteroidStandingOn.transform);
             healer.GetComponent<Healer>().SpawnAHealer(currentAsteroidStandingOn.gameObject);
+            UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
+            StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
         }
     }
 
