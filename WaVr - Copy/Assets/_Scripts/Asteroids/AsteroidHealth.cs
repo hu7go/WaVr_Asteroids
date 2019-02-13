@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
+public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
 {
     public AsteroidInfo asteroid;
     private MeshRenderer rend;
@@ -32,7 +32,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
     bool tmp = false;
     bool damageBool = false;
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, EnemySpawnPoint enemyOrigin)
     {
         if (asteroid.beingHealed == true)
         {
@@ -53,7 +53,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
             asteroid.alive = false;
             if (tmp == false)
             {
-                Manager.Instance.UpdatePath(transform.position);
+                Manager.Instance.UpdatePath(transform.position, enemyOrigin);
                 tmp = true;
             }
         }

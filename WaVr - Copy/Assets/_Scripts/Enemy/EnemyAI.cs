@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour
     private float healthThreshHold;
 
     private bool seekAndDestroy = true;
-    private Transform home;
+    private EnemySpawnPoint home;
 
     private float distance;
 
@@ -64,7 +64,7 @@ public class EnemyAI : MonoBehaviour
     {
         objectiveOrder = newList;
         healthThreshHold = newHealthThreshHold;
-        home = newMaster.transform;
+        home = newMaster;
         spawner = newSpawner;
         waveIndex = newWaveIndex;
     }
@@ -73,7 +73,6 @@ public class EnemyAI : MonoBehaviour
     {
         CheckHealthThreshHold();
         Movement();
-        //Debug.DrawRay(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, Color.red);
     }
 
     private void CheckHealthThreshHold()
@@ -81,7 +80,7 @@ public class EnemyAI : MonoBehaviour
         if (Manager.Instance.healthPercent <= healthThreshHold)
         {
             seekAndDestroy = false;
-            objective = home;
+            objective = home.transform;
         }
     }
 
@@ -127,7 +126,7 @@ public class EnemyAI : MonoBehaviour
     public void StartShooting ()
     {
         if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, out hit, range, layerMask))
-            gun.Shoot(waveIndex);
+            gun.Shoot(waveIndex, home);
         StartCoroutine(Shoot());
     }
 

@@ -586,10 +586,10 @@ public class Manager : MonoBehaviour
         turrets.Clear();
     }
 
-    public void UpdatePath (Vector3 pos)
+    public void UpdatePath (Vector3 pos, EnemySpawnPoint currentSpawnPoint)
     {
         //This currently only works with one active portal at a time!
-        tAe.currentActiveSpawner.FindPath(pos);
+        currentSpawnPoint.FindPath(pos);
     }
 }
 

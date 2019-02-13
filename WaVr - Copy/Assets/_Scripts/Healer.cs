@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Healer : MonoBehaviour, ITakeDamage<float>
+public class Healer : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
 {
     HealerInfo hI;
 
@@ -22,7 +22,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float>
             StartCoroutine(IHeal());
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, EnemySpawnPoint spawn = null)
     {
         hI.health -= damage;
 

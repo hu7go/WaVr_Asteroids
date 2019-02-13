@@ -23,7 +23,7 @@ public class SpaceGun : MonoBehaviour
         muzzleOriginalRot = muzzle.rotation;
     }
 
-    public void Shoot (int waveIndex)
+    public void Shoot (int waveIndex, EnemySpawnPoint enemyOrigin)
     {
         if (!canFire)
             return;
@@ -44,7 +44,7 @@ public class SpaceGun : MonoBehaviour
                 Destroy(newEffect, 1f);
             }
 
-            target.collider.GetComponent<AsteroidHealth>().TakeDamage(damage);
+            target.collider.GetComponent<AsteroidHealth>().TakeDamage(damage, enemyOrigin);
         }
     }
 
