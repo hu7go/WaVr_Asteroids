@@ -50,7 +50,7 @@ public class EnemySpawnPoint : MonoBehaviour
         asteroidList = newList;
         timer = newTime;
         arrowRenderer = Manager.Instance.arrowRenderer;
-        StartCoroutine(ArrowColor(timer, Color.red));
+        StartCoroutine(ArrowColor(timer, Color.red, 0));
 
         FindPath(transform.position);
 
@@ -62,8 +62,17 @@ public class EnemySpawnPoint : MonoBehaviour
         StartCoroutine(ProbeSpawn());
     }
 
-    private IEnumerator ArrowColor (float timeToMove, Color newColor)
+    private IEnumerator ArrowColor (float timeToMove, Color newColor, int index)
     {
+        Debug.Log("TestingColor");
+
+        Color color;
+
+        if (index == 0)
+            color = Color.red;
+        else
+            color = Color.green;
+
         float time = 0f;
         while (time < 1)
         {
@@ -158,6 +167,8 @@ public class EnemySpawnPoint : MonoBehaviour
 
     bool startedProbe = false;
 
+    bool done = false;
+
     private void Update()
     {
         if (startedProbe == false)
@@ -234,7 +245,11 @@ public class EnemySpawnPoint : MonoBehaviour
             if (spawned == true)
             {
                 currentColor = purple;
-                StartCoroutine(ArrowColor(7, Color.green));
+                if (done == false)
+                {
+                    done = true;
+                    StartCoroutine(ArrowColor(7, Color.green, 1));
+                }
                 preSpawn.material.SetColor("_TintColor", currentColor);
             }
         }
@@ -243,6 +258,17 @@ public class EnemySpawnPoint : MonoBehaviour
     public void Destroy ()
     {
         StartCoroutine(Manager.Instance.SpawnThemNewEnemies());
+    }
+
+    public void Over ()
+    {
+        if (mySpawner.enemies.Count <= 0)
+        {
+            Destroy(preSpawn.gameObject);
+            mySpawner.StartEndAnim();
+            Manager.Instance.SwitchPortalTarget();
+            Destroy(gameObject, 3);
+        }
     }
 
     //Debuging stuffs

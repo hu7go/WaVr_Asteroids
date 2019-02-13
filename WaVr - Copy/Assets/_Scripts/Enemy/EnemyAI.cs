@@ -107,11 +107,13 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
+            //If seekAndDestroy is false they go back to there home portal!
             distance = Vector3.Distance(transform.position, objective.position);
 
             if (distance < 2)
             {
                 Kill();
+                home.Over();
             }
             else
             {
@@ -154,6 +156,7 @@ public class EnemyAI : MonoBehaviour
 
         Manager.Instance.waves[waveIndex].enemies.Remove(this);
         Manager.Instance.RemoveEnemy(waveIndex);
+        spawner.RemoveEnemie(this);
         Destroy(gameObject);
     }
 

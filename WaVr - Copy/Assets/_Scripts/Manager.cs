@@ -50,7 +50,7 @@ public class Manager : MonoBehaviour
         public GameObject healer;
         [HideInInspector] public GameObject enemySpawnPoint;
         public int waveCount = 0;
-        public EnemySpawnPoint currentActiveSpawner;
+        public Transform currentActiveSpawner;
 
         public float asteroidHealth = 200;
 
@@ -306,7 +306,7 @@ public class Manager : MonoBehaviour
         //localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, enemyDestructionPercent);
         //
 
-        tAe.currentActiveSpawner = tmpSpawnPoint;
+        tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;
 
         counter = 0;
         tAe.enemySpawnPoint = localEnemySpawner;
@@ -590,6 +590,11 @@ public class Manager : MonoBehaviour
     {
         //This currently only works with one active portal at a time!
         currentSpawnPoint.FindPath(pos);
+    }
+
+    public void SwitchPortalTarget ()
+    {
+        tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;
     }
 }
 

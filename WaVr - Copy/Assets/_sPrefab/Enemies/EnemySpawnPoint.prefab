@@ -129,8 +129,11 @@ MonoBehaviour:
   timerText: {fileID: 5378888966069286952}
   red: {r: 1, g: 0.21226418, b: 0.21226418, a: 1}
   purple: {r: 0.80400795, g: 0.61960787, b: 1, a: 1}
+  sortedList: []
   probePrefab: {fileID: 6399445367342782707, guid: 24cf37f70fa91444e9f70531dc54b800,
     type: 3}
+  foundPath: 0
+  drawPath: 0
 --- !u!1 &8449509903568745141
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +245,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PreSpawnSpawnPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 5841430743581470548, guid: 28e50edde016fe14d89ab063eb172fba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5844269501086476448, guid: 28e50edde016fe14d89ab063eb172fba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -296,6 +304,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843351615073964204, guid: 28e50edde016fe14d89ab063eb172fba,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28e50edde016fe14d89ab063eb172fba, type: 3}

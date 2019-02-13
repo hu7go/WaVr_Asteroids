@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
     private int counter = 0;
     private float threshHold;
     private List<AsteroidHealth> objectiveOrder;
-    private List<EnemyAI> enemies = new List<EnemyAI>();
+    /*[HideInInspector]*/ public List<EnemyAI> enemies = new List<EnemyAI>();
     private int waveIndex;
     private Wave myWaveInfo;
 
@@ -68,5 +68,16 @@ public class Spawner : MonoBehaviour
         {
             enemies[i].SetPath(objectiveOrder);
         }
+    }
+
+    public void RemoveEnemie (EnemyAI enemy)
+    {
+        enemies.Remove(enemy);
+    }
+
+    public void StartEndAnim ()
+    {
+        Animator anim = GetComponent<Animator>();
+        anim.SetTrigger("PortalBeGone");
     }
 }
