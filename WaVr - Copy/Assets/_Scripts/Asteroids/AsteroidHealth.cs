@@ -19,14 +19,11 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
     float i;
     bool healing;
     bool takingDamage;
-    private Renderer renderers;
+
     public void Start()
     {
-        colorStart = new Color(h, s, v);
-        colorEnd = new Color(h, s, v);
-        red = new Color(360, 100, 50);
-        renderers = GetComponent<Renderer>();
-
+        //red = new Color(360, 100, 50);
+        red = Color.red;
 
         turretMaster = GetComponentInParent<TurretMenuMaster>();
 
@@ -34,35 +31,13 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 
         rend = GetComponent<MeshRenderer>();
         Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
+
+        colorStart = rend.material.GetColor("_Color");
+        colorEnd = rend.material.GetColor("_Color");
     }
 
     bool tmp = false;
-    void Update()
-    {
-        if (healing)
-        {
-            i += Time.deltaTime * rate;
-            colorEnd = new Color(h, s * (Manager.Instance.tAe.asteroidHealth / 100) * 100, v);
-            renderers.material.color = Color.Lerp(colorStart, colorEnd, Mathf.PingPong(i * 2, 1));
-            if (i >= 2)
-                i = 0;
-            renderers.material.color = Color.Lerp(colorEnd, colorStart, Mathf.PingPong(i * 2, 1));
-            if (i >= 2)
-                i = 0;
-        }
-        if (takingDamage)
-        {
-            i += Time.deltaTime * rate;
-            colorEnd = new Color(h, s * (Manager.Instance.tAe.asteroidHealth / 100) * 100, v);
-            renderers.material.color = Color.Lerp(colorEnd, red, Mathf.PingPong(i * 2, 1));
-            if (i >= 2)
-                i = 0;
-            colorEnd = new Color(h, s * (Manager.Instance.tAe.asteroidHealth / 100) * 100, v);
-            renderers.material.color = Color.Lerp(red, colorEnd, Mathf.PingPong(i * 2, 1));
-            if (i >= 2)
-                i = 0;
-        }
-    }
+
     public void TakeDamage(float damage)
     {
         if (asteroid.beingHealed == true)
@@ -70,6 +45,8 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
             myHealer.TakeDamage(damage);
             return;
         }
+
+        StartCoroutine(DamageVisual(.1f));
 
         asteroid.health -= damage;
         if (asteroid.health <= 0)
@@ -87,22 +64,58 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float>
 
         UpdateColor();
     }
-    public IEnumerator HealingVisual()
+
+    public IEnumerator HealingVisual(float newTime)
     {
-        healing = true;
-        yield return new WaitForSeconds(8);
-        healing = false;
+        float t = 0;
+
+        Color tmpColor = rend.material.GetColor("_Color");
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / (newTime / 2);
+
+            rend.material.color = Color.Lerp(rend.material.GetColor("_Color"), Color.green, t);
+            yield return null;
+        }
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / (newTime / 2);
+
+            i += Time.deltaTime * rate;
+            rend.material.color = Color.Lerp(rend.material.GetColor("_Color"), tmpColor, t);
+            yield return null;
+        }
     }
-    public IEnumerator DamageVisual()
+
+    public IEnumerator DamageVisual(float newTime)
     {
-        takingDamage = true;
-        yield return new WaitForSeconds(8);
-        takingDamage = false;
+        float t = 0;
+
+        Color tmpColor = rend.material.GetColor("_Color");
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / (newTime / 2);
+
+            rend.material.color = Color.Lerp(rend.material.GetColor("_Color"), Color.red, t);
+            yield return null;
+        }
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / (newTime / 2);
+
+            rend.material.color = Color.Lerp(rend.material.GetColor("_Color"), tmpColor, t);
+            yield return null;
+        }
     }
+
     public void Heal(float newHealth)
     {
         Manager.Instance.UpdateHealth(newHealth);
-        StartCoroutine(HealingVisual());
+        StartCoroutine(HealingVisual(.1f));
         UpdateColor();
     }
 

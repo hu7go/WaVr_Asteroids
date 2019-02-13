@@ -41,24 +41,36 @@ public class EnemySpawnPoint : MonoBehaviour
     private Spawner mySpawner;
 
     private Wave myWaveInfo;
+    private MeshRenderer arrowRenderer;
 
     public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex, Wave newWave)
     {
         myWaveInfo = newWave;
-
         waveIndex = newWaveIndex;
-
         asteroidList = newList;
+        timer = newTime;
+        arrowRenderer = Manager.Instance.arrowRenderer;
+        StartCoroutine(ArrowColor(timer, Color.red));
 
         FindPath(transform.position);
 
-        timer = newTime;
         start = true;
         numberOfEnemies = n;
 
         threshHold = newThreshHold;
 
         StartCoroutine(ProbeSpawn());
+    }
+
+    private IEnumerator ArrowColor (float timeToMove, Color newColor)
+    {
+        float time = 0f;
+        while (time < 1)
+        {
+            time += Time.deltaTime / timeToMove;
+            arrowRenderer.material.color = Color.Lerp(arrowRenderer.material.color, newColor, time / (timeToMove * 2));
+            yield return null;
+        }
     }
 
     private IEnumerator ProbeSpawn ()
@@ -222,6 +234,7 @@ public class EnemySpawnPoint : MonoBehaviour
             if (spawned == true)
             {
                 currentColor = purple;
+                StartCoroutine(ArrowColor(7, Color.green));
                 preSpawn.material.SetColor("_TintColor", currentColor);
             }
         }

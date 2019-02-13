@@ -176,6 +176,8 @@ public class Manager : MonoBehaviour
     public float minWaveWaitTime = 20;
     public float maxWaveWaitTime = 40;
 
+    public MeshRenderer arrowRenderer;
+
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
