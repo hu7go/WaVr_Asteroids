@@ -8,17 +8,22 @@ public class Probe : MonoBehaviour
     private Vector3 currentTarget;
     private Vector3 secondaryTarget;
     private float distance;
+    private float number;
+
+    private float startSpeed;
 
     private bool probe = true;
     private bool forward = true;
 
     int index = 0;
 
-    public void Instantiate (List<AsteroidHealth> newPosOrder, Vector3 secondary)
+    public void Instantiate (List<AsteroidHealth> newPosOrder, Vector3 secondary, float newNumber)
     {
+        startSpeed = speed;
         targets = newPosOrder;
         currentTarget = targets[0].asteroid.postition;
         secondaryTarget = secondary;
+        number = newNumber;
     }
 
     private void Update()
@@ -26,10 +31,19 @@ public class Probe : MonoBehaviour
         transform.LookAt(currentTarget);
         distance = Vector3.Distance(transform.position, currentTarget);
 
+        if (distance < 6)
+            speed = startSpeed * .75f;
+        if (distance < 5)
+            speed = startSpeed * .5f;
+        if (distance > 5)
+            speed = startSpeed * .75f;
+        if (distance > 6)
+            speed = startSpeed;
+
         if (probe)
         {
             if (distance > 4)
-                transform.position = Vector3.Lerp(transform.position, currentTarget, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
             else
             {
                 if (forward)
@@ -37,21 +51,17 @@ public class Probe : MonoBehaviour
                 else
                     index--;
 
-                if (index >= 2)
+                if (index >= number - 1)
                     forward = false;
                 else if (index <= 0)
                     forward = true;
 
                 currentTarget = targets[index].asteroid.postition;
-
-                //Vector3 tmp = targets;
-                //targets = secondaryTarget;
-                //secondaryTarget = tmp;
             }
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, currentTarget, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
             if (distance < 2)
             {
                 speed *= 2;

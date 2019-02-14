@@ -64,10 +64,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
     private IEnumerator ArrowColor (float timeToMove, Color newColor, int index)
     {
-        Debug.Log("TestingColor");
-
         Color color;
-
         if (index == 0)
             color = Color.red;
         else
@@ -77,22 +74,37 @@ public class EnemySpawnPoint : MonoBehaviour
         while (time < 1)
         {
             time += Time.deltaTime / timeToMove;
-            arrowRenderer.material.color = Color.Lerp(arrowRenderer.material.color, newColor, time / (timeToMove * timeToMove));
+            arrowRenderer.material.color = Color.Lerp(arrowRenderer.material.color, newColor, time / (timeToMove * (timeToMove * .33f)));
             yield return null;
         }
     }
 
+    bool startedSpawing = false;
+
     private IEnumerator ProbeSpawn ()
     {
         yield return new WaitForSeconds(.5f);
+
+        float x = Manager.Instance.masterMaxHealth / Manager.Instance.tAe.asteroidHealth * myWaveInfo.damageThreshHold / 100;
+        x = Mathf.Floor(x);
+        float numberOfAsteroidsToGoTo = Manager.Instance.asteroidList.Count() - x;
+
         int i = 0;
-        while (i < 3)
+        while (i < numberOfAsteroidsToGoTo)
         {
-            GameObject newProbe = Instantiate(probePrefab, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
-            newProbe.GetComponent<Probe>().Instantiate(sortedList, transform.position);
-            probes.Add(newProbe);
-            i++;
-            yield return new WaitForSeconds(3);
+            if (startedSpawing == false)
+            {
+                GameObject newProbe = Instantiate(probePrefab, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
+                newProbe.GetComponent<Probe>().Instantiate(sortedList, transform.position, numberOfAsteroidsToGoTo);
+                probes.Add(newProbe);
+                i++;
+                //Time before next one spawns!
+                yield return new WaitForSeconds(2);
+            }
+            else
+            {
+                break;
+            }
         }
     }
 
@@ -165,25 +177,10 @@ public class EnemySpawnPoint : MonoBehaviour
     }
     //
 
-    bool startedProbe = false;
-
     bool done = false;
 
     private void Update()
     {
-        if (startedProbe == false)
-        {
-            if (pathThread.IsAlive == false)
-            {
-                for (int i = 0; i < probes.Count; i++)
-                {
-                    Debug.Log("Test " + i);
-                    probes[i].GetComponent<Probe>().Instantiate(sortedList, transform.position);
-                }
-                startedProbe = true;
-            }
-        }
-
         if (start)
         {
             transform.LookAt(Manager.Instance.ReturnPlayer().transform);
@@ -238,6 +235,7 @@ public class EnemySpawnPoint : MonoBehaviour
                 mySpawner = tmp.GetComponent<Spawner>();
                 mySpawner.Initialize(this, numberOfEnemies, sortedList, threshHold, waveIndex, myWaveInfo);
                 spawned = true;
+                startedSpawing = true;
             }
 
             if (preSpawn != null)

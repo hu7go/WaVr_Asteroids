@@ -273,17 +273,20 @@ public class Manager : MonoBehaviour
 
     public IEnumerator SpawnThemNewEnemies()
     {
-        //! Delay before next wave!
+        yield return new WaitForSeconds(minWaveWaitTime);
+
         float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].maxNumberOfEnemies);
-        //Debug.Log("Testing new wave before: " + waveDelayPercent + " : " + myTimer + " : " + minWaveWaitTime +  " : " + maxWaveWaitTime + " : " + waveDelayPercent);
 
         if (waveDelayPercent == 0)
             waveDelayPercent = .1f;
 
-        yield return new WaitForSeconds(minWaveWaitTime + (maxWaveWaitTime * waveDelayPercent));
+        float timeToWait = maxWaveWaitTime * waveDelayPercent;
 
-        Debug.Log("Testing new wave AFTER!!");
+        Invoke("SpawnEnemie", timeToWait);
+    }
 
+    void SpawnEnemie ()
+    {
         StartSpawningEnemies();
     }
 
