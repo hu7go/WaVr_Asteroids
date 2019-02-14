@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SpatialTracking;
 using UnityEngine.UI;
 using VRTK;
@@ -410,7 +411,7 @@ public class Manager : MonoBehaviour
         if(lifeLeft > 0)
         {
             uISettings.tdEndUI.SetActive(true);
-            uISettings.tdGameOverText.text = "You died, " + lifeLeft + " lives left";
+            uISettings.tdGameOverText.text = "You died, press to restart";
         }
         if(lifeLeft == 0)
             uISettings.tdGameOverText.text = "You died. Thanks for playing!";
@@ -420,6 +421,10 @@ public class Manager : MonoBehaviour
 
     public void Restarter()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        return;
+
         startTimer = true;
         uISettings.tdEndUI.SetActive(false);
         killedEnemies = 0;
