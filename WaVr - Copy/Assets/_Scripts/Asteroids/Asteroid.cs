@@ -14,7 +14,7 @@ public class Asteroid : MonoBehaviour
     {
         if (isObjective && !hasBeenReached)
         {
-            Manager.Instance.ObjectiveReached();
+            //Manager.Instance.ObjectiveReached();
             hasBeenReached = true;
         }
     }

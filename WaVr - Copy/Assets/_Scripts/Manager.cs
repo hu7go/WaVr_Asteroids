@@ -298,7 +298,7 @@ public class Manager : MonoBehaviour
     {
         if (tAe.towerDefence)
         {
-            uISettings.waveCount.text = ("Wave: " + tAe.waveCount);
+            uISettings.waveCount.text = ("Wave: " + (tAe.waveCount + 1));
 
             EnemySpawner();
         }
@@ -306,6 +306,8 @@ public class Manager : MonoBehaviour
 
     private void EnemySpawner ()
     {
+        ClearNullRefs();
+
         if (tAe.waveCount > waves.Count + 1)
             return;
 
@@ -401,7 +403,7 @@ public class Manager : MonoBehaviour
             if (enemiesSpawned[i] == null)
                 enemiesSpawned.RemoveAt(i);
 
-        if (tAe.waveCount > waves.Count + 1 && (enemiesSpawned.Count == 0))
+        if (tAe.waveCount > waves.Count && (enemiesSpawned.Count == 0))
         {
             ObjectiveReached();
         }
