@@ -341,6 +341,8 @@ public class TeleportRotation : MonoBehaviour
                     TurretSpawn newTurretSpawn = hit.collider.GetComponent<TurretSpawn>();
                     newTurretSpawn.SpawnEm();
                     Manager.Instance.CurrentBuildTarget(newTurretSpawn);
+                    Manager.Instance.gameObject.GetComponent<TurretReloader>().Reload();
+                    Manager.Instance.gameObject.GetComponent<TurretReloader>().numberOfTurretsLeft--;
                 }
                 //
 
@@ -366,7 +368,6 @@ public class TeleportRotation : MonoBehaviour
                         }
                         if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
                         {
-                            //TODO: add a call for Manager that should handle a text prompt "Can't build a turret on a dead cube"
                             UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
                             StartCoroutine(uImaster.TextOnDelayOff(uImaster.NobuildTextStart, uImaster.NobuildTextStop));
                             canTeleport = false;
