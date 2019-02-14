@@ -289,10 +289,7 @@ public class Manager : MonoBehaviour
         Invoke("SpawnEnemie", timeToWait);
     }
 
-    void SpawnEnemie ()
-    {
-        StartSpawningEnemies();
-    }
+    void SpawnEnemie () => StartSpawningEnemies();
 
     public void StartSpawningEnemies()
     {
@@ -331,10 +328,7 @@ public class Manager : MonoBehaviour
         tAe.waveCount++;
     }
 
-    public void RoutineOpener()
-    {
-        EnemySpawner();
-    }
+    public void RoutineOpener() => EnemySpawner();
 
     public void InstantiateEnemy(GameObject newEnemy, int index)
     {
@@ -409,15 +403,9 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public void StartTimer()
-    {
-        startTimer = !startTimer;
-    }
+    public void StartTimer() => startTimer = !startTimer;
 
-    public bool GetStartBool()
-    {
-        return startTimer;
-    }
+    public bool GetStartBool() => startTimer;
 
     //! Update Function!!!!!
     private void Update()
@@ -461,34 +449,22 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public bool StartedGame()
-    {
-        return gameStarted;
-    }
+    public bool StartedGame() => gameStarted;
 
     public void ObjectiveReached()
     {
         startTimer = false;
         uISettings.endUI.SetActive(true);
-        uISettings.overText.text = ("Well done! You completed it in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds");
+        uISettings.overText.text = ("Nice! You destroyed the enemies in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds. With " + healthPercent + "% health left!");
     }
 
-    public GameObject ReturnPlayer()
-    {
-        return player;
-    }
+    public GameObject ReturnPlayer() => player;
 
     TurretSpawn turretSpawn;
 
-    public void CurrentBuildTarget(TurretSpawn current)
-    {
-        turretSpawn = current;
-    }
+    public void CurrentBuildTarget(TurretSpawn current) => turretSpawn = current;
 
-    public TurretSpawn GetCurrentBuildTarget()
-    {
-        return turretSpawn;
-    }
+    public TurretSpawn GetCurrentBuildTarget() => turretSpawn;
 
     private bool toggle = true;
     public void ToggleConfirmDenyButtons()
@@ -571,25 +547,13 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public void ActivateRotationArrows ()
-    {
-        uISettings.arrowsUI.SetActive(true);
-    }
+    public void ActivateRotationArrows () => uISettings.arrowsUI.SetActive(true);
 
-    public void DeactivateRotationArrows ()
-    {
-        uISettings.arrowsUI.SetActive(false);
-    }
+    public void DeactivateRotationArrows () => uISettings.arrowsUI.SetActive(false);
 
-    public float RetAsteroidSize ()
-    {
-        return asteroidSize;
-    }
+    public float RetAsteroidSize () => asteroidSize;
 
-    public void BuiltTurret (GameObject newTurret)
-    {
-        turrets.Add(newTurret);
-    }
+    public void BuiltTurret (GameObject newTurret) => turrets.Add(newTurret);
 
     public void ClearTurrets ()
     {
@@ -600,16 +564,10 @@ public class Manager : MonoBehaviour
         turrets.Clear();
     }
 
-    public void UpdatePath (Vector3 pos, EnemySpawnPoint currentSpawnPoint)
-    {
-        //This currently only works with one active portal at a time!
-        currentSpawnPoint.FindPath(pos);
-    }
+    //This currently only works with one active portal at a time!
+    public void UpdatePath (Vector3 pos, EnemySpawnPoint currentSpawnPoint) => currentSpawnPoint.FindPath(pos);
 
-    public void SwitchPortalTarget ()
-    {
-        tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;
-    }
+    public void SwitchPortalTarget () => tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;
 }
 
 [System.Serializable]
