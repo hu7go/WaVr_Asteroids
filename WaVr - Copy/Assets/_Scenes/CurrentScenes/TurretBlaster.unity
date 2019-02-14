@@ -35545,6 +35545,7 @@ GameObject:
   - component: {fileID: 2123815496}
   - component: {fileID: 2123815497}
   - component: {fileID: 2123815498}
+  - component: {fileID: 2123815499}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -35785,6 +35786,7 @@ MonoBehaviour:
   minWaveWaitTime: 20
   maxWaveWaitTime: 40
   arrowRenderer: {fileID: 0}
+  turretReload: {fileID: 0}
 --- !u!4 &2123815492
 Transform:
   m_ObjectHideFlags: 0
@@ -36045,11 +36047,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reloadBar: {fileID: 3356535675463488761}
-  numberOfTurrets: {fileID: 3356535675463488760}
+  turretsText: {fileID: 0}
   maxNumberOfTurrets: 5
   numberOfTurretsLeft: 5
   reloadTime: 2
   startValue: 0.6
+--- !u!114 &2123815499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123815490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49af2a138f13c3543abfd2e3073b41d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2124508330
 GameObject:
   m_ObjectHideFlags: 0
@@ -36720,18 +36734,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a6bba9c3f26d2945ade3f5e3c48825d, type: 3}
---- !u!114 &3356535675463488760 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2526387070731905041, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3356535675463488759}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3356535675463488761 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7338242297693774335, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
