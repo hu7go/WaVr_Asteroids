@@ -19,10 +19,7 @@ public class TurretReloader : MonoBehaviour
 
     private float currentTime;
 
-    private void Start()
-    {
-        turretsText.text = maxNumberOfTurrets.ToString();
-    }
+    private void Start() => turretsText.text = maxNumberOfTurrets.ToString();
 
     public void Reload()
     {
