@@ -332,58 +332,60 @@ public class TeleportRotation : MonoBehaviour
                 //If we hit a UI element that spawns a turret, which will spawn a turret at the selected location!
                 if (hit.collider.GetComponent<TurretSpawn>() != null)
                 {
-                    if (Manager.Instance.spawnedFirstTurret == false)
-                        Manager.Instance.StartEnemyWaves();
-
                     master.ReseMaxLenght();
                     UpdateLineRenderer();
 
-                    TurretSpawn newTurretSpawn = hit.collider.GetComponent<TurretSpawn>();
-                    newTurretSpawn.SpawnEm();
-                    Manager.Instance.CurrentBuildTarget(newTurretSpawn);
-                    Manager.Instance.gameObject.GetComponent<TurretReloader>().Reload();
-                    Manager.Instance.gameObject.GetComponent<TurretReloader>().numberOfTurretsLeft--;
+                   
+                        if (Manager.Instance.spawnedFirstTurret == false)
+                            Manager.Instance.StartEnemyWaves();
+
+                        TurretSpawn newTurretSpawn = hit.collider.GetComponent<TurretSpawn>();
+                        newTurretSpawn.SpawnEm();
+                        Manager.Instance.CurrentBuildTarget(newTurretSpawn);
+                        Manager.Instance.turretReload.Reload();
                 }
                 //
 
-                //If we hit the build button
                 if (Manager.Instance.uISettings.useNewUI)
                 {
-                    //If we hit a asteroid to build on it!
-                    if (hit.collider.GetComponent<SideScript>() != null)
+                    if (Manager.Instance.turretReload.numberOfTurretsLeft > 0)
                     {
-                        if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
+                        //If we hit a asteroid to build on it!
+                        if (hit.collider.GetComponent<SideScript>() != null)
                         {
-                            if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false)
+                            if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
                             {
-                                GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
-                                healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
-                                UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
-                                StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
+                                if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false)
+                                {
+                                    GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
+                                    healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
+                                    UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
+                                    StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
+                                }
+                                canTeleport = false;
+                                if (renderOwnLine)
+                                    line.enabled = false;
+                                return;
                             }
-                            canTeleport = false;
-                            if (renderOwnLine)
-                                line.enabled = false;
-                            return;
+                            if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
+                            {
+                                UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
+                                StartCoroutine(uImaster.TextOnDelayOff(uImaster.NobuildTextStart, uImaster.NobuildTextStop));
+                                canTeleport = false;
+                                if (renderOwnLine)
+                                    line.enabled = false;
+                                return;
+                            }
+
+                            master.currentHit = hit.collider.GetComponent<SideScript>();
+
+                            prevAsteroidHit = tempPrevAsteroidHit;
+                            asteroidHit = tempAsteroidHit;
+                            master.AsteroidToBuildOn();
+
+                            master.IncreaseMaxLenght();
+                            UpdateLineRenderer();
                         }
-                        if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
-                        {
-                            UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
-                            StartCoroutine(uImaster.TextOnDelayOff(uImaster.NobuildTextStart, uImaster.NobuildTextStop));
-                            canTeleport = false;
-                            if (renderOwnLine)
-                                line.enabled = false;
-                            return;
-                        }
-
-                        master.currentHit = hit.collider.GetComponent<SideScript>();
-
-                        prevAsteroidHit = tempPrevAsteroidHit;
-                        asteroidHit = tempAsteroidHit;
-                        master.AsteroidToBuildOn();
-
-                        master.IncreaseMaxLenght();
-                        UpdateLineRenderer();
                     }
                 }
                 else

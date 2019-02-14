@@ -178,6 +178,8 @@ public class Manager : MonoBehaviour
 
     public MeshRenderer arrowRenderer;
 
+    [HideInInspector] public TurretReloader turretReload;
+
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
@@ -219,6 +221,8 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        turretReload = GetComponent<TurretReloader>();
+
         turrets = new List<GameObject>();
         enemiesSpawned = new List<GameObject>();
         enemyParent = new GameObject("enemyParent");

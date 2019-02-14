@@ -1,49 +1,70 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class TurretReloader : MonoBehaviour
 {   
     [SerializeField]
     private Image reloadBar;
     [SerializeField]
-    private Text numberOfTurrets;
+    private Text turretsText;
 
     private bool full = true;
     private bool reloading = false;
 
-    [SerializeField]
-    private int maxNumberOfTurrets = 5;
-    public int numberOfTurretsLeft = 5;
+    [SerializeField] private int maxNumberOfTurrets = 5;
+    [HideInInspector] public int numberOfTurretsLeft = 5;
     public float reloadTime = 2;
     public float startValue = 0.6f;
 
+    private float currentTime;
+
+    private void Start()
+    {
+        turretsText.text = maxNumberOfTurrets.ToString();
+    }
+
     public void Reload()
     {
-        numberOfTurrets.text = numberOfTurretsLeft.ToString();
-        if (numberOfTurretsLeft < maxNumberOfTurrets)
-            full = false;
-        if (!full && !reloading)
+        numberOfTurretsLeft--;
+
+        UpdateText();
+
+        if (reloading == false)
+            StartCoroutine(Reloading());
+    }
+
+    private IEnumerator Reloading ()
+    {
+        float percent;
+        reloading = true;
+
+        while (numberOfTurretsLeft < maxNumberOfTurrets)
         {
-            reloading = true;
-            full = false;
-            while(reloadBar.fillAmount > 0)
-                reloadBar.fillAmount -= Time.deltaTime;
+            currentTime += Time.deltaTime;
 
-            if(reloadBar.fillAmount == 0)
+            percent = (currentTime / reloadTime) % reloadTime;
+
+            reloadBar.fillAmount = percent * startValue;
+
+            if (currentTime > reloadTime)
             {
+                currentTime = 0;
                 numberOfTurretsLeft++;
-                numberOfTurrets.text = numberOfTurretsLeft.ToString();
-                reloading = false;
-                reloadBar.fillAmount = startValue;
-            }
-            if (numberOfTurretsLeft == maxNumberOfTurrets)
-            {
-                full = true;
-                return;
+                UpdateText();
             }
 
-            else if (numberOfTurretsLeft < maxNumberOfTurrets)
-                Reload();
+            yield return null;
         }
+
+        if (numberOfTurretsLeft == maxNumberOfTurrets)
+            reloading = false;
+
+        currentTime = 0;
+    }
+
+    private void UpdateText ()
+    {
+        turretsText.text = numberOfTurretsLeft.ToString();
     }
 }
