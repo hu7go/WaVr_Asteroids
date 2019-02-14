@@ -54,6 +54,10 @@ public class Manager : MonoBehaviour
 
         public float asteroidHealth = 200;
 
+        [Tooltip("This is a percent value so: 0 = 0%, 100 = 100%")]
+        [Range(0, 100)]
+        public float loseThreshHold = 51;
+
         [HideInInspector] public List<EnemySpawnPoint> spawnPoints = new List<EnemySpawnPoint>();
     }
     [Space(10)]
@@ -261,7 +265,7 @@ public class Manager : MonoBehaviour
         masterCurrentHealth += damage;
         uISettings.healthSlider.value = masterCurrentHealth;
 
-        if (masterCurrentHealth <= 0)
+        if (healthPercent <= tAe.loseThreshHold)
             GameOver();
     }
 
@@ -277,6 +281,12 @@ public class Manager : MonoBehaviour
 
     public IEnumerator SpawnThemNewEnemies()
     {
+        if (tAe.waveCount + 1 > waves.Count)
+        {
+            StartCoroutine(WaitForAllEnemies());
+            yield return null;
+        }
+        
         yield return new WaitForSeconds(minWaveWaitTime);
 
         float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].maxNumberOfEnemies);
@@ -287,6 +297,22 @@ public class Manager : MonoBehaviour
         float timeToWait = maxWaveWaitTime * waveDelayPercent;
 
         Invoke("SpawnEnemie", timeToWait);
+    }
+
+    bool lost = false;
+
+    private IEnumerator WaitForAllEnemies ()
+    {
+        while (enemiesSpawned.Count > 0)
+        {
+            yield return null;
+        }
+
+        if (lost == false)
+        {
+            ObjectiveReached();
+        }
+
     }
 
     void SpawnEnemie () => StartSpawningEnemies();
@@ -350,6 +376,8 @@ public class Manager : MonoBehaviour
 
     public void GameOver()
     {
+        lost = true;
+
         //if objective dies
         StopCoroutine("EnemySpawner");
         StopCoroutine("SpawnEnemyObjective");
@@ -358,11 +386,14 @@ public class Manager : MonoBehaviour
         myTimer = 0;
         masterCurrentHealth = masterMaxHealth;
         uISettings.healthSlider.value = masterCurrentHealth;
+
         foreach (AsteroidHealth asteroid in asteroidList)
         {
             asteroid.asteroid.health = tAe.asteroidHealth;
+            asteroid.Revive();
             asteroid.UpdateColor();
         }
+
         for (var i = enemiesSpawned.Count - 1; i > -1; i--)
         {
             if (enemiesSpawned[i] == null)
@@ -370,14 +401,16 @@ public class Manager : MonoBehaviour
                 enemiesSpawned.RemoveAt(i);
             }
         }
+
         foreach (GameObject obj in enemiesSpawned)
         {
-            Destroy(obj);
+            obj.GetComponent<EnemyAI>().GoHome();
         }
+
         if(lifeLeft > 0)
         {
             uISettings.tdEndUI.SetActive(true);
-            uISettings.tdGameOverText.text = "You died,"+lifeLeft+" lives left";
+            uISettings.tdGameOverText.text = "You died, " + lifeLeft + " lives left";
         }
         if(lifeLeft == 0)
             uISettings.tdGameOverText.text = "You died. Thanks for playing!";
@@ -391,6 +424,11 @@ public class Manager : MonoBehaviour
         uISettings.tdEndUI.SetActive(false);
         killedEnemies = 0;
         tAe.waveCount = 0;
+
+        spawnedFirstTurret = false;
+
+        uISettings.waveCount.text = ("Wave: " + (tAe.waveCount + 1));
+
         RoutineOpener();
     }
 
@@ -440,7 +478,7 @@ public class Manager : MonoBehaviour
         gameStarted = true;
         uISettings.startUI.SetActive(false);
         startTimer = true;
-        Destroy(uISettings.startButton);
+        //Destroy(uISettings.startButton);
     }
 
     public void StartEnemyWaves ()
@@ -458,7 +496,7 @@ public class Manager : MonoBehaviour
     {
         startTimer = false;
         uISettings.endUI.SetActive(true);
-        uISettings.overText.text = ("Nice! You destroyed the enemies in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds. With " + healthPercent + "% health left!");
+        uISettings.overText.text = ("Nice! You destroyed the enemies in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds.\n\nWith " + (int)healthPercent + "% health left!");
     }
 
     public GameObject ReturnPlayer() => player;

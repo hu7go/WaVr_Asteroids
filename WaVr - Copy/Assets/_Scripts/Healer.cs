@@ -35,7 +35,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
 
     private IEnumerator IHeal ()
     {
-        myAsteroid.asteroid.alive = true;
+        myAsteroid.Revive();
 
         while (myAsteroid.asteroid.health < Manager.Instance.tAe.asteroidHealth)
         {

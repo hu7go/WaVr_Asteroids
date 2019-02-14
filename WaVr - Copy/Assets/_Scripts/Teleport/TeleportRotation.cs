@@ -272,7 +272,12 @@ public class TeleportRotation : MonoBehaviour
                     master.RemoveTurretButtonsOnAsteroid();
 
                     if (hit.collider == asteroidHit.collider)
+                    {
+                        //!? This might not always work, so far there has been a few instances of it not working strangly enough!
+                        Debug.Log("Maybe it happend again... if you didnt mean to do it!");
+                        UpdateLineRenderer();
                         return;
+                    }
 
                     if (master.arrowsTeleport)
                     {
@@ -302,7 +307,6 @@ public class TeleportRotation : MonoBehaviour
                     asteroidHit = hit;
 
                     ghostLineHit = asteroidHit;
-
 
                     master.currentAsteroidStandingOn = hit.collider.GetComponent<SideScript>();
 
@@ -334,7 +338,6 @@ public class TeleportRotation : MonoBehaviour
                 {
                     master.ReseMaxLenght();
                     UpdateLineRenderer();
-
                    
                         if (Manager.Instance.spawnedFirstTurret == false)
                             Manager.Instance.StartEnemyWaves();
@@ -379,8 +382,11 @@ public class TeleportRotation : MonoBehaviour
 
                             master.currentHit = hit.collider.GetComponent<SideScript>();
 
+                            RaycastHit tmpRaycastHit = new RaycastHit();
+
                             prevAsteroidHit = tempPrevAsteroidHit;
-                            asteroidHit = tempAsteroidHit;
+                            tmpRaycastHit = tempAsteroidHit;
+                            //asteroidHit = tempAsteroidHit;
                             master.AsteroidToBuildOn();
 
                             master.IncreaseMaxLenght();

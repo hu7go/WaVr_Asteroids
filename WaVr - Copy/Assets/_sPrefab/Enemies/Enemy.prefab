@@ -258,6 +258,7 @@ MonoBehaviour:
   health: 6
   tooClose: 0
   pushAwayFrom: {fileID: 0}
+  seekAndDestroy: 1
   drawPath: 0
 --- !u!114 &114424473937822140
 MonoBehaviour:

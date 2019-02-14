@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
 
     private float healthThreshHold;
 
-    private bool seekAndDestroy = true;
+    [HideInInspector] public bool seekAndDestroy = true;
     private EnemySpawnPoint home;
 
     private float distance;
@@ -79,9 +79,14 @@ public class EnemyAI : MonoBehaviour
     {
         if (Manager.Instance.healthPercent <= healthThreshHold)
         {
-            seekAndDestroy = false;
-            objective = home.transform;
+            GoHome();
         }
+    }
+
+    public void GoHome ()
+    {
+        seekAndDestroy = false;
+        objective = home.transform;
     }
 
     void Movement ()

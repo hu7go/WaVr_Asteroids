@@ -29,7 +29,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
 
     }
 
-    bool tmp = false;
+    [HideInInspector] public bool tmp = false;
     bool damageBool = false;
 
     public void TakeDamage(float damage, EnemySpawnPoint enemyOrigin)
@@ -106,6 +106,12 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
     public AsteroidInfo GetInfo()
     {
         return asteroid;
+    }
+
+    public void Revive ()
+    {
+        tmp = false;
+        asteroid.alive = true;
     }
 }
 
