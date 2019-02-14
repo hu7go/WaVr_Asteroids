@@ -95,7 +95,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         UpdateColor();
     }
 
-    void UpdateColor()
+    public void UpdateColor()
     {
         s = (asteroid.health / 100) / (Manager.Instance.tAe.asteroidHealth / 100);
         if (damageBool  == false && healingBool == false)

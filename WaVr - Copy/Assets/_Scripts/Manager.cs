@@ -351,15 +351,18 @@ public class Manager : MonoBehaviour
     public void GameOver()
     {
         //if objective dies
-
         StopCoroutine("EnemySpawner");
         StopCoroutine("SpawnEnemyObjective");
         startTimer = false;
+        tAe.waveCount = 0;
         myTimer = 0;
-        //This needs to be changed at some point!
-        objectiveHealth = 100;
-        uISettings.healthSlider.value = objectiveHealth;
-        //
+        masterCurrentHealth = masterMaxHealth;
+        uISettings.healthSlider.value = masterCurrentHealth;
+        foreach (AsteroidHealth asteroid in asteroidList)
+        {
+            asteroid.asteroid.health = tAe.asteroidHealth;
+            asteroid.UpdateColor();
+        }
         for (var i = enemiesSpawned.Count - 1; i > -1; i--)
         {
             if (enemiesSpawned[i] == null)
@@ -374,7 +377,7 @@ public class Manager : MonoBehaviour
         if(lifeLeft > 0)
         {
             uISettings.tdEndUI.SetActive(true);
-            uISettings.tdGameOverText.text = "You died, you have "+lifeLeft+" lives left";
+            uISettings.tdGameOverText.text = "You died,"+lifeLeft+" lives left";
         }
         if(lifeLeft == 0)
             uISettings.tdGameOverText.text = "You died. Thanks for playing!";
