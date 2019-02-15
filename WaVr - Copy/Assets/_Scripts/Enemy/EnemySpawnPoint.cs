@@ -178,6 +178,7 @@ public class EnemySpawnPoint : MonoBehaviour
     //
 
     bool done = false;
+    bool doneSpawning = false;
 
     private void Update()
     {
@@ -253,11 +254,17 @@ public class EnemySpawnPoint : MonoBehaviour
                     preSpawn.material.SetColor("_TintColor", currentColor);
             }
         }
+
+        if (doneSpawning == true)
+        {
+            Over();
+        }
     }
 
     public void Destroy ()
     {
         StartCoroutine(Manager.Instance.SpawnThemNewEnemies());
+        doneSpawning = true;
     }
 
     public void Over ()
