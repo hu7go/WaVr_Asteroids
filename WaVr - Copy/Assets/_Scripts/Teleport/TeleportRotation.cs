@@ -28,16 +28,16 @@ public class TeleportRotation : MonoBehaviour
     Ray ray;
     private bool highlightCubes = false;
 
-    LineRenderer line;
-    Vector3[] linePos;
-    public Transform lineEnd;
-    public bool renderOwnLine = true;
+    //LineRenderer line;
+    [HideInInspector] public bool renderLine = false;
 
     RaycastHit tmpPrev = new RaycastHit();
 
     public LayerMask startLayerMask;
     RaycastHit startHit;
     RaycastHit lineNotHit;
+
+    private LineBender lineRender;
 
     public enum LineVersion
     {
@@ -52,8 +52,9 @@ public class TeleportRotation : MonoBehaviour
         if (cr == null)
             cr = GetComponent<VRTK_CustomRaycast>();
 
-        line = GetComponent<LineRenderer>();
-        linePos = new Vector3[2];
+        lineRender = GetComponent<LineBender>();
+
+        //line = GetComponent<LineRenderer>();
         UpdateLineRenderer();
 
         if (Physics.Raycast(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5, 0, 0), out hit))
@@ -68,15 +69,6 @@ public class TeleportRotation : MonoBehaviour
     {
         if (!switchedHands)
             SwtichHands();
-
-        if (renderOwnLine)
-        {
-            if (line != null)
-            {
-                linePos[1] = currentHand.transform.position;
-                linePos[0] = lineEnd.position;
-            }
-        }
 
         //If we hit the start button!
         if (canTeleport)
@@ -100,14 +92,12 @@ public class TeleportRotation : MonoBehaviour
         {
             currentHand = hands[0];
             switchedHands = true;
-            //renderOwnLine = false;
             return;
         }
         if (parents[1] == enabled && parents[1].activeInHierarchy)
         {
             currentHand = hands[1];
             switchedHands = true;
-            //renderOwnLine = false;
             return;
         }
         //Using DayDream!
@@ -116,7 +106,6 @@ public class TeleportRotation : MonoBehaviour
             if (hands[2] != null)
             {
                 Manager.Instance.UsingDayDream();
-                renderOwnLine = true;
 
                 currentHand = hands[2];
                 switchedHands = true;
@@ -131,11 +120,8 @@ public class TeleportRotation : MonoBehaviour
     {
         Manager.Instance.freeze = true;
 
-        if (renderOwnLine)
-        {
-            line.enabled = true;
-            line.SetPositions(linePos);
-        }
+        renderLine = true;
+        lineRender.render.enabled = true;
 
         ray = new Ray(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward));
 
@@ -144,20 +130,26 @@ public class TeleportRotation : MonoBehaviour
 
         cr.CustomRaycast(ray, out hit, master.GetMaxLenght());
 
-        if (renderOwnLine)
+        //! Line stuffs
+        if (hit.collider != null)
         {
-            if (hit.collider != null)
-                SetLineEnd(hit);
-
-            if (hit.collider == null && lineNotHit.collider == null)
-                lineVersion = LineVersion.nothing;
-            if (hit.collider == null && lineNotHit.collider != null)
-                lineVersion = LineVersion.outOfRange;
-            if (hit.collider != null)
-                lineVersion = LineVersion.hit;
-
-            ChangeLineVersion();
+            if (hit.collider.GetComponent<SideScript>() != null)
+                lineRender.SetLineEnd(hit.collider.transform.position, hit.point);
         }
+        else
+        {
+            lineRender.StraightRenderer();
+        }
+
+        if (hit.collider == null && lineNotHit.collider == null)
+            lineVersion = LineVersion.nothing;
+        if (hit.collider == null && lineNotHit.collider != null)
+            lineVersion = LineVersion.outOfRange;
+        if (hit.collider != null)
+            lineVersion = LineVersion.hit;
+
+        lineRender.ChangeLineVersion();
+        //
 
         if (Manager.Instance.tAe.turretHover)
         {
@@ -267,7 +259,7 @@ public class TeleportRotation : MonoBehaviour
                 //
 
                 //If the target hit is has a sidescript attached to determin where we teleport!
-                if (hit.collider.GetComponent<SideScript>() != null)
+                if (hit.collider.GetComponent<SideScript>() != null && hit.collider != asteroidHit.collider)
                 {
                     master.RemoveTurretButtonsOnAsteroid();
 
@@ -366,8 +358,8 @@ public class TeleportRotation : MonoBehaviour
                                     StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
                                 }
                                 canTeleport = false;
-                                if (renderOwnLine)
-                                    line.enabled = false;
+                                renderLine = false;
+                                lineRender.render.enabled = false;
                                 return;
                             }
                             if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
@@ -375,8 +367,8 @@ public class TeleportRotation : MonoBehaviour
                                 UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
                                 StartCoroutine(uImaster.TextOnDelayOff(uImaster.NobuildTextStart, uImaster.NobuildTextStop));
                                 canTeleport = false;
-                                if (renderOwnLine)
-                                    line.enabled = false;
+                                renderLine = false;
+                                lineRender.render.enabled = false;
                                 return;
                             }
 
@@ -448,13 +440,10 @@ public class TeleportRotation : MonoBehaviour
             if (hit.collider.GetComponent<ConfirmDeny>() != null)
                 hit.collider.GetComponent<ConfirmDeny>().DoEffect();
             //
-
-            if (renderOwnLine)
-                SetLineEnd(hit);
         }
         canTeleport = false;
-        if (renderOwnLine)
-            line.enabled = false;
+        renderLine = false;
+        lineRender.render.enabled = false;
     }
 
     bool tmp = false;
@@ -481,36 +470,9 @@ public class TeleportRotation : MonoBehaviour
 
     public void DisableTeleMenu () => teleportorBuildUI.SetActive(false);
 
-    public void SetLineEnd (RaycastHit hit)
-    {
-        linePos[0] = hit.point;
-        line.SetPositions(linePos);
-    }
-
-    public void ResetLineEnd ()
-    {
-        linePos[0] = lineEnd.position;
-        line.SetPositions(linePos);
-    }
-
     void UpdateLineRenderer () => GetComponent<VRTK_StraightPointerRenderer>().maximumLength = master.GetMaxLenght();
 
     //Changes the color of the ray/laser based on what you are pointing at!
-    void ChangeLineVersion ()
-    {
-        switch (lineVersion)
-        {
-            case LineVersion.nothing:
-                line.material.SetColor("_BaseColor", Color.cyan);
-                break;
-            case LineVersion.outOfRange:
-                line.material.SetColor("_BaseColor", Color.red);
-                break;
-            case LineVersion.hit:
-                line.material.SetColor("_BaseColor", Color.green);
-                break;
-        }
-    }
 
     public void CanTeleport () => canTeleport = true;
 }

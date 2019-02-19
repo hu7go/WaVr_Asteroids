@@ -185,6 +185,8 @@ public class Manager : MonoBehaviour
 
     [HideInInspector] public TurretReloader turretReload;
 
+    public bool bendLine = false;
+
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
@@ -261,9 +263,9 @@ public class Manager : MonoBehaviour
         masterMaxHealth = masterCurrentHealth;
     }
 
-    public void UpdateHealth (float damage)
+    public void UpdateHealth (float newHealth)
     {
-        masterCurrentHealth += damage;
+        masterCurrentHealth += newHealth;
         uISettings.healthSlider.value = masterCurrentHealth;
 
         if (healthPercent <= tAe.loseThreshHold)

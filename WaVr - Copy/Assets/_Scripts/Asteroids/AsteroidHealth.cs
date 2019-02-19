@@ -58,6 +58,9 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
             }
         }
 
+        if (asteroid.health < 0)
+            Manager.Instance.UpdateHealth(-asteroid.health);
+
         Manager.Instance.UpdateHealth(-damage);
 
         UpdateColor();
