@@ -33133,8 +33133,7 @@ MonoBehaviour:
   - {fileID: 91902779}
   teleportorBuildUI: {fileID: 1404850743387612, guid: dfebd05de03e6c249b0727d8b805395f,
     type: 3}
-  lineEnd: {fileID: 1225238172}
-  renderOwnLine: 1
+  renderLine: 0
   startLayerMask:
     serializedVersion: 2
     m_Bits: 16384
@@ -34113,8 +34112,7 @@ MonoBehaviour:
   - {fileID: 2138765609}
   teleportorBuildUI: {fileID: 1404850743387612, guid: dfebd05de03e6c249b0727d8b805395f,
     type: 3}
-  lineEnd: {fileID: 81240618}
-  renderOwnLine: 1
+  renderLine: 0
   startLayerMask:
     serializedVersion: 2
     m_Bits: 16384
@@ -35860,6 +35858,7 @@ MonoBehaviour:
   maxWaveWaitTime: 40
   arrowRenderer: {fileID: 3356535675463488760}
   turretReload: {fileID: 0}
+  bendLine: 0
 --- !u!4 &2123815492
 Transform:
   m_ObjectHideFlags: 0
