@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public class ChangeSide : MonoBehaviour
 {
@@ -18,10 +17,7 @@ public class ChangeSide : MonoBehaviour
         right,
     }
 
-    public void DoFunction ()
-    {
-        Rotate();
-    }
+    public void DoFunction () => Rotate();
 
     public void Rotate ()
     {

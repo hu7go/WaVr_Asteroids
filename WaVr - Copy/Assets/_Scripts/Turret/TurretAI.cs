@@ -87,28 +87,19 @@ public class TurretAI : MonoBehaviour
                 }
             }
             if (currentTarget == null)
-            {
                 enemies.RemoveAt(0);
-            }
 
             tMuzzle.transform.GetChild(0).gameObject.SetActive(true);
             MuzzleParticle();
 
             if (enemies.Count <= 0)
-            {
                 shooting = false;
-            }
         }
         else
-        {
             shooting = false;
-        }
     }
 
-    private void MuzzleParticle()
-    {
-        StartCoroutine(StopThatParticle());
-    }
+    private void MuzzleParticle() => StartCoroutine(StopThatParticle());
 
     IEnumerator StopThatParticle()
     {

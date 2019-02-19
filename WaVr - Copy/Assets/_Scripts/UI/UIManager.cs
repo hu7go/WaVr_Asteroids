@@ -18,10 +18,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void Visible()
-    {
-        pointer.SetActive(false);
-    }
+    public void Visible() => pointer.SetActive(false);
 
     public void NotVisible(Transform newTarget)
     {

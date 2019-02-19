@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
@@ -70,10 +69,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void RemoveEnemie (EnemyAI enemy)
-    {
-        enemies.Remove(enemy);
-    }
+    public void RemoveEnemie (EnemyAI enemy) => enemies.Remove(enemy);
 
     public void StartEndAnim ()
     {

@@ -1,15 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TurretRange : MonoBehaviour
 {
     public TurretAI turret;
 
-    private void Awake()
-    {
-        turret = GetComponentInParent<TurretAI>();
-    }
+    private void Awake() => turret = GetComponentInParent<TurretAI>();
 
     private void Start()
     {
@@ -20,16 +15,12 @@ public class TurretRange : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-        {
             turret.EnteredRange(other.GetComponent<EnemyAI>());
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
-        {
             turret.ExitedRange(other.GetComponent<EnemyAI>());
-        }
     }
 }

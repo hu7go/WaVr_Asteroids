@@ -60,8 +60,5 @@ public class TurretReloader : MonoBehaviour
         currentTime = 0;
     }
 
-    private void UpdateText ()
-    {
-        turretsText.text = numberOfTurretsLeft.ToString();
-    }
+    private void UpdateText () => turretsText.text = numberOfTurretsLeft.ToString();
 }

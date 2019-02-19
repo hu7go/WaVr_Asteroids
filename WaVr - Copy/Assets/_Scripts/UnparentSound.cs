@@ -2,10 +2,7 @@
 
 public class UnparentSound : MonoBehaviour {
     AudioSource audi;
-	void Start ()
-    {
-        audi = GetComponent<AudioSource>();
-	}
+	void Start () => audi = GetComponent<AudioSource>();
 	
     public void UnParent()
     {

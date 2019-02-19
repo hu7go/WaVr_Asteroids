@@ -9,20 +9,11 @@ public class SideScript : MonoBehaviour
     public Transform rotator;
     public Vector3 sideOffset;
 
-    private void Start()
-    {
-        parent = GetComponentInParent<Asteroid>();
-    }
+    private void Start() => parent = GetComponentInParent<Asteroid>();
 
-    public void Reached ()
-    {
-        parent.Reached();
-    }
+    public void Reached () => parent.Reached();
 
-    public Transform TeleportPosition ()
-    {
-        return teleportPos;
-    }
+    public Transform TeleportPosition () => teleportPos;
 }
 
 public enum Sides

@@ -18,10 +18,7 @@ public class SpaceGun : MonoBehaviour
 
     private Vector3 fireDirection;
 
-    private void Start()
-    {
-        muzzleOriginalRot = muzzle.rotation;
-    }
+    private void Start() => muzzleOriginalRot = muzzle.rotation;
 
     public void Shoot (int waveIndex, EnemySpawnPoint enemyOrigin)
     {
@@ -43,7 +40,6 @@ public class SpaceGun : MonoBehaviour
                 GameObject newEffect = Instantiate(hitEffect, target.point, target.collider.transform.rotation);
                 Destroy(newEffect, 1f);
             }
-
             target.collider.GetComponent<AsteroidHealth>().TakeDamage(damage, enemyOrigin);
         }
     }
@@ -54,13 +50,7 @@ public class SpaceGun : MonoBehaviour
         canFire = true;
     }
 
-    public float RetunrFireRate ()
-    {
-        return fireRate;
-    }
+    public float RetunrFireRate () => fireRate;
 
-    public Transform ReturnMuzzle ()
-    {
-        return muzzle;
-    }
+    public Transform ReturnMuzzle () => muzzle;
 }

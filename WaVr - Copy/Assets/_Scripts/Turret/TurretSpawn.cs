@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurretSpawn : MonoBehaviour
@@ -65,10 +64,7 @@ public class TurretSpawn : MonoBehaviour
         master.RemoveButtons();
     }
 
-    void RemoveRangeIndicator ()
-    {
-        Destroy(currentRangeIndicator);
-    }
+    void RemoveRangeIndicator () => Destroy(currentRangeIndicator);
 
     //This is for if the onHover bool is true!
     public void ShowRangeIndicator ()

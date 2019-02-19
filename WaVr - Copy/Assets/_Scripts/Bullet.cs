@@ -5,21 +5,13 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
 
-    private void Start()
-    {
-        Destroy(gameObject, 4f);
-    }
+    private void Start() => Destroy(gameObject, 4f);
 
-    private void FixedUpdate()
-    {
-        rb.velocity = transform.forward * speed;
-    }
+    private void FixedUpdate() => rb.velocity = transform.forward * speed;
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Asteroid")
-        {
             Destroy(gameObject);
-        }
     }
 }

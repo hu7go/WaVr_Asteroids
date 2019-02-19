@@ -20,8 +20,5 @@ public class AsteroidSize : MonoBehaviour
             transform.rotation = Quaternion.Euler(RandomNumber(), 180 +RandomNumber(),RandomNumber());
     }
 
-    private float RandomNumber ()
-    {
-        return Random.Range(minRot, maxRot);
-    }
+    private float RandomNumber () => Random.Range(minRot, maxRot);
 }

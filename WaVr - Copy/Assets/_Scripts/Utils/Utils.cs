@@ -20,9 +20,6 @@ public static class Utils
         }
     }
 
-    public static void ClearLogConsole()
-    {
-        clearConsoleMethod.Invoke(new object(), null);
-    }
+    public static void ClearLogConsole() => clearConsoleMethod.Invoke(new object(), null);
 }
 #endif

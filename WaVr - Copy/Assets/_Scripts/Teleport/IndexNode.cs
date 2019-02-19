@@ -42,13 +42,7 @@ public class IndexNode : MonoBehaviour
         }
     }
 
-    public void On()
-    {
-        sCollider.enabled = true;
-    }
+    public void On() => sCollider.enabled = true;
 
-    public void Off ()
-    {
-        sCollider.enabled = false;
-    }
+    public void Off () => sCollider.enabled = false;
 }
