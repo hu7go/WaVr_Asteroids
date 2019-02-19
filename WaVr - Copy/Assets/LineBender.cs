@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LineBender : MonoBehaviour
 {
-    public Vector3 targetRange;
+    [HideInInspector] public Vector3 targetRange;
     public List<Transform> points;
     public int vertexCount = 12;
     private Vector3 target;
@@ -46,7 +46,6 @@ public class LineBender : MonoBehaviour
             if (snapped == false)
             {
                 points[1].position = transform.position;
-                
             }
             else
             {
@@ -91,6 +90,11 @@ public class LineBender : MonoBehaviour
         point = newPoint;
         if (Manager.Instance.bendLine)
             snapped = true;
+    }
+
+    public void SetEnd (Vector3 newTarget)
+    {
+        points[2].position = newTarget;
     }
 
     public void ResetLineEnd()

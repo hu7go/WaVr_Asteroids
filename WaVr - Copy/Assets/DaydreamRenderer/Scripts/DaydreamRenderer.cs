@@ -27,7 +27,7 @@ using System;
 
 namespace daydreamrenderer
 {
-[ExecuteInEditMode]
+//!? [ExecuteInEditMode]
 public class DaydreamRenderer : MonoBehaviour
 {
     //////////////////////

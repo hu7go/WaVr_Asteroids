@@ -5,6 +5,8 @@ using VRTK;
 public class TeleportRotation : MonoBehaviour
 {
     public TeleportMaster master;
+    public LayerMask turretLayerMask;
+    public LayerMask ignoredLayer;
 
     [Space(20)]
     public List<GameObject> hands;
@@ -28,7 +30,6 @@ public class TeleportRotation : MonoBehaviour
     Ray ray;
     private bool highlightCubes = false;
 
-    //LineRenderer line;
     [HideInInspector] public bool renderLine = false;
 
     RaycastHit tmpPrev = new RaycastHit();
@@ -54,7 +55,6 @@ public class TeleportRotation : MonoBehaviour
 
         lineRender = GetComponent<LineBender>();
 
-        //line = GetComponent<LineRenderer>();
         UpdateLineRenderer();
 
         if (Physics.Raycast(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5, 0, 0), out hit))
@@ -116,6 +116,7 @@ public class TeleportRotation : MonoBehaviour
             return;
     }
 
+    RaycastHit tmpRaycastHit;
     private void TeleportStuff ()
     {
         Manager.Instance.freeze = true;
@@ -126,6 +127,18 @@ public class TeleportRotation : MonoBehaviour
         ray = new Ray(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward));
 
         Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out hit, master.GetMaxLenght());
+
+        //if (hit.collider != null)
+        //{
+        //    Debug.DrawRay(hit.point, currentHand.transform.TransformDirection(Vector3.forward) * master.GetMaxLenght());
+
+        //    Ray tmpRay = new Ray(hit.point, currentHand.transform.TransformDirection(Vector3.forward) * master.GetMaxLenght());
+        //    if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), ignoredLayer))
+        //    {
+        //        hit = tmpRaycastHit;
+        //    }
+        //}
+
         Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out lineNotHit, master.GetMaxLenght() * 20);
 
         cr.CustomRaycast(ray, out hit, master.GetMaxLenght());
@@ -133,8 +146,21 @@ public class TeleportRotation : MonoBehaviour
         //! Line stuffs
         if (hit.collider != null)
         {
+            lineRender.SetEnd(hit.point);
+
             if (hit.collider.GetComponent<SideScript>() != null)
+            {
                 lineRender.SetLineEnd(hit.collider.transform.position, hit.point);
+
+                //if (Physics.Raycast(ray, out RaycastHit tmp, master.GetMaxLenght(), ~ignoredLayer))
+                //{
+                //    lineRender.SetLineEnd(tmp.collider.transform.position, tmp.point);
+                //}
+                //else
+                //{
+                //    lineRender.SetLineEnd(hit.collider.transform.position, hit.point);
+                //}
+            }
         }
         else
         {
@@ -153,8 +179,7 @@ public class TeleportRotation : MonoBehaviour
 
         if (Manager.Instance.tAe.turretHover)
         {
-            int layerMask = 1 << 13;
-            if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), layerMask))
+            if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), turretLayerMask))
             {
                 if (tmpPrev.collider != null)
                 {
@@ -210,6 +235,8 @@ public class TeleportRotation : MonoBehaviour
             //If we hit the teleport state button!
             if (hit.collider.CompareTag("TeleportState"))
             {
+                canTeleport = false;
+                lineRender.render.enabled = false;
                 master.RemoveTurretButtonsOnAsteroid();
                 Manager.Instance.SetPointerState(Manager.Enums.PointerState.Teleport);
             }
@@ -217,12 +244,18 @@ public class TeleportRotation : MonoBehaviour
 
             //If we hit the build state button!
             if (hit.collider.CompareTag("BuildState"))
+            {
+                canTeleport = false;
+                lineRender.render.enabled = false;
                 Manager.Instance.SetPointerState(Manager.Enums.PointerState.Build);
+            }
             //
 
             //If we hit the rotate state button!
             if (hit.collider.CompareTag("RotateState"))
             {
+                canTeleport = false;
+                lineRender.render.enabled = false;
                 master.RemoveTurretButtonsOnAsteroid();
                 Manager.Instance.SetPointerState(Manager.Enums.PointerState.Rotate);
             }
@@ -331,37 +364,44 @@ public class TeleportRotation : MonoBehaviour
                     master.ReseMaxLenght();
                     UpdateLineRenderer();
                    
-                        if (Manager.Instance.spawnedFirstTurret == false)
-                            Manager.Instance.StartEnemyWaves();
+                    if (Manager.Instance.spawnedFirstTurret == false)
+                        Manager.Instance.StartEnemyWaves();
 
-                        TurretSpawn newTurretSpawn = hit.collider.GetComponent<TurretSpawn>();
-                        newTurretSpawn.SpawnEm();
-                        Manager.Instance.CurrentBuildTarget(newTurretSpawn);
-                        Manager.Instance.turretReload.Reload();
+                    TurretSpawn newTurretSpawn = hit.collider.GetComponent<TurretSpawn>();
+                    newTurretSpawn.SpawnEm();
+                    Manager.Instance.CurrentBuildTarget(newTurretSpawn);
+                    Manager.Instance.turretReload.Reload();
+
+                    canTeleport = false;
+                    lineRender.render.enabled = false;
                 }
                 //
 
                 if (Manager.Instance.uISettings.useNewUI)
                 {
+                    //To build a healer!
+                    Debug.Log(master.currentAsteroidStandingOn.gameObject);
+                    if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
+                    {
+                        if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false)
+                        {
+                            GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
+                            healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
+                            UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
+                            StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
+                        }
+                        canTeleport = false;
+                        renderLine = false;
+                        lineRender.render.enabled = false;
+                        return;
+                    }
+                    //
+
                     if (Manager.Instance.turretReload.numberOfTurretsLeft > 0)
                     {
                         //If we hit a asteroid to build on it!
                         if (hit.collider.GetComponent<SideScript>() != null)
                         {
-                            if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
-                            {
-                                if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false)
-                                {
-                                    GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
-                                    healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
-                                    UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
-                                    StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
-                                }
-                                canTeleport = false;
-                                renderLine = false;
-                                lineRender.render.enabled = false;
-                                return;
-                            }
                             if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
                             {
                                 UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
@@ -443,6 +483,7 @@ public class TeleportRotation : MonoBehaviour
         }
         canTeleport = false;
         renderLine = false;
+
         lineRender.render.enabled = false;
     }
 

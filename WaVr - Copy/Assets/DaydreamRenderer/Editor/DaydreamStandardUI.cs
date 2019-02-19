@@ -73,7 +73,7 @@ public class DaydreamStandardUI : ShaderGUI
     private MaterialProperty blendMode = null;
 
     // Preview fields
-    private PreviewRenderUtility m_previewUtility = new PreviewRenderUtility();
+    //!? private PreviewRenderUtility m_previewUtility = new PreviewRenderUtility();
    
     private Vector2 m_scroll = Vector2.zero;
     private Quaternion m_rot = Quaternion.identity;
@@ -251,9 +251,9 @@ public class DaydreamStandardUI : ShaderGUI
 
         m_scroll = HandleInput(m_scroll, r);
 
-        m_previewUtility.BeginPreview(r, background);
-        DREditorUtility.DrawPreview(m_previewUtility, firstMat, m_previewMesh, DREditorUtility.PreviewType.kInteractive, m_scroll, ref m_rot);
-        m_previewUtility.EndAndDrawPreview(r);
+        //!? m_previewUtility.BeginPreview(r, background);
+        //!? DREditorUtility.DrawPreview(m_previewUtility, firstMat, m_previewMesh, DREditorUtility.PreviewType.kInteractive, m_scroll, ref m_rot);
+        //!? m_previewUtility.EndAndDrawPreview(r);
     }
 
     public override void OnMaterialPreviewGUI(MaterialEditor materialEditor, Rect r, GUIStyle background)
@@ -273,9 +273,9 @@ public class DaydreamStandardUI : ShaderGUI
             m_previewMesh = AssetDatabase.LoadAssetAtPath<Mesh>(kPreviewSpherePath);
         }
 
-        m_previewUtility.BeginPreview(r, background);
-        DREditorUtility.DrawPreview(m_previewUtility, firstMat, m_previewMesh, DREditorUtility.PreviewType.kStatic, m_scroll, ref m_rot);
-        m_previewUtility.EndAndDrawPreview(r);
+        //!? m_previewUtility.BeginPreview(r, background);
+        //!? DREditorUtility.DrawPreview(m_previewUtility, firstMat, m_previewMesh, DREditorUtility.PreviewType.kStatic, m_scroll, ref m_rot);
+        //!? m_previewUtility.EndAndDrawPreview(r);
         
         // update Imported Object preview materials
         if (Selection.activeObject && AssetDatabase.Contains(Selection.activeObject))

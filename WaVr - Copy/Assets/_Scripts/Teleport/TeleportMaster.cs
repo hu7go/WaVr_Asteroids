@@ -439,15 +439,24 @@ public class TeleportMaster : MonoBehaviour
     public void AsteroidToBuildOn ()
     {
         if (currentHit.GetComponent<TurretMenuMaster>() == null)
+        {
             currentHit.GetComponentInParent<TurretMenuMaster>().CheckSides(this);
+        }
         else
+        {
             currentHit.GetComponent<TurretMenuMaster>().CheckSides(this);
+            //Turn off the collider so that you can buy a turret! needs to be improved in the future!
+            currentHit.GetComponent<SphereCollider>().enabled = false;
+        }
     }
 
     public void RemoveTurretButtonsOnAsteroid ()
     {
         if (currentHit.GetComponent<TurretMenuMaster>() != null)
             currentHit.GetComponent<TurretMenuMaster>().RemoveButtons();
+
+        //Turn on the collider so that it works again! needs to be improved in the future!
+        currentHit.GetComponent<SphereCollider>().enabled = true;
     }
 
     public void SetHit (RaycastHit newHit)

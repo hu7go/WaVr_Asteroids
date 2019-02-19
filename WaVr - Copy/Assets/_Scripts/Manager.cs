@@ -590,8 +590,6 @@ public class Manager : MonoBehaviour
                 foreach (IndexNode index in indexNodes)
                     index.On();
                 break;
-            default:
-                break;
         }
     }
 

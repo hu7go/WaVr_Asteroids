@@ -6,6 +6,8 @@ public class TurretMenu : MonoBehaviour
     public Transform playerEyeNoPositionTracking;
     public Transform teleAnywherePos;
 
+    public LayerMask layerMask;
+
     RaycastHit hit;
     bool check = false;
 
@@ -38,7 +40,7 @@ public class TurretMenu : MonoBehaviour
         else
             pos = playerEyeNoPositionTracking;
 
-        if (Physics.Linecast(startPoint, pos.position, out hit))
+        if (Physics.Linecast(startPoint, pos.position, out hit, ~layerMask))
         {
             if (hit.collider.CompareTag("Player"))
                 check = true;
