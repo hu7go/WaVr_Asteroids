@@ -4,6 +4,8 @@ using System.Linq;
 
 public class TurretMenuMaster : MonoBehaviour
 {
+    [HideInInspector] public AsteroidHealth asteroid;
+
     public GameObject turretButton;
 
     private TurretMenu[] sideMenus;
@@ -16,10 +18,11 @@ public class TurretMenuMaster : MonoBehaviour
     //The turrets on this cube!
     private List<TurretStruct> turrets = new List<TurretStruct>();
 
-    private void Start()
+    private void Awake()
     {
         sideMenus = GetComponentsInChildren<TurretMenu>();
         turretBuilt = new bool[6];
+        asteroid = GetComponentInChildren<AsteroidHealth>();
     }
 
     public void CheckSides(TeleportMaster master, bool spawn = true)

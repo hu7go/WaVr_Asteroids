@@ -182,6 +182,7 @@ public class Manager : MonoBehaviour
     public float maxWaveWaitTime = 40;
 
     public MeshRenderer arrowRenderer;
+    public TeleportMaster tpMaster;
 
     [HideInInspector] public TurretReloader turretReload;
 
@@ -226,7 +227,7 @@ public class Manager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void WaitForMapGeneration (GameObject middleAsteroid)
     {
         turretReload = GetComponent<TurretReloader>();
 
@@ -240,13 +241,13 @@ public class Manager : MonoBehaviour
         switch (graphicsSettings.cubesOn)
         {
             case true:
-                foreach (MeshRenderer mesh in graphicsSettings.cubes)
-                    mesh.enabled = true;
+                foreach (AsteroidHealth mesh in asteroidList)
+                    mesh.GetComponent<MeshRenderer>().enabled = true;
                 graphicsSettings.asteroids.SetActive(false);
                 break;
             case false:
-                foreach (MeshRenderer mesh in graphicsSettings.cubes)
-                    mesh.enabled = false;
+                foreach (AsteroidHealth mesh in asteroidList)
+                    mesh.GetComponent<MeshRenderer>().enabled = false;
                 graphicsSettings.asteroids.SetActive(true);
                 break;
             default:
@@ -261,6 +262,8 @@ public class Manager : MonoBehaviour
         uISettings.healthSlider.value = masterCurrentHealth;
 
         masterMaxHealth = masterCurrentHealth;
+
+        tpMaster.SetFirstAsteroid(middleAsteroid.GetComponent<SideScript>());
     }
 
     public void UpdateHealth (float newHealth)

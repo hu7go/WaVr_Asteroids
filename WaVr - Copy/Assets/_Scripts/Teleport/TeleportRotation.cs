@@ -128,42 +128,38 @@ public class TeleportRotation : MonoBehaviour
 
         Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out hit, master.GetMaxLenght());
 
-        //if (hit.collider != null)
-        //{
-        //    Debug.DrawRay(hit.point, currentHand.transform.TransformDirection(Vector3.forward) * master.GetMaxLenght());
-
-        //    Ray tmpRay = new Ray(hit.point, currentHand.transform.TransformDirection(Vector3.forward) * master.GetMaxLenght());
-        //    if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), ignoredLayer))
-        //    {
-        //        hit = tmpRaycastHit;
-        //    }
-        //}
-
         Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out lineNotHit, master.GetMaxLenght() * 20);
 
+
         cr.CustomRaycast(ray, out hit, master.GetMaxLenght());
+
+        if (hit.collider != null)
+        {
+            Ray tmpRay = new Ray(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude));
+
+            Debug.DrawRay(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude), Color.cyan);
+
+            if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), ignoredLayer))
+            {
+                hit = tmpRaycastHit;
+            }
+        }
 
         //! Line stuffs
         if (hit.collider != null)
         {
+            //Debug.Log("Bending!");
+
             lineRender.SetEnd(hit.point);
 
             if (hit.collider.GetComponent<SideScript>() != null)
             {
                 lineRender.SetLineEnd(hit.collider.transform.position, hit.point);
-
-                //if (Physics.Raycast(ray, out RaycastHit tmp, master.GetMaxLenght(), ~ignoredLayer))
-                //{
-                //    lineRender.SetLineEnd(tmp.collider.transform.position, tmp.point);
-                //}
-                //else
-                //{
-                //    lineRender.SetLineEnd(hit.collider.transform.position, hit.point);
-                //}
             }
         }
         else
         {
+            //Debug.Log("Straight!");
             lineRender.StraightRenderer();
         }
 

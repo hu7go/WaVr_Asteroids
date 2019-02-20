@@ -60,15 +60,22 @@ public class TeleportMaster : MonoBehaviour
     {
         OGMaxLenght = teleportMaxLenght;
 
-        currentAsteroidStandingOn = firstAsteroid;
-        currentHit = firstAsteroid;
-
         use = pointer.GetComponent<VRTK_InteractUse>();
         grab = pointer.GetComponent<VRTK_InteractGrab>();
-        previousHit = firstAsteroid;
 
         //! WARNING, this clears ALL log messages on start, comment out the line below if you need to debug something on start.
-        Invoke("ClearConsole", .01f);
+        //Invoke("ClearConsole", .01f);
+    }
+
+    public void SetFirstAsteroid (SideScript newAsteroid)
+    {
+        firstAsteroid = newAsteroid;
+
+        Manager.Instance.ReturnPlayer().transform.parent = firstAsteroid.rotator;
+
+        currentAsteroidStandingOn = firstAsteroid;
+        currentHit = firstAsteroid;
+        previousHit = firstAsteroid;
     }
 
 #if (UNITY_EDITOR)
