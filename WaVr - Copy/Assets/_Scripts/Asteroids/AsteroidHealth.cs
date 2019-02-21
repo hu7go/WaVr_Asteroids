@@ -15,7 +15,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
 
     Color currentColor;
 
-    public void Start()
+    public void Awake()
     {
         //red = new Color(360, 100, 50);
         red = Color.red;

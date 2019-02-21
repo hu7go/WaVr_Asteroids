@@ -154,8 +154,9 @@ public class Manager : MonoBehaviour
     public float objectiveHealth = 100;
     private List<GameObject> enemiesSpawned;
 
-    [HideInInspector] public float masterCurrentHealth;
-    [HideInInspector] public float masterMaxHealth;
+    /*[HideInInspector]*/ public float masterCurrentHealth;
+    /*[HideInInspector]*/ public float masterMaxHealth;
+    public float wantedMaxHealth = 11200;
     public float healthPercent;
 
     int minutes ,minutes2;
@@ -227,6 +228,11 @@ public class Manager : MonoBehaviour
         }
     }
 
+    public Transform ReturnSpaceShip ()
+    {
+        return graphicsSettings.spaceShip.transform;
+    }
+
     public void WaitForMapGeneration (GameObject middleAsteroid)
     {
         turretReload = GetComponent<TurretReloader>();
@@ -258,6 +264,7 @@ public class Manager : MonoBehaviour
         {
             masterCurrentHealth += asteroidList[i].asteroid.health;
         }
+
         uISettings.healthSlider.maxValue = masterCurrentHealth;
         uISettings.healthSlider.value = masterCurrentHealth;
 
