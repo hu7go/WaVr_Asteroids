@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4625549744469940}
   - component: {fileID: 33211234011371446}
   - component: {fileID: 23352776994403036}
+  - component: {fileID: 7481762712324585279}
   m_Layer: 0
   m_Name: StationDebris10_Part47
   m_TagString: Untagged
@@ -77,6 +78,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7481762712324585279
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036286052738286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300994, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1051250757900330
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +103,7 @@ GameObject:
   - component: {fileID: 4929471420413066}
   - component: {fileID: 33321904851946586}
   - component: {fileID: 23819731750509654}
+  - component: {fileID: 6014176711892217401}
   m_Layer: 0
   m_Name: StationDebris10_Part34
   m_TagString: Untagged
@@ -154,6 +170,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6014176711892217401
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051250757900330}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300968, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1065351304203502
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +195,7 @@ GameObject:
   - component: {fileID: 4631683873135092}
   - component: {fileID: 33625877011024150}
   - component: {fileID: 23969688868433718}
+  - component: {fileID: 7324071643308313593}
   m_Layer: 0
   m_Name: StationDebris10_Part11
   m_TagString: Untagged
@@ -231,6 +262,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7324071643308313593
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065351304203502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300922, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1071345428833910
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +287,7 @@ GameObject:
   - component: {fileID: 4904450900861842}
   - component: {fileID: 33923959555860722}
   - component: {fileID: 23043868817866192}
+  - component: {fileID: 4558411246182965357}
   m_Layer: 0
   m_Name: StationDebris10_Part35
   m_TagString: Untagged
@@ -308,6 +354,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4558411246182965357
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071345428833910}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300970, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1071682665566226
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +379,7 @@ GameObject:
   - component: {fileID: 4357274552224858}
   - component: {fileID: 33910078162041892}
   - component: {fileID: 23727577579443450}
+  - component: {fileID: 4198340191222747374}
   m_Layer: 0
   m_Name: StationDebris10_Part45
   m_TagString: Untagged
@@ -385,6 +446,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4198340191222747374
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071682665566226}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300990, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1104280907280728
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +471,7 @@ GameObject:
   - component: {fileID: 4721838214852482}
   - component: {fileID: 33681124776158648}
   - component: {fileID: 23454188086963586}
+  - component: {fileID: 5949069461874400934}
   m_Layer: 0
   m_Name: StationDebris10_Part28
   m_TagString: Untagged
@@ -462,6 +538,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5949069461874400934
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104280907280728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300956, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1117029283840656
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +563,7 @@ GameObject:
   - component: {fileID: 4762644296856840}
   - component: {fileID: 33276227163867000}
   - component: {fileID: 23386651614132376}
+  - component: {fileID: 2676596746482408657}
   m_Layer: 0
   m_Name: StationDebris10_Part24
   m_TagString: Untagged
@@ -539,6 +630,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2676596746482408657
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117029283840656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300948, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1154643873526564
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +655,7 @@ GameObject:
   - component: {fileID: 4522841033257918}
   - component: {fileID: 33202101114301962}
   - component: {fileID: 23087736784358802}
+  - component: {fileID: 3942678527637781696}
   m_Layer: 0
   m_Name: StationDebris10_Part40
   m_TagString: Untagged
@@ -616,6 +722,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3942678527637781696
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154643873526564}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300980, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1169526612474796
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,6 +747,7 @@ GameObject:
   - component: {fileID: 4243063723698074}
   - component: {fileID: 33050569169158528}
   - component: {fileID: 23855225651579736}
+  - component: {fileID: 561350854438821196}
   m_Layer: 0
   m_Name: StationDebris10_Part46
   m_TagString: Untagged
@@ -693,6 +814,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &561350854438821196
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169526612474796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300992, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1198828440031940
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,6 +839,7 @@ GameObject:
   - component: {fileID: 4882930371754622}
   - component: {fileID: 33465144273656778}
   - component: {fileID: 23600095046862452}
+  - component: {fileID: 8944709902523700863}
   m_Layer: 0
   m_Name: StationDebris10_Part08
   m_TagString: Untagged
@@ -770,50 +906,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1218259947046602
-GameObject:
+--- !u!64 &8944709902523700863
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4612030927362570}
-  - component: {fileID: 65981540826652338}
-  m_Layer: 0
-  m_Name: Collider1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4612030927362570
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218259947046602}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4692534602161990}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65981540826652338
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218259947046602}
+  m_GameObject: {fileID: 1198828440031940}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 15, y: 20, z: 15}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300916, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1248046921761738
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +931,7 @@ GameObject:
   - component: {fileID: 4822401877612562}
   - component: {fileID: 33672829489682314}
   - component: {fileID: 23342450012338002}
+  - component: {fileID: 8305005694580833530}
   m_Layer: 0
   m_Name: StationDebris10_Part51
   m_TagString: Untagged
@@ -891,6 +998,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8305005694580833530
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248046921761738}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4301002, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1262593990927156
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +1023,7 @@ GameObject:
   - component: {fileID: 4179640411605276}
   - component: {fileID: 33221883658933204}
   - component: {fileID: 23408333497897092}
+  - component: {fileID: 3305415099550909169}
   m_Layer: 0
   m_Name: StationDebris10_Part17
   m_TagString: Untagged
@@ -968,6 +1090,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3305415099550909169
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262593990927156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300934, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1266173760022728
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +1115,7 @@ GameObject:
   - component: {fileID: 4707879356550770}
   - component: {fileID: 33161648587640166}
   - component: {fileID: 23206304056382818}
+  - component: {fileID: 3945419359447562719}
   m_Layer: 0
   m_Name: StationDebris10_Part27
   m_TagString: Untagged
@@ -1045,6 +1182,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3945419359447562719
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266173760022728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300954, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1325357922859318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,6 +1207,7 @@ GameObject:
   - component: {fileID: 4730547551641692}
   - component: {fileID: 33088993015612050}
   - component: {fileID: 23283535866295934}
+  - component: {fileID: 7796776680289912730}
   m_Layer: 0
   m_Name: StationDebris10_Part32
   m_TagString: Untagged
@@ -1122,37 +1274,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1335084366414114
-GameObject:
+--- !u!64 &7796776680289912730
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4692534602161990}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4692534602161990
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335084366414114}
-  m_LocalRotation: {x: -0, y: -0, z: 7.1880656e-16, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4612030927362570}
-  m_Father: {fileID: 4938277856681272}
-  m_RootOrder: 52
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1325357922859318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300964, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1336190098544754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,6 +1299,7 @@ GameObject:
   - component: {fileID: 4830047113658640}
   - component: {fileID: 33161291692594804}
   - component: {fileID: 23151507556599450}
+  - component: {fileID: 7862691525426139793}
   m_Layer: 0
   m_Name: StationDebris10_Part13
   m_TagString: Untagged
@@ -1230,6 +1366,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7862691525426139793
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336190098544754}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300926, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1337191112351806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1391,7 @@ GameObject:
   - component: {fileID: 4208275195419174}
   - component: {fileID: 33531279703382112}
   - component: {fileID: 23186979046386962}
+  - component: {fileID: 7561297676553758924}
   m_Layer: 0
   m_Name: StationDebris10_Part05
   m_TagString: Untagged
@@ -1307,6 +1458,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7561297676553758924
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337191112351806}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300910, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1351094349216306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,6 +1483,7 @@ GameObject:
   - component: {fileID: 4160959387790700}
   - component: {fileID: 33336408989972648}
   - component: {fileID: 23919855678550722}
+  - component: {fileID: 3192136197217918029}
   m_Layer: 0
   m_Name: StationDebris10_Part48
   m_TagString: Untagged
@@ -1384,6 +1550,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3192136197217918029
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351094349216306}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300996, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1381010308109250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,6 +1575,7 @@ GameObject:
   - component: {fileID: 4056234908370672}
   - component: {fileID: 33632747505552214}
   - component: {fileID: 23977950380554990}
+  - component: {fileID: 1032106826717757421}
   m_Layer: 0
   m_Name: StationDebris10_Part02
   m_TagString: Untagged
@@ -1461,6 +1642,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1032106826717757421
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381010308109250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300904, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1392982276028258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,6 +1667,7 @@ GameObject:
   - component: {fileID: 4787484550606322}
   - component: {fileID: 33791829713633874}
   - component: {fileID: 23285801008667074}
+  - component: {fileID: 903380804201254316}
   m_Layer: 0
   m_Name: StationDebris10_Part18
   m_TagString: Untagged
@@ -1538,6 +1734,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &903380804201254316
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392982276028258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300936, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1416517117401704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,6 +1759,7 @@ GameObject:
   - component: {fileID: 4052337470199228}
   - component: {fileID: 33290126318809558}
   - component: {fileID: 23220176367681634}
+  - component: {fileID: 3260310281671952001}
   m_Layer: 0
   m_Name: StationDebris10_Part15
   m_TagString: Untagged
@@ -1615,6 +1826,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3260310281671952001
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416517117401704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300930, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1457240706830770
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1851,7 @@ GameObject:
   - component: {fileID: 4414761639650410}
   - component: {fileID: 33870974447275244}
   - component: {fileID: 23814770789367122}
+  - component: {fileID: 5260478132581983292}
   m_Layer: 0
   m_Name: StationDebris10_Part06
   m_TagString: Untagged
@@ -1692,6 +1918,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5260478132581983292
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457240706830770}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300912, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1465100264185008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,6 +1943,7 @@ GameObject:
   - component: {fileID: 4877621444580920}
   - component: {fileID: 33530023438194782}
   - component: {fileID: 23231498510986024}
+  - component: {fileID: 3900108834772609760}
   m_Layer: 0
   m_Name: StationDebris10_Part31
   m_TagString: Untagged
@@ -1769,6 +2010,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3900108834772609760
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465100264185008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300962, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1485098719017258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,6 +2035,7 @@ GameObject:
   - component: {fileID: 4730777882860260}
   - component: {fileID: 33656460555195068}
   - component: {fileID: 23600287840271184}
+  - component: {fileID: 7720835200359708392}
   m_Layer: 0
   m_Name: StationDebris10_Part50
   m_TagString: Untagged
@@ -1846,6 +2102,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7720835200359708392
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485098719017258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4301000, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1489946807012834
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +2127,7 @@ GameObject:
   - component: {fileID: 4334495068762492}
   - component: {fileID: 33728946136181216}
   - component: {fileID: 23154178130202638}
+  - component: {fileID: 5716691196770148619}
   m_Layer: 0
   m_Name: StationDebris10_Part19
   m_TagString: Untagged
@@ -1923,6 +2194,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5716691196770148619
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489946807012834}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300938, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1499067247775778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,6 +2219,7 @@ GameObject:
   - component: {fileID: 4168013416589952}
   - component: {fileID: 33484631752134174}
   - component: {fileID: 23313758405725250}
+  - component: {fileID: 1709331372459193293}
   m_Layer: 0
   m_Name: StationDebris10_Part12
   m_TagString: Untagged
@@ -2000,6 +2286,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1709331372459193293
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499067247775778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300924, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1501732552058802
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2311,7 @@ GameObject:
   - component: {fileID: 4928064053909512}
   - component: {fileID: 33228181068711798}
   - component: {fileID: 23215771911006496}
+  - component: {fileID: 965495170316068646}
   m_Layer: 0
   m_Name: StationDebris10_Part39
   m_TagString: Untagged
@@ -2077,6 +2378,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &965495170316068646
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501732552058802}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300978, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1527531349051568
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,7 +2471,6 @@ Transform:
   - {fileID: 4730777882860260}
   - {fileID: 4822401877612562}
   - {fileID: 4808048301463738}
-  - {fileID: 4692534602161990}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2171,6 +2485,7 @@ GameObject:
   - component: {fileID: 4599343324591696}
   - component: {fileID: 33252419892219554}
   - component: {fileID: 23751650783187744}
+  - component: {fileID: 8468006082170583881}
   m_Layer: 0
   m_Name: StationDebris10_Part22
   m_TagString: Untagged
@@ -2237,6 +2552,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8468006082170583881
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533053466291778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300944, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1542239695343268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,6 +2577,7 @@ GameObject:
   - component: {fileID: 4925098111105400}
   - component: {fileID: 33891329351799874}
   - component: {fileID: 23866552691344752}
+  - component: {fileID: 2844053547069388667}
   m_Layer: 0
   m_Name: StationDebris10_Part23
   m_TagString: Untagged
@@ -2314,6 +2644,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2844053547069388667
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542239695343268}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300946, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1557989990473484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,6 +2669,7 @@ GameObject:
   - component: {fileID: 4079008285371692}
   - component: {fileID: 33165449077338764}
   - component: {fileID: 23582294263668810}
+  - component: {fileID: 4862907303347358727}
   m_Layer: 0
   m_Name: StationDebris10_Part16
   m_TagString: Untagged
@@ -2391,6 +2736,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4862907303347358727
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557989990473484}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300932, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1561430472014744
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,6 +2761,7 @@ GameObject:
   - component: {fileID: 4733094471495778}
   - component: {fileID: 33805490967032896}
   - component: {fileID: 23832705938034268}
+  - component: {fileID: 6105999204184405319}
   m_Layer: 0
   m_Name: StationDebris10_Part42
   m_TagString: Untagged
@@ -2468,6 +2828,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6105999204184405319
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561430472014744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300984, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1564308597285148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2479,6 +2853,7 @@ GameObject:
   - component: {fileID: 4987368430306158}
   - component: {fileID: 33847824157940084}
   - component: {fileID: 23516849780172480}
+  - component: {fileID: 4854583232103567075}
   m_Layer: 0
   m_Name: StationDebris10_Part21
   m_TagString: Untagged
@@ -2545,6 +2920,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4854583232103567075
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564308597285148}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300942, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1583964248590196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,6 +2945,7 @@ GameObject:
   - component: {fileID: 4408290847837610}
   - component: {fileID: 33500031520193110}
   - component: {fileID: 23698692797725444}
+  - component: {fileID: 5272561718922892658}
   m_Layer: 0
   m_Name: StationDebris10_Part37
   m_TagString: Untagged
@@ -2622,6 +3012,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5272561718922892658
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583964248590196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300974, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1595922399271326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,6 +3037,7 @@ GameObject:
   - component: {fileID: 4592725175694818}
   - component: {fileID: 33019815212631290}
   - component: {fileID: 23021705433132858}
+  - component: {fileID: 7379595840949172070}
   m_Layer: 0
   m_Name: StationDebris10_Part04
   m_TagString: Untagged
@@ -2699,6 +3104,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7379595840949172070
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595922399271326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300908, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1602665956948350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,6 +3129,7 @@ GameObject:
   - component: {fileID: 4494912241332838}
   - component: {fileID: 33131391147797886}
   - component: {fileID: 23086847183656100}
+  - component: {fileID: 3372742309435273359}
   m_Layer: 0
   m_Name: StationDebris10_Part25
   m_TagString: Untagged
@@ -2776,6 +3196,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3372742309435273359
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602665956948350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300950, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1605528903023090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,6 +3221,7 @@ GameObject:
   - component: {fileID: 4084363270980266}
   - component: {fileID: 33276936124654524}
   - component: {fileID: 23255284238928824}
+  - component: {fileID: 7388218920370666737}
   m_Layer: 0
   m_Name: StationDebris10_Part14
   m_TagString: Untagged
@@ -2853,6 +3288,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7388218920370666737
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605528903023090}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300928, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1618475870545292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2864,6 +3313,7 @@ GameObject:
   - component: {fileID: 4096609463442680}
   - component: {fileID: 33718820010620306}
   - component: {fileID: 23504987947292080}
+  - component: {fileID: 1528537794971155746}
   m_Layer: 0
   m_Name: StationDebris10_Part43
   m_TagString: Untagged
@@ -2930,6 +3380,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1528537794971155746
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618475870545292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300986, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1657463574355652
 GameObject:
   m_ObjectHideFlags: 0
@@ -2941,6 +3405,7 @@ GameObject:
   - component: {fileID: 4713700243898456}
   - component: {fileID: 33703880838883404}
   - component: {fileID: 23670713566359246}
+  - component: {fileID: 3183603032232050072}
   m_Layer: 0
   m_Name: StationDebris10_Part33
   m_TagString: Untagged
@@ -3007,6 +3472,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3183603032232050072
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657463574355652}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300966, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1660780938446830
 GameObject:
   m_ObjectHideFlags: 0
@@ -3018,6 +3497,7 @@ GameObject:
   - component: {fileID: 4572892572415642}
   - component: {fileID: 33501143914194048}
   - component: {fileID: 23116740513814338}
+  - component: {fileID: 1540872721833609461}
   m_Layer: 0
   m_Name: StationDebris10_Part44
   m_TagString: Untagged
@@ -3084,6 +3564,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1540872721833609461
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660780938446830}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300988, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1675728793487676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3095,6 +3589,7 @@ GameObject:
   - component: {fileID: 4456637126065544}
   - component: {fileID: 33934020009150642}
   - component: {fileID: 23516903570641324}
+  - component: {fileID: 4811078260819015542}
   m_Layer: 0
   m_Name: StationDebris10_Part29
   m_TagString: Untagged
@@ -3161,6 +3656,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4811078260819015542
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675728793487676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300958, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1684670343962560
 GameObject:
   m_ObjectHideFlags: 0
@@ -3172,6 +3681,7 @@ GameObject:
   - component: {fileID: 4176309568856076}
   - component: {fileID: 33297100552747538}
   - component: {fileID: 23255927159035716}
+  - component: {fileID: 1174573681192561426}
   m_Layer: 0
   m_Name: StationDebris10_Part10
   m_TagString: Untagged
@@ -3238,6 +3748,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1174573681192561426
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684670343962560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300920, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1699613035564780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3249,6 +3773,7 @@ GameObject:
   - component: {fileID: 4118425937258362}
   - component: {fileID: 33093314258392642}
   - component: {fileID: 23392164938947580}
+  - component: {fileID: 1782822338940125163}
   m_Layer: 0
   m_Name: StationDebris10_Part07
   m_TagString: Untagged
@@ -3315,6 +3840,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1782822338940125163
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699613035564780}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300914, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1702634748421658
 GameObject:
   m_ObjectHideFlags: 0
@@ -3326,6 +3865,7 @@ GameObject:
   - component: {fileID: 4685191684376626}
   - component: {fileID: 33646894168592724}
   - component: {fileID: 23064269025788240}
+  - component: {fileID: 4939584905450965080}
   m_Layer: 0
   m_Name: StationDebris10_Part26
   m_TagString: Untagged
@@ -3392,6 +3932,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4939584905450965080
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702634748421658}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300952, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1716200892523154
 GameObject:
   m_ObjectHideFlags: 0
@@ -3403,6 +3957,7 @@ GameObject:
   - component: {fileID: 4065925322640446}
   - component: {fileID: 33888982815595636}
   - component: {fileID: 23239945848969912}
+  - component: {fileID: 3620476496902979545}
   m_Layer: 0
   m_Name: StationDebris10_Part01
   m_TagString: Untagged
@@ -3470,6 +4025,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3620476496902979545
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716200892523154}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1721230092630864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,6 +4050,7 @@ GameObject:
   - component: {fileID: 4837327907759172}
   - component: {fileID: 33349415851104138}
   - component: {fileID: 23116611356617632}
+  - component: {fileID: 767558526824076661}
   m_Layer: 0
   m_Name: StationDebris10_Part30
   m_TagString: Untagged
@@ -3547,6 +4117,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &767558526824076661
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721230092630864}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300960, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1798105028726496
 GameObject:
   m_ObjectHideFlags: 0
@@ -3558,6 +4142,7 @@ GameObject:
   - component: {fileID: 4766005141211546}
   - component: {fileID: 33065106187695522}
   - component: {fileID: 23385019219817844}
+  - component: {fileID: 1017098594825449573}
   m_Layer: 0
   m_Name: StationDebris10_Part03
   m_TagString: Untagged
@@ -3624,6 +4209,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1017098594825449573
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798105028726496}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300906, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1865248769960526
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,6 +4234,7 @@ GameObject:
   - component: {fileID: 4771132488678360}
   - component: {fileID: 33415461591528512}
   - component: {fileID: 23289479485415552}
+  - component: {fileID: 3367688304816771852}
   m_Layer: 0
   m_Name: StationDebris10_Part49
   m_TagString: Untagged
@@ -3701,6 +4301,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3367688304816771852
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865248769960526}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300998, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1879218694934750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3712,6 +4326,7 @@ GameObject:
   - component: {fileID: 4919431279489322}
   - component: {fileID: 33482872786912230}
   - component: {fileID: 23913421284593158}
+  - component: {fileID: 8338236968679581023}
   m_Layer: 0
   m_Name: StationDebris10_Part41
   m_TagString: Untagged
@@ -3778,6 +4393,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8338236968679581023
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879218694934750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300982, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1889956695962248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3789,6 +4418,7 @@ GameObject:
   - component: {fileID: 4592103437394700}
   - component: {fileID: 33478812082500774}
   - component: {fileID: 23973709309624706}
+  - component: {fileID: 3276458077700265645}
   m_Layer: 0
   m_Name: StationDebris10_Part20
   m_TagString: Untagged
@@ -3855,6 +4485,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3276458077700265645
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889956695962248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300940, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1895033595380940
 GameObject:
   m_ObjectHideFlags: 0
@@ -3866,6 +4510,7 @@ GameObject:
   - component: {fileID: 4808048301463738}
   - component: {fileID: 33602276326693708}
   - component: {fileID: 23319106943545284}
+  - component: {fileID: 3432309644452926085}
   m_Layer: 0
   m_Name: StationDebris10_Part52
   m_TagString: Untagged
@@ -3932,6 +4577,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3432309644452926085
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895033595380940}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4301004, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1961796230486198
 GameObject:
   m_ObjectHideFlags: 0
@@ -3943,6 +4602,7 @@ GameObject:
   - component: {fileID: 4215229758999644}
   - component: {fileID: 33674898930064940}
   - component: {fileID: 23702988127709412}
+  - component: {fileID: 1209348198207640914}
   m_Layer: 0
   m_Name: StationDebris10_Part09
   m_TagString: Untagged
@@ -4009,6 +4669,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1209348198207640914
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961796230486198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300918, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1990621791537836
 GameObject:
   m_ObjectHideFlags: 0
@@ -4020,6 +4694,7 @@ GameObject:
   - component: {fileID: 4072747442777318}
   - component: {fileID: 33854288773810114}
   - component: {fileID: 23349644999942120}
+  - component: {fileID: 1936409708849321434}
   m_Layer: 0
   m_Name: StationDebris10_Part36
   m_TagString: Untagged
@@ -4086,6 +4761,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1936409708849321434
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990621791537836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300972, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}
 --- !u!1 &1991766931749224
 GameObject:
   m_ObjectHideFlags: 0
@@ -4097,6 +4786,7 @@ GameObject:
   - component: {fileID: 4378210045836114}
   - component: {fileID: 33800115769223818}
   - component: {fileID: 23954309436569870}
+  - component: {fileID: 6814928414096247108}
   m_Layer: 0
   m_Name: StationDebris10_Part38
   m_TagString: Untagged
@@ -4163,3 +4853,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6814928414096247108
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991766931749224}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300976, guid: d0e44a72fa075a545ad7cd5d52d8c66b, type: 3}

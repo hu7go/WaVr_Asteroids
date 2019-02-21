@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4251167486146000}
   - component: {fileID: 33705810558456734}
   - component: {fileID: 23353627187567638}
+  - component: {fileID: 4888107837176415847}
   m_Layer: 0
   m_Name: ShipDebris2_Part04
   m_TagString: Untagged
@@ -77,6 +78,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4888107837176415847
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056359359388534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300190, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1057148049186328
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +103,7 @@ GameObject:
   - component: {fileID: 4729844379565430}
   - component: {fileID: 33677402903672888}
   - component: {fileID: 23495452050962410}
+  - component: {fileID: 6891768078497063861}
   m_Layer: 0
   m_Name: ShipDebris2_Part03
   m_TagString: Untagged
@@ -154,6 +170,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6891768078497063861
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057148049186328}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300192, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1159669561454838
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +195,7 @@ GameObject:
   - component: {fileID: 4563272883696172}
   - component: {fileID: 33299690663021446}
   - component: {fileID: 23546079678240778}
+  - component: {fileID: 2434240995124601324}
   m_Layer: 0
   m_Name: ShipDebris2_Part16
   m_TagString: Untagged
@@ -231,6 +262,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2434240995124601324
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159669561454838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300166, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1173454002968572
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +287,7 @@ GameObject:
   - component: {fileID: 4826425841752426}
   - component: {fileID: 33455378328172356}
   - component: {fileID: 23867645841251784}
+  - component: {fileID: 1757668328233451837}
   m_Layer: 0
   m_Name: ShipDebris2_Part15
   m_TagString: Untagged
@@ -308,50 +354,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1202655065151822
-GameObject:
+--- !u!64 &1757668328233451837
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4427047297145088}
-  - component: {fileID: 65013451996111172}
-  m_Layer: 0
-  m_Name: Collider2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4427047297145088
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202655065151822}
-  m_LocalRotation: {x: 0.0042407825, y: 0.015655123, z: -0.13030916, w: 0.99134076}
-  m_LocalPosition: {x: 6.38, y: -0.25, z: -0.98}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4439477326337848}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0.716, y: 1.715, z: -14.966001}
---- !u!65 &65013451996111172
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202655065151822}
+  m_GameObject: {fileID: 1173454002968572}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9, y: 0.3, z: 2.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300168, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1217202674493600
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,6 +379,7 @@ GameObject:
   - component: {fileID: 4167996368842946}
   - component: {fileID: 33634631301236324}
   - component: {fileID: 23353367277018624}
+  - component: {fileID: 1096588409754497835}
   m_Layer: 0
   m_Name: ShipDebris2_Part17
   m_TagString: Untagged
@@ -429,6 +446,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1096588409754497835
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217202674493600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300164, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1295809435564338
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +471,7 @@ GameObject:
   - component: {fileID: 4696558112335766}
   - component: {fileID: 33374333113520548}
   - component: {fileID: 23669043756789460}
+  - component: {fileID: 7764593941448890007}
   m_Layer: 0
   m_Name: ShipDebris2_Part13
   m_TagString: Untagged
@@ -506,6 +538,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7764593941448890007
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295809435564338}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300172, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1296266390706552
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +563,7 @@ GameObject:
   - component: {fileID: 4200073474060836}
   - component: {fileID: 33701302336805392}
   - component: {fileID: 23725756049002266}
+  - component: {fileID: 5984456090225589363}
   m_Layer: 0
   m_Name: ShipDebris2_Part22
   m_TagString: Untagged
@@ -583,6 +630,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5984456090225589363
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296266390706552}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300154, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1344557356796856
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,6 +655,7 @@ GameObject:
   - component: {fileID: 4043797075023128}
   - component: {fileID: 33284319274872266}
   - component: {fileID: 23180144713669334}
+  - component: {fileID: 2619081248306944738}
   m_Layer: 0
   m_Name: ShipDebris2_Part18
   m_TagString: Untagged
@@ -660,6 +722,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2619081248306944738
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344557356796856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300162, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1363968337116376
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +747,7 @@ GameObject:
   - component: {fileID: 4706591350887262}
   - component: {fileID: 33333451378903194}
   - component: {fileID: 23177643500620318}
+  - component: {fileID: 5887516064211185037}
   m_Layer: 0
   m_Name: ShipDebris2_Part09
   m_TagString: Untagged
@@ -737,6 +814,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5887516064211185037
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363968337116376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300180, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1398089607334824
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +839,7 @@ GameObject:
   - component: {fileID: 4960290842007936}
   - component: {fileID: 33901781247781868}
   - component: {fileID: 23523333312648052}
+  - component: {fileID: 4807244390484613900}
   m_Layer: 0
   m_Name: ShipDebris2_Part21
   m_TagString: Untagged
@@ -814,6 +906,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4807244390484613900
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398089607334824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300156, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1446580057293116
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +931,7 @@ GameObject:
   - component: {fileID: 4126538205774462}
   - component: {fileID: 33679106028693472}
   - component: {fileID: 23754007773274424}
+  - component: {fileID: 6484210228171716799}
   m_Layer: 0
   m_Name: ShipDebris2_Part06
   m_TagString: Untagged
@@ -891,6 +998,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6484210228171716799
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446580057293116}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300186, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1458987528387146
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,6 +1023,7 @@ GameObject:
   - component: {fileID: 4103700020070746}
   - component: {fileID: 33630821047792224}
   - component: {fileID: 23969169963338280}
+  - component: {fileID: 6361152110941438437}
   m_Layer: 0
   m_Name: ShipDebris2_Part01
   m_TagString: Untagged
@@ -968,6 +1090,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6361152110941438437
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458987528387146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300262, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1490773958945624
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +1115,7 @@ GameObject:
   - component: {fileID: 4014125874333636}
   - component: {fileID: 33718625664670918}
   - component: {fileID: 23270407600917528}
+  - component: {fileID: 1407858048721573225}
   m_Layer: 0
   m_Name: ShipDebris2_Part23
   m_TagString: Untagged
@@ -1045,39 +1182,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1511466678952008
-GameObject:
+--- !u!64 &1407858048721573225
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4439477326337848}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4439477326337848
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511466678952008}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4665951952520516}
-  - {fileID: 4427047297145088}
-  - {fileID: 4335800192805528}
-  m_Father: {fileID: 4021124350383186}
-  m_RootOrder: 23
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1490773958945624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300152, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1573814228139096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,6 +1207,7 @@ GameObject:
   - component: {fileID: 4422877461765032}
   - component: {fileID: 33566104599935742}
   - component: {fileID: 23567960624909278}
+  - component: {fileID: 6038133935766179607}
   m_Layer: 0
   m_Name: ShipDebris2_Part10
   m_TagString: Untagged
@@ -1155,6 +1274,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6038133935766179607
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573814228139096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300178, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1701155139249534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,6 +1299,7 @@ GameObject:
   - component: {fileID: 4324670741911122}
   - component: {fileID: 33440375905352702}
   - component: {fileID: 23830047502942108}
+  - component: {fileID: 7085297777292528835}
   m_Layer: 0
   m_Name: ShipDebris2_Part19
   m_TagString: Untagged
@@ -1232,6 +1366,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7085297777292528835
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701155139249534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300160, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1709012950299912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,6 +1391,7 @@ GameObject:
   - component: {fileID: 4815606644777884}
   - component: {fileID: 33853322989499122}
   - component: {fileID: 23226128075121690}
+  - component: {fileID: 1378129869699690443}
   m_Layer: 0
   m_Name: ShipDebris2_Part08
   m_TagString: Untagged
@@ -1309,6 +1458,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1378129869699690443
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709012950299912}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300182, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1716888869384812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,7 +1522,6 @@ Transform:
   - {fileID: 4960290842007936}
   - {fileID: 4200073474060836}
   - {fileID: 4014125874333636}
-  - {fileID: 4439477326337848}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1374,6 +1536,7 @@ GameObject:
   - component: {fileID: 4176135550859286}
   - component: {fileID: 33987287983180702}
   - component: {fileID: 23876442958094204}
+  - component: {fileID: 1557320040916091336}
   m_Layer: 0
   m_Name: ShipDebris2_Part20
   m_TagString: Untagged
@@ -1440,50 +1603,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1804464425648744
-GameObject:
+--- !u!64 &1557320040916091336
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4335800192805528}
-  - component: {fileID: 65097325109542886}
-  m_Layer: 0
-  m_Name: Collider3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4335800192805528
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804464425648744}
-  m_LocalRotation: {x: 0.1700902, y: -0.027891463, z: 0.13279676, w: 0.9760412}
-  m_LocalPosition: {x: -6.18, y: 0.61, z: -1.11}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4439477326337848}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 19.843, y: -0.565, z: 15.397}
---- !u!65 &65097325109542886
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804464425648744}
+  m_GameObject: {fileID: 1744736100326786}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9, y: 0.3, z: 2.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300158, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1806368091233486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1495,6 +1628,7 @@ GameObject:
   - component: {fileID: 4575497488553586}
   - component: {fileID: 33062376903175086}
   - component: {fileID: 23595265933062812}
+  - component: {fileID: 5044548895061308557}
   m_Layer: 0
   m_Name: ShipDebris2_Part07
   m_TagString: Untagged
@@ -1561,6 +1695,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5044548895061308557
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806368091233486}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300184, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1851921616362520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +1720,7 @@ GameObject:
   - component: {fileID: 4279014126374590}
   - component: {fileID: 33584972415679364}
   - component: {fileID: 23904640939136364}
+  - component: {fileID: 7742037957079499129}
   m_Layer: 0
   m_Name: ShipDebris2_Part02
   m_TagString: Untagged
@@ -1638,6 +1787,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7742037957079499129
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851921616362520}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300194, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1862341154735376
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,6 +1812,7 @@ GameObject:
   - component: {fileID: 4379482235041890}
   - component: {fileID: 33817252422214790}
   - component: {fileID: 23905570609261570}
+  - component: {fileID: 7124229673718755589}
   m_Layer: 0
   m_Name: ShipDebris2_Part14
   m_TagString: Untagged
@@ -1715,6 +1879,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7124229673718755589
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862341154735376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300170, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1931021736565208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1904,7 @@ GameObject:
   - component: {fileID: 4025508320369584}
   - component: {fileID: 33528478829549658}
   - component: {fileID: 23751649247315810}
+  - component: {fileID: 448244150886227159}
   m_Layer: 0
   m_Name: ShipDebris2_Part05
   m_TagString: Untagged
@@ -1792,6 +1971,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &448244150886227159
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931021736565208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300188, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1959461823911580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1803,6 +1996,7 @@ GameObject:
   - component: {fileID: 4056845911990190}
   - component: {fileID: 33468152184805936}
   - component: {fileID: 23697378578329372}
+  - component: {fileID: 4028908889987732759}
   m_Layer: 0
   m_Name: ShipDebris2_Part12
   m_TagString: Untagged
@@ -1869,50 +2063,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1970960328721486
-GameObject:
+--- !u!64 &4028908889987732759
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4665951952520516}
-  - component: {fileID: 65546632381625204}
-  m_Layer: 0
-  m_Name: Collider1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4665951952520516
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970960328721486}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.83, z: 1.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4439477326337848}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65546632381625204
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970960328721486}
+  m_GameObject: {fileID: 1959461823911580}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.2, y: 3, z: 7}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300174, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
 --- !u!1 &1990486855141896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,6 +2088,7 @@ GameObject:
   - component: {fileID: 4484526907016996}
   - component: {fileID: 33075804186265434}
   - component: {fileID: 23535316263409964}
+  - component: {fileID: 5734790104400594829}
   m_Layer: 0
   m_Name: ShipDebris2_Part11
   m_TagString: Untagged
@@ -1990,3 +2155,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5734790104400594829
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990486855141896}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300176, guid: 4a26852acd1d95d49806b7c76804193b, type: 3}
