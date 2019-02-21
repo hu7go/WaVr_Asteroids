@@ -108,6 +108,7 @@ public class Manager : MonoBehaviour
         public Text countDownText;
         public Text overText;
         public Text waveCount;
+        public Text healthPercentText;
         public MeshRenderer[] stateButtons;
         public Slider healthSlider;
         [Tooltip("This bool decides if the new UI is used this current scene")]
@@ -476,7 +477,7 @@ public class Manager : MonoBehaviour
     private void Update()
     {
         healthPercent = ((masterCurrentHealth / masterMaxHealth) * 100);
-
+        uISettings.healthPercentText.text = healthPercent + "%";
         if (transform.position != new Vector3(0, 0, 0))
             transform.position = new Vector3(0, 0, 0);
         if (transform.rotation != new Quaternion(0, 0, 0, 0))
