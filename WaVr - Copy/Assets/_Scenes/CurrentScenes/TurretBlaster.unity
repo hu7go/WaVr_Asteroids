@@ -9954,7 +9954,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b7279681e9497f548967e974d28e1b25, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 47e5daa763ece544bb9ba2c5daa8c30b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.66
   m_Pitch: 1
@@ -33123,6 +33123,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 1106711025}
+  turretLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ignoredLayer:
+    serializedVersion: 2
+    m_Bits: 0
   hands:
   - {fileID: 1144977744}
   - {fileID: 978709909}
@@ -34102,6 +34108,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   master: {fileID: 1106711025}
+  turretLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ignoredLayer:
+    serializedVersion: 2
+    m_Bits: 0
   hands:
   - {fileID: 986901995}
   - {fileID: 1196770118}
@@ -35857,6 +35869,7 @@ MonoBehaviour:
   minWaveWaitTime: 20
   maxWaveWaitTime: 40
   arrowRenderer: {fileID: 3356535675463488760}
+  tpMaster: {fileID: 0}
   turretReload: {fileID: 0}
   bendLine: 0
 --- !u!4 &2123815492
