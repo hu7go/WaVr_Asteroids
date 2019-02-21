@@ -233,8 +233,15 @@ public class Manager : MonoBehaviour
         return graphicsSettings.spaceShip.transform;
     }
 
-    public void WaitForMapGeneration (GameObject middleAsteroid)
+    public void WaitForMapGeneration (GameObject middleAsteroid, List<Vector3> enemySpawnPositions)
     {
+        int j = 0;
+        foreach (Wave wave in waves)
+        {
+            wave.spawnPosition.position = enemySpawnPositions[j];
+            j++;
+        }
+
         turretReload = GetComponent<TurretReloader>();
 
         turrets = new List<GameObject>();

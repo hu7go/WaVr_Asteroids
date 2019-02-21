@@ -47,8 +47,15 @@ public class MapGenerator : MonoBehaviour
     private Vector3 left;
     private Vector3 right;
 
+    List<Vector3> spawns = new List<Vector3>();
+
     private void Start()
     {
+        map = new List<Node>();
+
+        if (useRandomSeed)
+            seed = Mathf.RoundToInt(Random.Range(0, 10000)).ToString();
+
         topRight = new Vector3(width / 2, height / 2, depth / 2);
         topLeft = new Vector3(-width / 2, height / 2, depth / 2);
         bottomLeft = new Vector3(-width / 2, -height / 2, depth / 2);
@@ -64,10 +71,20 @@ public class MapGenerator : MonoBehaviour
         down = transform.position + (bottomBackLeft + bottomBackRight + bottomLeft + bottomRight).normalized * height / 2 * portalDistanceOffset;
         left = transform.position + (topLeft + topBackLeft + bottomLeft + bottomBackLeft).normalized * width / 2 * portalDistanceOffset;
         right = transform.position + (bottomRight + bottomBackRight + topRight + topBackRight).normalized * width / 2 * portalDistanceOffset;
+        spawns.Add(left);
+        spawns.Add(right);
+        spawns.Add(down);
+        spawns.Add(above);
+        spawns.Add(forward);
+        spawns.Add(left);
 
-        Debug.Log(Manager.Instance.wantedMaxHealth + " : " + width + " : " + height + " : " + depth + " : " + Manager.Instance.tAe.asteroidHealth);
+        //mapFillPercent = ((Manager.Instance.wantedMaxHealth) / (width * height * depth * Manager.Instance.tAe.asteroidHealth)) * 100f;
 
-        mapFillPercent = ((Manager.Instance.wantedMaxHealth) / ((float)(width * height * depth) * Manager.Instance.tAe.asteroidHealth) * 100f);
+        //float currentPercent = Manager.Instance.wantedMaxHealth;
+        //float maxPercent = (width * height * depth) * Manager.Instance.tAe.asteroidHealth;
+        //mapFillPercent = currentPercent / maxPercent;
+
+        mapFillPercent = (Manager.Instance.wantedMaxHealth / (Manager.Instance.wantedMaxHealth * 100f));
 
         GenerateMap();
 
@@ -75,25 +92,17 @@ public class MapGenerator : MonoBehaviour
             spaceShip = Manager.Instance.ReturnSpaceShip();
 
         SpawnAsteroids();
-        //ProcessMap();
-        StartCoroutine(ProcessMap());
+        ProcessMap();
 
-        Manager.Instance.WaitForMapGeneration(middleAsteroid);
-
+        Manager.Instance.WaitForMapGeneration(middleAsteroid, spawns);
         map.Clear();
     }
 
     private void GenerateMap()
     {
-        if (useRandomSeed)
-        {
-            seed = Mathf.RoundToInt(Random.Range(0, 10000)).ToString();
-        }
-
         System.Random psuedoRandom = new System.Random(seed.GetHashCode());
         System.Random psuedoRandomJunk = new System.Random(seed.GetHashCode());
 
-        map = new List<Node>();
 
         for (int x = -width / 2; x < width / 2; x++)
         {
@@ -101,14 +110,12 @@ public class MapGenerator : MonoBehaviour
             {
                 for (int z = -depth / 2; z < depth / 2; z++)
                 {
-                    int tmp = (psuedoRandom.Next(0, 100 * 10000) <= mapFillPercent * 10000) ? 1 : 0;
+                    int tmp = (psuedoRandom.Next(0, 100 * 1000000) < mapFillPercent * 1000000) ? 1 : 0;
 
                     bool tmpBool = false;
 
                     if (tmp == 0)
-                    {
-                        tmpBool = (psuedoRandomJunk.Next(0, 100 * 10000) < junkFillPercent * 10000) ? true : false;
-                    }
+                        tmpBool = (psuedoRandomJunk.Next(0, 100 * 1000000) < junkFillPercent * 1000000) ? true : false;
 
                     Node newNode = new Node(x, y, z, tmp, false, tmpBool);
                     if (x == 0 && y == 0 && z == 0)
@@ -126,6 +133,9 @@ public class MapGenerator : MonoBehaviour
     {
         asteroids = new List<AsteroidPos>();
         Manager.Instance.asteroidList = new List<AsteroidHealth>();
+
+        System.Random psuedoRandom = new System.Random(seed.GetHashCode());
+        System.Random psuedoRandomRot = new System.Random(seed.GetHashCode());
 
         foreach (Node node in map)
         {
@@ -145,13 +155,8 @@ public class MapGenerator : MonoBehaviour
                 Debug.Log("Test");
                 Vector3 spawnPos = new Vector3(node.x, node.y, node.z);
 
-                System.Random psuedoRandom = new System.Random(seed.GetHashCode());
-                System.Random psuedoRandomRot = new System.Random(seed.GetHashCode());
-
                 Quaternion randomRot = Quaternion.Euler(psuedoRandomRot.Next(0, 360), psuedoRandomRot.Next(0, 360), psuedoRandomRot.Next(0, 360));
-
                 GameObject newJunk = Instantiate(spaceJunkPrefabs[psuedoRandom.Next(0, spaceJunkPrefabs.Count)], spawnPos, randomRot, transform);
-
                 spaceJunkList.Add(newJunk.transform);
             }
         }
@@ -159,49 +164,7 @@ public class MapGenerator : MonoBehaviour
 
     int failSafe = 0;
 
-    //private void ProcessMap()
-    //{
-    //    for (int i = 0; i < asteroids.Count; i++)
-    //    {
-    //        for (int j = 0; j < asteroids.Count; j++)
-    //        {
-    //            if (i != j)
-    //            {
-    //                if (Vector3.Distance(asteroids[i].obj.transform.position, asteroids[j].obj.transform.position) < distance || Vector3.Distance(asteroids[i].obj.transform.position, Manager.Instance.graphicsSettings.spaceShip.transform.position) < distance)
-    //                {
-    //                    asteroids[i].tooClose = true;
-    //                    asteroids[i].oppositeObj = asteroids[j].obj;
-    //                }
-    //            }
-    //        }
-    //    }
-
-    //    bool doAgain = false;
-
-    //    for (int i = 0; i < asteroids.Count; i++)
-    //    {
-    //        if (asteroids[i].tooClose)
-    //        {
-    //            Vector3 direction = (asteroids[i].obj.transform.position - asteroids[i].oppositeObj.transform.position).normalized;
-    //            asteroids[i].obj.transform.position += direction * 2;
-
-    //            if (Vector3.Distance(asteroids[i].obj.transform.position, asteroids[i].oppositeObj.transform.position) < distance)
-    //                asteroids[i].tooClose = true;
-    //            else
-    //                asteroids[i].tooClose = false;
-
-    //            if (doAgain == false)
-    //                failSafe++;
-
-    //            doAgain = true;
-    //        }
-    //    }
-
-    //    if (doAgain)
-    //        ProcessMap();
-    //}
-
-    private IEnumerator ProcessMap()
+    private void ProcessMap()
     {
         for (int i = 0; i < asteroids.Count; i++)
         {
@@ -253,10 +216,8 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-        yield return null;
-
         if (doAgain)
-            StartCoroutine(ProcessMap());
+            ProcessMap();
     }
 
     //! Gizmos!
