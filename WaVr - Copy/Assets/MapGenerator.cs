@@ -17,6 +17,7 @@ public class MapGenerator : MonoBehaviour
 
     [Range(0, 100)]
     public float mapFillPercent;
+    [Range(0, 100)]
     public float junkFillPercent;
     public bool useRandomSeed;
 
@@ -84,7 +85,7 @@ public class MapGenerator : MonoBehaviour
         //float maxPercent = (width * height * depth) * Manager.Instance.tAe.asteroidHealth;
         //mapFillPercent = currentPercent / maxPercent;
 
-        mapFillPercent = (Manager.Instance.wantedMaxHealth / (Manager.Instance.wantedMaxHealth * 100f));
+        //mapFillPercent = (Manager.Instance.wantedMaxHealth / (Manager.Instance.wantedMaxHealth * 100f));
 
         GenerateMap();
 
@@ -152,7 +153,6 @@ public class MapGenerator : MonoBehaviour
             }
             if (node.spaceJunk)
             {
-                Debug.Log("Test");
                 Vector3 spawnPos = new Vector3(node.x, node.y, node.z);
 
                 Quaternion randomRot = Quaternion.Euler(psuedoRandomRot.Next(0, 360), psuedoRandomRot.Next(0, 360), psuedoRandomRot.Next(0, 360));

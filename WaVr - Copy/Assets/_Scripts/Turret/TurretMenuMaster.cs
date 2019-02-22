@@ -115,7 +115,6 @@ public class TurretMenuMaster : MonoBehaviour
             else
                 tmpTurret.turretSpawnpos = turretSides[i].sideScript.GetComponentInParent<Transform>();
 
-
             tmpTurret.master = this;
 
             float multiplier = 1.1f;

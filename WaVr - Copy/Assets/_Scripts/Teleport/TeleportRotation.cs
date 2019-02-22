@@ -135,13 +135,16 @@ public class TeleportRotation : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Ray tmpRay = new Ray(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude));
-
-            Debug.DrawRay(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude), Color.cyan);
-
-            if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), ignoredLayer))
+            if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport)
             {
-                hit = tmpRaycastHit;
+                Ray tmpRay = new Ray(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude));
+
+                Debug.DrawRay(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude), Color.cyan);
+
+                if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), ignoredLayer))
+                {
+                    hit = tmpRaycastHit;
+                }
             }
         }
 
@@ -329,6 +332,7 @@ public class TeleportRotation : MonoBehaviour
 
                     ghostLineHit = asteroidHit;
 
+                    Debug.Log("How many times!!!");
                     master.currentAsteroidStandingOn = hit.collider.GetComponent<SideScript>();
 
                     //If we use the new State version of the UI we shoudl teleport instantly uppon clicking on a asteroid!
@@ -376,28 +380,34 @@ public class TeleportRotation : MonoBehaviour
                 if (Manager.Instance.uISettings.useNewUI)
                 {
                     //To build a healer!
-                    Debug.Log(master.currentAsteroidStandingOn.gameObject);
-                    if (hit.collider.GetComponent<SideScript>().gameObject == master.currentAsteroidStandingOn.gameObject)
+                    if (hit.collider != null)
                     {
-                        if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false)
+                        if (hit.collider.gameObject == master.currentAsteroidStandingOn.gameObject)
                         {
-                            GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
-                            healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
-                            UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
-                            StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
+                            if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false)
+                            {
+                                GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
+                                healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
+                                UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
+                                StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
+                            }
+                            canTeleport = false;
+                            renderLine = false;
+                            lineRender.render.enabled = false;
+                            return;
                         }
-                        canTeleport = false;
-                        renderLine = false;
-                        lineRender.render.enabled = false;
-                        return;
                     }
                     //
 
                     if (Manager.Instance.turretReload.numberOfTurretsLeft > 0)
                     {
+                        Debug.Log(Manager.Instance.turretReload.numberOfTurretsLeft);
+
                         //If we hit a asteroid to build on it!
                         if (hit.collider.GetComponent<SideScript>() != null)
                         {
+                            Debug.Log("Try Build");
+
                             if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
                             {
                                 UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();

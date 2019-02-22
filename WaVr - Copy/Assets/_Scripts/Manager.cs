@@ -135,6 +135,7 @@ public class Manager : MonoBehaviour
 
     [Space(20)]
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerBody;
 
     [Space(20)]
     public bool freeze = false;
@@ -477,7 +478,7 @@ public class Manager : MonoBehaviour
     private void Update()
     {
         healthPercent = ((masterCurrentHealth / masterMaxHealth) * 100);
-        uISettings.healthPercentText.text = healthPercent + "%";
+        uISettings.healthPercentText.text = Mathf.Floor(healthPercent) + "%";
         if (transform.position != new Vector3(0, 0, 0))
             transform.position = new Vector3(0, 0, 0);
         if (transform.rotation != new Quaternion(0, 0, 0, 0))
@@ -525,6 +526,8 @@ public class Manager : MonoBehaviour
     }
 
     public GameObject ReturnPlayer() => player;
+
+    public GameObject ReturnPlayerBody() => playerBody;
 
     TurretSpawn turretSpawn;
 
@@ -585,6 +588,9 @@ public class Manager : MonoBehaviour
                 uISettings.stateButtons[1].material = graphicsSettings.defaultMat;
                 uISettings.stateButtons[2].material = graphicsSettings.defaultMat;
 
+                foreach (AsteroidHealth asteroid in asteroidList)
+                    asteroid.ColliderOn();
+
                 foreach (IndexNode index in indexNodes)
                     index.Off();
                 break;
@@ -595,6 +601,9 @@ public class Manager : MonoBehaviour
                 uISettings.stateButtons[1].material = graphicsSettings.selectedMat;
                 uISettings.stateButtons[2].material = graphicsSettings.defaultMat;
 
+                foreach (AsteroidHealth asteroid in asteroidList)
+                    asteroid.ColliderOff();
+
                 foreach (IndexNode index in indexNodes)
                     index.Off();
                 break;
@@ -604,6 +613,9 @@ public class Manager : MonoBehaviour
                 uISettings.stateButtons[0].material = graphicsSettings.defaultMat;
                 uISettings.stateButtons[1].material = graphicsSettings.defaultMat;
                 uISettings.stateButtons[2].material = graphicsSettings.selectedMat;
+
+                foreach (AsteroidHealth asteroid in asteroidList)
+                    asteroid.ColliderOff();
 
                 foreach (IndexNode index in indexNodes)
                     index.On();

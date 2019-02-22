@@ -14,6 +14,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
     float v;
 
     Color currentColor;
+    SphereCollider sphereCollider;
 
     public void Awake()
     {
@@ -27,6 +28,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         rend = GetComponent<MeshRenderer>();
         Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
 
+        sphereCollider = GetComponentInParent<SphereCollider>();
     }
 
     [HideInInspector] public bool tmp = false;
@@ -115,6 +117,16 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
     {
         tmp = false;
         asteroid.alive = true;
+    }
+
+    public void ColliderOn ()
+    {
+        sphereCollider.enabled = true;
+    }
+
+    public void ColliderOff ()
+    {
+        sphereCollider.enabled = false;
     }
 }
 

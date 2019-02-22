@@ -17,6 +17,8 @@ public class TurretMenu : MonoBehaviour
     {
         if (teleAnywherePos == null)
             teleAnywherePos = gameObject.transform.Find("TeleAnywherePos");
+
+        playerEye = Manager.Instance.ReturnPlayerBody().transform;
     }
 
     public bool CheckWhichSideCanSeePlayer (bool spawnTurret = true)

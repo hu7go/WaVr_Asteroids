@@ -88,7 +88,7 @@ public class LineBender : MonoBehaviour
     {
         target = newTarget;
         point = newPoint;
-        if (Manager.Instance.bendLine)
+        if (Manager.Instance.bendLine && Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport)
             snapped = true;
     }
 
