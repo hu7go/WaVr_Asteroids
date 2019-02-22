@@ -6,7 +6,8 @@ public class TeleportRotation : MonoBehaviour
 {
     public TeleportMaster master;
     public LayerMask turretLayerMask;
-    public LayerMask ignoredLayer;
+    public LayerMask secondaryLayerMask;
+    public LayerMask ignoredLayers;
 
     [Space(20)]
     public List<GameObject> hands;
@@ -126,22 +127,22 @@ public class TeleportRotation : MonoBehaviour
 
         ray = new Ray(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward));
 
-        Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out hit, master.GetMaxLenght());
+        Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out hit, master.GetMaxLenght(), ~ignoredLayers);
+        Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out lineNotHit, master.GetMaxLenght() * 20, ~ignoredLayers);
 
-        Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out lineNotHit, master.GetMaxLenght() * 20);
-
-
-        cr.CustomRaycast(ray, out hit, master.GetMaxLenght());
+        //cr.CustomRaycast(ray, out hit, master.GetMaxLenght());
 
         if (hit.collider != null)
         {
-            if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport)
+            Debug.Log(hit.collider.gameObject.layer);
+
+            if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport && hit.collider.GetComponent<SideScript>() != null)
             {
                 Ray tmpRay = new Ray(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude));
 
                 Debug.DrawRay(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude), Color.cyan);
 
-                if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), ignoredLayer))
+                if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), secondaryLayerMask + ~ignoredLayers))
                 {
                     hit = tmpRaycastHit;
                 }
@@ -151,8 +152,6 @@ public class TeleportRotation : MonoBehaviour
         //! Line stuffs
         if (hit.collider != null)
         {
-            //Debug.Log("Bending!");
-
             lineRender.SetEnd(hit.point);
 
             if (hit.collider.GetComponent<SideScript>() != null)
@@ -162,7 +161,6 @@ public class TeleportRotation : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Straight!");
             lineRender.StraightRenderer();
         }
 
@@ -178,18 +176,21 @@ public class TeleportRotation : MonoBehaviour
 
         if (Manager.Instance.tAe.turretHover)
         {
-            if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), turretLayerMask))
+            if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), ~ignoredLayers))
             {
-                if (tmpPrev.collider != null)
+                if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), turretLayerMask))
                 {
-                    if (buildButtonTarget.collider != tmpPrev.collider)
+                    if (tmpPrev.collider != null)
                     {
-                        tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
+                        if (buildButtonTarget.collider != tmpPrev.collider)
+                        {
+                            tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
+                        }
                     }
-                }
 
-                buildButtonTarget.collider.GetComponent<TurretSpawn>().ShowRangeIndicator();
-                tmpPrev = buildButtonTarget;
+                    buildButtonTarget.collider.GetComponent<TurretSpawn>().ShowRangeIndicator();
+                    tmpPrev = buildButtonTarget;
+                }
             }
             else
             {
@@ -332,7 +333,6 @@ public class TeleportRotation : MonoBehaviour
 
                     ghostLineHit = asteroidHit;
 
-                    Debug.Log("How many times!!!");
                     master.currentAsteroidStandingOn = hit.collider.GetComponent<SideScript>();
 
                     //If we use the new State version of the UI we shoudl teleport instantly uppon clicking on a asteroid!
@@ -401,13 +401,9 @@ public class TeleportRotation : MonoBehaviour
 
                     if (Manager.Instance.turretReload.numberOfTurretsLeft > 0)
                     {
-                        Debug.Log(Manager.Instance.turretReload.numberOfTurretsLeft);
-
                         //If we hit a asteroid to build on it!
                         if (hit.collider.GetComponent<SideScript>() != null)
                         {
-                            Debug.Log("Try Build");
-
                             if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
                             {
                                 UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();

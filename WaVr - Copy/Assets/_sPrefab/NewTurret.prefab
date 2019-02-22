@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4129045427729266}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: _B006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 4328742735264432}
   - component: {fileID: 198911710557579624}
   - component: {fileID: 199368110744637920}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4605,7 +4605,7 @@ GameObject:
   - component: {fileID: 4701361632458464}
   - component: {fileID: 114873539679459466}
   - component: {fileID: 82748236690771888}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: NewTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4752,7 +4752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4935374260180924}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4783,7 +4783,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4888203099182432}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: _B007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4816,7 +4816,7 @@ GameObject:
   - component: {fileID: 4591800495498792}
   - component: {fileID: 114272306917012190}
   - component: {fileID: 54826279950119192}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: TurretRangeNew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4876,7 +4876,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4947025327821090}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4908,7 +4908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229247204374274}
   - component: {fileID: 114003467031880704}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Effect21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4965,7 +4965,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4745551751967414}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: _B005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4999,7 +4999,7 @@ GameObject:
   - component: {fileID: 33532893485240288}
   - component: {fileID: 23594366328949732}
   - component: {fileID: 64169522248239704}
-  m_Layer: 2
+  m_Layer: 17
   m_Name: Sphere.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5074,7 +5074,7 @@ MeshCollider:
   m_GameObject: {fileID: 1392475662165530}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -5091,7 +5091,7 @@ GameObject:
   - component: {fileID: 198497217928557566}
   - component: {fileID: 199692713459006434}
   - component: {fileID: 114067759495746504}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Distortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9669,7 +9669,7 @@ GameObject:
   - component: {fileID: 4387976183048818}
   - component: {fileID: 96865498247735076}
   - component: {fileID: 114367092929567678}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9841,7 +9841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4714709733096444}
   - component: {fileID: 114933149515271872}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9909,7 +9909,7 @@ GameObject:
   - component: {fileID: 96617856764172520}
   - component: {fileID: 114739670945005906}
   - component: {fileID: 114302177148844780}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: TrailDistortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10099,7 +10099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4898860632321706}
   - component: {fileID: 137301384457940056}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Gun_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10182,7 +10182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4600357778699998}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: _B004
   m_TagString: Untagged
   m_Icon: {fileID: 0}

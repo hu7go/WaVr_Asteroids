@@ -153,13 +153,15 @@ public class Manager : MonoBehaviour
     private int counter;
     private int lifeLeft = 3;
     [HideInInspector]
-    public float objectiveHealth = 100;
     private List<GameObject> enemiesSpawned;
 
     /*[HideInInspector]*/ public float masterCurrentHealth;
     /*[HideInInspector]*/ public float masterMaxHealth;
     public float wantedMaxHealth = 11200;
+    [Range(0, 100)]
     public float healthPercent;
+    [Range(0, 100)]
+    public float startHealthPercent = 100;
 
     int minutes ,minutes2;
     int seconds,seconds2;
@@ -216,23 +218,18 @@ public class Manager : MonoBehaviour
         {
             case GraphicsSettings.WorldVersion.one:
                 RenderSettings.skybox = graphicsSettings.skyboxOne;
-                graphicsSettings.spaceShip.SetActive(false);
+                //!? graphicsSettings.spaceShip.SetActive(false);
                 break;
             case GraphicsSettings.WorldVersion.two:
                 RenderSettings.skybox = graphicsSettings.skyboxTwo;
-                graphicsSettings.spaceShip.SetActive(false);
+                //!? graphicsSettings.spaceShip.SetActive(false);
                 break;
             case GraphicsSettings.WorldVersion.three:
                 //The skybox version is not decided!
                 RenderSettings.skybox = graphicsSettings.skyboxOne;
-                graphicsSettings.spaceShip.SetActive(true);
+                //!? graphicsSettings.spaceShip.SetActive(true);
                 break;
         }
-    }
-
-    public Transform ReturnSpaceShip ()
-    {
-        return graphicsSettings.spaceShip.transform;
     }
 
     public void WaitForMapGeneration (GameObject middleAsteroid, List<Vector3> enemySpawnPositions)
@@ -269,6 +266,7 @@ public class Manager : MonoBehaviour
                 break;
         }
 
+        //Sets the starting health based on the number of asteroids in the scene!
         for (int i = 0; i < asteroidList.Count; i++)
         {
             masterCurrentHealth += asteroidList[i].asteroid.health;
@@ -278,6 +276,18 @@ public class Manager : MonoBehaviour
         uISettings.healthSlider.value = masterCurrentHealth;
 
         masterMaxHealth = masterCurrentHealth;
+
+        healthPercent = ((masterCurrentHealth / masterMaxHealth) * 100);
+
+        int currentAsteroid = 0;
+
+        while (healthPercent > startHealthPercent)
+        {
+            asteroidList[currentAsteroid].SetStartHealth(tAe.asteroidHealth);
+            healthPercent = ((masterCurrentHealth / masterMaxHealth) * 100);
+            currentAsteroid++;
+        }
+        //
 
         tpMaster.SetFirstAsteroid(middleAsteroid.GetComponent<SideScript>());
     }
@@ -491,6 +501,11 @@ public class Manager : MonoBehaviour
             seconds = (int)myTimer % 60;
 
             uISettings.timerText.text = minutes.ToString() + ": " + seconds.ToString("00");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Utils.ClearLogConsole();
         }
     }
     //! !!!!!

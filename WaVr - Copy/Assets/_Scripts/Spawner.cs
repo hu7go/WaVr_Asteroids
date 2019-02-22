@@ -51,7 +51,7 @@ public class Spawner : MonoBehaviour
     {
         counter++;
         //                      'This takes the first item from the enemyTypes list and spawns it'
-        GameObject newEnemy = Instantiate(/*>>>>>*/myWaveInfo.enemyTypes[0].enemie/*<<<<<*/, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
+        GameObject newEnemy = Instantiate(/*>>>>>*/myWaveInfo.enemyTypes[Random.Range(0, myWaveInfo.enemies.Count)].enemie/*<<<<<*/, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
         EnemyAI tmp = newEnemy.GetComponent<EnemyAI>();
         tmp.Initialize(objectiveOrder, threshHold, master, this, waveIndex);
         enemies.Add(tmp);

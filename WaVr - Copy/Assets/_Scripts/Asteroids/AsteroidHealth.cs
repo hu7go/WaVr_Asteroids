@@ -34,6 +34,17 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
     [HideInInspector] public bool tmp = false;
     bool damageBool = false;
 
+    public void SetStartHealth (float damage)
+    {
+        asteroid.health -= damage;
+        if (asteroid.health <= 0)
+        {
+            asteroid.alive = false;
+            Manager.Instance.masterCurrentHealth -= damage;
+            UpdateColor();
+        }
+    }
+
     public void TakeDamage(float damage, EnemySpawnPoint enemyOrigin)
     {
         if (asteroid.beingHealed == true)

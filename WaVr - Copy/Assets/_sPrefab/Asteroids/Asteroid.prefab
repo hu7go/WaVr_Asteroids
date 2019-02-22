@@ -215,7 +215,7 @@ MonoBehaviour:
   teleAnywherePos: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 196608
 --- !u!1 &5422393725239438146
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +525,7 @@ MonoBehaviour:
   teleAnywherePos: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 196608
 --- !u!1 &5423830163696315034
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +713,7 @@ MonoBehaviour:
   teleAnywherePos: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 196608
 --- !u!1 &5423955690142916304
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +781,7 @@ MonoBehaviour:
   teleAnywherePos: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 196608
 --- !u!1 &5424019127765144246
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +849,7 @@ MonoBehaviour:
   teleAnywherePos: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 196608
 --- !u!1 &5424225587802581346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,7 +1399,7 @@ MonoBehaviour:
   teleAnywherePos: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 196608
 --- !u!1 &5424494164781485484
 GameObject:
   m_ObjectHideFlags: 0

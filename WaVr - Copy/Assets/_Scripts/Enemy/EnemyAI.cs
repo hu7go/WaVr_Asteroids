@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
 
     private List<AsteroidHealth> objectiveOrder;
 
-    private float healthThreshHold;
+    [SerializeField] private float healthThreshHold;
 
     [HideInInspector] public bool seekAndDestroy = true;
     private EnemySpawnPoint home;
@@ -60,7 +60,7 @@ public class EnemyAI : MonoBehaviour
         health += Manager.Instance.tAe.waveCount;
     }
 
-    public void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
+    public virtual void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
     {
         objectiveOrder = newList;
         healthThreshHold = newHealthThreshHold;

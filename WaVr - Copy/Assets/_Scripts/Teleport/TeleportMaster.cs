@@ -72,6 +72,7 @@ public class TeleportMaster : MonoBehaviour
         firstAsteroid = newAsteroid;
 
         Manager.Instance.ReturnPlayer().transform.parent = firstAsteroid.rotator;
+        Manager.Instance.ReturnPlayer().transform.position = firstAsteroid.transform.position;
 
         currentAsteroidStandingOn = firstAsteroid;
         currentHit = firstAsteroid;

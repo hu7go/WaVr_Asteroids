@@ -1,0 +1,11 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EAI_Persistant : EnemyAI
+{
+    public override void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
+    {
+        base.Initialize(newList, 0, newMaster, newSpawner, newWaveIndex);
+    }
+}
