@@ -48,6 +48,7 @@ public class MapGenerator : MonoBehaviour
     private Vector3 left;
     private Vector3 right;
     private List<Vector3> spawns = new List<Vector3>();
+    private float numberOfAsteroids = 100;
 
     private void Start()
     {
@@ -91,13 +92,8 @@ public class MapGenerator : MonoBehaviour
         spawns.Add(forward);
         spawns.Add(left);
 
-        //mapFillPercent = ((Manager.Instance.wantedMaxHealth) / (width * height * depth * Manager.Instance.tAe.asteroidHealth)) * 100f;
-
-        //float currentPercent = Manager.Instance.wantedMaxHealth;
-        //float maxPercent = (width * height * depth) * Manager.Instance.tAe.asteroidHealth;
-        //mapFillPercent = currentPercent / maxPercent;
-
-        //mapFillPercent = (Manager.Instance.wantedMaxHealth / (Manager.Instance.wantedMaxHealth * 100f));
+        numberOfAsteroids = (Manager.Instance.wantedMaxHealth / Manager.Instance.tAe.asteroidHealth);
+        numberOfAsteroids = Mathf.RoundToInt((numberOfAsteroids / Manager.Instance.tAe.asteroidHealth) * Manager.Instance.tAe.asteroidHealth);
 
         GenerateMap();
 
@@ -113,21 +109,20 @@ public class MapGenerator : MonoBehaviour
         System.Random psuedoRandom = new System.Random(seed.GetHashCode());
         System.Random psuedoRandomJunk = new System.Random(seed.GetHashCode());
 
+
         for (int x = -width / 2; x < width / 2; x++)
         {
             for (int y = -height / 2; y < height / 2; y++)
             {
                 for (int z = -depth / 2; z < depth / 2; z++)
                 {
-                    int tmp = (psuedoRandom.Next(0, 100 * 1000000) < mapFillPercent * 1000000) ? 1 : 0;
+                    int tmp = 0;
 
                     //Spawns junk!
                     if (minorSpaceJunk)
                     {
                         if (tmp == 0)
-                        {
                             tmp = (psuedoRandomJunk.Next(0, 100 * 1000000) < junkFillPercent * 1000000) ? 2 : 0;
-                        }
                     }
                     //
 
@@ -139,6 +134,16 @@ public class MapGenerator : MonoBehaviour
                     }
                     map.Add(newNode);
                 }
+            }
+        }
+
+        for (int i = 0; i < numberOfAsteroids - 1; i++)
+        {
+            int ast = psuedoRandom.Next(0, map.Count);
+
+            if (map[ast].onOff == 0)
+            {
+                map[ast].onOff = 1;
             }
         }
 

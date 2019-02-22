@@ -134,15 +134,13 @@ public class TeleportRotation : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider.gameObject.layer);
-
             if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport && hit.collider.GetComponent<SideScript>() != null)
             {
                 Ray tmpRay = new Ray(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude));
 
                 Debug.DrawRay(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude), Color.cyan);
 
-                if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), secondaryLayerMask + ~ignoredLayers))
+                if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), secondaryLayerMask))
                 {
                     hit = tmpRaycastHit;
                 }
@@ -176,21 +174,18 @@ public class TeleportRotation : MonoBehaviour
 
         if (Manager.Instance.tAe.turretHover)
         {
-            if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), ~ignoredLayers))
+            if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), turretLayerMask))
             {
-                if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), turretLayerMask))
+                if (tmpPrev.collider != null)
                 {
-                    if (tmpPrev.collider != null)
+                    if (buildButtonTarget.collider != tmpPrev.collider)
                     {
-                        if (buildButtonTarget.collider != tmpPrev.collider)
-                        {
-                            tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
-                        }
+                        tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
                     }
-
-                    buildButtonTarget.collider.GetComponent<TurretSpawn>().ShowRangeIndicator();
-                    tmpPrev = buildButtonTarget;
                 }
+
+                buildButtonTarget.collider.GetComponent<TurretSpawn>().ShowRangeIndicator();
+                tmpPrev = buildButtonTarget;
             }
             else
             {
