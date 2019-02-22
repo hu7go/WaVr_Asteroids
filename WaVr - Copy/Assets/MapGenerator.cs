@@ -100,7 +100,7 @@ public class MapGenerator : MonoBehaviour
         SpawnAsteroids();
         ProcessMap();
 
-        Manager.Instance.WaitForMapGeneration(middleAsteroid, spawns);
+        Manager.Instance.WaitForMapGeneration(middleAsteroid, spawns, seed);
         map.Clear();
     }
 

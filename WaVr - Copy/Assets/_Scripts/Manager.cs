@@ -232,7 +232,7 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public void WaitForMapGeneration (GameObject middleAsteroid, List<Vector3> enemySpawnPositions)
+    public void WaitForMapGeneration (GameObject middleAsteroid, List<Vector3> enemySpawnPositions, string seed)
     {
         int j = 0;
         foreach (Wave wave in waves)
@@ -281,11 +281,17 @@ public class Manager : MonoBehaviour
 
         int currentAsteroid = 0;
 
+        System.Random psuedoRandom = new System.Random(seed.GetHashCode());
+
         while (healthPercent > startHealthPercent)
         {
-            asteroidList[currentAsteroid].SetStartHealth(tAe.asteroidHealth);
-            healthPercent = ((masterCurrentHealth / masterMaxHealth) * 100);
-            currentAsteroid++;
+            int randomNumber = psuedoRandom.Next(0, asteroidList.Count);
+            if (asteroidList[randomNumber].asteroid.alive)
+            {
+                asteroidList[randomNumber].SetStartHealth(tAe.asteroidHealth);
+                healthPercent = ((masterCurrentHealth / masterMaxHealth) * 100);
+                currentAsteroid++;
+            }
         }
         //
 

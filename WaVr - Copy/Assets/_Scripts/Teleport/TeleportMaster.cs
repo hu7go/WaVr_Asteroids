@@ -56,6 +56,8 @@ public class TeleportMaster : MonoBehaviour
 
     [Space(20), SerializeField] public int arrowIndex = 1;
 
+    [HideInInspector] public Transform currentRotator;
+
     private void Start()
     {
         OGMaxLenght = teleportMaxLenght;
@@ -70,6 +72,8 @@ public class TeleportMaster : MonoBehaviour
     public void SetFirstAsteroid (SideScript newAsteroid)
     {
         firstAsteroid = newAsteroid;
+
+        currentRotator = firstAsteroid.rotator;
 
         Manager.Instance.ReturnPlayer().transform.parent = firstAsteroid.rotator;
         Manager.Instance.ReturnPlayer().transform.position = firstAsteroid.transform.position;
@@ -357,6 +361,7 @@ public class TeleportMaster : MonoBehaviour
         {
             previousSide = currentSide;
             currentSide = currentHit.sides;
+            currentRotator = currentHit.rotator;
         }
         if (onlyUp)
         {
@@ -470,7 +475,10 @@ public class TeleportMaster : MonoBehaviour
     public void SetHit (RaycastHit newHit)
     {
         if (newHit.collider.GetComponent<SideScript>() != null)
+        {
             currentHit = newHit.collider.GetComponent<SideScript>();
+            currentRotator = currentHit.rotator;
+        }
     }
 
     public void IncreaseMaxLenght () => teleportMaxLenght += 10;

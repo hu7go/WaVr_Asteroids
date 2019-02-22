@@ -410,6 +410,7 @@ public class TeleportRotation : MonoBehaviour
                             }
 
                             master.currentHit = hit.collider.GetComponent<SideScript>();
+                            master.currentRotator = hit.collider.GetComponent<SideScript>().rotator;
 
                             RaycastHit tmpRaycastHit = new RaycastHit();
 

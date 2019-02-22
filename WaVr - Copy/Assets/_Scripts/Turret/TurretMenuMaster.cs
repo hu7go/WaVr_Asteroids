@@ -18,6 +18,8 @@ public class TurretMenuMaster : MonoBehaviour
     //The turrets on this cube!
     private List<TurretStruct> turrets = new List<TurretStruct>();
 
+    TeleportMaster tpMaster;
+
     private void Awake()
     {
         sideMenus = GetComponentsInChildren<TurretMenu>();
@@ -27,6 +29,7 @@ public class TurretMenuMaster : MonoBehaviour
 
     public void CheckSides(TeleportMaster master, bool spawn = true)
     {
+        tpMaster = master;
         if (!spawn)
         {
             List<SideScript> tmpList = new List<SideScript>();
@@ -106,7 +109,7 @@ public class TurretMenuMaster : MonoBehaviour
     {
         for (int i = 0; i < menuPos.Count; i++)
         {
-            GameObject newButton = Instantiate(turretButton, menuPos[i]);
+            GameObject newButton = Instantiate(turretButton, menuPos[i].position, tpMaster.currentRotator.rotation, menuPos[i]);
             turretButtons.Add(newButton);
             TurretSpawn tmpTurret = newButton.GetComponent<TurretSpawn>();
             tmpTurret.lookAt = Manager.Instance.ReturnPlayer().transform;
