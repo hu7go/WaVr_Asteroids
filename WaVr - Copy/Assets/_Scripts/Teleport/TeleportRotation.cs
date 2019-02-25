@@ -416,8 +416,7 @@ public class TeleportRotation : MonoBehaviour
                             if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
                             {
                                 UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
-                                uImaster.NobuildTextStart();
-                                uImaster.NobuildTextStop();
+                                uImaster.CoroutineStarter(uImaster.NobuildTextStart, uImaster.NobuildTextStop);
                                 canTeleport = false;
                                 renderLine = false;
                                 lineRender.render.enabled = false;
