@@ -257,21 +257,21 @@ public class Manager : MonoBehaviour
         //add a enemyspawnlocation look at objective
         SetPointerState(Enums.PointerState.Teleport);
 
-        switch (graphicsSettings.cubesOn)
-        {
-            case true:
-                foreach (AsteroidHealth mesh in asteroidList)
-                    mesh.GetComponent<MeshRenderer>().enabled = true;
-                graphicsSettings.asteroids.SetActive(false);
-                break;
-            case false:
-                foreach (AsteroidHealth mesh in asteroidList)
-                    mesh.GetComponent<MeshRenderer>().enabled = false;
-                graphicsSettings.asteroids.SetActive(true);
-                break;
-            default:
-                break;
-        }
+        //switch (graphicsSettings.cubesOn)
+        //{
+        //    case true:
+        //        foreach (AsteroidHealth mesh in asteroidList)
+        //            mesh.GetComponent<MeshRenderer>().enabled = true;
+        //        graphicsSettings.asteroids.SetActive(false);
+        //        break;
+        //    case false:
+        //        foreach (AsteroidHealth mesh in asteroidList)
+        //            mesh.GetComponent<MeshRenderer>().enabled = false;
+        //        graphicsSettings.asteroids.SetActive(true);
+        //        break;
+        //    default:
+        //        break;
+        //}
 
         //Sets the starting health based on the number of asteroids in the scene!
         for (int i = 0; i < asteroidList.Count; i++)
