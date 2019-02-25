@@ -398,7 +398,7 @@ public class TeleportRotation : MonoBehaviour
                                 GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
                                 healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
                                 UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
-                                StartCoroutine(uImaster.TextOnDelayOff(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop));
+                                uImaster.CoroutineStarter(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop);
                             }
                             canTeleport = false;
                             renderLine = false;
@@ -416,7 +416,8 @@ public class TeleportRotation : MonoBehaviour
                             if (hit.collider.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false)
                             {
                                 UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
-                                StartCoroutine(uImaster.TextOnDelayOff(uImaster.NobuildTextStart, uImaster.NobuildTextStop));
+                                uImaster.NobuildTextStart();
+                                uImaster.NobuildTextStop();
                                 canTeleport = false;
                                 renderLine = false;
                                 lineRender.render.enabled = false;

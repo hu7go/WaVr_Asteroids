@@ -14,7 +14,11 @@ public class UIMaster : MonoBehaviour
 
     private Function previousFunc;
     private bool textShowing;
-
+    
+    public void CoroutineStarter(Function firstFunction, Function secondFunction)
+    {
+        StartCoroutine(TextOnDelayOff(firstFunction, secondFunction));
+    }
     public IEnumerator TextOnDelayOff (Function firstFunction, Function secondFunction)
     {
         if(textShowing == true)
