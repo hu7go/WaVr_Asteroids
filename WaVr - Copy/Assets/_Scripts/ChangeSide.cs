@@ -129,5 +129,7 @@ public class ChangeSide : MonoBehaviour
             }
         }
         tpm.ChechWhichSideIsClosest();
+
+        Manager.Instance.SetWorldAxis();
     }
 }

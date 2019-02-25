@@ -8,6 +8,7 @@ public class TurretSpawn : MonoBehaviour
 
     [HideInInspector] public TurretMenuMaster master;
     [HideInInspector] public Transform lookAt;
+    [HideInInspector] public Vector3 worldAxis;
     [HideInInspector] public Transform turretSpawnpos;
     [Range(0, 5)]
     [HideInInspector] public int index;
@@ -18,10 +19,16 @@ public class TurretSpawn : MonoBehaviour
     GameObject currentTurret;
     bool tmp = true;
 
+    public void Instantiate (Transform player, Vector3 newWorldAxis)
+    {
+        lookAt = player;
+        worldAxis = newWorldAxis;
+    }
+
     private void Update()
     {
         if (lookAt != null)
-            transform.LookAt(lookAt);
+            transform.LookAt(lookAt, worldAxis);
     }
 
     //Spawns the actual turret!

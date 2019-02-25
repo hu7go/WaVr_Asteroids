@@ -184,7 +184,7 @@ public class EnemySpawnPoint : MonoBehaviour
     {
         if (start)
         {
-            transform.LookAt(Manager.Instance.ReturnPlayer().transform);
+            transform.LookAt(Manager.Instance.ReturnPlayer().transform, Manager.Instance.GetWorldAxis());
 
             currentColor = purple;
 

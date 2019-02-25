@@ -109,10 +109,13 @@ public class TurretMenuMaster : MonoBehaviour
     {
         for (int i = 0; i < menuPos.Count; i++)
         {
-            GameObject newButton = Instantiate(turretButton, menuPos[i].position, tpMaster.currentRotator.rotation, menuPos[i]);
+            GameObject newButton = Instantiate(turretButton, menuPos[i].position, tpMaster.currentRotator.localRotation, menuPos[i]);
             turretButtons.Add(newButton);
             TurretSpawn tmpTurret = newButton.GetComponent<TurretSpawn>();
-            tmpTurret.lookAt = Manager.Instance.ReturnPlayer().transform;
+
+            tmpTurret.Instantiate(Manager.Instance.ReturnPlayer().transform, Manager.Instance.GetWorldAxis());
+
+
             if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.anywhere)
                 tmpTurret.turretSpawnpos = turretSides[i].transform;
             else
@@ -190,8 +193,6 @@ public class TurretMenuMaster : MonoBehaviour
                         turretButtons.Remove(newButton);
                         Destroy(newButton);
                     }
-                    break;
-                default:
                     break;
             }
         }

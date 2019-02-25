@@ -201,6 +201,8 @@ public class Manager : MonoBehaviour
     public GameObject enumPlayerOffsetObj;
     [HideInInspector] public List<ChangeSide> currentChangeSideScripts;
 
+    private Vector3 currentWorldAxis = Vector3.up;
+
     private static bool created = false;
     public static Manager Instance { get; private set; }
 
@@ -320,6 +322,36 @@ public class Manager : MonoBehaviour
         }
 
         tpMaster.SetFirstAsteroid(middleAsteroid.GetComponent<SideScript>());
+    }
+
+    public void SetWorldAxis ()
+    {
+        switch (tpMaster.currentSide)
+        {
+            case Sides.up:
+                currentWorldAxis = Vector3.up;
+                break;
+            case Sides.down:
+                currentWorldAxis = Vector3.down;
+                break;
+            case Sides.front:
+                currentWorldAxis = Vector3.forward;
+                break;
+            case Sides.back:
+                currentWorldAxis = Vector3.back;
+                break;
+            case Sides.left:
+                currentWorldAxis = Vector3.left;
+                break;
+            case Sides.right:
+                currentWorldAxis = Vector3.right;
+                break;
+        }
+    }
+
+    public Vector3 GetWorldAxis ()
+    {
+        return currentWorldAxis;
     }
 
     public void UpdateHealth (float newHealth)
@@ -696,16 +728,4 @@ public class Manager : MonoBehaviour
     public void UpdatePath (Vector3 pos, EnemySpawnPoint currentSpawnPoint) => currentSpawnPoint.FindPath(pos);
 
     public void SwitchPortalTarget () => tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;
-}
-
-[System.Serializable]
-public class Wave
-{
-    public float maxNumberOfEnemies;
-    public float damageThreshHold;
-    public Transform spawnPosition;
-    public List<Enemies> enemyTypes;
-    [HideInInspector] public float currentNumberOfEnemies;
-    [HideInInspector] public List<EnemyAI> enemies;
-    [HideInInspector] public float damageDone;
 }
