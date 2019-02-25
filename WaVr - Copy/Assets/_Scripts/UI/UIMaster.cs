@@ -36,11 +36,7 @@ public class UIMaster : MonoBehaviour
         noBuildText.SetActive(true);
     }
 
-    public void NobuildTextStop()
-    {
-        if (textShowing == false) 
-            noBuildText.SetActive(false);
-    }
+    public void NobuildTextStop() => noBuildText.SetActive(false);
 
 
     public void NowHealingTextStart()
@@ -49,9 +45,5 @@ public class UIMaster : MonoBehaviour
         noBuildText.SetActive(true);
     }
 
-    public void NowHealingTextStop()
-    {
-        if (textShowing == false) 
-           noBuildText.SetActive(false);
-    }
+    public void NowHealingTextStop() => noBuildText.SetActive(false);
 }
