@@ -22,10 +22,7 @@ public class UIMaster : MonoBehaviour
     public IEnumerator TextOnDelayOff (Function firstFunction, Function secondFunction)
     {
         if(textShowing == true)
-        {
             StopCoroutine("TextOnDelayOff");
-            textShowing = false;
-        }
         firstFunction();
         textShowing = true;
         yield return new WaitForSeconds(textDelayTime);
