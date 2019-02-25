@@ -30,9 +30,9 @@ public class UIMaster : MonoBehaviour
         }
         firstFunction();
         textShowing = true;
+        previousFunc = secondFunction;
         yield return new WaitForSeconds(textDelayTime);
         secondFunction();
-        previousFunc = secondFunction;
         textShowing = false;
     }
 
