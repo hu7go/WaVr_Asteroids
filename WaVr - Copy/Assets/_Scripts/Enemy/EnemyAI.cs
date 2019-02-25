@@ -78,9 +78,7 @@ public class EnemyAI : MonoBehaviour
     private void CheckHealthThreshHold()
     {
         if (Manager.Instance.healthPercent <= healthThreshHold)
-        {
             GoHome();
-        }
     }
 
     public void GoHome ()
@@ -121,9 +119,7 @@ public class EnemyAI : MonoBehaviour
                 home.Over();
             }
             else
-            {
                 transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
-            }
         }
 
         transform.LookAt(objective);
@@ -149,6 +145,7 @@ public class EnemyAI : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            //Manager.Instance.tAe.killcount++;
             Instantiate(deathEffect, transform.position, transform.rotation);
             Kill();
         }
@@ -165,15 +162,9 @@ public class EnemyAI : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public int ReturnHealth ()
-    {
-        return health;
-    }
+    public int ReturnHealth () => health;
 
-    public void SetPath (List<AsteroidHealth> newPath)
-    {
-        objectiveOrder = newPath;
-    }
+    public void SetPath (List<AsteroidHealth> newPath) => objectiveOrder = newPath;
 
     //Debuging stuffs!
 
