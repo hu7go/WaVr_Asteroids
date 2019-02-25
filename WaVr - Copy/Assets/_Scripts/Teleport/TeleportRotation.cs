@@ -173,10 +173,15 @@ public class TeleportRotation : MonoBehaviour
 
         if (hit.collider == null && lineNotHit.collider == null)
             lineVersion = LineVersion.nothing;
-        if ((hit.collider == null && lineNotHit.collider != null) || hit.collider.CompareTag("Junk"))
+        if (hit.collider == null && lineNotHit.collider != null)
             lineVersion = LineVersion.outOfRange;
         if (hit.collider != null)
             lineVersion = LineVersion.hit;
+
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Junk"))
+        {
+            lineVersion = LineVersion.outOfRange;
+        }
 
         lineRender.ChangeLineVersion();
         //
