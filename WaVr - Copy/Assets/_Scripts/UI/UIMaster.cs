@@ -12,22 +12,12 @@ public class UIMaster : MonoBehaviour
     [SerializeField]
     private GameObject nowHealingText;
 
-    private Function previousFunc;
-    private bool textShowing;
 
     public IEnumerator TextOnDelayOff (Function firstFunction, Function secondFunction)
     {
-        if(textShowing == true)
-        {
-            previousFunc();
-            textShowing = false;
-        }
         firstFunction();
-        textShowing = true;
-        previousFunc = secondFunction;
         yield return new WaitForSeconds(textDelayTime);
         secondFunction();
-        textShowing = false;
     }
 
     public void NobuildTextStart()
