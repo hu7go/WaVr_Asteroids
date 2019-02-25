@@ -9,6 +9,7 @@ public class Enemies : ScriptableObject
     public float damage;
     public float health;
     public float speed;
+    public float fireRate;
+    public GameObject bullet;
     public Vector3 scale;
-    public Mesh mesh;
 }
