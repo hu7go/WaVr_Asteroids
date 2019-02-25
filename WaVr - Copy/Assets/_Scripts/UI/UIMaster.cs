@@ -20,12 +20,10 @@ public class UIMaster : MonoBehaviour
         if(textShowing == true)
         {
             StopCoroutine("TextOnDelayOff");
-            previousFunc();
             textShowing = false;
         }
         firstFunction();
         textShowing = true;
-        previousFunc = secondFunction;
         yield return new WaitForSeconds(textDelayTime);
         secondFunction();
         textShowing = false;
