@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,10 +14,6 @@ public class UIMaster : MonoBehaviour
 
     private Function previousFunc;
     private bool textShowing;
-    void Start()
-    {
-        //StartCoroutine(TextOnDelayOff(NobuildTextStart, NobuildTextStop));
-    }
 
     public IEnumerator TextOnDelayOff (Function firstFunction, Function secondFunction)
     {
@@ -45,14 +40,9 @@ public class UIMaster : MonoBehaviour
 
     public void NowHealingTextStart()
     {
-        nowHealingText.GetComponent<Text>().text = "Now healing this asteroid";
-        nowHealingText.SetActive(true);
+        noBuildText.GetComponent<Text>().text = "Now healing this asteroid";
+        noBuildText.SetActive(true);
     }
 
-    public void NowHealingTextStop() => nowHealingText.SetActive(false);
-
-    void Update()
-    {
-        
-    }
+    public void NowHealingTextStop() => noBuildText.SetActive(false);
 }
