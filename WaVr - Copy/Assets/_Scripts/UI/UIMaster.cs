@@ -17,12 +17,12 @@ public class UIMaster : MonoBehaviour
     
     public void CoroutineStarter(Function firstFunction, Function secondFunction)
     {
+        if(textShowing == true)
+            StopAllCoroutines();
         StartCoroutine(TextOnDelayOff(firstFunction, secondFunction));
     }
     public IEnumerator TextOnDelayOff (Function firstFunction, Function secondFunction)
     {
-        if(textShowing == true)
-            StopCoroutine("TextOnDelayOff");
         firstFunction();
         textShowing = true;
         yield return new WaitForSeconds(textDelayTime);
