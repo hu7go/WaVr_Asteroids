@@ -29,8 +29,8 @@ public class UIMaster : MonoBehaviour
         firstFunction();
         textShowing = true;
         yield return new WaitForSeconds(textDelayTime);
-        secondFunction();
         textShowing = false;
+        secondFunction();
     }
 
     public void NobuildTextStart()
@@ -39,7 +39,12 @@ public class UIMaster : MonoBehaviour
         noBuildText.SetActive(true);
     }
 
-    public void NobuildTextStop() => noBuildText.SetActive(false);
+    public void NobuildTextStop()
+    {
+        if (textShowing == false) 
+            noBuildText.SetActive(false);
+    }
+
 
     public void NowHealingTextStart()
     {
@@ -47,5 +52,9 @@ public class UIMaster : MonoBehaviour
         noBuildText.SetActive(true);
     }
 
-    public void NowHealingTextStop() => noBuildText.SetActive(false);
+    public void NowHealingTextStop()
+    {
+        if (textShowing == false) 
+           noBuildText.SetActive(false);
+    }
 }
