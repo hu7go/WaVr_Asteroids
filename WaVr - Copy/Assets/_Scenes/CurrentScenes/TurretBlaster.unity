@@ -12035,6 +12035,7 @@ MonoBehaviour:
   fadeTime: 0.2
   firstAsteroid: {fileID: 1726838052}
   arrowIndex: 1
+  currentRotator: {fileID: 0}
 --- !u!114 &1106711026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33205,7 +33206,10 @@ MonoBehaviour:
   turretLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  ignoredLayer:
+  secondaryLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ignoredLayers:
     serializedVersion: 2
     m_Bits: 0
   hands:
@@ -33463,7 +33467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1963608504
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34190,7 +34194,10 @@ MonoBehaviour:
   turretLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  ignoredLayer:
+  secondaryLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  ignoredLayers:
     serializedVersion: 2
     m_Bits: 0
   hands:
@@ -35302,7 +35309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2056120667
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35838,6 +35845,7 @@ MonoBehaviour:
   positiontrackingOn: 1
   occulus: {fileID: 627375567}
   player: {fileID: 627375558}
+  playerBody: {fileID: 0}
   freeze: 0
   startTimer: 0
   gameStarted: 0
@@ -35846,11 +35854,11 @@ MonoBehaviour:
   countdownTimer: 20
   indexNodes: []
   objective: {fileID: 0}
-  objectiveHealth: 100
   masterCurrentHealth: 0
   masterMaxHealth: 0
   wantedMaxHealth: 11200
   healthPercent: 0
+  startHealthPercent: 100
   enemyParent: {fileID: 0}
   spawnedFirstTurret: 0
   asteroidList:
