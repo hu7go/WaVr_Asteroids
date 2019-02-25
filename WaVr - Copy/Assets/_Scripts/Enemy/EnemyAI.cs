@@ -145,7 +145,7 @@ public class EnemyAI : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            //Manager.Instance.tAe.killcount++;
+            Manager.Instance.tAe.killCount++;
             Instantiate(deathEffect, transform.position, transform.rotation);
             Kill();
         }

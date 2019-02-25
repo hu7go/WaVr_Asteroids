@@ -56,6 +56,7 @@ public class Manager : MonoBehaviour
         public GameObject healer;
         [HideInInspector] public GameObject enemySpawnPoint;
         public int waveCount = 0;
+        public int killCount;
         public Transform currentActiveSpawner;
 
         public float asteroidHealth = 200;
@@ -566,9 +567,14 @@ public class Manager : MonoBehaviour
 
     public void ObjectiveReached()
     {
+        int totalnumberofEnemies = 0;
+        foreach (Wave wave in waves)
+        {
+            totalnumberofEnemies +=(int) wave.maxNumberOfEnemies; 
+        }
         startTimer = false;
         uISettings.endUI.SetActive(true);
-        uISettings.overText.text = ("Nice! You destroyed the enemies in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds.\n\nWith " + (int)healthPercent + "% health left!");
+        uISettings.overText.text = ("Nice! You destroyed"+tAe.killCount +"/"+ totalnumberofEnemies +" in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds.\n\nWith " + (int)healthPercent + "% health left!");
     }
 
     public GameObject ReturnPlayer() => player;
