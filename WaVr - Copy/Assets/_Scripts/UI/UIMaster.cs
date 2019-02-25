@@ -12,22 +12,29 @@ public class UIMaster : MonoBehaviour
     [SerializeField]
     private GameObject nowHealingText;
 
-    private bool isRunning;
+    private Function previousFunc;
+    private bool textShowing;
 
     public IEnumerator TextOnDelayOff (Function firstFunction, Function secondFunction)
     {
+        if(textShowing == true)
+        {
+            StopCoroutine("TextOnDelayOff");
+            previousFunc();
+            textShowing = false;
+        }
         firstFunction();
-        isRunning = true;
+        textShowing = true;
+        previousFunc = secondFunction;
         yield return new WaitForSeconds(textDelayTime);
         secondFunction();
-        isRunning = false;
+        textShowing = false;
     }
 
     public void NobuildTextStart()
     {
         noBuildText.GetComponent<Text>().text = "You can't build here, asteroid is dead";
-        if(isRunning == false)
-            noBuildText.SetActive(true);
+        noBuildText.SetActive(true);
     }
 
     public void NobuildTextStop() => noBuildText.SetActive(false);
@@ -35,8 +42,7 @@ public class UIMaster : MonoBehaviour
     public void NowHealingTextStart()
     {
         noBuildText.GetComponent<Text>().text = "Now healing this asteroid";
-        if(isRunning == false)
-            noBuildText.SetActive(true);
+        noBuildText.SetActive(true);
     }
 
     public void NowHealingTextStop() => noBuildText.SetActive(false);
