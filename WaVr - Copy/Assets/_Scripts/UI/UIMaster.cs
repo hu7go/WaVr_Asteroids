@@ -25,7 +25,6 @@ public class UIMaster : MonoBehaviour
         if(textShowing == true)
         {
             previousFunc();
-            previousFunc = secondFunction;
             textShowing = false;
         }
         firstFunction();
