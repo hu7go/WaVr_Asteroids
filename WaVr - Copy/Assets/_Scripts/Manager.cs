@@ -28,6 +28,11 @@ public class Manager : MonoBehaviour
         public TeleVersion teleportVersion = TeleVersion.onTop;
         [Tooltip("This enum decides which state the player is in currently to make sure you can only do one thing at a time!")]
         public PointerState pointerState;
+        public GameObject arrowsSide;
+        public GameObject arrowsTop;
+        public GameObject indexPoints;
+        public List<ChangeSide> arrowsSideScripts;
+        public List<ChangeSide> arrowsTopScripts;
     }
     public Enums enums;
 
@@ -192,6 +197,8 @@ public class Manager : MonoBehaviour
     [HideInInspector] public TurretReloader turretReload;
 
     public bool bendLine = false;
+    public GameObject enumPlayerOffsetObj;
+    [HideInInspector] public List<ChangeSide> currentChangeSideScripts;
 
     private static bool created = false;
     public static Manager Instance { get; private set; }
@@ -295,6 +302,22 @@ public class Manager : MonoBehaviour
         }
         //
 
+        switch (enums.teleportVersion)
+        {
+            case Enums.TeleVersion.arrows:
+                enumPlayerOffsetObj.transform.position = new Vector3(0, .75f, 0);
+                uISettings.arrowsUI = enums.arrowsTop;
+                enums.indexPoints.SetActive(false);
+                currentChangeSideScripts = enums.arrowsTopScripts;
+                break;
+            case Enums.TeleVersion.arrowsSide:
+                enumPlayerOffsetObj.transform.position = new Vector3(2, .75f, 0);
+                uISettings.arrowsUI = enums.arrowsSide;
+                enums.indexPoints.SetActive(true);
+                currentChangeSideScripts = enums.arrowsSideScripts;
+                break;
+        }
+
         tpMaster.SetFirstAsteroid(middleAsteroid.GetComponent<SideScript>());
     }
 
@@ -327,10 +350,12 @@ public class Manager : MonoBehaviour
         
         yield return new WaitForSeconds(minWaveWaitTime);
 
+        //TODO: Change the waveDelayPercent to be more consistent!
         float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].maxNumberOfEnemies);
 
         if (waveDelayPercent == 0)
             waveDelayPercent = .1f;
+        //
 
         float timeToWait = maxWaveWaitTime * waveDelayPercent;
 

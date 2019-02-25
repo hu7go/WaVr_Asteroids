@@ -6,7 +6,6 @@ using System.Linq;
 
 public class TeleportMaster : MonoBehaviour
 {
-
     //need to check when these are used and if they are necessary!
     [Tooltip("This is for when you release the trigger for teleporting!")]
     public UnityEvent StartTeleport;
@@ -22,8 +21,8 @@ public class TeleportMaster : MonoBehaviour
     [Tooltip("The position that s looked at when checkin which side the player is currently standing on")]
     public Transform arrowPositionCheck;
     private Quaternion previousParentRotation;
-    [SerializeField] private Transform arrowsPos;
-    public ChangeSide[] arrowScripts;
+    public Transform arrowsPos;
+    public List<ChangeSide> arrowScripts;
     public bool ghostLine;
     public bool arrowsTeleport;
 
@@ -66,8 +65,10 @@ public class TeleportMaster : MonoBehaviour
         grab = pointer.GetComponent<VRTK_InteractGrab>();
 
         //! WARNING, this clears ALL log messages on start, comment out the line below if you need to debug something on start.
-        Invoke("ClearConsole", .01f);
+        //Invoke("ClearConsole", .01f);
     }
+
+    [HideInInspector] public bool done = false;
 
     public void SetFirstAsteroid (SideScript newAsteroid)
     {
@@ -81,6 +82,18 @@ public class TeleportMaster : MonoBehaviour
         currentAsteroidStandingOn = firstAsteroid;
         currentHit = firstAsteroid;
         previousHit = firstAsteroid;
+
+        arrowScripts = Manager.Instance.currentChangeSideScripts;
+
+        Debug.Log(arrowScripts.Count);
+
+        foreach (ChangeSide script in arrowScripts)
+        {
+            Debug.Log(currentAsteroidStandingOn.name);
+            script.rotator = currentAsteroidStandingOn.rotator.gameObject;
+        }
+
+        done = true;
     }
 
 #if (UNITY_EDITOR)
@@ -389,7 +402,7 @@ public class TeleportMaster : MonoBehaviour
 
             playerParent.transform.localPosition = new Vector3(0, 0/*0.75f*/, 0);
             playerParent.transform.parent.rotation = previousParentRotation;
-            for (int i = 0; i < arrowScripts.Length; i++)
+            for (int i = 0; i < arrowScripts.Count; i++)
                 arrowScripts[i].rotator = currentHit.rotator.gameObject;
 
             playerParent.transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -405,7 +418,7 @@ public class TeleportMaster : MonoBehaviour
             playerParent.transform.parent = currentHit.rotator;
 
             playerParent.transform.parent.rotation = previousParentRotation;
-            for (int i = 0; i < arrowScripts.Length; i++)
+            for (int i = 0; i < arrowScripts.Count; i++)
                 arrowScripts[i].rotator = currentHit.rotator.gameObject;
 
             playerParent.transform.localRotation = Quaternion.Euler(0, 0, 0);

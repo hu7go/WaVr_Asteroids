@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using VRTK;
 
@@ -58,12 +59,22 @@ public class TeleportRotation : MonoBehaviour
 
         UpdateLineRenderer();
 
-        if (Physics.Raycast(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5, 0, 0), out hit))
-            prevAsteroidHit = hit;
+        StartCoroutine(WaitTilDone());
+        
         if (Manager.Instance.enums.teleportVersion == Manager.Enums.TeleVersion.anywhere)
             highlightCubes = true;
         else
             highlightCubes = false;
+    }
+
+    private IEnumerator WaitTilDone ()
+    {
+        while (master.done == false)
+        {
+            yield return null;
+        }
+        if (Physics.Raycast(master.firstAsteroid.transform.position + new Vector3(2, 0, 0), master.firstAsteroid.transform.position + new Vector3(-5, 0, 0), out hit))
+            prevAsteroidHit = hit;
     }
 
     public void Update()
