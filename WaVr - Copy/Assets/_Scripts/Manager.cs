@@ -161,8 +161,8 @@ public class Manager : MonoBehaviour
     [HideInInspector]
     private List<GameObject> enemiesSpawned;
 
-    /*[HideInInspector]*/ public float masterCurrentHealth;
-    /*[HideInInspector]*/ public float masterMaxHealth;
+    [HideInInspector] public float masterCurrentHealth;
+    [HideInInspector] public float masterMaxHealth;
     public float wantedMaxHealth = 11200;
     [Range(0, 100)]
     public float healthPercent;

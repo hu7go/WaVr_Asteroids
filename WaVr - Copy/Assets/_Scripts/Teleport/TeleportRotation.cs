@@ -148,9 +148,7 @@ public class TeleportRotation : MonoBehaviour
             if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport && hit.collider.GetComponent<SideScript>() != null)
             {
                 Ray tmpRay = new Ray(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude));
-
                 Debug.DrawRay(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude), Color.cyan);
-
                 if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), secondaryLayerMask))
                 {
                     hit = tmpRaycastHit;
