@@ -95,6 +95,7 @@ public class LineBender : MonoBehaviour
     public void SetEnd (Vector3 newTarget)
     {
         points[2].position = newTarget;
+        snapped = false;
     }
 
     public void ResetLineEnd()

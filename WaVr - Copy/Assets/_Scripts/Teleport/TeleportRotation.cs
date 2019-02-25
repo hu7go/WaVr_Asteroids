@@ -161,10 +161,10 @@ public class TeleportRotation : MonoBehaviour
         {
             lineRender.SetEnd(hit.point);
 
-            if (hit.collider.GetComponent<SideScript>() != null)
-            {
+            if (hit.collider.GetComponent<SideScript>() != null && hit.collider.GetComponent<SideScript>() != master.currentAsteroidStandingOn)
                 lineRender.SetLineEnd(hit.collider.transform.position, hit.point);
-            }
+            else
+                lineRender.SetEnd(hit.point);
         }
         else
         {
@@ -173,7 +173,7 @@ public class TeleportRotation : MonoBehaviour
 
         if (hit.collider == null && lineNotHit.collider == null)
             lineVersion = LineVersion.nothing;
-        if (hit.collider == null && lineNotHit.collider != null)
+        if ((hit.collider == null && lineNotHit.collider != null) || hit.collider.CompareTag("Junk"))
             lineVersion = LineVersion.outOfRange;
         if (hit.collider != null)
             lineVersion = LineVersion.hit;

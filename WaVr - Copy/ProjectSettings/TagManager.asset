@@ -19,7 +19,7 @@ TagManager:
   - Objective
   - RestartButton
   - Asteroid
-  - Asteriod
+  - Junk
   layers:
   - Default
   - TransparentFX
