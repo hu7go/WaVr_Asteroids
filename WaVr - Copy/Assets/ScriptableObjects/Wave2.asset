@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed82110da71dede4fa5aff81bced3417, type: 3}
-  m_Name: Test
+  m_Name: Wave2
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
-  enemyPercent:
-  - 50
-  - 50
+  totalNumberOfEnemies: 22
+  numberOfEnemyTypes: 1
+  enemyTypes:
+  - {fileID: 11400000, guid: d9d9e2ca08efc554381968f8491ca3e9, type: 2}
+  enemyTypePercent: 16000000
+  prevEnemyTypePercent: 01000000010000000100000000000000

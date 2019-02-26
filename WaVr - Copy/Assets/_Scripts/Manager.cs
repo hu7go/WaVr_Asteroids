@@ -384,7 +384,7 @@ public class Manager : MonoBehaviour
         yield return new WaitForSeconds(minWaveWaitTime);
 
         //TODO: Change the waveDelayPercent to be more consistent!
-        float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].maxNumberOfEnemies);
+        float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].enemyController.totalNumberOfEnemies);
 
         if (waveDelayPercent == 0)
             waveDelayPercent = .1f;
@@ -435,7 +435,7 @@ public class Manager : MonoBehaviour
         tAe.spawnPoints.Add(tmpSpawnPoint);
         //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
         //                                                             X   '...            Y               ...'
-        tmpSpawnPoint.StartSpawner(20, (int)waves[tAe.waveCount].maxNumberOfEnemies, asteroidList, (int)waves[tAe.waveCount].damageThreshHold, tAe.waveCount, waves[tAe.waveCount]);
+        tmpSpawnPoint.StartSpawner(20, (int)waves[tAe.waveCount].enemyController.totalNumberOfEnemies, asteroidList, (int)waves[tAe.waveCount].damageThreshHold, tAe.waveCount, waves[tAe.waveCount]);
         //localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, enemyDestructionPercent);
         //
 
@@ -500,6 +500,7 @@ public class Manager : MonoBehaviour
 
         foreach (GameObject obj in enemiesSpawned)
         {
+            Debug.Log("Why tho? 2");
             obj.GetComponent<EnemyAI>().GoHome();
         }
 
@@ -602,7 +603,7 @@ public class Manager : MonoBehaviour
         int totalnumberofEnemies = 0;
         foreach (Wave wave in waves)
         {
-            totalnumberofEnemies +=(int) wave.maxNumberOfEnemies; 
+            totalnumberofEnemies +=(int) wave.enemyController.totalNumberOfEnemies; 
         }
         startTimer = false;
         uISettings.endUI.SetActive(true);

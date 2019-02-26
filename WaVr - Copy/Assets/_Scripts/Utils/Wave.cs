@@ -4,10 +4,9 @@ using UnityEngine;
 [System.Serializable]
 public class Wave
 {
-    public float maxNumberOfEnemies;
     public float damageThreshHold;
     public Transform spawnPosition;
-    public List<Enemies> enemyTypes;
+    public SO_EnemyWave enemyController;
     [HideInInspector] public float currentNumberOfEnemies;
     [HideInInspector] public List<EnemyAI> enemies;
     [HideInInspector] public float damageDone;

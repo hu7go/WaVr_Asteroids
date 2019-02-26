@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class SO_EnemyWave : ScriptableObject
 {
-    public List<Enemies> enemies;
-    [Range(0, 100), Tooltip("Dont change list lenght here! it will not work if you do")]
-    public List<float> enemyPercent;
+    public int totalNumberOfEnemies;
+    public int numberOfEnemyTypes;
+    [HideInInspector] public List<Enemies> enemyTypes;
+    [Space(10)]
+    [HideInInspector] public List<int> enemyTypePercent;
+    [HideInInspector] public List<int> prevEnemyTypePercent;
 }

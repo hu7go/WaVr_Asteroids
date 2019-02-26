@@ -6,66 +6,156 @@ using UnityEditor;
 [CustomEditor(typeof(SO_EnemyWave))]
 public class WaveEditor : Editor
 {
-    float prev = 0;
-    List<float> myList;
-    float numberThatChanged;
-    int notChange;
+    int prevLength = 0;
+    int prevNumberOfEnemies = 0;
+    public List<int> testPrev = new List<int>();
 
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
         SO_EnemyWave ew = (SO_EnemyWave)target;
 
-        if (ew.enemies.Count != prev)
+        if (prevLength != 0 && prevNumberOfEnemies != 0 && testPrev.Count != 0)
         {
-            myList = new List<float>();
-
-            UpdateList(ew);
-        }
-
-        if (ew.enemyPercent.Count != ew.enemies.Count)
-        {
-            UpdateList(ew);
-        }
-
-        bool change = false;
-
-        for (int i = 0; i < ew.enemyPercent.Count; i++)
-        {
-            if (ew.enemyPercent[i] != myList[i])
+            //! Update lists!
+            if (ew.enemyTypes.Count != prevLength || prevNumberOfEnemies != ew.totalNumberOfEnemies)
             {
-                notChange = i;
-                Debug.Log(i);
-                numberThatChanged = ew.enemyPercent[i];
-                change = true;
+                UpdatePercentList(ew);
+                UpdateEnemyList(ew);
             }
-        }
+            //
 
-        if (change)
-        {
-            for (int i = 0; i < ew.enemyPercent.Count; i++)
+            if (ew.numberOfEnemyTypes != ew.enemyTypes.Count)
             {
-                if (i != notChange)
+                UpdatePercentList(ew);
+                UpdateEnemyList(ew);
+            }
+
+            GUILayout.Space(20);
+
+            for (int i = 0; i < ew.numberOfEnemyTypes; i++)
+            {
+                ew.enemyTypes[i] = EditorGUILayout.ObjectField("Enemy type " + i + " : " + ew.enemyTypePercent[i], ew.enemyTypes[i], typeof(Enemies), true) as Enemies;
+            }
+
+            GUILayout.Space(20);
+
+            //! show unit amount list only if there are more then 1 enemy type!
+            if (ew.enemyTypes.Count > 1)
+            {
+                for (int i = 0; i < ew.enemyTypes.Count; i++)
                 {
-                    float newPercent = (100 - numberThatChanged) / (ew.enemies.Count - 1);
-                    ew.enemyPercent[i] = newPercent;
-                    myList[i] = newPercent;
+                    ew.enemyTypePercent[i] = EditorGUILayout.IntField(ew.enemyTypePercent[i]);
+                }
+            }
+            else
+            {
+                ew.enemyTypePercent[0] = ew.totalNumberOfEnemies;
+            }
+            //
+
+            for (int i = 0; i < ew.enemyTypePercent.Count; i++)
+            {
+                if (ew.enemyTypePercent[i] != testPrev[i])
+                {
+                    //testPrev[i] = ew.enemyTypePercent[i];
+                    UpdatePercentages(i, ew);
                 }
             }
         }
+        else
+        {
+            UpdatePercentList(ew);
+        }
 
-        prev = ew.enemies.Count;
+        //Script management!
+        prevNumberOfEnemies = ew.totalNumberOfEnemies;
+        prevLength = ew.enemyTypes.Count;
+        testPrev.Clear();
+        for (int i = 0; i < ew.enemyTypePercent.Count; i++)
+        {
+            testPrev.Add(ew.enemyTypePercent[i]);
+        }
     }
 
-    private void UpdateList (SO_EnemyWave ew)
+    private void UpdatePercentList (SO_EnemyWave ew)
     {
-        ew.enemyPercent.Clear();
+        ew.enemyTypePercent.Clear();
 
-        for (float i = 0; i < ew.enemies.Count; i++)
+        for (int i = 0; i < ew.numberOfEnemyTypes; i++)
         {
-            float percent = 100 / ew.enemies.Count;
-            ew.enemyPercent.Add(percent);
-            myList.Add(percent);
+            ew.enemyTypePercent.Add(0);
+        }
+
+        int tmp = 0;
+        for (int i = 0; i < ew.totalNumberOfEnemies; i++)
+        {
+            ew.enemyTypePercent[tmp]++;
+            tmp++;
+            if (tmp >= ew.enemyTypePercent.Count)
+            {
+                tmp = 0;
+            }
+        }
+    }
+
+    private void UpdateEnemyList (SO_EnemyWave ew)
+    {
+        if (ew.numberOfEnemyTypes < ew.enemyTypes.Count)
+        {
+            for (int i = 0; i < ew.enemyTypes.Count - ew.numberOfEnemyTypes; i++)
+            {
+                ew.enemyTypes.RemoveAt(ew.enemyTypes.Count - 1);
+            }
+        }
+        else if (ew.numberOfEnemyTypes > ew.enemyTypes.Count)
+        {
+            for (int i = 0; i <  ew.numberOfEnemyTypes - ew.enemyTypes.Count; i++)
+            {
+                ew.enemyTypes.Add(new Enemies());
+            }
+        }
+    }
+
+    private void UpdatePercentages (int index, SO_EnemyWave ew)
+    {
+        Debug.Log("Testing stuffs " + index);
+
+        int tmp = 0;
+        for (int i = 0; i < ew.enemyTypePercent.Count; i++)
+        {
+            tmp += ew.enemyTypePercent[i];
+        }
+
+        int tmp2 = tmp - ew.totalNumberOfEnemies;
+
+        if (tmp2 > 0)
+        {
+            for (int i = 0; i < ew.enemyTypePercent.Count; i++)
+            {
+                if (tmp2 == 0)
+                    break;
+
+                if (i != index)
+                {
+                    ew.enemyTypePercent[i]--;
+                    tmp2--;
+                }
+            }
+        }
+        else if (tmp2 < 0)
+        {
+            for (int i = 0; i < ew.enemyTypePercent.Count; i++)
+            {
+                if (tmp2 == 0)
+                    break;
+
+                if (i != index)
+                {
+                    ew.enemyTypePercent[i]++;
+                    tmp2++;
+                }
+            }
         }
     }
 }

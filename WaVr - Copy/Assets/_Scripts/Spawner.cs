@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
     {
         Invoke("Spawn", spawnTime);
 
-        portalOpening.GraphTimeMultiplier = (Manager.Instance.waves[waveIndex].maxNumberOfEnemies * spawnTime) + 5;
+        portalOpening.GraphTimeMultiplier = (Manager.Instance.waves[waveIndex].enemyController.totalNumberOfEnemies * spawnTime) + 5;
     }
 
     private void Update()
@@ -28,10 +28,14 @@ public class Spawner : MonoBehaviour
         if (objectiveOrder[0] != null)
             transform.LookAt(objectiveOrder[0].asteroid.postition);
 
-        if (Manager.Instance.healthPercent <= myWaveInfo.damageThreshHold)
+        if (Manager.Instance.healthPercent <= Manager.Instance.tAe.loseThreshHold)
         {
+            Debug.Log(Manager.Instance.healthPercent);
+            Debug.Log(myWaveInfo.damageThreshHold);
+
             for (int i = 0; i < enemies.Count; i++)
             {
+                Debug.Log("Why tho 1");
                 enemies[i].GoHome();
             }
         }
@@ -43,7 +47,7 @@ public class Spawner : MonoBehaviour
         waveIndex = newWaveIndex;
         objectiveOrder = newList;
         master = m;
-        numberOfEnemies = (int)Manager.Instance.waves[waveIndex].maxNumberOfEnemies;
+        numberOfEnemies = (int)Manager.Instance.waves[waveIndex].enemyController.totalNumberOfEnemies;
         threshHold = Manager.Instance.waves[waveIndex].damageThreshHold;
     }
 
@@ -55,16 +59,29 @@ public class Spawner : MonoBehaviour
             master.Destroy();
     }
 
+    int index = 0;
+    int currentCounter = 0;
+
     public void SpawEnemy()
     {
-        counter++;
+        if (currentCounter <= myWaveInfo.enemyController.enemyTypePercent[index])
+        {
+            currentCounter++;
+        }
+        else
+        {
+            currentCounter = 0;
+            index++;
+        }
+
         //                      'This takes the first item from the enemyTypes list and spawns it'
-        GameObject newEnemy = Instantiate(/*>>>>>*/myWaveInfo.enemyTypes[Random.Range(0, myWaveInfo.enemies.Count)].enemie/*<<<<<*/, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
+        GameObject newEnemy = Instantiate(/*>>>>>*/myWaveInfo.enemyController.enemyTypes[index].enemie/*<<<<<*/, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
         EnemyAI tmp = newEnemy.GetComponent<EnemyAI>();
         tmp.Initialize(objectiveOrder, threshHold, master, this, waveIndex);
         enemies.Add(tmp);
         Manager.Instance.waves[waveIndex].enemies.Add(tmp);
         Manager.Instance.InstantiateEnemy(newEnemy, waveIndex);
+        counter++;
         Invoke("Spawn", spawnTime);
     }
 
