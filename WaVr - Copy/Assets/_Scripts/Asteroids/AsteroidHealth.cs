@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
@@ -88,7 +87,6 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         healingBool = false;
     }
 
-
     public IEnumerator DamageVisual(float newTime)
     {
         rend.material.color = Color.white;
@@ -119,10 +117,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         currentColor = Color.HSVToRGB(h, s, v);
     }
 
-    public AsteroidInfo GetInfo()
-    {
-        return asteroid;
-    }
+    public AsteroidInfo GetInfo() => asteroid;
 
     public void Revive ()
     {
@@ -130,15 +125,9 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         asteroid.alive = true;
     }
 
-    public void ColliderOn ()
-    {
-        sphereCollider.enabled = true;
-    }
+    public void ColliderOn () => sphereCollider.enabled = true;
 
-    public void ColliderOff ()
-    {
-        sphereCollider.enabled = false;
-    }
+    public void ColliderOff () => sphereCollider.enabled = false;
 }
 
 [System.Serializable]
