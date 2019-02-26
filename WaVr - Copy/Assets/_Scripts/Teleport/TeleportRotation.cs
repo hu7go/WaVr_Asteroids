@@ -269,7 +269,7 @@ public class TeleportRotation : MonoBehaviour
 
                     if (hit.collider == asteroidHit.collider)
                     {
-                        //!? This might not always work, so far there has been a few instances of it not working strangly enough!
+                        //!? This might not always work, so far there has been a few instances of it not working strangely enough!
                         Debug.Log("Maybe it happend again... if you didnt mean to do it!");
                         UpdateLineRenderer();
                         return;
