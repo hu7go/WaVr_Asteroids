@@ -84,17 +84,13 @@ public class TeleportRotation : MonoBehaviour
 
         //If we hit the start button!
         if (canTeleport)
-        {
             if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out startHit, master.GetMaxLenght(), startLayerMask))
                 Manager.Instance.StartGame();
-        }
         //
 
         //This handles all the teleporting and clicking of buttons!
         if (canTeleport && Manager.Instance.StartedGame())
-        {
             TeleportStuff ();
-        }
     }
 
     //This function checks which VR headset you are currently using!
@@ -149,10 +145,9 @@ public class TeleportRotation : MonoBehaviour
             {
                 Ray tmpRay = new Ray(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude));
                 Debug.DrawRay(hit.point + (hit.collider.transform.position - hit.point) * .1f, currentHand.transform.TransformDirection(Vector3.forward) * (master.GetMaxLenght() - (hit.point - currentHand.transform.position).magnitude), Color.cyan);
+
                 if (Physics.Raycast(tmpRay, out tmpRaycastHit, master.GetMaxLenght(), secondaryLayerMask))
-                {
                     hit = tmpRaycastHit;
-                }
             }
         }
 
@@ -167,9 +162,7 @@ public class TeleportRotation : MonoBehaviour
                 lineRender.SetEnd(hit.point);
         }
         else
-        {
             lineRender.StraightRenderer();
-        }
 
         if (hit.collider == null && lineNotHit.collider == null)
             lineVersion = LineVersion.nothing;
@@ -179,9 +172,7 @@ public class TeleportRotation : MonoBehaviour
             lineVersion = LineVersion.hit;
 
         if (hit.collider != null && hit.collider.gameObject.CompareTag("Junk"))
-        {
             lineVersion = LineVersion.outOfRange;
-        }
 
         lineRender.ChangeLineVersion();
         //
@@ -191,38 +182,15 @@ public class TeleportRotation : MonoBehaviour
             if (Physics.Raycast(currentHand.transform.position, currentHand.transform.TransformDirection(Vector3.forward), out buildButtonTarget, master.GetMaxLenght(), turretLayerMask))
             {
                 if (tmpPrev.collider != null)
-                {
                     if (buildButtonTarget.collider != tmpPrev.collider)
-                    {
                         tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
-                    }
-                }
 
                 buildButtonTarget.collider.GetComponent<TurretSpawn>().ShowRangeIndicator();
                 tmpPrev = buildButtonTarget;
             }
             else
-            {
                 if (tmpPrev.collider != null)
                     tmpPrev.collider.GetComponent<TurretSpawn>().DisableRangeIndicator();
-            }
-        }
-
-        if (highlightCubes)
-        {
-            if (hit.collider != null)
-                if (hit.collider.GetComponentInChildren<CubeHighlight>() != null)
-                {
-                    if (previousHit.collider != null)
-                        if (previousHit.collider != hit.collider)
-                            previousHit.collider.GetComponentInChildren<CubeHighlight>().StopRender();
-
-                    previousHit = hit;
-                    previousHit.collider.GetComponentInChildren<CubeHighlight>().Render();
-                }
-            if (hit.collider == null)
-                if (previousHit.collider != null)
-                    previousHit.collider.GetComponentInChildren<CubeHighlight>().StopRender();
         }
     }
 
@@ -294,12 +262,6 @@ public class TeleportRotation : MonoBehaviour
             //! If the manager is set to teleport you!
             if (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport)
             {
-                //If the target hit has a highlightscript!
-                if (highlightCubes)
-                    if (previousHit.collider.GetComponentInChildren<CubeHighlight>() != null)
-                        previousHit.collider.GetComponentInChildren<CubeHighlight>().StopRender();
-                //
-
                 //If the target hit is has a sidescript attached to determin where we teleport!
                 if (hit.collider.GetComponent<SideScript>() != null && hit.collider != asteroidHit.collider)
                 {
@@ -486,12 +448,6 @@ public class TeleportRotation : MonoBehaviour
                 }
                 //
             }
-
-            //Not currently in use!
-            //If we hit the confim or deny button!
-            if (hit.collider.GetComponent<ConfirmDeny>() != null)
-                hit.collider.GetComponent<ConfirmDeny>().DoEffect();
-            //
         }
         canTeleport = false;
         renderLine = false;
