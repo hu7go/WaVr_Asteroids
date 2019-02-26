@@ -36,17 +36,14 @@ public class Firefly : MonoBehaviour
         distanceToAsteroid = transform.position - currentAsteroid.transform.position;
         if (distance.magnitude > 5 || distance.magnitude < -5)
             newPosition = fireflies.transform.position;
-        if(gameObject.name == "Sphere(6)")
-            print(distance.magnitude);
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Asteroid"))
         {
-            print(other.gameObject.name);
-            Vector3 direction = ((transform.position - currentAsteroid.transform.position)/distanceToAsteroid.magnitude) *-1;
-            newPosition = direction;
+            //Vector3 direction = (distanceToAsteroid / distanceToAsteroid.magnitude) *-1;
+            //newPosition = direction;
         }
     }
 }
