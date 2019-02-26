@@ -108,7 +108,6 @@ public class ChangeSide : MonoBehaviour
                 default:
                     break;
             }
-
         }
         else
         {
