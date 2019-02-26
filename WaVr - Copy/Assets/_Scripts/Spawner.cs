@@ -27,6 +27,14 @@ public class Spawner : MonoBehaviour
     {
         if (objectiveOrder[0] != null)
             transform.LookAt(objectiveOrder[0].asteroid.postition);
+
+        if (Manager.Instance.healthPercent <= myWaveInfo.damageThreshHold)
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].GoHome();
+            }
+        }
     }
 
     public void Initialize (EnemySpawnPoint m, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex, Wave newWave)
