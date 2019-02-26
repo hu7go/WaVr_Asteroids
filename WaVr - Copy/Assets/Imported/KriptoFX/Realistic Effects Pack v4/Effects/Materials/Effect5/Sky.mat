@@ -81,4 +81,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _NoiseScale: {r: 0.2, g: 0.2, b: 1, a: 0.2}
-    - _TintColor: {r: 0.9464866, g: 0.7688679, b: 1, a: 1}
+    - _TintColor: {r: 0.94509804, g: 0.76862746, b: 1, a: 1}

@@ -13,6 +13,7 @@ public class EnemySpawnPoint : MonoBehaviour
     public GameObject spawer;
     public MeshRenderer preSpawn;
     public Text timerText;
+    public GameObject animatedSphere;
 
     private float timer;
     private bool start = false;
@@ -193,36 +194,8 @@ public class EnemySpawnPoint : MonoBehaviour
             if (spawned == false)
                 Manager.Instance.uISettings.countDownText.text = timer.ToString("00");
 
-            if (timer <= 10)
-                currentColor = red;
-            if (timer <= 8)
-                currentColor = purple;
-            if (timer <= 6)
-                currentColor = red;
-            if (timer <= 4)
-                currentColor = purple;
-            if (timer <= 3)
-                currentColor = red;
-            if (timer <= 2.5f)
-                currentColor = purple;
-            if (timer <= 2f)
-                currentColor = red;
-            if (timer <= 1.5f)
-                currentColor = purple;
-            if (timer <= 1.25f)
-                currentColor = red;
-            if (timer <= 1f)
-                currentColor = purple;
-            if (timer <= .75f)
-                currentColor = red;
-            if (timer <= .5f)
-                currentColor = purple;
-            if (timer <= .35f)
-                currentColor = red;
-            if (timer <= .2f)
-                currentColor = purple;
-            if (timer <= .1f)
-                currentColor = red;
+            if (timer == 10)
+                animatedSphere.GetComponent<Animator>().SetTrigger("CountDownStart");
 
             if (timer <= 0 && spawned == false)
             {
