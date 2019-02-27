@@ -41,13 +41,16 @@ public class Firefly : MonoBehaviour
     {
         if (currentAsteroid.asteroid.alive == false && dead == false)
             StartCoroutine("Dying");
+
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         distance = transform.position - fireflies.transform.position;
+
         if (distance.magnitude > 2.5)
         {
             if(time == 0)
                 StopCoroutine("Randomize");
+
             oldPos = newPosition;
             newPosition = fireflies.transform.position;
             time = 2;
