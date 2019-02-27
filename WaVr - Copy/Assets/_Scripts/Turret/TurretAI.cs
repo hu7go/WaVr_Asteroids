@@ -6,7 +6,7 @@ using System.Linq;
 public class TurretAI : MonoBehaviour
 {
     [SerializeField]
-    private GameObject tMuzzle,bullet,enemyParent,turretSphere;
+    private GameObject tMuzzle, bullet, enemyParent, turretSphere;
     private AudioSource audi;
     private int closest = 0;
     public Turret turretInfo;
@@ -89,8 +89,10 @@ public class TurretAI : MonoBehaviour
             if (currentTarget == null)
                 enemies.RemoveAt(0);
 
-            tMuzzle.transform.GetChild(0).gameObject.SetActive(true);
-            MuzzleParticle();
+            Instantiate(bullet, tMuzzle.transform.position, tMuzzle.transform.rotation, Manager.Instance.enemyParent.transform);
+
+            //tMuzzle.transform.GetChild(0).gameObject.SetActive(true);
+            //MuzzleParticle();
 
             if (enemies.Count <= 0)
                 shooting = false;

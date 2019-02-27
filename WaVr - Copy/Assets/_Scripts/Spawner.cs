@@ -27,17 +27,6 @@ public class Spawner : MonoBehaviour
     {
         if (objectiveOrder[0] != null)
             transform.LookAt(objectiveOrder[0].asteroid.postition);
-
-        //if (Manager.Instance.healthPercent <= Manager.Instance.tAe.loseThreshHold)
-        //{
-        //    Debug.Log(Manager.Instance.healthPercent);
-        //    Debug.Log(myWaveInfo.damageThreshHold);
-
-        //    for (int i = 0; i < enemies.Count; i++)
-        //    {
-        //        enemies[i].GoHome();
-        //    }
-        //}
     }
 
     public void Initialize (EnemySpawnPoint m, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex, Wave newWave)
@@ -63,7 +52,6 @@ public class Spawner : MonoBehaviour
 
     public void SpawEnemy()
     {
-        Utils.ClearLogConsole();
         if (currentCounter < myWaveInfo.enemyController.enemyTypePercent[index])
         {
 

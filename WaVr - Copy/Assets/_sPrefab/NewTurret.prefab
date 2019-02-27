@@ -4642,7 +4642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tMuzzle: {fileID: 1349674357644654}
-  bullet: {fileID: 0}
+  bullet: {fileID: 5025700349016115662, guid: c80da9eb07315a04c9b3415fc54040ed, type: 3}
   enemyParent: {fileID: 0}
   turretSphere: {fileID: 1140907617733234}
   turretInfo: {fileID: 11400000, guid: fa920dbf2ca503a4bb9a09b9d950e27f, type: 2}

@@ -2,6 +2,8 @@
 
 public class Bullet : MonoBehaviour
 {
+    public string tagToHit;
+
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
 
@@ -11,7 +13,7 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Asteroid")
+        if (other.gameObject.tag == tagToHit)
             Destroy(gameObject);
     }
 }

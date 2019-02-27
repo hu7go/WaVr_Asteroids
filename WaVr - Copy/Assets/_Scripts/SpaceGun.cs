@@ -47,8 +47,13 @@ public class SpaceGun : MonoBehaviour
     {
         if (bulletType == BulletType.beam && shoot)
         {
-            lineRend.SetPosition(0, transform.position);
+            lineRend.SetPosition(0, muzzle.position);
             lineRend.SetPosition(1, ai.objective.position);
+        }
+        else
+        {
+            lineRend.SetPosition(0, transform.position);
+            lineRend.SetPosition(1, transform.position);
         }
     }
 
