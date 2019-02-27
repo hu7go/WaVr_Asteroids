@@ -305,18 +305,18 @@ public class Manager : MonoBehaviour
         }
         //
 
-        //for (int i = 0; i < asteroidList.Count; i++)
-        //{
+        for (int i = 0; i < asteroidList.Count; i++)
+        {
             int rand = Random.Range(0, 15);
-            if (asteroidList[53].asteroid.alive) //&& rand == 3)
+            if (asteroidList[i].asteroid.alive && rand == 3)
             {
                 GameObject fF = Instantiate(fireFlies);
                 for (int e = 0; e < fF.transform.childCount; e++)
                 {
-                    fF.transform.GetChild(e).GetComponent<Firefly>().Instantiation(asteroidList[53]);
+                    fF.transform.GetChild(e).GetComponent<Firefly>().Instantiation(asteroidList[i]);
                 }
             }
-        //}
+        }
 
         switch (enums.teleportVersion)
         {

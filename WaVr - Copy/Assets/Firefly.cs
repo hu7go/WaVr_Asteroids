@@ -14,7 +14,7 @@ public class Firefly : MonoBehaviour
     private bool inAsteroid;
     private bool tester;
     private bool dead;
-    private int time;
+    private float time;
 
     public void Instantiation(AsteroidHealth asteroid)
     {
@@ -27,9 +27,7 @@ public class Firefly : MonoBehaviour
     }
     private IEnumerator Randomize()
     {
-        print("Yes!");
         yield return new WaitForSeconds(time);
-        print("this?!?!");
         rand = Random.Range(-3f, 3f);
         oldPos = newPosition;
         newPosition = new Vector3(transform.position.x + rand, transform.position.y + rand, transform.position.z + rand);
@@ -48,12 +46,14 @@ public class Firefly : MonoBehaviour
         distance = transform.position - fireflies.transform.position;
         if (distance.magnitude > 2.5)
         {
-            StopAllCoroutines();
+            if(time == 0)
+                StopAllCoroutines();
             oldPos = newPosition;
             newPosition = fireflies.transform.position;
-            time = 1;
+            time = 2;
             StartCoroutine(Randomize());
         }
+
         if (dead == true && currentAsteroid.asteroid.alive == true)
             StartCoroutine("Reviving");
     }
