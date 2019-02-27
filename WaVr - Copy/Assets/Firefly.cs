@@ -47,7 +47,7 @@ public class Firefly : MonoBehaviour
         if (distance.magnitude > 2.5)
         {
             if(time == 0)
-                StopAllCoroutines();
+                StopCoroutine("Randomize");
             oldPos = newPosition;
             newPosition = fireflies.transform.position;
             time = 2;
@@ -73,12 +73,10 @@ public class Firefly : MonoBehaviour
     {
         if (other.gameObject == currentAsteroid.gameObject)
         {
-            StopAllCoroutines();
+            StopCoroutine("Randomize");
             newPosition = oldPos;
             time = 2;
             StartCoroutine(Randomize());
-            //Vector3 direction = (distanceToAsteroid / distanceToAsteroid.magnitude) *-1;
-            //newPosition = direction;
         }
     }
 }
