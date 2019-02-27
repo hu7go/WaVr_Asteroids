@@ -753,7 +753,6 @@ MonoBehaviour:
     tdEndUI: {fileID: 1295987300201151716}
     objective: {fileID: 1295987300720621255}
     startButton: {fileID: 1295987300380423098}
-    confrimDenyButtons: {fileID: 0}
     tdGameOverText: {fileID: 1295987299445335519}
     timerText: {fileID: 1295987300521806586}
     countDownText: {fileID: 1295987300886901887}
@@ -789,6 +788,8 @@ MonoBehaviour:
   - {fileID: 1295987300843589858}
   - {fileID: 1295987299347552093}
   objective: {fileID: 0}
+  fireFlies: {fileID: 930099044207471881, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+    type: 3}
   masterCurrentHealth: 0
   masterMaxHealth: 0
   wantedMaxHealth: 12500

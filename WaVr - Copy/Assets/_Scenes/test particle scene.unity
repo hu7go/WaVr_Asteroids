@@ -1428,7 +1428,114 @@ PrefabInstance:
       propertyPath: currentAsteroid
       value: 
       objectReference: {fileID: 1675173434}
-    m_RemovedComponents: []
+    - target: {fileID: 930099044207471887, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099044348363025, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099044348363026, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099044553417170, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099044553417171, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099044562787586, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099044562787587, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099044683193846, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099044683193847, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045054811247, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045054811240, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045487256173, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045487256174, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045555309241, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045555309242, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045661346647, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045661346640, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045680989827, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045680989852, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045757196162, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 930099045757196163, guid: e2f5dcf3138ce874cba2ff15ae66b855,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 930099044207471887, guid: e2f5dcf3138ce874cba2ff15ae66b855, type: 3}
+    - {fileID: 930099044207471886, guid: e2f5dcf3138ce874cba2ff15ae66b855, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2f5dcf3138ce874cba2ff15ae66b855, type: 3}
 --- !u!1001 &1285756081
 PrefabInstance:
@@ -1891,7 +1998,7 @@ GameObject:
   - component: {fileID: 1675173435}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

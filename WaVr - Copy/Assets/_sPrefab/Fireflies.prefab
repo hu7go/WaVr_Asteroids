@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 930099044207471880}
-  - component: {fileID: 930099044207471887}
-  - component: {fileID: 930099044207471886}
   m_Layer: 0
   m_Name: Fireflies
   m_TagString: Untagged
@@ -42,31 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &930099044207471887
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930099044207471881}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 4}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &930099044207471886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930099044207471881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a9866c0c2bd0a842a6bb62a50bd7c5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &930099044348363054
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,6 +55,7 @@ GameObject:
   - component: {fileID: 930099044348363027}
   - component: {fileID: 930099044348363052}
   - component: {fileID: 930099044348363031}
+  - component: {fileID: 4531655765337161871}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Fireflies
@@ -118,7 +92,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099044348363054}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -211,9 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099044348363031
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -230,6 +202,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &4531655765337161871
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099044348363054}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &930099044553417199
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +236,7 @@ GameObject:
   - component: {fileID: 930099044553417196}
   - component: {fileID: 930099044553417197}
   - component: {fileID: 930099044553417168}
+  - component: {fileID: 4695606129716189949}
   m_Layer: 0
   m_Name: Sphere (7)
   m_TagString: Fireflies
@@ -281,7 +273,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099044553417199}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -374,9 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099044553417168
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -393,6 +383,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &4695606129716189949
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099044553417199}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &930099044562787615
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +417,7 @@ GameObject:
   - component: {fileID: 930099044562787612}
   - component: {fileID: 930099044562787613}
   - component: {fileID: 930099044562787584}
+  - component: {fileID: 3378180755293943020}
   m_Layer: 0
   m_Name: Sphere (9)
   m_TagString: Fireflies
@@ -444,7 +454,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099044562787615}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -537,9 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099044562787584
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -556,6 +564,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &3378180755293943020
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099044562787615}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &930099044683193843
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +598,7 @@ GameObject:
   - component: {fileID: 930099044683193840}
   - component: {fileID: 930099044683193841}
   - component: {fileID: 930099044683193844}
+  - component: {fileID: 2703653339305755207}
   m_Layer: 0
   m_Name: Sphere (5)
   m_TagString: Fireflies
@@ -607,7 +635,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099044683193843}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -700,9 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099044683193844
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -719,6 +745,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &2703653339305755207
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099044683193843}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &930099045054811236
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +779,7 @@ GameObject:
   - component: {fileID: 930099045054811241}
   - component: {fileID: 930099045054811242}
   - component: {fileID: 930099045054811245}
+  - component: {fileID: 3355682421782031239}
   m_Layer: 0
   m_Name: Sphere (3)
   m_TagString: Fireflies
@@ -770,7 +816,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099045054811236}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -863,9 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099045054811245
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -882,6 +926,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &3355682421782031239
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099045054811236}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &930099045487256170
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +960,7 @@ GameObject:
   - component: {fileID: 930099045487256175}
   - component: {fileID: 930099045487256168}
   - component: {fileID: 930099045487256147}
+  - component: {fileID: 3655538207725165850}
   m_Layer: 0
   m_Name: Sphere (6)
   m_TagString: Fireflies
@@ -933,7 +997,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099045487256170}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1026,9 +1090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099045487256147
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1045,6 +1107,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &3655538207725165850
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099045487256170}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &930099045555309238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,6 +1141,7 @@ GameObject:
   - component: {fileID: 930099045555309243}
   - component: {fileID: 930099045555309236}
   - component: {fileID: 930099045555309247}
+  - component: {fileID: 2609273354304536256}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Fireflies
@@ -1096,7 +1178,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099045555309238}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1189,9 +1271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099045555309247
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1208,6 +1288,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &2609273354304536256
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099045555309238}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &930099045661346643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,6 +1322,7 @@ GameObject:
   - component: {fileID: 930099045661346641}
   - component: {fileID: 930099045661346645}
   - component: {fileID: 930099045661346644}
+  - component: {fileID: 6213871281013669869}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Fireflies
@@ -1259,7 +1359,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099045661346643}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1312,7 +1412,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 0.6893569, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.6901961, g: 1, b: 0, a: 1}
   m_Intensity: 10
   m_Range: 0.23
   m_SpotAngle: 30
@@ -1352,9 +1452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099045661346644
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1371,6 +1469,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &6213871281013669869
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099045661346643}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &930099045680989848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1503,7 @@ GameObject:
   - component: {fileID: 930099045680989853}
   - component: {fileID: 930099045680989854}
   - component: {fileID: 930099045680989825}
+  - component: {fileID: 7788210966515987273}
   m_Layer: 0
   m_Name: Sphere (8)
   m_TagString: Fireflies
@@ -1422,7 +1540,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099045680989848}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1515,9 +1633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099045680989825
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1534,6 +1650,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &7788210966515987273
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099045680989848}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &930099045757196191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,6 +1684,7 @@ GameObject:
   - component: {fileID: 930099045757196188}
   - component: {fileID: 930099045757196189}
   - component: {fileID: 930099045757196160}
+  - component: {fileID: 4465119707632968567}
   m_Layer: 0
   m_Name: Sphere (4)
   m_TagString: Fireflies
@@ -1585,7 +1721,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 930099045757196191}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1678,9 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492cd519df20b1f49aab1a025d373aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPosition: {x: 0, y: 0, z: 0}
   fireflies: {fileID: 930099044207471881}
-  currentAsteroid: {fileID: 0}
 --- !u!54 &930099045757196160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1697,3 +1831,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &4465119707632968567
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930099045757196191}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40c1bd853f55cd8498718d14a5a79dd7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -3,45 +3,81 @@ using UnityEngine;
 
 public class Firefly : MonoBehaviour
 {
-    [HideInInspector]
-    public Vector3 newPosition;
+    private Vector3 newPosition;
     private Vector3 positionAdded;
     private Vector3 distance;
+    private Vector3 oldPos;
     public GameObject fireflies;
-    //will be private later
-    public GameObject currentAsteroid;
+    Animator anim;
+    private GameObject currentAsteroid;
     private Vector3 distanceToAsteroid;
     private float speed;
     private float rand;
-    private void Start()
+    private bool inAsteroid;
+    private bool tester;
+    private bool dead;
+
+    private void Start() => gameObject.SetActive(false);
+
+    public void Instantiation(GameObject asteroid)
     {
-        StartCoroutine("Randomize",false);
+        fireflies.transform.position = asteroid.transform.position;
+        currentAsteroid = asteroid;
+        gameObject.SetActive(true);
+        StartCoroutine("Randomize",0f);
+        anim = GetComponent<Animator>();
+        dead = false;
     }
-    private IEnumerator Randomize(bool call)
+    private IEnumerator Randomize(float timeIfTrue)
     {
-        if (call)
-            yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(timeIfTrue);
         rand = Random.Range(-3f, 3f);
+        oldPos = newPosition;
         newPosition = new Vector3(transform.position.x + rand, transform.position.y + rand, transform.position.z + rand);
         speed = Random.Range(0.05f, 0.5f);
+        tester = true;
         yield return new WaitForSeconds(Random.Range(3, 10));
-        StartCoroutine("Randomize",false);
+        StartCoroutine("Randomize",0f);
     }
     void Update()
     {
+        if (currentAsteroid.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && dead == false)
+            StartCoroutine("Dying");
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         positionAdded = transform.position - newPosition;
         distance = transform.position - fireflies.transform.position;
         distanceToAsteroid = transform.position - currentAsteroid.transform.position;
-        if (distance.magnitude > 5 || distance.magnitude < -5)
+        if (distance.magnitude > 2.5)
+        {
+            StopAllCoroutines();
+            oldPos = newPosition;
             newPosition = fireflies.transform.position;
-    }
+            StartCoroutine("Randomize", 1f);
+        }
+        if (dead == true && currentAsteroid.GetComponentInChildren<AsteroidHealth>().asteroid.alive == true)
+            StartCoroutine("Reviving");
 
+    }
+    private IEnumerator Reviving()
+    {
+        dead = false;
+        yield return new WaitForSeconds(Random.Range(1, 3));
+        anim.SetTrigger("Revive");
+    }
+    private IEnumerator Dying()
+    {
+        dead = true;
+        yield return new WaitForSeconds(Random.Range(1, 3));
+        anim.SetTrigger("Die");
+    }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Asteroid"))
+        if (other.gameObject == currentAsteroid)
         {
+            StopAllCoroutines();
+            newPosition = oldPos;
+            StartCoroutine("Randomize",2f);
             //Vector3 direction = (distanceToAsteroid / distanceToAsteroid.magnitude) *-1;
             //newPosition = direction;
         }

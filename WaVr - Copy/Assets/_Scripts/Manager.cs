@@ -154,6 +154,7 @@ public class Manager : MonoBehaviour
     public IndexNode[] indexNodes;
     [HideInInspector]
     public GameObject objective;
+    public GameObject fireFlies;
     private int killedEnemies;
     private int counter;
     private int lifeLeft = 3;
@@ -303,6 +304,16 @@ public class Manager : MonoBehaviour
             }
         }
         //
+
+        for(int i = 0; i<asteroidList.Count;i++)
+        {
+            int rand = Random.Range(0, 10);
+            if (asteroidList[i].asteroid.alive && rand == 3)
+            {
+                GameObject fF = Instantiate(fireFlies);
+                fF.GetComponentInChildren<Firefly>().Instantiation(asteroidList[i].GetComponentInParent<GameObject>());
+            }
+        }
 
         switch (enums.teleportVersion)
         {
@@ -605,7 +616,7 @@ public class Manager : MonoBehaviour
         }
         startTimer = false;
         uISettings.endUI.SetActive(true);
-        uISettings.overText.text = ("Nice! You destroyed"+tAe.killCount +"/"+ totalnumberofEnemies +" in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds.\n\nWith " + (int)healthPercent + "% health left!");
+        uISettings.overText.text = ("Nice! You destroyed "+tAe.killCount +"/"+ totalnumberofEnemies +" in: " + minutes.ToString() + ": " + seconds.ToString("00") + " seconds.\n\nWith " + (int)healthPercent + "% health left!");
     }
 
     public GameObject ReturnPlayer() => player;
