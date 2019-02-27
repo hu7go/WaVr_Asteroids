@@ -4,37 +4,40 @@ using UnityEngine;
 public class Firefly : MonoBehaviour
 {
     private Vector3 newPosition;
-    private Vector3 positionAdded;
     private Vector3 distance;
     private Vector3 oldPos;
     public GameObject fireflies;
     Animator anim;
     private AsteroidHealth currentAsteroid;
-    private Vector3 distanceToAsteroid;
     private float speed;
     private float rand;
     private bool inAsteroid;
     private bool tester;
     private bool dead;
+    private int time;
 
     public void Instantiation(AsteroidHealth asteroid)
     {
         fireflies.transform.position = asteroid.transform.position;
         currentAsteroid = asteroid;
-        StartCoroutine("Randomize",0f);
+        time = 0;
+        StartCoroutine(Randomize());
         anim = GetComponent<Animator>();
         dead = false;
     }
-    private IEnumerator Randomize(float timeIfTrue)
+    private IEnumerator Randomize()
     {
-        yield return new WaitForSeconds(timeIfTrue);
+        print("Yes!");
+        yield return new WaitForSeconds(time);
+        print("this?!?!");
         rand = Random.Range(-3f, 3f);
         oldPos = newPosition;
         newPosition = new Vector3(transform.position.x + rand, transform.position.y + rand, transform.position.z + rand);
         speed = Random.Range(0.05f, 0.5f);
         tester = true;
         yield return new WaitForSeconds(Random.Range(3, 10));
-        StartCoroutine("Randomize",0f);
+        time = 0;
+        StartCoroutine(Randomize());
     }
     void Update()
     {
@@ -42,19 +45,17 @@ public class Firefly : MonoBehaviour
             StartCoroutine("Dying");
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        positionAdded = transform.position - newPosition;
         distance = transform.position - fireflies.transform.position;
-        distanceToAsteroid = transform.position - currentAsteroid.transform.position;
         if (distance.magnitude > 2.5)
         {
             StopAllCoroutines();
             oldPos = newPosition;
             newPosition = fireflies.transform.position;
-            StartCoroutine("Randomize", 1f);
+            time = 1;
+            StartCoroutine(Randomize());
         }
         if (dead == true && currentAsteroid.asteroid.alive == true)
             StartCoroutine("Reviving");
-
     }
     private IEnumerator Reviving()
     {
@@ -74,7 +75,8 @@ public class Firefly : MonoBehaviour
         {
             StopAllCoroutines();
             newPosition = oldPos;
-            StartCoroutine("Randomize",2f);
+            time = 2;
+            StartCoroutine(Randomize());
             //Vector3 direction = (distanceToAsteroid / distanceToAsteroid.magnitude) *-1;
             //newPosition = direction;
         }

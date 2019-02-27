@@ -65,7 +65,7 @@ public class TeleportMaster : MonoBehaviour
         grab = pointer.GetComponent<VRTK_InteractGrab>();
 
         //! WARNING, this clears ALL log messages on start, comment out the line below if you need to debug something on start.
-        Invoke("ClearConsole", .01f);
+        //Invoke("ClearConsole", .01f);
     }
 
     [HideInInspector] public bool done = false;
