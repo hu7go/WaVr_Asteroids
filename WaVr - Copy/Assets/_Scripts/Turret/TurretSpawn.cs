@@ -37,21 +37,9 @@ public class TurretSpawn : MonoBehaviour
         currentTurret = Instantiate(turret.model, spawnPos);
         master.SpawnedTurret(index, currentTurret);
 
-        Manager.Instance.ToggleConfirmDenyButtons();
         Manager.Instance.BuiltTurret(currentTurret);
 
         RemoveRangeIndicator();
-    }
-
-    public void Decline ()
-    {
-        if (currentTurret != null)
-            Destroy(currentTurret);
-
-        Manager.Instance.ToggleConfirmDenyButtons();
-
-        if (!Manager.Instance.tAe.turretHover)
-            RemoveRangeIndicator();
     }
 
     public void SpawnEm()
@@ -61,11 +49,9 @@ public class TurretSpawn : MonoBehaviour
         if (Manager.Instance.tAe.turretHover)
         {
             Confirm();
-            Manager.Instance.ToggleConfirmDenyButtons();
         }
         else
         {
-            Manager.Instance.ToggleConfirmDenyButtons();
             currentRangeIndicator = Instantiate(turretRange, spawnPos);
         }
         master.RemoveButtons();

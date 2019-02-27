@@ -108,7 +108,6 @@ public class Manager : MonoBehaviour
         public GameObject tdEndUI;
         public GameObject objective;
         public GameObject startButton;
-        public GameObject confrimDenyButtons;
         public Text tdGameOverText;
         public Text timerText;
         public Text countDownText;
@@ -620,15 +619,6 @@ public class Manager : MonoBehaviour
     public TurretSpawn GetCurrentBuildTarget() => turretSpawn;
 
     private bool toggle = true;
-    public void ToggleConfirmDenyButtons()
-    {
-        if (!toggle)
-            uISettings.confrimDenyButtons.SetActive(false);
-        else
-            uISettings.confrimDenyButtons.SetActive(true);
-
-        toggle = !toggle;
-    }
 
     public void UpdateAsteroidLine()
     {
