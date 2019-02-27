@@ -72,6 +72,11 @@ public class EnemyAI : MonoBehaviour
     public void FixedUpdate()
     {
         Movement();
+
+        if (Manager.Instance.healthPercent <= healthThreshHold)
+        {
+            GoHome();
+        }
     }
 
     public void GoHome ()

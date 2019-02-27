@@ -500,7 +500,6 @@ public class Manager : MonoBehaviour
 
         foreach (GameObject obj in enemiesSpawned)
         {
-            Debug.Log("Why tho? 2");
             obj.GetComponent<EnemyAI>().GoHome();
         }
 

@@ -28,17 +28,16 @@ public class Spawner : MonoBehaviour
         if (objectiveOrder[0] != null)
             transform.LookAt(objectiveOrder[0].asteroid.postition);
 
-        if (Manager.Instance.healthPercent <= Manager.Instance.tAe.loseThreshHold)
-        {
-            Debug.Log(Manager.Instance.healthPercent);
-            Debug.Log(myWaveInfo.damageThreshHold);
+        //if (Manager.Instance.healthPercent <= Manager.Instance.tAe.loseThreshHold)
+        //{
+        //    Debug.Log(Manager.Instance.healthPercent);
+        //    Debug.Log(myWaveInfo.damageThreshHold);
 
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                Debug.Log("Why tho 1");
-                enemies[i].GoHome();
-            }
-        }
+        //    for (int i = 0; i < enemies.Count; i++)
+        //    {
+        //        enemies[i].GoHome();
+        //    }
+        //}
     }
 
     public void Initialize (EnemySpawnPoint m, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex, Wave newWave)
@@ -64,15 +63,23 @@ public class Spawner : MonoBehaviour
 
     public void SpawEnemy()
     {
-        if (currentCounter <= myWaveInfo.enemyController.enemyTypePercent[index])
+        Utils.ClearLogConsole();
+        if (currentCounter < myWaveInfo.enemyController.enemyTypePercent[index])
         {
-            currentCounter++;
+            Debug.Log("index: " + index);
+            Debug.Log("Number of enemies suppose to spawn: " + myWaveInfo.enemyController.enemyTypePercent[index]);
+            Debug.Log("current spawn index: " + currentCounter);
         }
         else
         {
+            Debug.Log("Next in enemy order");
             currentCounter = 0;
             index++;
         }
+
+        currentCounter++;
+
+        Debug.Log("total enemy counter: " + (counter + 1));
 
         //                      'This takes the first item from the enemyTypes list and spawns it'
         GameObject newEnemy = Instantiate(/*>>>>>*/myWaveInfo.enemyController.enemyTypes[index].enemie/*<<<<<*/, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
