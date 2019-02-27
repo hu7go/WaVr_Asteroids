@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 136203086719921314}
   - component: {fileID: 82513290732291978}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: EnemySwarm
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -227,7 +227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624102608886488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 8368198971383966490}
@@ -273,7 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64788d37b48704d468003e08e93bbbfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
+  bulletType: 0
+  bulletPrefab: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2,
+    type: 3}
   muzzle: {fileID: 4775546638652990}
   damage: 1
   fireRate: 0.5

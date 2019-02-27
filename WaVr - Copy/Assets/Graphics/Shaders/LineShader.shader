@@ -1,88 +1,82 @@
 ﻿Shader "Custom/LineShader"
 {
-	Properties{
-	_TintColor("Tint Color", Color) = (0.5,0.5,0.5,0.5)
-	_MainTex("Particle Texture", 2D) = "white" {}
-	_InvFade("Soft Particles Factor", Range(0.01,3.0)) = 1.0
-	  _ScrollingSpeed("Scrolling Speed",float) = 2
+	Properties
+	{
+		_NoiseTex("Noise texture", 2D) = "white" {}
+		_DisplGuide("Displacement guide", 2D) = "white" {}
+		_DisplAmount("Displacement amount", float) = 0
+		_ColorFront("_ColorFront", color) = (1,1,1,1)
+		_ColorBack("_ColorBack", color) = (1,1,1,1)
+		_ScrollSpeed("_ScrollSpeed", float) = 0
+		_BottomFoamThreshold("Bottom foam threshold", Range(0,1)) = 0.1
 	}
+		SubShader
+		{
+			Tags { "RenderType" = "Opaque" }
+			LOD 200
 
-		Category{
-			Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" "PreviewType" = "Plane" }
-			Blend SrcAlpha One
-			ColorMask RGB
-			Cull Off Lighting Off ZWrite Off
+			Pass
+			{
+				CGPROGRAM
+				#pragma vertex vert
+				#pragma fragment frag
+				// make fog work
+				#pragma multi_compile_fog
 
-			SubShader {
-				Pass {
+				#include "UnityCG.cginc"
 
-					CGPROGRAM
-					#pragma vertex vert
-					#pragma fragment frag
-					#pragma target 2.0
-					#pragma multi_compile_particles
-					#pragma multi_compile_fog
+				struct appdata
+				{
+					float4 vertex : POSITION;
+					float2 uv : TEXCOORD0;
+				};
 
-					#include "UnityCG.cginc"
+				struct v2f
+				{
+					float4 vertex : SV_POSITION;
+					float2 uv : TEXCOORD0;
+					float2 noiseUV : TEXCOORD1;
+					float2 displUV : TEXCOORD2;
+					UNITY_FOG_COORDS(3)
+				};
 
-					sampler2D _MainTex;
-					fixed4 _TintColor;
-						  float _ScrollingSpeed;
+				sampler2D _NoiseTex;
+				float4 _NoiseTex_ST;
+				sampler2D _DisplGuide;
+				float4 _DisplGuide_ST;
+				fixed4 _ColorFront;
+				fixed4 _ColorBack;
+				float _ScrollSpeed;
+				half _DisplAmount;
+				half _BottomFoamThreshold;
 
-					struct appdata_t {
-						float4 vertex : POSITION;
-						fixed4 color : COLOR;
-						float2 texcoord : TEXCOORD0;
-						UNITY_VERTEX_INPUT_INSTANCE_ID
-					};
-
-					struct v2f {
-						float4 vertex : SV_POSITION;
-						fixed4 color : COLOR;
-						float2 texcoord : TEXCOORD0;
-						UNITY_FOG_COORDS(1)
-						#ifdef SOFTPARTICLES_ON
-						float4 projPos : TEXCOORD2;
-						#endif
-						UNITY_VERTEX_OUTPUT_STEREO
-					};
-
-					float4 _MainTex_ST;
-
-					v2f vert(appdata_t v)
-					{
-						v2f o;
-						UNITY_SETUP_INSTANCE_ID(v);
-						UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-						o.vertex = UnityObjectToClipPos(v.vertex);
-						#ifdef SOFTPARTICLES_ON
-						o.projPos = ComputeScreenPos(o.vertex);
-						COMPUTE_EYEDEPTH(o.projPos.z);
-						#endif
-						o.color = v.color;
-						o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
-						UNITY_TRANSFER_FOG(o,o.vertex);
-						return o;
-					}
-
-					UNITY_DECLARE_DEPTH_TEXTURE(_CameraDepthTexture);
-					float _InvFade;
-
-					fixed4 frag(v2f i) : SV_Target
-					{
-						#ifdef SOFTPARTICLES_ON
-						float sceneZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(i.projPos)));
-						float partZ = i.projPos.z;
-						float fade = saturate(_InvFade * (sceneZ - partZ));
-						i.color.a *= fade;
-						#endif
-
-						fixed4 col = 2.0f * i.color * _TintColor * tex2D(_MainTex, float2(i.texcoord.x + _Time.x*_ScrollingSpeed,i.texcoord.y));
-						UNITY_APPLY_FOG_COLOR(i.fogCoord, col, fixed4(0,0,0,0)); // fog towards black due to our blend mode
-						return col;
-					}
-					ENDCG
+				v2f vert(appdata v)
+				{
+					v2f o;
+					o.vertex = UnityObjectToClipPos(v.vertex);
+					o.noiseUV = TRANSFORM_TEX(v.uv, _NoiseTex);
+					o.displUV = TRANSFORM_TEX(v.uv, _DisplGuide);
+					o.uv = v.uv;
+					UNITY_TRANSFER_FOG(o,o.vertex);
+					return o;
 				}
+
+				fixed4 frag(v2f i) : SV_Target
+				{
+					//Displacement
+					half2 displ = tex2D(_DisplGuide, i.displUV + _Time.y / 5).xy;
+					displ = ((displ * 2) - 1) * _DisplAmount;
+
+					//Noise
+					half noise = tex2D(_NoiseTex, float2(i.noiseUV.x - _Time.y / _ScrollSpeed, i.noiseUV.y) + displ).x;
+
+					fixed4 col = lerp(lerp(_ColorFront, _ColorFront, i.uv.y), lerp(_ColorBack, _ColorBack, i.uv.y), noise);
+					col = lerp(fixed4(1,1,1,1), col, step(_BottomFoamThreshold, i.uv.y + displ.y));
+					UNITY_APPLY_FOG(i.fogCoord, col);
+					return col;
+				}
+				ENDCG
 			}
+		}
+			Fallback "VertexLit"
 	}
-}

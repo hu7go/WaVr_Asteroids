@@ -66,23 +66,17 @@ public class Spawner : MonoBehaviour
         Utils.ClearLogConsole();
         if (currentCounter < myWaveInfo.enemyController.enemyTypePercent[index])
         {
-            Debug.Log("index: " + index);
-            Debug.Log("Number of enemies suppose to spawn: " + myWaveInfo.enemyController.enemyTypePercent[index]);
-            Debug.Log("current spawn index: " + currentCounter);
+
         }
         else
         {
-            Debug.Log("Next in enemy order");
             currentCounter = 0;
             index++;
         }
 
         currentCounter++;
 
-        Debug.Log("total enemy counter: " + (counter + 1));
-
-        //                      'This takes the first item from the enemyTypes list and spawns it'
-        GameObject newEnemy = Instantiate(/*>>>>>*/myWaveInfo.enemyController.enemyTypes[index].enemie/*<<<<<*/, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
+        GameObject newEnemy = Instantiate(myWaveInfo.enemyController.enemyTypes[index].enemie, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
         EnemyAI tmp = newEnemy.GetComponent<EnemyAI>();
         tmp.Initialize(objectiveOrder, threshHold, master, this, waveIndex);
         enemies.Add(tmp);

@@ -44,6 +44,17 @@ public class EnemySpawnPoint : MonoBehaviour
     private Wave myWaveInfo;
     private MeshRenderer arrowRenderer;
 
+    [Space(20)]
+    public float damageDonePercent = 0;
+
+    float myDamageDone = 0;
+
+    public void HealthTracker (float damage)
+    {
+        myDamageDone += damage;
+        damageDonePercent = (myDamageDone / Manager.Instance.masterMaxHealth) * 100f;
+    }
+
     public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex, Wave newWave)
     {
         myWaveInfo = newWave;

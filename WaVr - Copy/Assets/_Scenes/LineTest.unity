@@ -333,7 +333,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1263817510}
   - component: {fileID: 1263817509}
-  - component: {fileID: 1263817508}
   m_Layer: 0
   m_Name: Line
   m_TagString: Untagged
@@ -341,25 +340,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1263817508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1263817507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83a6398ccc183604b8234a4c2f44e0c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetRange: {x: 0, y: 0, z: 35}
-  points:
-  - {fileID: 1212904659}
-  - {fileID: 1248336953}
-  - {fileID: 1563542092}
-  vertexCount: 32
-  target: {fileID: 2138026591}
 --- !u!120 &1263817509
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -377,7 +357,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 79efacaa5652bc945b7df43a76343fa0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -398,39 +378,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: -4.58}
-  - {x: 0, y: 0, z: -4.54582}
-  - {x: 0, y: 0, z: -4.443281}
-  - {x: 0, y: 0, z: -4.2723827}
-  - {x: 0, y: 0, z: -4.033125}
-  - {x: 0, y: 0, z: -3.7255077}
-  - {x: 0, y: 0, z: -3.3495312}
-  - {x: 0, y: 0, z: -2.9051952}
-  - {x: 0, y: 0, z: -2.3925}
-  - {x: 0, y: 0, z: -1.8114452}
-  - {x: 0, y: 0, z: -1.1620312}
-  - {x: 0, y: 0, z: -0.44425774}
-  - {x: 0, y: 0, z: 0.34187508}
-  - {x: 0, y: 0, z: 1.1963673}
-  - {x: 0, y: 0, z: 2.1192188}
-  - {x: 0, y: 0, z: 3.1104298}
-  - {x: 0, y: 0, z: 4.17}
-  - {x: 0, y: 0, z: 5.29793}
-  - {x: 0, y: 0, z: 6.494219}
-  - {x: 0, y: 0, z: 7.7588673}
-  - {x: 0, y: 0, z: 9.091875}
-  - {x: 0, y: 0, z: 10.493242}
-  - {x: 0, y: 0, z: 11.962969}
-  - {x: 0, y: 0, z: 13.501055}
-  - {x: 0, y: 0, z: 15.1075}
-  - {x: 0, y: 0, z: 16.782305}
-  - {x: 0, y: 0, z: 18.525469}
-  - {x: 0, y: 0, z: 20.336992}
-  - {x: 0, y: 0, z: 22.216875}
-  - {x: 0, y: 0, z: 24.165117}
-  - {x: 0, y: 0, z: 26.181719}
-  - {x: 0, y: 0, z: 28.26668}
-  - {x: 0, y: 0, z: 30.42}
+  - {x: 0, y: 5, z: 0}
+  - {x: 0, y: 5, z: 20}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1

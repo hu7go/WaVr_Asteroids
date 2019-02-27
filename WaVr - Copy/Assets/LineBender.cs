@@ -73,13 +73,16 @@ public class LineBender : MonoBehaviour
         switch (teleport.lineVersion)
         {
             case TeleportRotation.LineVersion.nothing:
-                render.material.SetColor("_BaseColor", Color.cyan);
+                //render.material.SetColor("_BaseColor", Color.cyan);
+                render.material.SetColor("_ColorBack", Color.cyan);
                 break;
             case TeleportRotation.LineVersion.outOfRange:
-                render.material.SetColor("_BaseColor", Color.red);
+                //render.material.SetColor("_BaseColor", Color.red);
+                render.material.SetColor("_ColorBack", Color.red);
                 break;
             case TeleportRotation.LineVersion.hit:
-                render.material.SetColor("_BaseColor", Color.green);
+                //render.material.SetColor("_BaseColor", Color.green);
+                render.material.SetColor("_ColorBack", Color.green);
                 break;
         }
     }

@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     public GameObject deathEffect;
 
-    Transform objective;
+    [HideInInspector]public Transform objective;
     SpaceGun gun;
     UnparentSound ups;
     public float speed = 1;
@@ -73,9 +73,14 @@ public class EnemyAI : MonoBehaviour
     {
         Movement();
 
-        if (Manager.Instance.healthPercent <= healthThreshHold)
+        //If max health is low enough
+        if (home.damageDonePercent >= 100 - healthThreshHold)
         {
-            GoHome();
+            //If the damage they have done is high enough
+            if (Manager.Instance.healthPercent <= healthThreshHold)
+            {
+                GoHome();
+            }
         }
     }
 
