@@ -27,11 +27,11 @@ public class SideScript : MonoBehaviour
         if (highlightBool)
         {
             //The + 3 is the radius of the sphere collider!
-            distance = (transform.position - player.position).magnitude - 3;
+            distance = (transform.position - player.position).magnitude - 4;
 
             //This might be not good at all!
             //Probably(maybe) is better to do once when you teleport!
-            if (distance <= maxDistance)
+            if (distance <= maxDistance && this != Manager.Instance.tpMaster.currentAsteroidStandingOn && Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport)
                 highlight.enabled = true;
             else
                 highlight.enabled = false;

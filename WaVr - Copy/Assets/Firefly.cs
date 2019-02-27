@@ -9,7 +9,7 @@ public class Firefly : MonoBehaviour
     private Vector3 oldPos;
     public GameObject fireflies;
     Animator anim;
-    private GameObject currentAsteroid;
+    private AsteroidHealth currentAsteroid;
     private Vector3 distanceToAsteroid;
     private float speed;
     private float rand;
@@ -17,13 +17,10 @@ public class Firefly : MonoBehaviour
     private bool tester;
     private bool dead;
 
-    private void Start() => gameObject.SetActive(false);
-
-    public void Instantiation(GameObject asteroid)
+    public void Instantiation(AsteroidHealth asteroid)
     {
         fireflies.transform.position = asteroid.transform.position;
         currentAsteroid = asteroid;
-        gameObject.SetActive(true);
         StartCoroutine("Randomize",0f);
         anim = GetComponent<Animator>();
         dead = false;
@@ -41,7 +38,7 @@ public class Firefly : MonoBehaviour
     }
     void Update()
     {
-        if (currentAsteroid.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && dead == false)
+        if (currentAsteroid.asteroid.alive == false && dead == false)
             StartCoroutine("Dying");
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
         transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -55,7 +52,7 @@ public class Firefly : MonoBehaviour
             newPosition = fireflies.transform.position;
             StartCoroutine("Randomize", 1f);
         }
-        if (dead == true && currentAsteroid.GetComponentInChildren<AsteroidHealth>().asteroid.alive == true)
+        if (dead == true && currentAsteroid.asteroid.alive == true)
             StartCoroutine("Reviving");
 
     }

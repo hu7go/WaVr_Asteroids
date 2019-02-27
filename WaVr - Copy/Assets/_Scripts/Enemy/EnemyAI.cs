@@ -120,7 +120,7 @@ public class EnemyAI : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
         }
 
-        transform.LookAt(objective);
+        transform.LookAt(objective, Manager.Instance.GetWorldAxis());
     }
 
     //Shoot at objective

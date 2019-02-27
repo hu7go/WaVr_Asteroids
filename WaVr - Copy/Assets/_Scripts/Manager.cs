@@ -305,13 +305,19 @@ public class Manager : MonoBehaviour
         }
         //
 
-        for(int i = 0; i<asteroidList.Count;i++)
+        for (int i = 0; i < asteroidList.Count; i++)
         {
             int rand = Random.Range(0, 10);
             if (asteroidList[i].asteroid.alive && rand == 3)
             {
                 GameObject fF = Instantiate(fireFlies);
-                fF.GetComponentInChildren<Firefly>().Instantiation(asteroidList[i].GetComponentInParent<GameObject>());
+
+                Firefly[] tmpList = fF.GetComponentsInChildren<Firefly>();
+
+                for (int e = 0; e < tmpList.Length; e++)
+                {
+                    tmpList[e].Instantiation(asteroidList[i]);
+                }
             }
         }
 
