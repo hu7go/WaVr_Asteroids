@@ -70,7 +70,7 @@ public class Firefly : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject == currentAsteroid)
+        if (other.gameObject == currentAsteroid.gameObject)
         {
             StopAllCoroutines();
             newPosition = oldPos;
