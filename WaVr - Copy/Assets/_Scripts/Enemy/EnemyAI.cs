@@ -39,6 +39,7 @@ public class EnemyAI : MonoBehaviour
 
     private float distance;
     protected int nextTargetIndex = 0;
+    protected bool onTheWay = false;
 
     Spawner spawner;
 
@@ -101,6 +102,7 @@ public class EnemyAI : MonoBehaviour
             //Stops a certain distance away from the target!
             if (distance > 9)
             {
+                onTheWay = true;
                 if (distance < range)
                 {
                     tmpSpeed = privateSpeed;
@@ -109,7 +111,10 @@ public class EnemyAI : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
             }
             if (distance <= 9)
+            {
+                onTheWay = false;
                 transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
+            }
         }
         else
         {

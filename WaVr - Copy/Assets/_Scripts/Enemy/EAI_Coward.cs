@@ -7,7 +7,8 @@ public class EAI_Coward : EnemyAI
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
-        nextTargetIndex++;
+        if (onTheWay)
+            nextTargetIndex++;
     }
 
     public override void KilledTarget()
