@@ -37,7 +37,9 @@ public class UIMaster : MonoBehaviour
     }
     public void NoHealerbuildTextStart()
     {
-        noBuildText.GetComponent<Text>().text = "Out of healers, new healer in :" + (Manager.Instance.turretReload.reloadForHealer - Manager.Instance.turretReload.currentTimeForHealer) + "seconds.";
+        float time = Manager.Instance.turretReload.reloadForHealer - Manager.Instance.turretReload.currentTimeForHealer;
+        time = Mathf.Floor(time);
+        noBuildText.GetComponent<Text>().text = "Out of healers, new healer in :" + (time) + "seconds.";
         noBuildText.SetActive(true);
     }
 
