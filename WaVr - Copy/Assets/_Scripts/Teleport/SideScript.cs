@@ -18,7 +18,7 @@ public class SideScript : MonoBehaviour
     private void Start()
     {
         parent = GetComponentInParent<Asteroid>();
-        player = Manager.Instance.ReturnPlayer().transform;
+        player = Manager.Instance.ReturnPlayerBody().transform;
         maxDistance = Manager.Instance.tpMaster.GetMaxLenght();
     }
 
@@ -26,12 +26,12 @@ public class SideScript : MonoBehaviour
     {
         if (highlightBool)
         {
-            //The + 3 is the radius of the sphere collider!
-            distance = (transform.position - player.position).magnitude - 4;
+            //The - 6 is the radius of the sphere collider plus some extra for reach!
+            distance = (transform.position - player.position).magnitude - 6;
 
             //This might be not good at all!
             //Probably(maybe) is better to do once when you teleport!
-            if (distance <= maxDistance && this != Manager.Instance.tpMaster.currentAsteroidStandingOn && Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport)
+            if (distance <= maxDistance && this != Manager.Instance.tpMaster.currentAsteroidStandingOn && (Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Teleport || Manager.Instance.enums.pointerState == Manager.Enums.PointerState.Build))
                 highlight.enabled = true;
             else
                 highlight.enabled = false;

@@ -22,8 +22,7 @@ public class EnemyAI : MonoBehaviour
 
     [HideInInspector] public bool tooClose = false;
     [HideInInspector] public Transform pushAwayFrom;
-    [ReadOnly]
-    private float range = 25;
+    public float range = 25;
 
     private int randomNmbrX;
     private int randomNmbrY;
@@ -70,7 +69,7 @@ public class EnemyAI : MonoBehaviour
         waveIndex = newWaveIndex;
     }
 
-    public virtual void Update()
+    public void Update()
     {
         Movement();
 
@@ -102,7 +101,7 @@ public class EnemyAI : MonoBehaviour
             //Stops a certain distance away from the target!
             if (distance > 9)
             {
-                if (distance < 25)
+                if (distance < range)
                 {
                     tmpSpeed = privateSpeed;
                     transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed * 2) * Time.deltaTime);
