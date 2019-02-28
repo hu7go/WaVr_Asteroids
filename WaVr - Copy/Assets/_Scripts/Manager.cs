@@ -728,8 +728,10 @@ public class Manager : MonoBehaviour
         turrets.Clear();
     }
 
-    //This currently only works with one active portal at a time!
-    public void UpdatePath (Vector3 pos, EnemySpawnPoint currentSpawnPoint) => currentSpawnPoint.FindPath(pos);
+    public void UpdatePath(Vector3 pos, EnemySpawnPoint currentSpawnPoint)
+    {
+        currentSpawnPoint.FindPath(pos);
+    }
 
     public void SwitchPortalTarget () => tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;
 }

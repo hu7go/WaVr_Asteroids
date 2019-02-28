@@ -40,6 +40,7 @@ public class EnemyAI : MonoBehaviour
     private float distance;
     protected int nextTargetIndex = 0;
     protected bool onTheWay = false;
+    protected float stopDistance = 9;
 
     Spawner spawner;
 
@@ -97,10 +98,22 @@ public class EnemyAI : MonoBehaviour
         {
             objective = objectiveOrder[nextTargetIndex].transform;
 
+            if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
+            {
+                //back to normal? comment these lines!
+                if (tmpWaiting == false)
+                {
+                    Debug.Log("Requesting path", gameObject);
+                    RequestPath();
+                    objective = objectiveOrder[nextTargetIndex].transform;
+                }
+                //
+            }
+
             distance = Vector3.Distance(transform.position, objective.position);
 
             //Stops a certain distance away from the target!
-            if (distance > 9)
+            if (distance > stopDistance)
             {
                 onTheWay = true;
                 if (distance < range)
@@ -110,7 +123,7 @@ public class EnemyAI : MonoBehaviour
                 }
                 transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
             }
-            if (distance <= 9)
+            if (distance <= stopDistance)
             {
                 onTheWay = false;
                 transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
@@ -131,6 +144,37 @@ public class EnemyAI : MonoBehaviour
         }
 
         transform.LookAt(objective, Manager.Instance.GetWorldAxis());
+    }
+
+    List<AsteroidHealth> tmpPath = new List<AsteroidHealth>();
+
+    public void RequestPath()
+    {
+        //Request a new path if the next in the order is dead!
+        Debug.Log("Test: " + objective.name);
+        home.RequestPath(objective.position, this);
+        StartCoroutine(WaitForPath());
+    }
+
+    public void GetPath(List<AsteroidHealth> newPath)
+    {
+        //Debug.Log(tmpPath.Count, gameObject);
+        tmpPath = newPath;
+        tmpWaiting = false;
+    }
+
+    bool tmpWaiting = false;
+
+    private IEnumerator WaitForPath()
+    {
+        tmpWaiting = true;
+        while (tmpWaiting)
+        {
+            yield return null;
+        }
+
+        objectiveOrder = tmpPath;
+        tmpPath.Clear();
     }
 
     //Shoot at objective

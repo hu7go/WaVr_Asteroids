@@ -66,7 +66,8 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
             asteroid.alive = false;
             if (tmp == false)
             {
-                Manager.Instance.UpdatePath(transform.position, enemyOrigin);
+                //! Un comment this to get it to work as it used to!
+                //Manager.Instance.UpdatePath(transform.position, enemyOrigin);
                 tmp = true;
             }
         }
