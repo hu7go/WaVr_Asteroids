@@ -154,6 +154,7 @@ public class Manager : MonoBehaviour
     public IndexNode[] indexNodes;
     [HideInInspector]
     public GameObject objective;
+    public GameObject fireFlyParent;
     public GameObject fireFlies;
     private int killedEnemies;
     private int counter;
@@ -309,7 +310,7 @@ public class Manager : MonoBehaviour
             int rand = Random.Range(0, 15);
             if (asteroidList[i].asteroid.alive && rand == 3)
             {
-                GameObject fF = Instantiate(fireFlies);
+                GameObject fF = Instantiate(fireFlies,fireFlyParent.transform);
                 for (int e = 0; e < fF.transform.childCount; e++)
                 {
                     fF.transform.GetChild(e).GetComponent<Firefly>().Instantiation(asteroidList[i]);
