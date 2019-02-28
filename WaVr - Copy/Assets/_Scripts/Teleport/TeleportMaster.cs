@@ -450,12 +450,18 @@ public class TeleportMaster : MonoBehaviour
         Manager.Instance.teleportOffset = currentHit.transform.position;
         Manager.Instance.UpdateAsteroidLine();
 
-        if (currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false)
+        if (currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.alive == false && currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false && Manager.Instance.turretReload.numberOfHealersLeft > 0)
         {
             GameObject healer = Instantiate(Manager.Instance.tAe.healer,currentAsteroidStandingOn.transform);
             healer.GetComponent<Healer>().SpawnAHealer(currentAsteroidStandingOn.gameObject);
             UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
             uImaster.CoroutineStarter(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop);
+            Manager.Instance.turretReload.HealerUsed();
+        }
+        else if (Manager.Instance.turretReload.numberOfHealersLeft == 0)
+        {
+            UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
+            uImaster.CoroutineStarter(uImaster.NoHealerbuildTextStart, uImaster.NobuildTextStop);
         }
     }
 

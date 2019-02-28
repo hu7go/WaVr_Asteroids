@@ -355,12 +355,18 @@ public class TeleportRotation : MonoBehaviour
                     {
                         if (hit.collider.gameObject == master.currentAsteroidStandingOn.gameObject)
                         {
-                            if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.health < Manager.Instance.tAe.asteroidHealth && master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false)
+                            if (master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.health < Manager.Instance.tAe.asteroidHealth && master.currentAsteroidStandingOn.GetComponentInChildren<AsteroidHealth>().asteroid.beingHealed == false && Manager.Instance.turretReload.numberOfHealersLeft > 0)
                             {
                                 GameObject healer = Instantiate(Manager.Instance.tAe.healer, master.currentAsteroidStandingOn.transform);
                                 healer.GetComponent<Healer>().SpawnAHealer(master.currentAsteroidStandingOn.gameObject);
                                 UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
                                 uImaster.CoroutineStarter(uImaster.NowHealingTextStart, uImaster.NowHealingTextStop);
+                                Manager.Instance.turretReload.HealerUsed();
+                            }
+                            else if(Manager.Instance.turretReload.numberOfHealersLeft == 0)
+                            {
+                                UIMaster uImaster = Manager.Instance.gameObject.GetComponent<UIMaster>();
+                                uImaster.CoroutineStarter(uImaster.NoHealerbuildTextStart, uImaster.NobuildTextStop);
                             }
                             canTeleport = false;
                             renderLine = false;

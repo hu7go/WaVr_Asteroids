@@ -35,6 +35,11 @@ public class UIMaster : MonoBehaviour
         noBuildText.GetComponent<Text>().text = "You can't build here, asteroid is dead";
         noBuildText.SetActive(true);
     }
+    public void NoHealerbuildTextStart()
+    {
+        noBuildText.GetComponent<Text>().text = "Out of healers, new healer in :" + (Manager.Instance.turretReload.reloadForHealer - Manager.Instance.turretReload.currentTimeForHealer) + "seconds.";
+        noBuildText.SetActive(true);
+    }
 
     public void NobuildTextStop() => noBuildText.SetActive(false);
 
