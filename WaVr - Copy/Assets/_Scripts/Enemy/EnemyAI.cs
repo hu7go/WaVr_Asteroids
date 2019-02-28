@@ -143,7 +143,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     //from turrets
-    public void TakeDamage (int damage)
+    public virtual void TakeDamage (int damage)
     {
         health -= damage;
         if (health <= 0)
@@ -163,6 +163,11 @@ public class EnemyAI : MonoBehaviour
         Manager.Instance.RemoveEnemy(waveIndex);
         spawner.RemoveEnemie(this);
         Destroy(gameObject);
+    }
+
+    public virtual void KilledTarget()
+    {
+
     }
 
     public int ReturnHealth () => health;

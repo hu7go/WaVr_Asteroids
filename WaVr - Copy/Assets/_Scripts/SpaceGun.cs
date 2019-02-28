@@ -94,6 +94,7 @@ public class SpaceGun : MonoBehaviour
             targetHealth.TakeDamage(damage, enemyOrigin);
             if (targetHealth.asteroid.health <= 0)
             {
+                ai.KilledTarget();
                 shoot = false;
             }
         }

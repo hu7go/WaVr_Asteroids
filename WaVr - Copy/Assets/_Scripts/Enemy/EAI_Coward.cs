@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class EAI_Coward : EnemyAI
 {
-    public override void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
+    public override void TakeDamage(int damage)
     {
-        base.Initialize(newList, newHealthThreshHold, newMaster, newSpawner, newWaveIndex);
+        base.TakeDamage(damage);
+        nextTargetIndex++;
+    }
+
+    public override void KilledTarget()
+    {
+        nextTargetIndex = 0;
     }
 }
