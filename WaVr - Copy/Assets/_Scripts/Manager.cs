@@ -258,7 +258,6 @@ public class Manager : MonoBehaviour
         enemyParent = new GameObject("enemyParent");
 
         //add a enemyspawnlocation look at objective
-        SetPointerState(Enums.PointerState.Teleport);
 
         //switch (graphicsSettings.cubesOn)
         //{
@@ -448,7 +447,7 @@ public class Manager : MonoBehaviour
         tAe.spawnPoints.Add(tmpSpawnPoint);
         //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
         //                                                             X   '...            Y               ...'
-        tmpSpawnPoint.StartSpawner(20, (int)waves[tAe.waveCount].enemyController.totalNumberOfEnemies, asteroidList, (int)waves[tAe.waveCount].damageThreshHold, tAe.waveCount, waves[tAe.waveCount]);
+        tmpSpawnPoint.StartSpawner(countdownTimer, (int)waves[tAe.waveCount].enemyController.totalNumberOfEnemies, asteroidList, (int)waves[tAe.waveCount].damageThreshHold, tAe.waveCount, waves[tAe.waveCount]);
         //localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, enemyDestructionPercent);
         //
 

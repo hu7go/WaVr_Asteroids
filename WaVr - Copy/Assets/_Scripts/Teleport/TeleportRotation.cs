@@ -265,6 +265,7 @@ public class TeleportRotation : MonoBehaviour
                 //If the target hit is has a sidescript attached to determin where we teleport!
                 if (hit.collider.GetComponent<SideScript>() != null && hit.collider != asteroidHit.collider)
                 {
+                    Debug.Log("Test");
                     master.RemoveTurretButtonsOnAsteroid();
 
                     if (hit.collider == asteroidHit.collider)

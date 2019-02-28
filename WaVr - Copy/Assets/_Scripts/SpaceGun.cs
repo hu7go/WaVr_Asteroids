@@ -50,7 +50,11 @@ public class SpaceGun : MonoBehaviour
             lineRend.SetPosition(0, muzzle.position);
             lineRend.SetPosition(1, ai.objective.position);
         }
-        else
+        else if (bulletType != BulletType.beam)
+        {
+            
+        }
+        else if (bulletType != BulletType.beam && !shoot)
         {
             lineRend.SetPosition(0, transform.position);
             lineRend.SetPosition(1, transform.position);

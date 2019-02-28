@@ -24,6 +24,8 @@ public class IndexNode : MonoBehaviour
     private void Start()
     {
         sCollider = GetComponent<SphereCollider>();
+        if (Manager.Instance.enums.pointerState != Manager.Enums.PointerState.Teleport)
+            Manager.Instance.SetPointerState(Manager.Enums.PointerState.Teleport);
         Off();
         switch (indexEnum)
         {

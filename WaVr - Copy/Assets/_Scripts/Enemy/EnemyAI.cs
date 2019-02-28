@@ -33,12 +33,13 @@ public class EnemyAI : MonoBehaviour
 
     private List<AsteroidHealth> objectiveOrder;
 
-    [SerializeField] private float healthThreshHold;
+    private float healthThreshHold;
 
     [HideInInspector] public bool seekAndDestroy = true;
     private EnemySpawnPoint home;
 
     private float distance;
+    protected int nextTargetIndex = 0;
 
     Spawner spawner;
 
@@ -69,7 +70,7 @@ public class EnemyAI : MonoBehaviour
         waveIndex = newWaveIndex;
     }
 
-    public void FixedUpdate()
+    public virtual void Update()
     {
         Movement();
 
@@ -94,7 +95,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (seekAndDestroy == true)
         {
-            objective = objectiveOrder[0].transform;
+            objective = objectiveOrder[nextTargetIndex].transform;
 
             distance = Vector3.Distance(transform.position, objective.position);
 

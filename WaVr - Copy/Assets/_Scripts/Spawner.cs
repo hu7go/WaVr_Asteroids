@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
     private int counter = 0;
     private float threshHold;
     private List<AsteroidHealth> objectiveOrder;
-    /*[HideInInspector]*/ public List<EnemyAI> enemies = new List<EnemyAI>();
+    [HideInInspector] public List<EnemyAI> enemies = new List<EnemyAI>();
     private int waveIndex;
     private Wave myWaveInfo;
 
@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour
     private void Spawn ()
     {
         if (counter < numberOfEnemies)
-            SpawEnemy();
+            SpawnEnemy();
         else
             master.Destroy();
     }
@@ -50,7 +50,7 @@ public class Spawner : MonoBehaviour
     int index = 0;
     int currentCounter = 0;
 
-    public void SpawEnemy()
+    public void SpawnEnemy()
     {
         if (currentCounter < myWaveInfo.enemyController.enemyTypePercent[index])
         {
