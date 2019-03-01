@@ -81,7 +81,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         }
         
         float temp = asteroid.health - damage;
-        float temp2 = damage + asteroid.health;
+        float temp2 = damage + temp;
         if ((asteroid.health - damage) > 0)
         {
             Manager.Instance.UpdateHealth(-damage);
