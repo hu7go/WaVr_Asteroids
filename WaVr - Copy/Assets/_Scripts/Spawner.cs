@@ -21,6 +21,8 @@ public class Spawner : MonoBehaviour
     {
         Invoke("Spawn", spawnTime);
 
+        Manager.Instance.UpdateWaveCounterText();
+
         portalOpening.GraphTimeMultiplier = (Manager.Instance.waves[waveIndex].enemyController.totalNumberOfEnemies * spawnTime) + 5;
     }
 
@@ -70,7 +72,7 @@ public class Spawner : MonoBehaviour
         tmp.Initialize(objectiveOrder, threshHold, master, this, waveIndex);
         enemies.Add(tmp);
         Manager.Instance.waves[waveIndex].enemies.Add(tmp);
-        Manager.Instance.InstantiateEnemy(newEnemy, waveIndex);
+        Manager.Instance.InstantiatedEnemy(newEnemy, waveIndex);
         counter++;
         Invoke("Spawn", spawnTime);
     }

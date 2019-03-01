@@ -50,7 +50,6 @@ public class Manager : MonoBehaviour
     public class TurretAndEnemiesSettings
     {
         public bool turretHover = false;
-        public bool towerDefence;
 
         public GameObject enemySpawner;
         public GameObject healer;
@@ -386,6 +385,21 @@ public class Manager : MonoBehaviour
             daydreamSettings.dayDreamBoxIncreases[i].size *= 4;
     }
 
+    bool lost = false;
+
+    private IEnumerator WaitForAllEnemies ()
+    {
+        while (enemiesSpawned.Count > 0)
+        {
+            yield return null;
+        }
+
+        if (lost == false)
+        {
+            ObjectiveReached();
+        }
+    }
+
     public IEnumerator SpawnThemNewEnemies()
     {
         if (tAe.waveCount + 1 > waves.Count)
@@ -393,7 +407,7 @@ public class Manager : MonoBehaviour
             StartCoroutine(WaitForAllEnemies());
             yield return null;
         }
-        
+
         yield return new WaitForSeconds(minWaveWaitTime);
 
         //TODO: Change the waveDelayPercent to be more consistent!
@@ -408,64 +422,31 @@ public class Manager : MonoBehaviour
         Invoke("SpawnEnemie", timeToWait);
     }
 
-    bool lost = false;
-
-    private IEnumerator WaitForAllEnemies ()
-    {
-        while (enemiesSpawned.Count > 0)
-        {
-            yield return null;
-        }
-
-        if (lost == false)
-        {
-            ObjectiveReached();
-        }
-
-    }
-
-    void SpawnEnemie () => StartSpawningEnemies();
-
-    public void StartSpawningEnemies()
-    {
-        if (tAe.towerDefence)
-        {
-            uISettings.waveCount.text = ("Wave: " + (tAe.waveCount + 1));
-
-            EnemySpawner();
-        }
-    }
-
     private void EnemySpawner ()
     {
         ClearNullRefs();
 
         if (tAe.waveCount > waves.Count + 1)
+        {
+            Debug.Log("All waves are done!?");
             return;
+        }
 
         GameObject localEnemySpawner = Instantiate(tAe.enemySpawner, waves[tAe.waveCount].spawnPosition.position, transform.rotation);
         EnemySpawnPoint tmpSpawnPoint = localEnemySpawner.GetComponent<EnemySpawnPoint>();
         tAe.spawnPoints.Add(tmpSpawnPoint);
-        //Starts the spawning process for the enemies, spawns 'Y' amount of enemies after 'X' amount of time!
-        //                                                             X   '...            Y               ...'
-        tmpSpawnPoint.StartSpawner(countdownTimer, (int)waves[tAe.waveCount].enemyController.totalNumberOfEnemies, asteroidList, (int)waves[tAe.waveCount].damageThreshHold, tAe.waveCount, waves[tAe.waveCount]);
-        //localEnemySpawner.GetComponent<EnemySpawnPoint>().StartSpawner(20, turretsAndEnemies.maxNumberOfEnemies, asteroidList, enemyDestructionPercent);
-        //
+
+        tmpSpawnPoint.StartSpawner(countdownTimer, waves[tAe.waveCount].enemyController.totalNumberOfEnemies, asteroidList, (int)waves[tAe.waveCount].damageThreshHold, tAe.waveCount, waves[tAe.waveCount]);
 
         tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;
 
         counter = 0;
         tAe.enemySpawnPoint = localEnemySpawner;
 
-        //This start the next wave after x amount of time!
-        //Invoke("StartSpawningEnemies", 30);
-
         tAe.waveCount++;
     }
 
-    public void RoutineOpener() => EnemySpawner();
-
-    public void InstantiateEnemy(GameObject newEnemy, int index)
+    public void InstantiatedEnemy(GameObject newEnemy, int index)
     {
         waves[index].currentNumberOfEnemies++;
 
@@ -474,7 +455,7 @@ public class Manager : MonoBehaviour
         numberOfEnemies++;
     }
 
-    public void RemoveEnemy(int index)
+    public void RemovedEnemy(int index)
     {
         waves[index].currentNumberOfEnemies--;
 
@@ -542,7 +523,6 @@ public class Manager : MonoBehaviour
 
         uISettings.waveCount.text = ("Wave: " + (tAe.waveCount + 1));
 
-        RoutineOpener();
     }
 
     public void ClearNullRefs ()
@@ -603,7 +583,7 @@ public class Manager : MonoBehaviour
     {
         if (spawnedFirstTurret == false)
         {
-            StartSpawningEnemies();
+            StartCoroutine(SpawnThemNewEnemies());
             spawnedFirstTurret = true;
         }
     }
@@ -731,6 +711,14 @@ public class Manager : MonoBehaviour
     public void UpdatePath(Vector3 pos, EnemySpawnPoint currentSpawnPoint)
     {
         currentSpawnPoint.FindPath(pos);
+    }
+
+    int privateWaveCount = 0;
+
+    public void UpdateWaveCounterText ()
+    {
+        privateWaveCount++;
+        uISettings.waveCount.text = "Wave: " + privateWaveCount.ToString();
     }
 
     public void SwitchPortalTarget () => tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;

@@ -175,7 +175,7 @@ public class EnemyAI : MonoBehaviour
         ups.UnParent();
 
         Manager.Instance.waves[waveIndex].enemies.Remove(this);
-        Manager.Instance.RemoveEnemy(waveIndex);
+        Manager.Instance.RemovedEnemy(waveIndex);
         spawner.RemoveEnemie(this);
         Destroy(gameObject);
     }

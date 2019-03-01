@@ -19,10 +19,8 @@ public class EAI_Coward : EnemyAI
 
     public override void SetPath(List<AsteroidHealth> newPath)
     {
-        Debug.Log("Test");
         if (objectiveOrder[nextTargetIndex].asteroid.alive == true)
         {
-            Debug.Log("Testsetset", this);
             nextTargetIndex--;
         }
         base.SetPath(newPath);

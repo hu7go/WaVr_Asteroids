@@ -62,7 +62,6 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         {
             asteroid.health = 0;
         }
-
         else if((asteroid.health - damage) > 0)
         {
             asteroid.health -= damage;
@@ -80,18 +79,18 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
                 tmp = true;
             }
         }
-
-        if (asteroid.health < 0)
-        {
-            enemyOrigin.HealthTracker(-asteroid.health);
-            Manager.Instance.UpdateHealth(-asteroid.health);
-        }
+        
         float temp = asteroid.health - damage;
         float temp2 = damage + asteroid.health;
         if ((asteroid.health - damage) > 0)
+        {
             Manager.Instance.UpdateHealth(-damage);
+        }
         else if (asteroid.health - damage <= 0)
+        {
+            enemyOrigin.HealthTracker(temp2);
             Manager.Instance.UpdateHealth(-temp2);
+        }
 
         UpdateColor();
     }

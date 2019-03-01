@@ -13,12 +13,6 @@ public class ManagerEditor : Editor
         DrawDefaultInspector();
         Manager mS = (Manager)target;
 
-        if (GUILayout.Button("Start spawing enemies!"))
-        {
-            if (mS.StartedGame())
-                mS.StartSpawningEnemies();
-        }
-
         if (GUILayout.Button("Switch world version"))
         {
             if (EditorApplication.isPlaying)
