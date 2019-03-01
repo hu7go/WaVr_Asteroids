@@ -18,7 +18,7 @@ public class EnemySpawnPoint : MonoBehaviour
     private float timer;
     private bool start = false;
 
-    private bool spawned = false;
+    [HideInInspector] public bool spawned = false;
 
     public Color red = Color.red;
     public Color purple = Color.magenta;
@@ -280,15 +280,21 @@ public class EnemySpawnPoint : MonoBehaviour
         doneSpawning = true;
     }
 
+    bool deastroyed = false;
+
     public void Over ()
     {
         //! This might need to get changed later because some enemies have no healththrehhold!
         if (mySpawner.enemies.Count <= 0)
         {
-            Destroy(preSpawn.gameObject);
-            mySpawner.StartEndAnim();
-            Manager.Instance.SwitchPortalTarget();
-            Destroy(gameObject, 3);
+            if (deastroyed == false)
+            {
+                Destroy(preSpawn.gameObject);
+                mySpawner.StartEndAnim();
+                Manager.Instance.SwitchPortalTarget();
+                Destroy(gameObject, 3);
+                deastroyed = true;
+            }
         }
     }
 

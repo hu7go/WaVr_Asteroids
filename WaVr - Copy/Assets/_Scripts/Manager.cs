@@ -401,18 +401,23 @@ public class Manager : MonoBehaviour
         }
     }
 
+    List<WaveSpawnCondition.Function> list;
+
     public IEnumerator StartNextWave()
     {
         if (tAe.waveCount + 1 > waves.Count)
         {
-            Debug.Log("testsetset");
             StartCoroutine(WaitForAllEnemies());
             yield return null;
         }
 
-        while (!WaveSpawnCondition.Trigger(waves[tAe.waveCount].triggerManager.Trigger))
+        for (int i = 0; i < waves[tAe.waveCount].triggers.Count; i++)
         {
+            list.Add(waves[tAe.waveCount].triggers[i].Trigger);
+        }
 
+        while (WaveSpawnCondition.Trigger(list) < 1)
+        {
             yield return null;
         }
 

@@ -42,12 +42,19 @@ public class Spawner : MonoBehaviour
         threshHold = Manager.Instance.waves[waveIndex].damageThreshHold;
     }
 
+    [HideInInspector] public bool doneSpawning = false;
+
     private void Spawn ()
     {
         if (counter < numberOfEnemies)
+        {
             SpawnEnemy();
+        }
         else
+        {
+            doneSpawning = true;
             master.Destroy();
+        }
     }
 
     int index = 0;
@@ -69,7 +76,7 @@ public class Spawner : MonoBehaviour
 
         GameObject newEnemy = Instantiate(myWaveInfo.enemyController.enemyTypes[index].enemy, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
         EnemyAI tmp = newEnemy.GetComponent<EnemyAI>();
-        tmp.Initialize(objectiveOrder, threshHold, master, this, waveIndex, myWaveInfo.enemyController.enemyTypes[currentCounter]);
+        tmp.Initialize(objectiveOrder, threshHold, master, this, waveIndex, myWaveInfo.enemyController.enemyTypes[index]);
         enemies.Add(tmp);
         Manager.Instance.waves[waveIndex].enemies.Add(tmp);
         Manager.Instance.InstantiatedEnemy(newEnemy, waveIndex);

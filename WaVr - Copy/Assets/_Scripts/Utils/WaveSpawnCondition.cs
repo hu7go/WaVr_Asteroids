@@ -6,15 +6,22 @@ public static class WaveSpawnCondition
 {
     public delegate bool Function();
 
-    public static bool Trigger (Function newTrigger)
+    public static int Trigger (List<Function> newTrigger)
     {
-        if (newTrigger())
+        int numberOfDoneConditions = 0;
+
+        for (int i = 0; i < newTrigger.Count; i++)
         {
-            return true;
+            if (newTrigger[i]() == true)
+            {
+                numberOfDoneConditions++;
+            }
+            else
+            {
+
+            }
         }
-        else
-        {
-            return false;
-        }
+
+        return numberOfDoneConditions;
     }
 }
