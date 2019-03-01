@@ -7,8 +7,8 @@ public class EAI_Persistant : EnemyAI
     [Space(20)]
     public float newDamageThreshHold = 0;
 
-    public override void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
+    public override void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex, Enemies enemyType)
     {
-        base.Initialize(newList, newDamageThreshHold, newMaster, newSpawner, newWaveIndex);
+        base.Initialize(newList, newDamageThreshHold, newMaster, newSpawner, newWaveIndex, enemyType);
     }
 }

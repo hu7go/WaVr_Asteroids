@@ -56,16 +56,20 @@ public class EnemyAI : MonoBehaviour
         randomNmbrY = Random.Range(-10, 10);
         randomNmbrZ = Random.Range(-10, 10);
 
-        privateSpeed = speed / 2;
-        tmpSpeed = speed;
 
         health += Manager.Instance.tAe.waveCount;
     }
 
-    public virtual void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
+    public virtual void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex, Enemies enemyType)
     {
         //RequestPath();
 
+        speed = enemyType.speed;
+        range = enemyType.range;
+        health = (int)enemyType.health;
+
+        privateSpeed = speed / 2;
+        tmpSpeed = speed;
         objectiveOrder = newList;
         healthThreshHold = newHealthThreshHold;
         home = newMaster;
