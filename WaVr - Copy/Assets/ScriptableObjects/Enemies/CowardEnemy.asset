@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Coward
   boss: 0
-  enemie: {fileID: 4483640523836513649, guid: 062fef67845877e41b8c25260793bb6b, type: 3}
-  damage: 1
-  health: 6
+  damage: 0.5
+  health: 4
   speed: 10
   fireRate: 0.5
+  range: 20
+  enemy: {fileID: 4483640523836513649, guid: 062fef67845877e41b8c25260793bb6b, type: 3}
   bullet: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
-  scale: {x: 1, y: 1, z: 1}

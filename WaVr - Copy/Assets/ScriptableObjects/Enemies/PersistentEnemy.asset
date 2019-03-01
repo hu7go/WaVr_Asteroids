@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Persistent
   boss: 0
-  enemie: {fileID: 9000831034717668533, guid: 7b25fed870701a34785b609053982e2a, type: 3}
-  damage: 1
-  health: 4
+  damage: 0.1
+  health: 6
   speed: 10
-  fireRate: 0.5
+  fireRate: 0.1
+  range: 25
+  enemy: {fileID: 9000831034717668533, guid: 7b25fed870701a34785b609053982e2a, type: 3}
   bullet: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
-  scale: {x: 1, y: 1, z: 1}
