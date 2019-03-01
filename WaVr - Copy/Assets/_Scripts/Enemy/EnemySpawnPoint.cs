@@ -14,7 +14,7 @@ public class EnemySpawnPoint : MonoBehaviour
     public MeshRenderer preSpawn;
     public Text timerText;
     public GameObject animatedSphere;
-
+    private AudioSource audi, audi1, audi2;
     private float timer;
     private bool start = false;
 
@@ -48,6 +48,13 @@ public class EnemySpawnPoint : MonoBehaviour
     public float damageDonePercent = 0;
 
     float myDamageDone = 0;
+    private void Start()
+    {
+        AudioSource[] audios = GetComponents<AudioSource>();
+        audi = audios[0];
+        audi1 = audios[1];
+        audi2 = audios[2];
+    }
 
     public void HealthTracker (float damage)
     {
@@ -63,7 +70,8 @@ public class EnemySpawnPoint : MonoBehaviour
         timer = newTime;
         arrowRenderer = Manager.Instance.arrowRenderer;
         StartCoroutine(ArrowColor(timer, Color.red, 0));
-
+        audi.Play();
+        audi2.Play();
         FindPath(transform.position);
 
         start = true;
@@ -292,6 +300,8 @@ public class EnemySpawnPoint : MonoBehaviour
                 Destroy(preSpawn.gameObject);
                 mySpawner.StartEndAnim();
                 Manager.Instance.SwitchPortalTarget();
+                audi1.Stop();
+                audi2.Play();
                 Destroy(gameObject, 3);
                 deastroyed = true;
             }
