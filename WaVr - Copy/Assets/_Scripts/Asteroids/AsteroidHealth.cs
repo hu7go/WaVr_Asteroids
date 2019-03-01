@@ -58,8 +58,17 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
             StartCoroutine(DamageVisual(.05f));
         }
 
-        asteroid.health -= damage;
-        enemyOrigin.HealthTracker(damage);
+        if (asteroid.health - damage <= 0)
+        {
+            asteroid.health = 0;
+        }
+
+        else if((asteroid.health - damage) > 0)
+        {
+            asteroid.health -= damage;
+            enemyOrigin.HealthTracker(damage);
+        }
+
         if (asteroid.health <= 0)
         {
             turretMaster.AsteroidDied();
@@ -77,8 +86,8 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
             enemyOrigin.HealthTracker(-asteroid.health);
             Manager.Instance.UpdateHealth(-asteroid.health);
         }
-
-        Manager.Instance.UpdateHealth(-damage);
+        if(asteroid.alive == false)
+            Manager.Instance.UpdateHealth(-damage);
 
         UpdateColor();
     }

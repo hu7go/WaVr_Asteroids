@@ -7,6 +7,6 @@ public class EAI_Fetcher : EnemyAI
     Enemies fetcher;
     private void Start()
     {
-        fetcher.health += 700;
+        
     }
 }
