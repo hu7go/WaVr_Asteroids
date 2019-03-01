@@ -404,9 +404,18 @@ public class Manager : MonoBehaviour
     {
         if (tAe.waveCount + 1 > waves.Count)
         {
+            Debug.Log("testsetset");
             StartCoroutine(WaitForAllEnemies());
             yield return null;
         }
+
+        while (!WaveSpawnCondition.Trigger(waves[tAe.waveCount].triggerManager.Trigger))
+        {
+
+            yield return null;
+        }
+
+        //TODO: Have each wave have their own spawn triggers!!!
 
         yield return new WaitForSeconds(minWaveWaitTime);
 
@@ -419,7 +428,7 @@ public class Manager : MonoBehaviour
 
         float timeToWait = maxWaveWaitTime * waveDelayPercent;
 
-        Invoke("SpawnEnemie", timeToWait);
+        Invoke("EnemySpawner", timeToWait);
     }
 
     private void EnemySpawner ()
@@ -444,6 +453,8 @@ public class Manager : MonoBehaviour
         tAe.enemySpawnPoint = localEnemySpawner;
 
         tAe.waveCount++;
+
+        StartCoroutine(SpawnThemNewEnemies());
     }
 
     public void InstantiatedEnemy(GameObject newEnemy, int index)
