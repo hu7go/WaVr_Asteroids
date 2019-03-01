@@ -30,8 +30,11 @@ public class SpaceGun : MonoBehaviour
     public Color colorBack;
     EnemyAI ai;
 
+    AudioSource audioManager;
+
     private void Start()
     {
+        audioManager = GetComponent<AudioSource>();
         muzzleOriginalRot = muzzle.rotation;
         ai = GetComponent<EnemyAI>();
         if (bulletType == BulletType.beam)
@@ -65,6 +68,18 @@ public class SpaceGun : MonoBehaviour
     {
         if (!canFire)
             return;
+
+        switch (bulletType)
+        {
+            case BulletType.bullet:
+                if (audioManager.isPlaying == false)
+                    audioManager.Play();
+                break;
+            case BulletType.beam:
+                if (!audioManager.isPlaying)
+                    audioManager.Play();
+                break;
+        }
 
         canFire = false;
 
@@ -103,6 +118,8 @@ public class SpaceGun : MonoBehaviour
     public void StopShooting()
     {
         shoot = false;
+        if (audioManager.isPlaying)
+            audioManager.Stop();
     }
 
     private IEnumerator FireRate ()
