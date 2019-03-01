@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu()]
+[CreateAssetMenu(fileName = "Turret", menuName = "ScriptableObject/Turrets/Turret")]
 public class Turret : ScriptableObject
 {
     public int damage;

@@ -194,6 +194,7 @@ public class Manager : MonoBehaviour
 
     public MeshRenderer arrowRenderer;
     public TeleportMaster tpMaster;
+    [HideInInspector] public EnemySpawnPoint currentSpawnPoint;
 
     [HideInInspector] public TurretReloader turretReload;
 
@@ -415,20 +416,22 @@ public class Manager : MonoBehaviour
             yield return null;
         }
 
-        //TODO: Have each wave have their own spawn triggers!!!
+        EnemySpawner();
 
-        yield return new WaitForSeconds(minWaveWaitTime);
+        ////TODO: Have each wave have their own spawn triggers!!!
 
-        //TODO: Change the waveDelayPercent to be more consistent!
-        float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].enemyController.totalNumberOfEnemies);
+        //yield return new WaitForSeconds(minWaveWaitTime);
 
-        if (waveDelayPercent == 0)
-            waveDelayPercent = .1f;
-        //
+        ////TODO: Change the waveDelayPercent to be more consistent!
+        //float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].enemyController.totalNumberOfEnemies);
 
-        float timeToWait = maxWaveWaitTime * waveDelayPercent;
+        //if (waveDelayPercent == 0)
+        //    waveDelayPercent = .1f;
+        ////
 
-        Invoke("EnemySpawner", timeToWait);
+        //float timeToWait = maxWaveWaitTime * waveDelayPercent;
+
+        //Invoke("EnemySpawner", timeToWait);
     }
 
     private void EnemySpawner ()
@@ -443,6 +446,7 @@ public class Manager : MonoBehaviour
 
         GameObject localEnemySpawner = Instantiate(tAe.enemySpawner, waves[tAe.waveCount].spawnPosition.position, transform.rotation);
         EnemySpawnPoint tmpSpawnPoint = localEnemySpawner.GetComponent<EnemySpawnPoint>();
+        currentSpawnPoint = tmpSpawnPoint;
         tAe.spawnPoints.Add(tmpSpawnPoint);
 
         tmpSpawnPoint.StartSpawner(countdownTimer, waves[tAe.waveCount].enemyController.totalNumberOfEnemies, asteroidList, (int)waves[tAe.waveCount].damageThreshHold, tAe.waveCount, waves[tAe.waveCount]);

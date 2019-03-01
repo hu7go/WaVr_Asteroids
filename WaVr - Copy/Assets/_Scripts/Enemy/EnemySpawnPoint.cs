@@ -39,9 +39,9 @@ public class EnemySpawnPoint : MonoBehaviour
 
     [HideInInspector] public bool foundPath = false;
 
-    private Spawner mySpawner;
+    [HideInInspector] public Spawner mySpawner;
 
-    private Wave myWaveInfo;
+    [HideInInspector] public Wave myWaveInfo;
     private MeshRenderer arrowRenderer;
 
     [Space(20)]
