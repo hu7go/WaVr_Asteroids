@@ -74,6 +74,7 @@ public class Spawner : MonoBehaviour
         Manager.Instance.waves[waveIndex].enemies.Add(tmp);
         Manager.Instance.InstantiatedEnemy(newEnemy, waveIndex);
         counter++;
+        spawnTime = 10 / tmp.speed;
         Invoke("Spawn", spawnTime);
     }
 
