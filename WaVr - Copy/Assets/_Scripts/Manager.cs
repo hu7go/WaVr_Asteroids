@@ -401,7 +401,7 @@ public class Manager : MonoBehaviour
         }
     }
 
-    public IEnumerator SpawnThemNewEnemies()
+    public IEnumerator StartNextWave()
     {
         if (tAe.waveCount + 1 > waves.Count)
         {
@@ -416,7 +416,7 @@ public class Manager : MonoBehaviour
             yield return null;
         }
 
-        EnemySpawner();
+        SpawnEnemies();
 
         ////TODO: Have each wave have their own spawn triggers!!!
 
@@ -434,7 +434,7 @@ public class Manager : MonoBehaviour
         //Invoke("EnemySpawner", timeToWait);
     }
 
-    private void EnemySpawner ()
+    private void SpawnEnemies ()
     {
         ClearNullRefs();
 
@@ -458,7 +458,7 @@ public class Manager : MonoBehaviour
 
         tAe.waveCount++;
 
-        StartCoroutine(SpawnThemNewEnemies());
+        StartCoroutine(StartNextWave());
     }
 
     public void InstantiatedEnemy(GameObject newEnemy, int index)
@@ -598,7 +598,7 @@ public class Manager : MonoBehaviour
     {
         if (spawnedFirstTurret == false)
         {
-            StartCoroutine(SpawnThemNewEnemies());
+            SpawnEnemies();
             spawnedFirstTurret = true;
         }
     }

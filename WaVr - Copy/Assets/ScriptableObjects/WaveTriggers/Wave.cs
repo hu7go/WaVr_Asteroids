@@ -30,9 +30,8 @@ public class ThreasholdReached : TriggerManager
     public override bool Trigger()
     {
         if (prevSpawnPoint == null)
-        {
-            prevSpawnPoint = Manager.Instance.currentSpawnPoint
-        }
+            prevSpawnPoint = Manager.Instance.currentSpawnPoint;
+
         Debug.Log(prevSpawnPoint.name);
         if (prevSpawnPoint.damageDonePercent <= prevSpawnPoint.myWaveInfo.damageThreshHold)
         {
@@ -52,6 +51,9 @@ public class EnemiesDied : TriggerManager
 {
     public override bool Trigger()
     {
+        if (prevSpawnPoint == null)
+            prevSpawnPoint = Manager.Instance.currentSpawnPoint;
+
         if (prevSpawnPoint.mySpawner.enemies.Count == 0)
         {
             return true;
