@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector] public Transform objective;
     SpaceGun gun;
     UnparentSound ups;
-    public float speed = 1;
+    [HideInInspector] public float speed = 1;
 
     RaycastHit hit;
     RaycastHit playerHit;
@@ -18,11 +18,11 @@ public class EnemyAI : MonoBehaviour
     Vector3 forward;
     public LayerMask layerMask;
 
-    [SerializeField] private int health = 5;
+    private int health = 5;
 
     [HideInInspector] public bool tooClose = false;
     [HideInInspector] public Transform pushAwayFrom;
-    public float range = 25;
+    [HideInInspector] public float range = 25;
 
     private int randomNmbrX;
     private int randomNmbrY;

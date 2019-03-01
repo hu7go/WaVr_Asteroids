@@ -8,12 +8,12 @@ public class SpaceGun : MonoBehaviour
         bullet,
         beam
     }
-    public BulletType bulletType;
-    public GameObject bulletPrefab;
+    [HideInInspector] public BulletType bulletType;
+    [HideInInspector] public GameObject bulletPrefab;
     [SerializeField] private Transform muzzle;
     [Tooltip("Damage dealt per bullet hit.")]
-    public float damage = 1;
-    public float fireRate = 1;
+    [HideInInspector] public float damage = 1;
+    [HideInInspector] public float fireRate = 1;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private bool spawnEffect = true;
     private bool canFire = true;
