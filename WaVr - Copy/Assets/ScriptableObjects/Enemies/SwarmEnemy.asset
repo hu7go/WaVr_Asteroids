@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Swarmer
   boss: 0
-  damage: 1
+  damage: 5
   health: 6
   speed: 10
   fireRate: 0.5
   range: 25
   enemy: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636, type: 3}
   bullet: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
+  bulletType: 0

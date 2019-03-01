@@ -397,11 +397,12 @@ public class Manager : MonoBehaviour
 
         if (lost == false)
         {
+            Debug.Log("No THIS happended!!!");
             ObjectiveReached();
         }
     }
 
-    List<WaveSpawnCondition.Function> list;
+    List<WaveSpawnCondition.Function> list = new List<WaveSpawnCondition.Function>();
 
     public IEnumerator StartNextWave()
     {
@@ -416,10 +417,12 @@ public class Manager : MonoBehaviour
             list.Add(waves[tAe.waveCount].triggers[i].Trigger);
         }
 
-        while (WaveSpawnCondition.Trigger(list) < 1)
+        while (WaveSpawnCondition.Trigger(list) < waves[tAe.waveCount].numberOfrequiredTriggers)
         {
             yield return null;
         }
+
+        yield return new WaitForSeconds(10);
 
         SpawnEnemies();
 
@@ -553,6 +556,7 @@ public class Manager : MonoBehaviour
 
         if (tAe.waveCount > waves.Count && (enemiesSpawned.Count == 0))
         {
+            Debug.Log("This happend!!");
             ObjectiveReached();
         }
     }

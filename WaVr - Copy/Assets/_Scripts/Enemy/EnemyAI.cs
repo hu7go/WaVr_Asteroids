@@ -48,8 +48,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        gun = GetComponent<SpaceGun>();
-        StartShooting();  // Start shooting when in range of objective?
+        StartShooting();
         ups = GetComponentInChildren<UnparentSound>();
 
         randomNmbrX = Random.Range(-10, 10);
@@ -62,6 +61,8 @@ public class EnemyAI : MonoBehaviour
 
     public virtual void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex, Enemies enemyType)
     {
+        gun = GetComponent<SpaceGun>();
+
         //RequestPath();
         gun.damage = enemyType.damage;
         gun.fireRate = enemyType.fireRate;
@@ -86,14 +87,11 @@ public class EnemyAI : MonoBehaviour
     {
         Movement();
 
-        //If max health is low enough
-        if (home.damageDonePercent >= 100 - healthThreshHold)
+        if (Manager.Instance.healthPercent <= healthThreshHold || home.damageDonePercent >= 100 - healthThreshHold + 1)
         {
+            //If max health is low enough
             //If the damage they have done is high enough
-            if (Manager.Instance.healthPercent <= healthThreshHold)
-            {
-                GoHome();
-            }
+            GoHome();
         }
     }
 
@@ -153,8 +151,11 @@ public class EnemyAI : MonoBehaviour
     //Shoot at objective
     public void StartShooting()
     {
-        if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, out hit, range, layerMask))
-            gun.Shoot(waveIndex, home);
+        if (seekAndDestroy)
+        {
+            if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, out hit, range, layerMask))
+                gun.Shoot(waveIndex, home);
+        }
         StartCoroutine(Shoot());
     }
 

@@ -11,6 +11,8 @@ public class Wave
     [HideInInspector] public List<EnemyAI> enemies;
     [HideInInspector] public float damageDone;
 
+    [Tooltip("BEWARE!! This should not be more than there are triggers in the triggers list!!!")]
+    public int numberOfrequiredTriggers = 1;
     public List<TriggerManager> triggers;
 }
 

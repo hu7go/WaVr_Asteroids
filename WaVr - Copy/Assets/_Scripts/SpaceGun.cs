@@ -54,7 +54,7 @@ public class SpaceGun : MonoBehaviour
         {
             
         }
-        else if (bulletType != BulletType.beam && !shoot)
+        else if (bulletType != BulletType.beam && !shoot && ai.seekAndDestroy == false)
         {
             lineRend.SetPosition(0, transform.position);
             lineRend.SetPosition(1, transform.position);
