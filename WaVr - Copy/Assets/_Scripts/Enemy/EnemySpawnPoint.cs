@@ -48,13 +48,6 @@ public class EnemySpawnPoint : MonoBehaviour
     public float damageDonePercent = 0;
 
     float myDamageDone = 0;
-    private void Start()
-    {
-        AudioSource[] audios = GetComponents<AudioSource>();
-        audi = audios[0];
-        audi1 = audios[1];
-        audi2 = audios[2];
-    }
 
     public void HealthTracker (float damage)
     {
@@ -64,6 +57,12 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public void StartSpawner (float newTime, int n, List<AsteroidHealth> newList, float newThreshHold, int newWaveIndex, Wave newWave)
     {
+        AudioSource[] audios = GetComponents<AudioSource>();
+
+        audi = audios[0];
+        audi1 = audios[1];
+        audi2 = audios[2];
+
         myWaveInfo = newWave;
         waveIndex = newWaveIndex;
         asteroidList = newList;

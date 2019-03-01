@@ -108,9 +108,11 @@ public class DamageDone : TriggerManager
     }
 }
 
-[CreateAssetMenu(fileName = "TimerTrigger", menuName = "ScriptableObject/Wave/TimerTriggerNOTDONEYET", order = 4)]
+[CreateAssetMenu(fileName = "TimerTrigger", menuName = "ScriptableObject/Wave/TimerTrigger", order = 4)]
 public class Timer : TriggerManager
 {
+    float timer = 0;
+
     public override bool Trigger()
     {
         if (prevSpawnPoint == null)
@@ -118,13 +120,17 @@ public class Timer : TriggerManager
             prevSpawnPoint = Manager.Instance.currentSpawnPoint;
         }
 
-        if (prevSpawnPoint.damageDonePercent >= 100 - prevSpawnPoint.myWaveInfo.damageThreshHold)
+        if (timer > 10)
         {
+            timer = 0;
             prevSpawnPoint = null;
             return true;
         }
         else
         {
+            timer += Time.deltaTime;
+            Utils.ClearLogConsole();
+            Debug.Log(timer);
             return false;
         }
     }
