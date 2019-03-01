@@ -120,30 +120,26 @@ public class EnemySpawnPoint : MonoBehaviour
         }
     }
 
-    EnemyAI ai;
     bool pathForAll = false;
 
     public void FindPath (Vector3 pos)
     {
         pathForAll = true;
         spawnerPosition = pos;
-        StartCoroutine(StartPathFinding());
+        StartPathFinding();
     }
 
-    public void RequestPath (Vector3 pos, EnemyAI newAi)
+    public void RequestPath (Vector3 pos)
     {
         pathForAll = false;
-        ai = newAi;
         spawnerPosition = pos;
-        StartCoroutine(StartPathFinding());
+        StartPathFinding();
     }
 
-    private IEnumerator StartPathFinding ()
+    private void StartPathFinding ()
     {
         pathThread = new Thread(SortList);
         pathThread.Start();
-
-        yield return null;
     }
 
     //! Happens on a separate thread!!
@@ -152,6 +148,7 @@ public class EnemySpawnPoint : MonoBehaviour
         foundPath = false;
         //Sort list based on distance! from the previouse target!!!!
         sortedList = new List<AsteroidHealth>();
+
         AsteroidHealth currentTarget = new AsteroidHealth();
         Vector3 currentPos = new Vector3();
 
@@ -160,12 +157,10 @@ public class EnemySpawnPoint : MonoBehaviour
             //Special case if we are in the first position!
             if (i == 0)
             {
-
                 currentPos = spawnerPosition;
             }
             else
             {
-
                 currentPos = currentTarget.asteroid.postition;
             }
 
@@ -173,27 +168,8 @@ public class EnemySpawnPoint : MonoBehaviour
             asteroidList.OrderBy(x => Vector3.Distance(currentPos, x.asteroid.postition)).ToList();
             asteroidList.Sort(delegate (AsteroidHealth a, AsteroidHealth b)
             {
-                if (currentPos != null && a != null && b != null)
-                {
-                    int tmp = Vector3.Distance(currentPos, a.asteroid.postition).CompareTo(Vector3.Distance(currentPos, b.asteroid.postition));
-
-                    //float tmp = Vector3.Distance(currentPos, a.asteroid.postition) - Vector3.Distance(currentPos, b.asteroid.postition);
-                    if (tmp != 0)
-                    {
-                        return Vector3.Distance(currentPos, a.asteroid.postition)
-                        .CompareTo(Vector3.Distance(currentPos, b.asteroid.postition));
-                    }
-                    else
-                    {
-                        return (int)Vector3.Distance(currentPos, b.asteroid.postition);
-                    }
-                }
-                else
-                {
-                    Debug.Log("something was null!");
-                    return 0;
-                }
-
+                return Vector3.Distance(currentPos, a.asteroid.postition)
+                .CompareTo(Vector3.Distance(currentPos, b.asteroid.postition));
             });
 
             //The first element of the asteroid list is always the closest to the current asteroid!
@@ -218,20 +194,27 @@ public class EnemySpawnPoint : MonoBehaviour
 
         foundPath = true;
 
-        if (pathForAll)
+
+        
+        if (mySpawner != null)
         {
-            if (mySpawner != null)
-            {
-                mySpawner.UpdatePath(sortedList);
-            }
+            mySpawner.UpdatePath(sortedList);
         }
-        if (!pathForAll)
-        {
-            if (ai != null)
-            {
-                ai.GetPath(sortedList);
-            }
-        }
+
+        //if (pathForAll)
+        //{
+        //    if (mySpawner != null)
+        //    {
+        //        mySpawner.UpdatePath(sortedList);
+        //    }
+        //}
+        //if (!pathForAll)
+        //{
+        //    if (ai != null)
+        //    {
+        //        ai.GetPath(sortedList);
+        //    }
+        //}
     }
     //
 

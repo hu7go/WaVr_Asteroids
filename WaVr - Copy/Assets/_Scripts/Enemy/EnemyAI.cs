@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     public GameObject deathEffect;
 
-    [HideInInspector]public Transform objective;
+    [HideInInspector] public Transform objective;
     SpaceGun gun;
     UnparentSound ups;
     public float speed = 1;
@@ -30,12 +30,12 @@ public class EnemyAI : MonoBehaviour
     private float privateSpeed;
     private float tmpSpeed;
 
-    private List<AsteroidHealth> objectiveOrder;
+    [HideInInspector] public List<AsteroidHealth> objectiveOrder;
 
     private float healthThreshHold;
 
     [HideInInspector] public bool seekAndDestroy = true;
-    private EnemySpawnPoint home;
+    protected EnemySpawnPoint home;
 
     private float distance;
     protected int nextTargetIndex = 0;
@@ -62,13 +62,17 @@ public class EnemyAI : MonoBehaviour
         health += Manager.Instance.tAe.waveCount;
     }
 
-    public virtual void Initialize (List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
+    public virtual void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex)
     {
+        //RequestPath();
+
         objectiveOrder = newList;
         healthThreshHold = newHealthThreshHold;
         home = newMaster;
         spawner = newSpawner;
         waveIndex = newWaveIndex;
+
+        objective = objectiveOrder[nextTargetIndex].transform;
     }
 
     public void Update()
@@ -86,13 +90,13 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void GoHome ()
+    public void GoHome()
     {
         seekAndDestroy = false;
         objective = home.transform;
     }
 
-    void Movement ()
+    void Movement()
     {
         if (seekAndDestroy == true)
         {
@@ -100,14 +104,7 @@ public class EnemyAI : MonoBehaviour
 
             if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
             {
-                //back to normal? comment these lines!
-                if (tmpWaiting == false)
-                {
-                    Debug.Log("Requesting path", gameObject);
-                    RequestPath();
-                    objective = objectiveOrder[nextTargetIndex].transform;
-                }
-                //
+
             }
 
             distance = Vector3.Distance(transform.position, objective.position);
@@ -146,53 +143,22 @@ public class EnemyAI : MonoBehaviour
         transform.LookAt(objective, Manager.Instance.GetWorldAxis());
     }
 
-    List<AsteroidHealth> tmpPath = new List<AsteroidHealth>();
-
-    public void RequestPath()
-    {
-        //Request a new path if the next in the order is dead!
-        Debug.Log("Test: " + objective.name);
-        home.RequestPath(objective.position, this);
-        StartCoroutine(WaitForPath());
-    }
-
-    public void GetPath(List<AsteroidHealth> newPath)
-    {
-        //Debug.Log(tmpPath.Count, gameObject);
-        tmpPath = newPath;
-        tmpWaiting = false;
-    }
-
-    bool tmpWaiting = false;
-
-    private IEnumerator WaitForPath()
-    {
-        tmpWaiting = true;
-        while (tmpWaiting)
-        {
-            yield return null;
-        }
-
-        objectiveOrder = tmpPath;
-        tmpPath.Clear();
-    }
-
     //Shoot at objective
-    public void StartShooting ()
+    public void StartShooting()
     {
         if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, out hit, range, layerMask))
             gun.Shoot(waveIndex, home);
         StartCoroutine(Shoot());
     }
 
-    private IEnumerator Shoot ()
+    private IEnumerator Shoot()
     {
         yield return new WaitForSeconds(Random.Range(gun.RetunrFireRate(), gun.RetunrFireRate() + 2));
         StartShooting();
     }
 
     //from turrets
-    public virtual void TakeDamage (int damage)
+    public virtual void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
@@ -219,9 +185,12 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    public int ReturnHealth () => health;
+    public int ReturnHealth() => health;
 
-    public void SetPath (List<AsteroidHealth> newPath) => objectiveOrder = newPath;
+    public virtual void SetPath(List<AsteroidHealth> newPath)
+    {
+        objectiveOrder = newPath;
+    }
 
     //Debuging stuffs!
 

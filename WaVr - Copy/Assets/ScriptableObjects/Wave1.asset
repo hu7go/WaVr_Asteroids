@@ -15,6 +15,6 @@ MonoBehaviour:
   totalNumberOfEnemies: 20
   numberOfEnemyTypes: 1
   enemyTypes:
-  - {fileID: 11400000, guid: d9d9e2ca08efc554381968f8491ca3e9, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
   enemyTypePercent: 14000000
   prevEnemyTypePercent: 01000000010000000100000000000000
