@@ -12,4 +12,5 @@ public class Enemies : ScriptableObject
     public float range;
     public GameObject enemy;
     public GameObject bullet;
+    public SpaceGun.BulletType bulletType;
 }

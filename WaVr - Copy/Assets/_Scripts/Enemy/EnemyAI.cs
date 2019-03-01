@@ -63,7 +63,10 @@ public class EnemyAI : MonoBehaviour
     public virtual void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex, Enemies enemyType)
     {
         //RequestPath();
-
+        gun.damage = enemyType.damage;
+        gun.fireRate = enemyType.fireRate;
+        gun.bulletType = enemyType.bulletType;
+        gun.bulletPrefab = enemyType.bullet;
         speed = enemyType.speed;
         range = enemyType.range;
         health = (int)enemyType.health;
