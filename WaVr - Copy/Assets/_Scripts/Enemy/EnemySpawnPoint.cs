@@ -253,6 +253,7 @@ public class EnemySpawnPoint : MonoBehaviour
                 timerText.gameObject.SetActive(false);
                 Manager.Instance.uISettings.countDownText.text = "00";
                 GameObject tmp = Instantiate(spawer, transform);
+                tmp.name = "EnemySpawner " + myWaveInfo.index;
                 mySpawner = tmp.GetComponent<Spawner>();
                 mySpawner.Initialize(this, numberOfEnemies, sortedList, threshHold, waveIndex, myWaveInfo);
                 spawned = true;

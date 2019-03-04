@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour
     protected EnemySpawnPoint home;
 
     private float distance;
-    protected int nextTargetIndex = 0;
+    public int nextTargetIndex = 0;
     protected bool onTheWay = false;
     protected float stopDistance = 9;
 
@@ -63,7 +63,6 @@ public class EnemyAI : MonoBehaviour
     {
         gun = GetComponent<SpaceGun>();
 
-        //RequestPath();
         gun.damage = enemyType.damage;
         gun.fireRate = enemyType.fireRate;
         gun.bulletType = enemyType.bulletType;
@@ -109,7 +108,7 @@ public class EnemyAI : MonoBehaviour
 
             if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
             {
-
+                nextTargetIndex++;
             }
 
             distance = Vector3.Distance(transform.position, objective.position);
@@ -197,6 +196,12 @@ public class EnemyAI : MonoBehaviour
 
     public virtual void SetPath(List<AsteroidHealth> newPath)
     {
+        if (objectiveOrder[nextTargetIndex].asteroid.alive == true)
+        {
+            nextTargetIndex--;
+            if (nextTargetIndex < 0)
+                nextTargetIndex = 0;
+        }
         objectiveOrder = newPath;
     }
 

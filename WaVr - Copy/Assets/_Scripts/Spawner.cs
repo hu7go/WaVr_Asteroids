@@ -75,6 +75,7 @@ public class Spawner : MonoBehaviour
         currentCounter++;
 
         GameObject newEnemy = Instantiate(myWaveInfo.enemyController.enemyTypes[index].enemy, transform.position, transform.rotation, Manager.Instance.enemyParent.transform);
+        newEnemy.name = "Enemy " + myWaveInfo.index;
         EnemyAI tmp = newEnemy.GetComponent<EnemyAI>();
         tmp.Initialize(objectiveOrder, threshHold, master, this, waveIndex, myWaveInfo.enemyController.enemyTypes[index]);
         enemies.Add(tmp);

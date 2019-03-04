@@ -19,10 +19,10 @@ public class EAI_Coward : EnemyAI
 
     public override void SetPath(List<AsteroidHealth> newPath)
     {
-        if (objectiveOrder[nextTargetIndex].asteroid.alive == true)
-        {
-            nextTargetIndex--;
-        }
+        //if (objectiveOrder[nextTargetIndex].asteroid.alive == true)
+        //{
+        //    nextTargetIndex--;
+        //}
         base.SetPath(newPath);
     }
 }

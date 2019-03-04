@@ -403,7 +403,6 @@ public class Manager : MonoBehaviour
 
     public IEnumerator StartNextWave()
     {
-        Debug.Log(tAe.waveCount + " " + waves.Count);
         if (tAe.waveCount >= waves.Count)
         {
             StartCoroutine(WaitForAllEnemies());
@@ -441,6 +440,7 @@ public class Manager : MonoBehaviour
         }
 
         GameObject localEnemySpawner = Instantiate(tAe.enemySpawner, waves[tAe.waveCount].spawnPosition.position, transform.rotation);
+        localEnemySpawner.name = "Spawner " + waves[tAe.waveCount].index;
         EnemySpawnPoint tmpSpawnPoint = localEnemySpawner.GetComponent<EnemySpawnPoint>();
         currentSpawnPoint = tmpSpawnPoint;
         tAe.spawnPoints.Add(tmpSpawnPoint);
