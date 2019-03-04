@@ -117,10 +117,12 @@ public class EnemyAI : MonoBehaviour
             if (distance > range)
             {
                 gun.shoot = false;
+                gun.freeze = false;
             }
             else
             {
                 gun.shoot = true;
+                gun.freeze = true;
             }
 
             //Stops a certain distance away from the target!

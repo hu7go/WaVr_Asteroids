@@ -22,4 +22,4 @@ MonoBehaviour:
   stopDistance: 3
   enemy: {fileID: 5062510125227563459, guid: 1d98db51b724d9e4fb3c29a62f04b655, type: 3}
   bullet: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
-  bulletType: 0
+  bulletType: 1
