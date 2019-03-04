@@ -19,5 +19,7 @@ MonoBehaviour:
   speed: 10
   fireRate: 0.5
   range: 25
+  stopDistance: 9
   enemy: {fileID: 8447944466438755396, guid: 83763fee9bf7ece4b9e662b1f069ac96, type: 3}
   bullet: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
+  bulletType: 0

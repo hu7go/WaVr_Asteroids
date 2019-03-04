@@ -10,6 +10,7 @@ public class Enemies : ScriptableObject
     public float speed;
     public float fireRate;
     public float range;
+    public float stopDistance;
     public GameObject enemy;
     public GameObject bullet;
     public SpaceGun.BulletType bulletType;

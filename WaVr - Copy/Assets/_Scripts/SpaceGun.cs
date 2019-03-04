@@ -23,9 +23,10 @@ public class SpaceGun : MonoBehaviour
     public LayerMask layerMask;
 
     private Vector3 fireDirection;
-    private bool shoot = false;
+    [HideInInspector] public bool shoot = false;
 
     LineRenderer lineRend;
+    [Header("This is if the enemy uses beam stuffs!")]
     public Color colorFront;
     public Color colorBack;
     EnemyAI ai;
@@ -48,19 +49,18 @@ public class SpaceGun : MonoBehaviour
 
     private void Update()
     {
-        if (bulletType == BulletType.beam && shoot)
+        if (bulletType == BulletType.beam)
         {
-            lineRend.SetPosition(0, muzzle.position);
-            lineRend.SetPosition(1, ai.objective.position);
-        }
-        else if (bulletType != BulletType.beam)
-        {
-            
-        }
-        else if (bulletType != BulletType.beam && !shoot && ai.seekAndDestroy == false)
-        {
-            lineRend.SetPosition(0, transform.position);
-            lineRend.SetPosition(1, transform.position);
+            if (shoot)
+            {
+                lineRend.SetPosition(0, muzzle.position);
+                lineRend.SetPosition(1, ai.objective.position);
+            }
+            else
+            {
+                lineRend.SetPosition(0, transform.position);
+                lineRend.SetPosition(1, transform.position);
+            }
         }
     }
 
@@ -93,7 +93,6 @@ public class SpaceGun : MonoBehaviour
                 GameObject tmpBullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation * Quaternion.Euler(fireDirection));
                 break;
             case BulletType.beam:
-                shoot = true;
                 break;
         }
 
@@ -110,14 +109,12 @@ public class SpaceGun : MonoBehaviour
             if (targetHealth.asteroid.health <= 0)
             {
                 ai.KilledTarget();
-                shoot = false;
             }
         }
     }
 
     public void StopShooting()
     {
-        shoot = false;
         if (audioManager.isPlaying)
             audioManager.Stop();
     }

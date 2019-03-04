@@ -10,6 +10,13 @@ public class EnemyWaveEditor : Editor
     int prevNumberOfEnemies = 0;
     public List<int> testPrev = new List<int>();
 
+    private void Awake()
+    {
+        SO_EnemyWave ew = (SO_EnemyWave)target;
+        UpdatePercentList(ew);
+        UpdateEnemyList(ew);
+    }
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();

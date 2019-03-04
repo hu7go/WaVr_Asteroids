@@ -8,43 +8,43 @@ public class EnemyAI : MonoBehaviour
     public GameObject deathEffect;
 
     [HideInInspector] public Transform objective;
-    SpaceGun gun;
-    UnparentSound ups;
+    protected SpaceGun gun;
+    protected UnparentSound ups;
     [HideInInspector] public float speed = 1;
 
-    RaycastHit hit;
-    RaycastHit playerHit;
-    RaycastHit tooCloseCast;
-    Vector3 forward;
+    protected RaycastHit hit;
+    protected RaycastHit playerHit;
+    protected RaycastHit tooCloseCast;
+    protected Vector3 forward;
     public LayerMask layerMask;
 
-    private int health = 5;
+    protected int health = 5;
 
     [HideInInspector] public bool tooClose = false;
     [HideInInspector] public Transform pushAwayFrom;
     [HideInInspector] public float range = 25;
 
-    private int randomNmbrX;
-    private int randomNmbrY;
-    private int randomNmbrZ;
-    private float privateSpeed;
-    private float tmpSpeed;
+    protected int randomNmbrX;
+    protected int randomNmbrY;
+    protected int randomNmbrZ;
+    protected float privateSpeed;
+    protected float tmpSpeed;
 
     [HideInInspector] public List<AsteroidHealth> objectiveOrder;
 
-    private float healthThreshHold;
+    protected float healthThreshHold;
 
     [HideInInspector] public bool seekAndDestroy = true;
     protected EnemySpawnPoint home;
 
-    private float distance;
+    protected float distance;
     public int nextTargetIndex = 0;
     protected bool onTheWay = false;
     protected float stopDistance = 9;
 
-    Spawner spawner;
+    protected Spawner spawner;
 
-    int waveIndex;
+    protected int waveIndex;
 
     private void Start()
     {
@@ -69,6 +69,7 @@ public class EnemyAI : MonoBehaviour
         gun.bulletPrefab = enemyType.bullet;
         speed = enemyType.speed;
         range = enemyType.range;
+        stopDistance = enemyType.stopDistance;
         health = (int)enemyType.health;
 
         privateSpeed = speed / 2;
@@ -100,7 +101,7 @@ public class EnemyAI : MonoBehaviour
         objective = home.transform;
     }
 
-    void Movement()
+    public virtual void Movement()
     {
         if (seekAndDestroy == true)
         {
@@ -112,6 +113,15 @@ public class EnemyAI : MonoBehaviour
             }
 
             distance = Vector3.Distance(transform.position, objective.position);
+
+            if (distance > range)
+            {
+                gun.shoot = false;
+            }
+            else
+            {
+                gun.shoot = true;
+            }
 
             //Stops a certain distance away from the target!
             if (distance > stopDistance)
@@ -158,7 +168,7 @@ public class EnemyAI : MonoBehaviour
         StartCoroutine(Shoot());
     }
 
-    private IEnumerator Shoot()
+    protected IEnumerator Shoot()
     {
         yield return new WaitForSeconds(Random.Range(gun.RetunrFireRate(), gun.RetunrFireRate() + 2));
         StartShooting();
@@ -176,7 +186,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    void Kill()
+    protected void Kill()
     {
         StopCoroutine(Shoot());
         ups.UnParent();
@@ -209,7 +219,7 @@ public class EnemyAI : MonoBehaviour
 
     [HideInInspector] public bool drawPath = false;
 
-    private void OnDrawGizmos()
+    protected void OnDrawGizmos()
     {
         if (drawPath)
         {

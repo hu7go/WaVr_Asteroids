@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Brute
   boss: 1
-  enemie: {fileID: 0}
   damage: 100
   health: 50
   speed: 4
   fireRate: 5
+  range: 0
+  stopDistance: 9
+  enemy: {fileID: 0}
   bullet: {fileID: 0}
-  scale: {x: 0, y: 0, z: 0}
+  bulletType: 0

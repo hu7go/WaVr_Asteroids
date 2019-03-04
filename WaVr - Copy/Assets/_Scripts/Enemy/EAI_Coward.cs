@@ -16,13 +16,4 @@ public class EAI_Coward : EnemyAI
         base.KilledTarget();
         nextTargetIndex = 0;
     }
-
-    public override void SetPath(List<AsteroidHealth> newPath)
-    {
-        //if (objectiveOrder[nextTargetIndex].asteroid.alive == true)
-        //{
-        //    nextTargetIndex--;
-        //}
-        base.SetPath(newPath);
-    }
 }

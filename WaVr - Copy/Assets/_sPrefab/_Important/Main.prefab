@@ -943,45 +943,48 @@ MonoBehaviour:
     regenValue: 4
   waves:
   - damageThreshHold: 95
-    spawnPosition: {fileID: 5921801454720634210}
-    enemyController: {fileID: 11400000, guid: 47fb075e69359944c8acf7bff305186e, type: 2}
-    waitTime: 0
+    spawnPosition: {fileID: 0}
+    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
+    waitTime: 5
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
-    index: 0
+    index: 1
     numberOfrequiredTriggers: 1
     triggers: []
   - damageThreshHold: 80
-    spawnPosition: {fileID: 5921801454227444735}
-    enemyController: {fileID: 11400000, guid: 0e9949a3017639a4487154fa5e43e6ed, type: 2}
-    waitTime: 0
+    spawnPosition: {fileID: 0}
+    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
+    waitTime: 5
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
-    index: 0
+    index: 2
     numberOfrequiredTriggers: 1
-    triggers: []
+    triggers:
+    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
   - damageThreshHold: 65
-    spawnPosition: {fileID: 5921801454932338288}
-    enemyController: {fileID: 11400000, guid: 9afef6c44a98c994e82c063348f3630e, type: 2}
-    waitTime: 0
+    spawnPosition: {fileID: 0}
+    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
+    waitTime: 5
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
-    index: 0
+    index: 3
     numberOfrequiredTriggers: 1
-    triggers: []
+    triggers:
+    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
   - damageThreshHold: 50
-    spawnPosition: {fileID: 5921801453840078680}
-    enemyController: {fileID: 11400000, guid: dc76fb1564829b64fb50105f5f16865a, type: 2}
-    waitTime: 0
+    spawnPosition: {fileID: 0}
+    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
+    waitTime: 5
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
-    index: 0
+    index: 4
     numberOfrequiredTriggers: 1
-    triggers: []
+    triggers:
+    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
   minWaveWaitTime: 20
   maxWaveWaitTime: 40
   arrowRenderer: {fileID: 4858507230693590922}
