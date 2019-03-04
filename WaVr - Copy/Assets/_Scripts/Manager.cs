@@ -145,8 +145,6 @@ public class Manager : MonoBehaviour
     public bool freeze = false;
     [SerializeField] private bool startTimer = false;
     [SerializeField] private bool gameStarted = false;
-    //If its true the game will spawn enemies from the start!
-    [SerializeField] private bool startGameWithEnemies = false;
     [SerializeField] private float myTimer = 0f;
     [SerializeField] private float countdownTimer = 20;
     [Space(20)]
@@ -157,7 +155,6 @@ public class Manager : MonoBehaviour
     public GameObject fireFlies;
     private int killedEnemies;
     private int counter;
-    private int lifeLeft = 3;
     [HideInInspector]
     private List<GameObject> enemiesSpawned;
 
@@ -169,8 +166,8 @@ public class Manager : MonoBehaviour
     [Range(0, 100)]
     public float startHealthPercent = 100;
 
-    int minutes ,minutes2;
-    int seconds,seconds2;
+    int minutes;
+    int seconds;
 
     [HideInInspector] public GameObject enemyParent;
 
@@ -526,34 +523,14 @@ public class Manager : MonoBehaviour
         {
             obj.GetComponent<EnemyAI>().GoHome();
         }
-
-        if(lifeLeft > 0)
-        {
-            uISettings.tdEndUI.SetActive(true);
-            uISettings.tdGameOverText.text = "You died, press to restart";
-        }
-        if(lifeLeft == 0)
-            uISettings.tdGameOverText.text = "You died. Thanks for playing!";
+      
+        uISettings.tdGameOverText.text = "You died, press to restart";
+        uISettings.tdEndUI.SetActive(true);
 
         ClearTurrets();
     }
 
-    public void Restarter()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-        return;
-
-        startTimer = true;
-        uISettings.tdEndUI.SetActive(false);
-        killedEnemies = 0;
-        tAe.waveCount = 0;
-
-        spawnedFirstTurret = false;
-
-        uISettings.waveCount.text = ("Wave: " + (tAe.waveCount + 1));
-
-    }
+    public void Restarter() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     public void ClearNullRefs ()
     {
