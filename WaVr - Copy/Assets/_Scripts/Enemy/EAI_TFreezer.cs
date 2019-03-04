@@ -26,4 +26,15 @@ public class EAI_TFreezer : EnemyAI
         }
         objectiveOrder = newPath;
     }
+
+    public override void Movement()
+    {
+        base.Movement();
+        if (gun.freeze && freezing == false)
+            foreach  (TurretAI tai in objective.GetComponentsInChildren<TurretAI>())
+            {
+                tai.frozen = false;
+                freezing = true;
+            }
+    }
 }

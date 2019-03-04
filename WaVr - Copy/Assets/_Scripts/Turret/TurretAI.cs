@@ -13,6 +13,7 @@ public class TurretAI : MonoBehaviour
 
     public List<EnemyAI> enemies;
     bool shooting = false;
+    public bool frozen = false;
 
     EnemyAI currentTarget;
 
@@ -63,7 +64,7 @@ public class TurretAI : MonoBehaviour
             if (enemies[i] == null)
                 enemies.RemoveAt(i);
 
-        if (enemies.Count > 0)
+        if (enemies.Count > 0 && frozen == false)
         {
             if (currentTarget == null)
             {
