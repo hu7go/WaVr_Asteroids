@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour
     protected int randomNmbrZ;
     protected float privateSpeed;
     protected float tmpSpeed;
-
+    protected bool freezing;
     [HideInInspector] public List<AsteroidHealth> objectiveOrder;
 
     protected float healthThreshHold;
@@ -116,6 +116,7 @@ public class EnemyAI : MonoBehaviour
 
             if (distance > range)
             {
+                freezing = false;
                 gun.shoot = false;
                 gun.freeze = false;
             }
