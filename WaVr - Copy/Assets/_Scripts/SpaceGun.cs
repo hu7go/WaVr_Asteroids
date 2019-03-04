@@ -31,6 +31,7 @@ public class SpaceGun : MonoBehaviour
     [Header("This is if the enemy uses beam stuffs!")]
     public Color colorFront;
     public Color colorBack;
+    public bool beamTowardsAsteroid = true;
     EnemyAI ai;
 
     AudioSource audioManager;
@@ -62,8 +63,16 @@ public class SpaceGun : MonoBehaviour
         {
             if (shoot)
             {
-                lineRend.SetPosition(0, muzzle.position);
-                lineRend.SetPosition(1, ai.objective.position);
+                if (beamTowardsAsteroid)
+                {
+                    lineRend.SetPosition(0, muzzle.position);
+                    lineRend.SetPosition(1, ai.objective.position);
+                }
+                else
+                {
+                    lineRend.SetPosition(0, ai.objective.position);
+                    lineRend.SetPosition(1, muzzle.position);
+                }
             }
             else
             {
