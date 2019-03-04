@@ -13,8 +13,31 @@ MonoBehaviour:
   m_Name: Wave3
   m_EditorClassIdentifier: 
   totalNumberOfEnemies: 24
-  numberOfEnemyTypes: 1
+  numberOfEnemyTypes: 24
   enemyTypes:
-  - {fileID: 11400000, guid: d9d9e2ca08efc554381968f8491ca3e9, type: 2}
-  enemyTypePercent: 18000000
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  - {fileID: 11400000, guid: 62a0b81442955ed43b2ea05a3b1c546e, type: 2}
+  - {fileID: 11400000, guid: efb416bce38443744b6ef11a7522f56a, type: 2}
+  enemyTypePercent: 010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   prevEnemyTypePercent: 01000000010000000100000000000000

@@ -417,10 +417,17 @@ public class Manager : MonoBehaviour
             list.Add(waves[tAe.waveCount].triggers[i].Trigger);
         }
 
-        while (WaveSpawnCondition.Trigger(list) < waves[tAe.waveCount].numberOfrequiredTriggers)
+        WaveSpawnCondition tmp = new WaveSpawnCondition();
+
+        while (tmp.Trigger(list) < waves[tAe.waveCount].numberOfrequiredTriggers)
         {
             yield return null;
         }
+
+        //while (WaveSpawnCondition.Trigger(list) < waves[tAe.waveCount].numberOfrequiredTriggers)
+        //{
+        //    yield return null;
+        //}
 
         yield return new WaitForSeconds(10);
 

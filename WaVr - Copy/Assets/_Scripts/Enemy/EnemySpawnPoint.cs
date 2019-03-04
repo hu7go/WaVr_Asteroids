@@ -48,7 +48,7 @@ public class EnemySpawnPoint : MonoBehaviour
     public float damageDonePercent = 0;
 
     float myDamageDone = 0;
-
+        
     public void HealthTracker (float damage)
     {
         myDamageDone += damage;

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Wave2
   m_EditorClassIdentifier: 
   totalNumberOfEnemies: 22
-  numberOfEnemyTypes: 1
+  numberOfEnemyTypes: 2
   enemyTypes:
   - {fileID: 11400000, guid: d9d9e2ca08efc554381968f8491ca3e9, type: 2}
-  enemyTypePercent: 16000000
+  - {fileID: 0}
+  enemyTypePercent: 1200000004000000
   prevEnemyTypePercent: 01000000010000000100000000000000

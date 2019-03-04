@@ -65,7 +65,7 @@ public class WaveEditor : Editor
         }
         else
         {
-            UpdatePercentList(ew);
+            //UpdatePercentList(ew);
         }
 
         //Script management!
@@ -119,43 +119,41 @@ public class WaveEditor : Editor
 
     private void UpdatePercentages (int index, SO_EnemyWave ew)
     {
-        Debug.Log("Testing stuffs " + index);
+        //int tmp = 0;
+        //for (int i = 0; i < ew.enemyTypePercent.Count; i++)
+        //{
+        //    tmp += ew.enemyTypePercent[i];
+        //}
 
-        int tmp = 0;
-        for (int i = 0; i < ew.enemyTypePercent.Count; i++)
-        {
-            tmp += ew.enemyTypePercent[i];
-        }
+        //int tmp2 = tmp - ew.totalNumberOfEnemies;
 
-        int tmp2 = tmp - ew.totalNumberOfEnemies;
+        //if (tmp2 > 0)
+        //{
+        //    for (int i = 0; i < ew.enemyTypePercent.Count; i++)
+        //    {
+        //        if (tmp2 == 0)
+        //            break;
 
-        if (tmp2 > 0)
-        {
-            for (int i = 0; i < ew.enemyTypePercent.Count; i++)
-            {
-                if (tmp2 == 0)
-                    break;
+        //        if (i != index)
+        //        {
+        //            ew.enemyTypePercent[i]--;
+        //            tmp2--;
+        //        }
+        //    }
+        //}
+        //else if (tmp2 < 0)
+        //{
+        //    for (int i = 0; i < ew.enemyTypePercent.Count; i++)
+        //    {
+        //        if (tmp2 == 0)
+        //            break;
 
-                if (i != index)
-                {
-                    ew.enemyTypePercent[i]--;
-                    tmp2--;
-                }
-            }
-        }
-        else if (tmp2 < 0)
-        {
-            for (int i = 0; i < ew.enemyTypePercent.Count; i++)
-            {
-                if (tmp2 == 0)
-                    break;
-
-                if (i != index)
-                {
-                    ew.enemyTypePercent[i]++;
-                    tmp2++;
-                }
-            }
-        }
+        //        if (i != index)
+        //        {
+        //            ew.enemyTypePercent[i]++;
+        //            tmp2++;
+        //        }
+        //    }
+        //}
     }
 }

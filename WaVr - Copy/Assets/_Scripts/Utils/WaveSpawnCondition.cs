@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class WaveSpawnCondition
+public class WaveSpawnCondition
 {
     public delegate bool Function();
 
-    public static int Trigger (List<Function> newTrigger)
+    public int Trigger (List<Function> newTrigger)
     {
         int numberOfDoneConditions = 0;
 

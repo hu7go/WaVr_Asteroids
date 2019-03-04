@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Swarmer
   boss: 0
-  damage: 5
+  damage: 1
   health: 6
   speed: 10
   fireRate: 0.5
