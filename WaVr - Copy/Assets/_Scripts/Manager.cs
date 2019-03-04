@@ -571,6 +571,8 @@ public class Manager : MonoBehaviour
         //Destroy(uISettings.startButton);
     }
 
+    public void StartEnemiesEditor() => StartEnemyWaves();
+
     public void StartEnemyWaves ()
     {
         if (spawnedFirstTurret == false)

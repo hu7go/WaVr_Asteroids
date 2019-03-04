@@ -13,6 +13,12 @@ public class ManagerEditor : Editor
         DrawDefaultInspector();
         Manager mS = (Manager)target;
 
+        if(GUILayout.Button("Start Enemies without turret"))
+        {
+            if (EditorApplication.isPlaying)
+                mS.StartEnemiesEditor();
+        }
+
         if (GUILayout.Button("Switch world version"))
         {
             if (EditorApplication.isPlaying)
