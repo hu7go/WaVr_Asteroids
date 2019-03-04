@@ -403,47 +403,31 @@ public class Manager : MonoBehaviour
 
     public IEnumerator StartNextWave()
     {
-        if (tAe.waveCount + 1 > waves.Count)
+        Debug.Log(tAe.waveCount + " " + waves.Count);
+        if (tAe.waveCount >= waves.Count)
         {
             StartCoroutine(WaitForAllEnemies());
             yield return null;
         }
-
-        for (int i = 0; i < waves[tAe.waveCount].triggers.Count; i++)
+        else
         {
-            list.Add(waves[tAe.waveCount].triggers[i].Trigger);
+            for (int i = 0; i < waves[tAe.waveCount].triggers.Count; i++)
+            {
+                list.Add(waves[tAe.waveCount].triggers[i].Trigger);
+            }
+
+            WaveSpawnCondition tmp = new WaveSpawnCondition();
+
+            while (tmp.Trigger(list) < waves[tAe.waveCount].numberOfrequiredTriggers)
+            {
+                yield return null;
+            }
+
+            //A additional buffer to make the waves wait a little longer
+            yield return new WaitForSeconds(10);
+
+            SpawnEnemies();
         }
-
-        WaveSpawnCondition tmp = new WaveSpawnCondition();
-
-        while (tmp.Trigger(list) < waves[tAe.waveCount].numberOfrequiredTriggers)
-        {
-            yield return null;
-        }
-
-        //while (WaveSpawnCondition.Trigger(list) < waves[tAe.waveCount].numberOfrequiredTriggers)
-        //{
-        //    yield return null;
-        //}
-
-        yield return new WaitForSeconds(10);
-
-        SpawnEnemies();
-
-        ////TODO: Have each wave have their own spawn triggers!!!
-
-        //yield return new WaitForSeconds(minWaveWaitTime);
-
-        ////TODO: Change the waveDelayPercent to be more consistent!
-        //float waveDelayPercent = (waves[tAe.waveCount - 1].currentNumberOfEnemies / waves[tAe.waveCount - 1].enemyController.totalNumberOfEnemies);
-
-        //if (waveDelayPercent == 0)
-        //    waveDelayPercent = .1f;
-        ////
-
-        //float timeToWait = maxWaveWaitTime * waveDelayPercent;
-
-        //Invoke("EnemySpawner", timeToWait);
     }
 
     private void SpawnEnemies ()

@@ -96,31 +96,24 @@ public class DamageDone : TriggerManager
 [CreateAssetMenu(fileName = "TimerTrigger", menuName = "ScriptableObject/Wave/TimerTrigger", order = 4)]
 public class Timer : TriggerManager
 {
-    bool countDown = true;
     private float timer = 0;
 
     public override bool Trigger()
     {
         if (prevSpawnPoint == null)
         {
-            countDown = true;
+            timer = 0;
             prevSpawnPoint = Manager.Instance.currentSpawnPoint;
-            //prevSpawnPoint.myWaveInfo.timer = 0;
         }
 
-        if (prevSpawnPoint.myWaveInfo.timer > 10 && countDown)
+        if (timer > 10)
         {
-            countDown = false;
-            //prevSpawnPoint.myWaveInfo.timer = 0;
             prevSpawnPoint = null;
             return true;
         }
         else
         {
             timer += Time.deltaTime;
-            Utils.ClearLogConsole();
-            Debug.Log(timer);
-            //prevSpawnPoint.myWaveInfo.timer += Time.deltaTime;
             return false;
         }
     }
