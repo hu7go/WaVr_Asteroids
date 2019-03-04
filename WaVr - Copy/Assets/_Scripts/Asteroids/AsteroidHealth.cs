@@ -22,7 +22,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
 
         turretMaster = GetComponentInParent<TurretMenuMaster>();
 
-        asteroid = new AsteroidInfo(transform.position, Manager.Instance.tAe.asteroidHealth, true, false);
+        asteroid = new AsteroidInfo(transform.position, Manager.Instance.tAe.asteroidHealth, true, false,false);
 
         rend = GetComponent<MeshRenderer>();
         Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
@@ -71,6 +71,7 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         if (asteroid.health <= 0)
         {
             turretMaster.AsteroidDied();
+            asteroid.hasTurret = false;
             asteroid.alive = false;
             if (tmp == false)
             {
@@ -154,12 +155,14 @@ public struct AsteroidInfo
     public float health;
     public bool alive;
     public bool beingHealed;
+    public bool hasTurret;
 
-    public AsteroidInfo(Vector3 postition, float health, bool alive, bool beingHealed)
+    public AsteroidInfo(Vector3 postition, float health, bool alive, bool beingHealed, bool hasTurret)
     {
         this.postition = postition;
         this.health = health;
         this.alive = alive;
         this.beingHealed = beingHealed;
+        this.hasTurret = hasTurret;
     }
 }
