@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: FetcherEnemy
   boss: 0
-  damage: 1
+  damage: 10
   health: 10
   speed: 5
-  fireRate: 1
+  minFireRate: 1.5
+  maxFireRate: 1.5
   range: 3
   stopDistance: 3
   enemy: {fileID: 5062510125227563459, guid: 1d98db51b724d9e4fb3c29a62f04b655, type: 3}

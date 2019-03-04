@@ -16,7 +16,7 @@ public class TurretMenuMaster : MonoBehaviour
     public bool[] turretBuilt;
 
     //The turrets on this cube!
-    private List<TurretStruct> turrets = new List<TurretStruct>();
+    [HideInInspector] public List<TurretStruct> turrets = new List<TurretStruct>();
 
     TeleportMaster tpMaster;
 

@@ -14,13 +14,13 @@ public class SpaceGun : MonoBehaviour
     [SerializeField] private Transform muzzle;
     [Tooltip("Damage dealt per bullet hit.")]
     [HideInInspector] public float damage = 1;
-    [HideInInspector] public float fireRate = 1;
+    [HideInInspector] public float minFireRate = 1;
+    [HideInInspector] public float maxFireRate = 1;
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private bool spawnEffect = true;
     private bool canFire = true;
     private Quaternion muzzleOriginalRot;
 
-    RaycastHit target;
     public LayerMask layerMask;
 
     private Vector3 fireDirection;
@@ -34,7 +34,13 @@ public class SpaceGun : MonoBehaviour
     public bool beamTowardsAsteroid = true;
     EnemyAI ai;
 
+    private EAI_Fetcher healthStealer;
+
     AudioSource audioManager;
+
+    int index;
+    EnemySpawnPoint enemyOrigin;
+    AsteroidHealth target;
 
     private void Start()
     {
@@ -59,7 +65,7 @@ public class SpaceGun : MonoBehaviour
 
     private void Update()
     {
-        if (bulletType == BulletType.beam)
+        if (bulletType == BulletType.beam || bulletType == BulletType.freeze)
         {
             if (shoot)
             {
@@ -80,26 +86,30 @@ public class SpaceGun : MonoBehaviour
                 lineRend.SetPosition(1, transform.position);
             }
         }
-        if (bulletType == BulletType.freeze)
-        {
-            if (freeze)
-            {
-                lineRend.SetPosition(0, muzzle.position);
-                lineRend.SetPosition(1, ai.objective.position);
-            }
-            else
-            {
-                lineRend.SetPosition(0, transform.position);
-                lineRend.SetPosition(1, transform.position);
-            }
-        }
     }
 
-    public void Shoot (int waveIndex, EnemySpawnPoint enemyOrigin)
+    public void StartShooting (int waveIndex, EnemySpawnPoint origin, AsteroidHealth newTarget)
     {
-        if (!canFire)
-            return;
+        index = waveIndex;
+        enemyOrigin = origin;
+        target = newTarget;
 
+        Shoot();
+    }
+
+    public void StartShooting(int waveIndex, EnemySpawnPoint origin, AsteroidHealth newTarget, EAI_Fetcher newAi)
+    {
+        index = waveIndex;
+        enemyOrigin = origin;
+        target = newTarget;
+
+        healthStealer = newAi;
+
+        Shoot();
+    }
+
+    public void Shoot ()
+    {
         switch (bulletType)
         {
             case BulletType.bullet:
@@ -116,10 +126,6 @@ public class SpaceGun : MonoBehaviour
                 break;
         }
 
-        canFire = false;
-
-        StartCoroutine(FireRate());
-
         fireDirection = muzzle.forward;
 
         switch (bulletType)
@@ -133,36 +139,35 @@ public class SpaceGun : MonoBehaviour
                 break;
         }
 
-        if (Physics.Raycast(muzzle.position, muzzle.transform.forward, out target, 150, layerMask))
+        target.TakeDamage(damage, enemyOrigin);
+        if (target.asteroid.health <= 0)
         {
-            AsteroidHealth targetHealth = target.collider.GetComponent<AsteroidHealth>();
-
-            if (spawnEffect)
-            {
-                GameObject newEffect = Instantiate(hitEffect, target.point, target.collider.transform.rotation);
-                Destroy(newEffect, 1f);
-            }
-            targetHealth.TakeDamage(damage, enemyOrigin);
-            if (targetHealth.asteroid.health <= 0)
-            {
-                ai.KilledTarget();
-            }
+            ai.KilledTarget();
         }
+
+        //If the ai is a fetcher!
+        if (healthStealer != null)
+            healthStealer.stolenHealth += damage;
+        //
+
+        StartCoroutine(FireRate());
     }
 
     public void StopShooting()
     {
         if (audioManager.isPlaying)
             audioManager.Stop();
+
+        StopCoroutine(FireRate());
     }
 
     private IEnumerator FireRate ()
     {
-        yield return new WaitForSeconds(fireRate);
-        canFire = true;
+        yield return new WaitForSeconds(Random.Range(minFireRate, maxFireRate));
+        Shoot();
     }
 
-    public float RetunrFireRate () => fireRate;
+    public float ReturnFireRate () => minFireRate;
 
     public Transform ReturnMuzzle () => muzzle;
 }

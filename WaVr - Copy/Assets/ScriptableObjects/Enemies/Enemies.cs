@@ -8,7 +8,8 @@ public class Enemies : ScriptableObject
     public float damage;
     public float health;
     public float speed;
-    public float fireRate;
+    public float minFireRate;
+    public float maxFireRate;
     public float range;
     public float stopDistance;
     public GameObject enemy;

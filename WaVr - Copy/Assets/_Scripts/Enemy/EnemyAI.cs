@@ -48,7 +48,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        StartShooting();
         ups = GetComponentInChildren<UnparentSound>();
 
         randomNmbrX = Random.Range(-10, 10);
@@ -64,7 +63,8 @@ public class EnemyAI : MonoBehaviour
         gun = GetComponent<SpaceGun>();
 
         gun.damage = enemyType.damage;
-        gun.fireRate = enemyType.fireRate;
+        gun.minFireRate = enemyType.minFireRate;
+        gun.maxFireRate = enemyType.maxFireRate;
         gun.bulletType = enemyType.bulletType;
         gun.bulletPrefab = enemyType.bullet;
         speed = enemyType.speed;
@@ -83,9 +83,11 @@ public class EnemyAI : MonoBehaviour
         objective = objectiveOrder[nextTargetIndex].transform;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         Movement();
+
+        ShootingBehaviour();
 
         if (Manager.Instance.healthPercent <= healthThreshHold || home.damageDonePercent >= 100 - healthThreshHold + 1)
         {
@@ -95,10 +97,18 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void GoHome()
+    public virtual void ShootingBehaviour ()
     {
-        seekAndDestroy = false;
-        objective = home.transform;
+        if (distance <= range && gun.shoot == false)
+        {
+            gun.shoot = true;
+            gun.StartShooting(waveIndex, home, objective.GetComponent<AsteroidHealth>());
+        }
+        else if (distance > range && gun.shoot == true)
+        {
+            gun.shoot = false;
+            gun.StopShooting();
+        }
     }
 
     public virtual void Movement()
@@ -117,12 +127,10 @@ public class EnemyAI : MonoBehaviour
             if (distance > range)
             {
                 freezing = false;
-                gun.shoot = false;
                 gun.freeze = false;
             }
             else
             {
-                gun.shoot = true;
                 gun.freeze = true;
             }
 
@@ -160,21 +168,12 @@ public class EnemyAI : MonoBehaviour
         transform.LookAt(objective, Manager.Instance.GetWorldAxis());
     }
 
-    //Shoot at objective
-    public void StartShooting()
-    {
-        if (seekAndDestroy)
-        {
-            if (Physics.Raycast(gun.ReturnMuzzle().position, gun.ReturnMuzzle().forward * range, out hit, range, layerMask))
-                gun.Shoot(waveIndex, home);
-        }
-        StartCoroutine(Shoot());
-    }
+    bool waiting = false;
 
-    protected IEnumerator Shoot()
+    public void GoHome()
     {
-        yield return new WaitForSeconds(Random.Range(gun.RetunrFireRate(), gun.RetunrFireRate() + 2));
-        StartShooting();
+        seekAndDestroy = false;
+        objective = home.transform;
     }
 
     //from turrets
@@ -191,7 +190,6 @@ public class EnemyAI : MonoBehaviour
 
     protected void Kill()
     {
-        StopCoroutine(Shoot());
         ups.UnParent();
 
         Manager.Instance.waves[waveIndex].enemies.Remove(this);

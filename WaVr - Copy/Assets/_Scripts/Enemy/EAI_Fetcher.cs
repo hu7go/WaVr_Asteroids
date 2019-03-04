@@ -6,12 +6,32 @@ public class EAI_Fetcher : EnemyAI
 {
     [SerializeField] private GameObject mesh;
     [SerializeField] private ParticleSystem particles;
+    public float totalHealthStealing = 50;
+    public float stolenHealth;
+
+    private bool takenEnough = false;
+
+    public override void ShootingBehaviour()
+    {
+        if (distance <= range && gun.shoot == false)
+        {
+
+        }
+        else if (distance > range && gun.shoot == true)
+        {
+            gun.shoot = false;
+            gun.StopShooting();
+        }
+    }
 
     public override void Movement()
     {
-        Debug.Log(gun.shoot);
+        if (stolenHealth >= totalHealthStealing)
+            takenEnough = true;
+        else
+            takenEnough = false;
 
-        if (seekAndDestroy == true)
+        if (seekAndDestroy == true && takenEnough == false)
         {
             if (gun.shoot)
                 particles.Play();
@@ -27,16 +47,14 @@ public class EAI_Fetcher : EnemyAI
 
             distance = Vector3.Distance(transform.position, objective.position);
 
-            if (distance > range)
-                gun.shoot = false;
-
             if (distance <= range)
             {
                 mesh.transform.localRotation = Quaternion.Lerp(mesh.transform.localRotation, Quaternion.Euler(-90, 0, 0), Time.deltaTime * 1);
             }
 
-            if (mesh.transform.localRotation == Quaternion.Lerp(mesh.transform.localRotation, Quaternion.Euler(-90, 0, 0), Time.deltaTime * 1))
+            if (mesh.transform.localRotation == Quaternion.Lerp(mesh.transform.localRotation, Quaternion.Euler(-90, 0, 0), Time.deltaTime * 1) && gun.shoot == false)
             {
+                gun.StartShooting(waveIndex, home, objective.GetComponent<AsteroidHealth>(), this);
                 gun.shoot = true;
             }
 
@@ -59,7 +77,7 @@ public class EAI_Fetcher : EnemyAI
                 onTheWay = false;
             }
         }
-        else
+        else if (seekAndDestroy == false && takenEnough == false)
         {
             //If seekAndDestroy is false they go back to there home portal!
             distance = Vector3.Distance(transform.position, objective.position);
@@ -72,6 +90,28 @@ public class EAI_Fetcher : EnemyAI
             }
             else
                 transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+        }
+        else if (takenEnough == true)
+        {
+            Debug.Log("Testing life steal!");
+
+            gun.StopShooting();
+            particles.Stop();
+
+            objective = home.transform;
+            distance = Vector3.Distance(transform.position, objective.position);
+
+            if (distance < 2)
+            {
+                stolenHealth = 0;
+                objective = objectiveOrder[nextTargetIndex].transform;
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+            }
+
+            transform.LookAt(objective);
         }
     }
 }

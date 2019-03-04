@@ -17,7 +17,8 @@ MonoBehaviour:
   damage: 1
   health: 6
   speed: 10
-  fireRate: 0.5
+  minFireRate: 1
+  maxFireRate: 2
   range: 25
   stopDistance: 9
   enemy: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636, type: 3}
