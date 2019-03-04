@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: fireFlyParent
       value: 
       objectReference: {fileID: 35871872}
+    - target: {fileID: 1295987299115422401, guid: a15592a2b9839474f949cd5e2ff47786,
+        type: 3}
+      propertyPath: gameStarted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1295987299179122710, guid: a15592a2b9839474f949cd5e2ff47786,
         type: 3}
       propertyPath: m_AnchorMax.x
