@@ -21,3 +21,4 @@ MonoBehaviour:
   range: 25
   enemy: {fileID: 9000831034717668533, guid: 7b25fed870701a34785b609053982e2a, type: 3}
   bullet: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
+  bulletType: 1

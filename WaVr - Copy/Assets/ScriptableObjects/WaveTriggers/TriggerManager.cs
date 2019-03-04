@@ -106,7 +106,7 @@ public class Timer : TriggerManager
             prevSpawnPoint = Manager.Instance.currentSpawnPoint;
         }
 
-        if (timer > 10)
+        if (timer > prevSpawnPoint.myWaveInfo.waitTime)
         {
             prevSpawnPoint = null;
             return true;

@@ -7,6 +7,7 @@ public class Wave
     public float damageThreshHold;
     public Transform spawnPosition;
     public SO_EnemyWave enemyController;
+    public float waitTime = 0;
     [HideInInspector] public float currentNumberOfEnemies;
     [HideInInspector] public List<EnemyAI> enemies;
     [HideInInspector] public float damageDone;

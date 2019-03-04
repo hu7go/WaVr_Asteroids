@@ -296,11 +296,11 @@ public class EnemySpawnPoint : MonoBehaviour
         {
             if (deastroyed == false)
             {
-                Destroy(preSpawn.gameObject);
                 mySpawner.StartEndAnim();
                 Manager.Instance.SwitchPortalTarget();
                 audi1.Stop();
                 audi2.Play();
+                Destroy(preSpawn.gameObject);
                 Destroy(gameObject, 3);
                 deastroyed = true;
             }
