@@ -18,8 +18,8 @@ MonoBehaviour:
   health: 5
   speed: 8
   fireRate: 2
-  range: 0
-  stopDistance: 0
-  enemy: {fileID: 0}
+  range: 10
+  stopDistance: 8
+  enemy: {fileID: 3782877884061529672, guid: 0e68c5031376652438cf53b102adafb3, type: 3}
   bullet: {fileID: 0}
-  bulletType: 0
+  bulletType: 2

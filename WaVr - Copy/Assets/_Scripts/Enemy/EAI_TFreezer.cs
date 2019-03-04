@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EAI_TFreezer : EnemyAI
 {
-    List<AsteroidHealth> asteroidsWithTurret;
+    List<AsteroidHealth> asteroidsWithTurret = new List<AsteroidHealth>();
+
     public override void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex, Enemies enemyType)
     {
         base.Initialize(newList, newHealthThreshHold, newMaster, newSpawner, newWaveIndex, enemyType);
@@ -31,10 +32,12 @@ public class EAI_TFreezer : EnemyAI
     {
         base.Movement();
         if (gun.freeze && freezing == false)
+        {
             foreach  (TurretAI tai in objective.GetComponentsInChildren<TurretAI>())
             {
-                tai.frozen = false;
+                tai.frozen = true;
                 freezing = true;
             }
+        }
     }
 }
