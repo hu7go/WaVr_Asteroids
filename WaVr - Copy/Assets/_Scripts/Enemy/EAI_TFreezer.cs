@@ -33,11 +33,12 @@ public class EAI_TFreezer : EnemyAI
         base.Movement();
         if (gun.freeze && freezing == false)
         {
-            foreach  (TurretAI tai in objective.GetComponentsInChildren<TurretAI>())
+            foreach (TurretAI tai in objective.GetComponentsInChildren<TurretAI>())
             {
+                print("Makes turret frozen");
                 tai.frozen = true;
-                freezing = true;
             }
+                freezing = true;
         }
     }
 }
