@@ -6,7 +6,8 @@ public class SpaceGun : MonoBehaviour
     public enum BulletType
     {
         bullet,
-        beam
+        beam,
+        freeze
     }
     [HideInInspector] public BulletType bulletType;
     [HideInInspector] public GameObject bulletPrefab;
@@ -24,6 +25,7 @@ public class SpaceGun : MonoBehaviour
 
     private Vector3 fireDirection;
     [HideInInspector] public bool shoot = false;
+    [HideInInspector] public bool freeze = false;
 
     LineRenderer lineRend;
     [Header("This is if the enemy uses beam stuffs!")]
@@ -45,6 +47,13 @@ public class SpaceGun : MonoBehaviour
             lineRend.material.SetColor("_ColorFront", colorBack);
             lineRend.material.SetFloat("_ScrollSpeed", Random.Range(.3f, .4f));
         }
+        if (bulletType == BulletType.freeze)
+        {
+            lineRend = GetComponent<LineRenderer>();
+            lineRend.material.SetColor("_ColorBack", Color.blue);
+            lineRend.material.SetColor("_ColorFront", Color.white);
+            lineRend.material.SetFloat("_ScrollSpeed", Random.Range(.3f, .4f));
+        }
     }
 
     private void Update()
@@ -52,6 +61,19 @@ public class SpaceGun : MonoBehaviour
         if (bulletType == BulletType.beam)
         {
             if (shoot)
+            {
+                lineRend.SetPosition(0, muzzle.position);
+                lineRend.SetPosition(1, ai.objective.position);
+            }
+            else
+            {
+                lineRend.SetPosition(0, transform.position);
+                lineRend.SetPosition(1, transform.position);
+            }
+        }
+        if (bulletType == BulletType.freeze)
+        {
+            if (freeze)
             {
                 lineRend.SetPosition(0, muzzle.position);
                 lineRend.SetPosition(1, ai.objective.position);
@@ -79,6 +101,10 @@ public class SpaceGun : MonoBehaviour
                 if (!audioManager.isPlaying)
                     audioManager.Play();
                 break;
+            case BulletType.freeze:
+                if (!audioManager.isPlaying)
+                    audioManager.Play();
+                break;
         }
 
         canFire = false;
@@ -93,6 +119,8 @@ public class SpaceGun : MonoBehaviour
                 GameObject tmpBullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation * Quaternion.Euler(fireDirection));
                 break;
             case BulletType.beam:
+                break;
+            case BulletType.freeze:
                 break;
         }
 
