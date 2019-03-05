@@ -715,5 +715,9 @@ public class Manager : MonoBehaviour
         uISettings.waveCount.text = "Wave: " + privateWaveCount.ToString();
     }
 
-    public void SwitchPortalTarget () => tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;
+    public void SwitchPortalTarget()
+    {
+        //Debug.Log(tAe.waveCount);
+        //tAe.currentActiveSpawner = waves[tAe.waveCount].spawnPosition;
+    }
 }

@@ -93,23 +93,29 @@ public class EAI_Fetcher : EnemyAI
         }
         else if (takenEnough == true)
         {
-            Debug.Log("Testing life steal!");
-
             gun.StopShooting();
+            gun.shoot = false;
             particles.Stop();
 
-            objective = home.transform;
             distance = Vector3.Distance(transform.position, objective.position);
 
-            if (distance < 2)
+            mesh.transform.localRotation = Quaternion.Lerp(mesh.transform.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 1);
+
+            if (mesh.transform.localRotation == Quaternion.Lerp(mesh.transform.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 1))
             {
-                stolenHealth = 0;
-                objective = objectiveOrder[nextTargetIndex].transform;
+                objective = home.transform;
+
+                if (distance < 2)
+                {
+                    stolenHealth = 0;
+                    objective = objectiveOrder[nextTargetIndex].transform;
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+                }
             }
-            else
-            {
-                transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
-            }
+
 
             transform.LookAt(objective);
         }

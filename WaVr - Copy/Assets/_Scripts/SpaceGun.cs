@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SpaceGun : MonoBehaviour
 {
+    private Coroutine co;
+
     public enum BulletType
     {
         bullet,
@@ -24,7 +26,7 @@ public class SpaceGun : MonoBehaviour
     public LayerMask layerMask;
 
     private Vector3 fireDirection;
-    [HideInInspector] public bool shoot = false;
+     public bool shoot = false;
     [HideInInspector] public bool freeze = false;
 
     LineRenderer lineRend;
@@ -150,7 +152,7 @@ public class SpaceGun : MonoBehaviour
             healthStealer.stolenHealth += damage;
         //
 
-        StartCoroutine(FireRate());
+        co = StartCoroutine(FireRate());
     }
 
     public void StopShooting()
@@ -158,7 +160,7 @@ public class SpaceGun : MonoBehaviour
         if (audioManager.isPlaying)
             audioManager.Stop();
 
-        StopCoroutine(FireRate());
+        StopCoroutine(co);
     }
 
     private IEnumerator FireRate ()
