@@ -38,14 +38,14 @@ public class EAI_Fetcher : EnemyAI
             else
                 particles.Stop();
 
-            objective = objectiveOrder[nextTargetIndex].transform;
+            objective = objectiveOrder[nextTargetIndex];
 
             if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
             {
                 nextTargetIndex++;
             }
 
-            distance = Vector3.Distance(transform.position, objective.position);
+            distance = Vector3.Distance(transform.position, objective.transform.position);
 
             if (distance <= range)
             {
@@ -66,11 +66,11 @@ public class EAI_Fetcher : EnemyAI
                 {
                     tmpSpeed = privateSpeed;
 
-                    Quaternion XLookRotation = Quaternion.LookRotation(objective.position, transform.up) * Quaternion.Euler(new Vector3(0, 0, 90));
+                    Quaternion XLookRotation = Quaternion.LookRotation(objective.transform.position, transform.up) * Quaternion.Euler(new Vector3(0, 0, 90));
 
                     //transform.LookAt(objective, Manager.Instance.GetWorldAxis());
                 }
-                transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, tmpSpeed * Time.deltaTime);
             }
             if (distance <= stopDistance)
             {
@@ -80,7 +80,7 @@ public class EAI_Fetcher : EnemyAI
         else if (seekAndDestroy == false && takenEnough == false)
         {
             //If seekAndDestroy is false they go back to there home portal!
-            distance = Vector3.Distance(transform.position, objective.position);
+            distance = Vector3.Distance(transform.position, objective.transform.position);
 
             if (distance < 2)
             {
@@ -89,7 +89,7 @@ public class EAI_Fetcher : EnemyAI
                 home.Over();
             }
             else
-                transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, tmpSpeed * Time.deltaTime);
         }
         else if (takenEnough == true)
         {
@@ -97,27 +97,27 @@ public class EAI_Fetcher : EnemyAI
             gun.shoot = false;
             particles.Stop();
 
-            distance = Vector3.Distance(transform.position, objective.position);
+            distance = Vector3.Distance(transform.position, objective.transform.position);
 
             mesh.transform.localRotation = Quaternion.Lerp(mesh.transform.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 1);
 
             if (mesh.transform.localRotation == Quaternion.Lerp(mesh.transform.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 1))
             {
-                objective = home.transform;
+                objective = home.GetComponent<AsteroidHealth>();
 
                 if (distance < 2)
                 {
                     stolenHealth = 0;
-                    objective = objectiveOrder[nextTargetIndex].transform;
+                    objective = objectiveOrder[nextTargetIndex];
                 }
                 else
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, tmpSpeed * Time.deltaTime);
                 }
             }
 
 
-            transform.LookAt(objective);
+            transform.LookAt(objective.transform);
         }
     }
 }

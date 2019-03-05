@@ -66,7 +66,8 @@ public class EnemyWaveEditor : Editor
                 if (ew.enemyTypePercent[i] != testPrev[i])
                 {
                     //testPrev[i] = ew.enemyTypePercent[i];
-                    UpdatePercentages(i, ew);
+                    //! This is whenever you change a number in the percentage fields!
+                    //UpdatePercentages(i, ew);
                 }
             }
         }

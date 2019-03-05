@@ -42,7 +42,7 @@ public class SpaceGun : MonoBehaviour
 
     int index;
     EnemySpawnPoint enemyOrigin;
-    AsteroidHealth target;
+    public AsteroidHealth target;
 
     private void Start()
     {
@@ -74,11 +74,11 @@ public class SpaceGun : MonoBehaviour
                 if (beamTowardsAsteroid)
                 {
                     lineRend.SetPosition(0, muzzle.position);
-                    lineRend.SetPosition(1, ai.objective.position);
+                    lineRend.SetPosition(1, ai.objective.transform.position);
                 }
                 else
                 {
-                    lineRend.SetPosition(0, ai.objective.position);
+                    lineRend.SetPosition(0, ai.objective.transform.position);
                     lineRend.SetPosition(1, muzzle.position);
                 }
             }
@@ -94,16 +94,15 @@ public class SpaceGun : MonoBehaviour
     {
         index = waveIndex;
         enemyOrigin = origin;
-        target = newTarget;
 
         Shoot();
     }
 
+    //If its a fetcher!
     public void StartShooting(int waveIndex, EnemySpawnPoint origin, AsteroidHealth newTarget, EAI_Fetcher newAi)
     {
         index = waveIndex;
         enemyOrigin = origin;
-        target = newTarget;
 
         healthStealer = newAi;
 
@@ -140,6 +139,8 @@ public class SpaceGun : MonoBehaviour
             case BulletType.freeze:
                 break;
         }
+
+        target = ai.objective;
 
         target.TakeDamage(damage, enemyOrigin);
         if (target.asteroid.health <= 0)

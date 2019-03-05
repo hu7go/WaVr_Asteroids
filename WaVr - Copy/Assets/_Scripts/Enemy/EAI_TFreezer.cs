@@ -1,42 +1,172 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class EAI_TFreezer : EnemyAI
 {
     List<AsteroidHealth> asteroidsWithTurret = new List<AsteroidHealth>();
+    List<TurretStruct> currentTarget = new List<TurretStruct>();
+
+    private bool isCurrentlyFreezing = false;
 
     public override void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex, Enemies enemyType)
     {
         base.Initialize(newList, newHealthThreshHold, newMaster, newSpawner, newWaveIndex, enemyType);
-        for(int i = 0; i < Manager.Instance.asteroidList.Count; i++)
-        {
-            if (Manager.Instance.asteroidList[i].asteroid.hasTurret)
-                asteroidsWithTurret.Add(Manager.Instance.asteroidList[i]);
-        }
-        if(asteroidsWithTurret.Count > 0)
-            objectiveOrder = asteroidsWithTurret;
+
+        CheckForTurrets();
     }
 
     public override void SetPath(List<AsteroidHealth> newPath)
     {
-        if (objectiveOrder[nextTargetIndex].asteroid.hasTurret)
-        {
-            nextTargetIndex--;
-            if (nextTargetIndex < 0)
-                nextTargetIndex = 0;
-        }
         objectiveOrder = newPath;
+        if (seekAndDestroy)
+        {
+            CheckForTurrets();
+        }
+    }
+
+    private bool tmpBool = false;
+
+    public void CheckForTurrets()
+    {
+        if (asteroidsWithTurret.Count > 0)
+        {
+            if (asteroidsWithTurret[nextTargetIndex].asteroid.alive == true)
+            {
+                nextTargetIndex--;
+                if (nextTargetIndex < 0)
+                    nextTargetIndex = 0;
+                tmpBool = true;
+            }
+        }
+
+        asteroidsWithTurret.Clear();
+
+        for (int i = 0; i < objectiveOrder.Count; i++)
+        {
+            if (objectiveOrder[i].asteroid.hasTurret && objectiveOrder[i].asteroid.alive)
+                asteroidsWithTurret.Add(objectiveOrder[i]);
+        }
+        if (asteroidsWithTurret.Count > 0)
+            objectiveOrder = asteroidsWithTurret;
+
+        if (asteroidsWithTurret.Count == 0)
+        {
+            GoHome();
+            return;
+        }
+
+        if (tmpBool == false)
+        {
+            int tmp = 0;
+            for (int i = 0; i < asteroidsWithTurret.Count; i++)
+            {
+                if (asteroidsWithTurret[i].frozen)
+                {
+                    tmp++;
+                }
+            }
+
+            if (tmp == asteroidsWithTurret.Count)
+            {
+                GoHome();
+                return;
+            }
+        }
+        tmpBool = false;
+
+        currentTarget = objective.GetComponentInParent<TurretMenuMaster>().turrets;
+        objective = objectiveOrder[nextTargetIndex];
+    }
+
+    public override void ShootingBehaviour()
+    {
+        if (distance <= range && gun.shoot == false)
+        {
+            gun.shoot = true;
+            gun.StartShooting(waveIndex, home, objective.GetComponent<AsteroidHealth>());
+            objective.Freeze();
+            currentTarget = objective.GetComponentInParent<TurretMenuMaster>().turrets;
+        }
+        else if (distance > range && gun.shoot == true)
+        {
+            currentTarget.Clear();
+            gun.shoot = false;
+            objective.UnFreeze();
+            isCurrentlyFreezing = false;
+            gun.StopShooting();
+        }
     }
 
     public override void Movement()
     {
         base.Movement();
-        if (gun.freeze && freezing == false)
+
+        if (seekAndDestroy)
         {
-            foreach (TurretStruct tai in objective.GetComponentInParent<TurretMenuMaster>().turrets)
+            if (objectiveOrder[nextTargetIndex].frozen == true && isCurrentlyFreezing == false)
             {
-                tai.turret.GetComponent<TurretAI>().frozen = true;
+                if (objectiveOrder[nextTargetIndex].frozen == true && isCurrentlyFreezing == false)
+                {
+                    Debug.Log("Testing stuffs and that!");
+                    nextTargetIndex++;
+                }
+                else
+                {
+                    nextTargetIndex--;
+                }
+
+                if (nextTargetIndex > asteroidsWithTurret.Count)
+                {
+                    Debug.Log("Testsetsetset");
+                    nextTargetIndex--;
+                    if (nextTargetIndex < 0)
+                    {
+                        nextTargetIndex = 0;
+                        GoHome();
+                        return;
+                    }
+                }
+                else
+                {
+                    objective = objectiveOrder[nextTargetIndex];
+                    currentTarget = objective.GetComponentInParent<TurretMenuMaster>().turrets;
+                }
             }
-                freezing = true;
+
+            if (nextTargetIndex > objectiveOrder.Count)
+            {
+                GoHome();
+                return;
+            }
+
+            if (gun.freeze)
+            {
+                isCurrentlyFreezing = true;
+                foreach (TurretStruct tai in currentTarget)
+                {
+                    tai.ai.frozen = true;
+                }
+                objectiveOrder[nextTargetIndex].frozen = true;
+            }
         }
+    }
+
+    public override void GoHome()
+    {
+        base.GoHome();
+        foreach (TurretStruct turret in currentTarget)
+        {
+            turret.ai.frozen = false;
+        }
+    }
+
+    public override void Kill()
+    {
+        foreach (TurretStruct turret in currentTarget)
+        {
+            turret.ai.frozen = false;
+        }
+        objectiveOrder[nextTargetIndex].frozen = false;
+        base.Kill();
     }
 }

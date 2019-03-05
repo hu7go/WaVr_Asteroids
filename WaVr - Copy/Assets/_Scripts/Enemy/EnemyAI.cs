@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
 {
     public GameObject deathEffect;
 
-    [HideInInspector] public Transform objective;
+     public AsteroidHealth objective;
     protected SpaceGun gun;
     protected UnparentSound ups;
     [HideInInspector] public float speed = 1;
@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour
 
     protected float healthThreshHold;
 
-    [HideInInspector] public bool seekAndDestroy = true;
+     public bool seekAndDestroy = true;
     protected EnemySpawnPoint home;
 
     protected float distance;
@@ -80,7 +80,7 @@ public class EnemyAI : MonoBehaviour
         spawner = newSpawner;
         waveIndex = newWaveIndex;
 
-        objective = objectiveOrder[nextTargetIndex].transform;
+        objective = objectiveOrder[nextTargetIndex];
     }
 
     public virtual void Update()
@@ -115,14 +115,15 @@ public class EnemyAI : MonoBehaviour
     {
         if (seekAndDestroy == true)
         {
-            objective = objectiveOrder[nextTargetIndex].transform;
+            objective = objectiveOrder[nextTargetIndex];
 
             if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
             {
+                Debug.Log("Test1");
                 nextTargetIndex++;
             }
 
-            distance = Vector3.Distance(transform.position, objective.position);
+            distance = Vector3.Distance(transform.position, objective.transform.position);
 
             if (distance > range)
             {
@@ -141,20 +142,20 @@ public class EnemyAI : MonoBehaviour
                 if (distance < range)
                 {
                     tmpSpeed = privateSpeed;
-                    transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed * 2) * Time.deltaTime);
+                    transform.RotateAround(objective.transform.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed * 2) * Time.deltaTime);
                 }
-                transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, tmpSpeed * Time.deltaTime);
             }
             if (distance <= stopDistance)
             {
                 onTheWay = false;
-                transform.RotateAround(objective.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
+                transform.RotateAround(objective.transform.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
             }
         }
         else
         {
             //If seekAndDestroy is false they go back to there home portal!
-            distance = Vector3.Distance(transform.position, objective.position);
+            distance = Vector3.Distance(transform.position, objective.transform.position);
 
             if (distance < 2)
             {
@@ -162,18 +163,18 @@ public class EnemyAI : MonoBehaviour
                 home.Over();
             }
             else
-                transform.position = Vector3.MoveTowards(transform.position, objective.position, tmpSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, tmpSpeed * Time.deltaTime);
         }
 
-        transform.LookAt(objective, Manager.Instance.GetWorldAxis());
+        transform.LookAt(objective.transform, Manager.Instance.GetWorldAxis());
     }
 
     bool waiting = false;
 
-    public void GoHome()
+    public virtual void GoHome()
     {
         seekAndDestroy = false;
-        objective = home.transform;
+        objective = home.GetComponent<AsteroidHealth>();
     }
 
     //from turrets
@@ -188,7 +189,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    protected void Kill()
+    public virtual void Kill()
     {
         ups.UnParent();
 

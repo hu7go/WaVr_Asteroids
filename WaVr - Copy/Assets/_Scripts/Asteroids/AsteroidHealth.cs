@@ -3,8 +3,13 @@ using UnityEngine;
 
 public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
 {
+    public bool isAsteroid = true;
+
+    [HideInInspector] public bool frozen = false;
+
     public AsteroidInfo asteroid;
     private MeshRenderer rend;
+    private PSMeshRendererUpdater iceEffect;
     [HideInInspector] public Healer myHealer;
     private TurretMenuMaster turretMaster;
     Color red;
@@ -17,17 +22,21 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
 
     public void Awake()
     {
-        //red = new Color(360, 100, 50);
-        red = Color.red;
+        if (isAsteroid)
+        {
+            //red = new Color(360, 100, 50);
+            red = Color.red;
 
-        turretMaster = GetComponentInParent<TurretMenuMaster>();
+            turretMaster = GetComponentInParent<TurretMenuMaster>();
 
-        asteroid = new AsteroidInfo(transform.position, Manager.Instance.tAe.asteroidHealth, true, false,false);
+            asteroid = new AsteroidInfo(transform.position, Manager.Instance.tAe.asteroidHealth, true, false,false);
 
-        rend = GetComponent<MeshRenderer>();
-        Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
+            rend = GetComponent<MeshRenderer>();
+            iceEffect = GetComponent<PSMeshRendererUpdater>();
+            Color.RGBToHSV(rend.material.GetColor("_Color"), out h, out s, out v);
 
-        sphereCollider = GetComponentInParent<SphereCollider>();
+            sphereCollider = GetComponentInParent<SphereCollider>();
+        }
     }
 
     [HideInInspector] public bool tmp = false;
@@ -94,6 +103,16 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         }
 
         UpdateColor();
+    }
+
+    public void Freeze ()
+    {
+        iceEffect.IsActive = true;
+    }
+
+    public void UnFreeze ()
+    {
+        iceEffect.IsActive = false;
     }
 
     public IEnumerator HealingVisual(float newTime)

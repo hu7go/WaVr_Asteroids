@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 2418840881971095076}
   - component: {fileID: 188001760028421799}
   - component: {fileID: 8081742517091686468}
+  - component: {fileID: 2088032559896721841}
   m_Layer: 0
   m_Name: EnemySpawnPoint
   m_TagString: Untagged
@@ -162,9 +163,11 @@ MonoBehaviour:
     damageThreshHold: 0
     spawnPosition: {fileID: 0}
     enemyController: {fileID: 0}
+    waitTime: 0
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
+    index: 0
     numberOfrequiredTriggers: 1
     triggers: []
   damageDonePercent: 0
@@ -457,6 +460,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2088032559896721841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5776658466668388448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43b342467be256c4ea990a49390a2bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAsteroid: 0
+  frozen: 0
+  asteroid:
+    postition: {x: 0, y: 0, z: 0}
+    health: 0
+    alive: 0
+    beingHealed: 0
+    hasTurret: 0
+  myHealer: {fileID: 0}
+  tmp: 0
 --- !u!1 &8449509903568745141
 GameObject:
   m_ObjectHideFlags: 0

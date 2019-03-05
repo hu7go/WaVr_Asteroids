@@ -205,7 +205,8 @@ public class EnemySpawnPoint : MonoBehaviour
         
         if (mySpawner != null)
         {
-            mySpawner.UpdatePath(sortedList);
+            newPath = true;
+            //mySpawner.UpdatePath(sortedList);
         }
 
         //if (pathForAll)
@@ -225,11 +226,19 @@ public class EnemySpawnPoint : MonoBehaviour
     }
     //
 
+    bool newPath = false;
+
     bool done = false;
     bool doneSpawning = false;
 
     private void Update()
     {
+        if (newPath == true)
+        {
+            mySpawner.UpdatePath(sortedList);
+            newPath = false;
+        }
+
         if (start)
         {
             transform.LookAt(Manager.Instance.ReturnPlayer().transform, Manager.Instance.GetWorldAxis());

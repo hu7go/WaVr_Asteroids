@@ -200,7 +200,7 @@ public class TurretMenuMaster : MonoBehaviour
 
     public void SpawnedTurret (int index, GameObject turretObj)
     {
-        TurretStruct turret = new TurretStruct(turretObj, index);
+        TurretStruct turret = new TurretStruct(turretObj, index, turretObj.GetComponent<TurretAI>());
 
         switch (index)
         {
@@ -253,11 +253,13 @@ public class TurretMenuMaster : MonoBehaviour
 public struct TurretStruct
 {
     public GameObject turret;
+    public TurretAI ai;
     public int index;
 
-    public TurretStruct(GameObject turret, int index)
+    public TurretStruct(GameObject turret, int index, TurretAI newAi)
     {
         this.turret = turret;
         this.index = index;
+        ai = newAi;
     }
 }
