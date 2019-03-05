@@ -10,10 +10,10 @@ public class PSMeshRendererUpdater : MonoBehaviour
     const string materialName = "MeshEffect";
     List<Material[]> rendererMaterials = new List<Material[]>();
     List<Material[]> skinnedMaterials = new List<Material[]>();
-    public bool IsActive = true;
+    public bool IsActive = false;
     public float FadeTime = 1.5f;
 
-    bool currentActiveStatus;
+    bool currentActiveStatus = true;
     private bool needUpdateAlpha;
 
     Color oldColor = Color.black;
