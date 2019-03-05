@@ -12,7 +12,8 @@ public class EAI_TFreezer : EnemyAI
             if (Manager.Instance.asteroidList[i].asteroid.hasTurret)
                 asteroidsWithTurret.Add(Manager.Instance.asteroidList[i]);
         }
-        objectiveOrder = asteroidsWithTurret;
+        if(asteroidsWithTurret.Count > 0)
+            objectiveOrder = asteroidsWithTurret;
     }
 
     public override void SetPath(List<AsteroidHealth> newPath)
@@ -33,7 +34,6 @@ public class EAI_TFreezer : EnemyAI
         {
             foreach (TurretStruct tai in objective.GetComponentInParent<TurretMenuMaster>().turrets)
             {
-                print("Makes turret frozen");
                 tai.turret.GetComponent<TurretAI>().frozen = true;
             }
                 freezing = true;
