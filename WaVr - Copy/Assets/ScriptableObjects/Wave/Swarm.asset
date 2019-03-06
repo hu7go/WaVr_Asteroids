@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed82110da71dede4fa5aff81bced3417, type: 3}
   m_Name: Swarm
   m_EditorClassIdentifier: 
-  totalNumberOfEnemies: 10
+  totalNumberOfEnemies: 20
   numberOfEnemyTypes: 1
   enemyTypes:
   - {fileID: 11400000, guid: d9d9e2ca08efc554381968f8491ca3e9, type: 2}
-  enemyTypePercent: 0a000000
+  enemyTypePercent: 14000000
   prevEnemyTypePercent: 

@@ -23,7 +23,7 @@ public class EAI_Suicider : EnemyAI
         }
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)

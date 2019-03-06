@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EAI_Coward : EnemyAI
 {
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
         if (!onTheWay)

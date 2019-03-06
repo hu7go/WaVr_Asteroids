@@ -31,11 +31,6 @@ public class EAI_TFreezer : EnemyAI
     {
         prevPathCount = asteroidsWithTurret.Count;
 
-        if (isCurrentlyFreezing)
-        {
-            Debug.Log("Is freezing " + nextTargetIndex, this);
-        }
-
         if (asteroidsWithTurret.Count > 0)
         {
             if (asteroidsWithTurret[nextTargetIndex].asteroid.alive == true)
@@ -46,8 +41,6 @@ public class EAI_TFreezer : EnemyAI
                 tmpBool = true;
             }
         }
-
-        Debug.Log("Target index " + nextTargetIndex, this);
 
         asteroidsWithTurret.Clear();
 
@@ -84,10 +77,10 @@ public class EAI_TFreezer : EnemyAI
         }
         tmpBool = false;
 
-        Debug.Log("Target index " + nextTargetIndex, this);
-
         if (asteroidsWithTurret.Count == prevPathCount)
         {
+            Debug.Log("Heeloo");
+
             if (nextTargetIndex != 0)
                 nextTargetIndex++;
         }
@@ -132,7 +125,6 @@ public class EAI_TFreezer : EnemyAI
                         {
                             nextTargetIndex--;
                         }
-                        Debug.Log("Target index " + nextTargetIndex, this);
                     }
                 }
                 else

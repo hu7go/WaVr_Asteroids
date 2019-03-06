@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Abilities : MonoBehaviour
 {
-    public virtual void Effect ()
+    public virtual void Effect (Transform hand)
     {
 
     }

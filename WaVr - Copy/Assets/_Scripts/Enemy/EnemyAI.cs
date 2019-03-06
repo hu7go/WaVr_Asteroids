@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     protected Vector3 forward;
     public LayerMask layerMask;
 
-    protected int health = 5;
+    protected float health = 5;
 
     [HideInInspector] public bool tooClose = false;
     [HideInInspector] public Transform pushAwayFrom;
@@ -178,7 +178,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     //from turrets
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
@@ -204,7 +204,7 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    public int ReturnHealth() => health;
+    public float ReturnHealth() => health;
 
     public virtual void SetPath(List<AsteroidHealth> newPath)
     {
