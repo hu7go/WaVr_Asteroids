@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Nuke : MonoBehaviour
 {
     public float explosionRadius = 20;
     public float damage = 100;
     public LayerMask layerMask;
+    public GameObject explosion;
 
     private float timer = 0;
     private float maxTimeAlive = 10f;

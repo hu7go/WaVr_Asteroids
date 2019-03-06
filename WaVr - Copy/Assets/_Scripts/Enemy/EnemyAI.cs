@@ -29,6 +29,7 @@ public class EnemyAI : MonoBehaviour
     protected int randomNmbrZ;
     protected float privateSpeed;
     protected float tmpSpeed;
+    protected float originalSpeed;
     protected bool freezing;
     [HideInInspector] public List<AsteroidHealth> objectiveOrder;
 
@@ -71,7 +72,7 @@ public class EnemyAI : MonoBehaviour
         range = enemyType.range;
         stopDistance = enemyType.stopDistance;
         health = (int)enemyType.health;
-
+        originalSpeed = speed;
         privateSpeed = speed / 2;
         tmpSpeed = speed;
         objectiveOrder = newList;

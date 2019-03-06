@@ -516,7 +516,7 @@ public class Manager : MonoBehaviour
 
     public void Restarter() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-    public void ClearNullRefs ()
+    public void ClearNullRefs()
     {
         for (var i = enemiesSpawned.Count - 1; i > -1; i--)
             if (enemiesSpawned[i] == null)

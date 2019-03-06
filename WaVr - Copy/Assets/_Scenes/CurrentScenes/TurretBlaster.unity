@@ -195,6 +195,12 @@ PrefabInstance:
       propertyPath: gameStarted
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1295987299115422401, guid: a15592a2b9839474f949cd5e2ff47786,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemyController
+      value: 
+      objectReference: {fileID: 11400000, guid: c52391e3a6ab0ac46a7005d219684dc5,
+        type: 2}
     - target: {fileID: 1295987299179122710, guid: a15592a2b9839474f949cd5e2ff47786,
         type: 3}
       propertyPath: m_AnchorMax.x

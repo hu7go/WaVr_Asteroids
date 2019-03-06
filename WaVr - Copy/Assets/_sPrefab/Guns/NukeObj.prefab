@@ -219,3 +219,4 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
+  explosion: {fileID: 1929620577409710, guid: eb550bb3d0f18944ba2272872ad6e2cd, type: 3}
