@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebee3eab8bec4fc428147917574ca61a, type: 3}
+  m_Name: Suicider
+  m_EditorClassIdentifier: 
+  name: Suicider
+  boss: 0
+  damage: 15
+  health: 2
+  speed: 13
+  minFireRate: 0
+  maxFireRate: 0
+  range: 0
+  stopDistance: 0
+  enemy: {fileID: 7864133635307249560, guid: 9655ebdad797d2d4ab2cbbc95ba4392f, type: 3}
+  bullet: {fileID: 0}
+  bulletType: 0
