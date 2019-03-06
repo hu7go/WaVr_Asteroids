@@ -119,7 +119,7 @@ public class EnemyAI : MonoBehaviour
 
             if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
             {
-                Debug.Log("Test1");
+                Debug.Log("Test target index upping Main!");
                 nextTargetIndex++;
             }
 

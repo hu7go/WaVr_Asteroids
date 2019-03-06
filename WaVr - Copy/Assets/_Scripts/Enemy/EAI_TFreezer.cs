@@ -25,9 +25,17 @@ public class EAI_TFreezer : EnemyAI
     }
 
     private bool tmpBool = false;
+    private int prevPathCount = 0;
 
     public void CheckForTurrets()
     {
+        prevPathCount = asteroidsWithTurret.Count;
+
+        if (isCurrentlyFreezing)
+        {
+            Debug.Log("Is freezing " + nextTargetIndex, this);
+        }
+
         if (asteroidsWithTurret.Count > 0)
         {
             if (asteroidsWithTurret[nextTargetIndex].asteroid.alive == true)
@@ -38,6 +46,8 @@ public class EAI_TFreezer : EnemyAI
                 tmpBool = true;
             }
         }
+
+        Debug.Log("Target index " + nextTargetIndex, this);
 
         asteroidsWithTurret.Clear();
 
@@ -74,6 +84,14 @@ public class EAI_TFreezer : EnemyAI
         }
         tmpBool = false;
 
+        Debug.Log("Target index " + nextTargetIndex, this);
+
+        if (asteroidsWithTurret.Count == prevPathCount)
+        {
+            if (nextTargetIndex != 0)
+                nextTargetIndex++;
+        }
+
         currentTarget = objective.GetComponentInParent<TurretMenuMaster>().turrets;
         objective = objectiveOrder[nextTargetIndex];
     }
@@ -107,8 +125,15 @@ public class EAI_TFreezer : EnemyAI
             {
                 if (objectiveOrder[nextTargetIndex].frozen == true && isCurrentlyFreezing == false)
                 {
-                    Debug.Log("Testing stuffs and that!");
-                    nextTargetIndex++;
+                    if (asteroidsWithTurret.Count != prevPathCount)
+                    {
+                        nextTargetIndex++;
+                        if (nextTargetIndex > asteroidsWithTurret.Count)
+                        {
+                            nextTargetIndex--;
+                        }
+                        Debug.Log("Target index " + nextTargetIndex, this);
+                    }
                 }
                 else
                 {
@@ -117,7 +142,6 @@ public class EAI_TFreezer : EnemyAI
 
                 if (nextTargetIndex > asteroidsWithTurret.Count)
                 {
-                    Debug.Log("Testsetsetset");
                     nextTargetIndex--;
                     if (nextTargetIndex < 0)
                     {

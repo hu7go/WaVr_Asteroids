@@ -387,10 +387,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.6585566
-  m_Height: 4.9106355
+  m_Radius: 1.2
+  m_Height: 2.5
   m_Direction: 2
-  m_Center: {x: -0.00048140684, y: -0.013187577, z: 1.3058609}
+  m_Center: {x: 0, y: 0, z: 0.69}
 --- !u!82 &8426201052554131276
 AudioSource:
   m_ObjectHideFlags: 0
@@ -494,11 +494,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7869833677508368840}
     m_Modifications:
-    - target: {fileID: 4470700730084828984, guid: 2081ea2ab03e92049a26654e22e63abf,
-        type: 3}
-      propertyPath: m_Name
-      value: EnemySuicider
-      objectReference: {fileID: 0}
     - target: {fileID: 297931365002942539, guid: 2081ea2ab03e92049a26654e22e63abf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -553,6 +548,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470700730084828984, guid: 2081ea2ab03e92049a26654e22e63abf,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemySuicider
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034929125693463267, guid: 2081ea2ab03e92049a26654e22e63abf,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034929125693463267, guid: 2081ea2ab03e92049a26654e22e63abf,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6034929125693463267, guid: 2081ea2ab03e92049a26654e22e63abf,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2081ea2ab03e92049a26654e22e63abf, type: 3}
