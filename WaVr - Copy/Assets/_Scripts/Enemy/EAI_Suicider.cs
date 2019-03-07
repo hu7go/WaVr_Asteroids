@@ -36,7 +36,7 @@ public class EAI_Suicider : EnemyAI
         }
         if (zeroed)
         {
-            transform.RotateAround(objective.transform.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (originalSpeed) * Time.deltaTime);
+            transform.RotateAround(objective.transform.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (originalSpeed / 2) * Time.deltaTime);
             if (!newBool)
             {
                 newBool = true;

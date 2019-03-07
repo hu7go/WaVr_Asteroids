@@ -724,7 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enums:
-    teleportVersion: 2
+    teleportVersion: 4
     pointerState: 0
     arrowsSide: {fileID: 1295987300955708206}
     arrowsTop: {fileID: 1295987299423111674}
@@ -863,7 +863,7 @@ MonoBehaviour:
   startTimer: 0
   gameStarted: 0
   myTimer: 0
-  countdownTimer: 25
+  countdownTimer: 30
   indexNodes:
   - {fileID: 1295987299855364562}
   - {fileID: 1295987299246828264}
@@ -880,74 +880,18 @@ MonoBehaviour:
   startHealthPercent: 100
   enemyParent: {fileID: 0}
   spawnedFirstTurret: 0
-  asteroidList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  asteroidList: []
   healerInfoTemplate:
     postition: {x: 0, y: 1.15, z: 0}
     health: 100
     regenSpeed: 1
     regenValue: 4
   waves:
-  - tag: 
+  - tag: Wave 1
     index: 1
     damageThreshHold: 95
-    spawnPosition: {fileID: 0}
-    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
+    spawnPosition: {fileID: 5921801454720634210}
+    enemyController: {fileID: 11400000, guid: 135d285409b42e44e9a276d62683c790, type: 2}
     extraWaitTimeBool: 1
     extraWaitTime: 10
     currentNumberOfEnemies: 0
@@ -955,40 +899,40 @@ MonoBehaviour:
     damageDone: 0
     numberOfRequiredTriggers: 1
     triggers: []
-    waitTime: 5
-  - tag: 
+    waitTime: 120
+  - tag: Wave 2
     index: 2
     damageThreshHold: 80
-    spawnPosition: {fileID: 0}
-    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
-    extraWaitTimeBool: 1
+    spawnPosition: {fileID: 5921801454227444735}
+    enemyController: {fileID: 11400000, guid: 135d285409b42e44e9a276d62683c790, type: 2}
+    extraWaitTimeBool: 0
     extraWaitTime: 10
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
     numberOfRequiredTriggers: 1
     triggers:
-    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
-    waitTime: 5
-  - tag: 
+    - {fileID: 11400000, guid: 7645dc4be287f3b43915811020a113d9, type: 2}
+    waitTime: 10
+  - tag: Wave 3
     index: 3
     damageThreshHold: 65
-    spawnPosition: {fileID: 0}
-    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
-    extraWaitTimeBool: 1
+    spawnPosition: {fileID: 5921801454932338288}
+    enemyController: {fileID: 11400000, guid: 135d285409b42e44e9a276d62683c790, type: 2}
+    extraWaitTimeBool: 0
     extraWaitTime: 10
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
     numberOfRequiredTriggers: 1
     triggers:
-    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
-    waitTime: 5
-  - tag: 
+    - {fileID: 11400000, guid: 7645dc4be287f3b43915811020a113d9, type: 2}
+    waitTime: 10
+  - tag: wave 4
     index: 4
     damageThreshHold: 50
-    spawnPosition: {fileID: 0}
-    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
+    spawnPosition: {fileID: 5921801453840078680}
+    enemyController: {fileID: 11400000, guid: 646d05f1df8a12e43b972862aa5d11f3, type: 2}
     extraWaitTimeBool: 1
     extraWaitTime: 10
     currentNumberOfEnemies: 0
@@ -996,8 +940,8 @@ MonoBehaviour:
     damageDone: 0
     numberOfRequiredTriggers: 1
     triggers:
-    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
-    waitTime: 5
+    - {fileID: 11400000, guid: 7645dc4be287f3b43915811020a113d9, type: 2}
+    waitTime: 10
   minWaveWaitTime: 20
   maxWaveWaitTime: 40
   arrowRenderer: {fileID: 4858507230693590922}
@@ -17082,7 +17026,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8754c8b54121e41835593151943e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools: []
+  pools:
+  - tag: Nuke
+    prefab: {fileID: 6281243393046209131, guid: ad82d1476390d9e41a1a667c3f02472e,
+      type: 3}
+    size: 2
+  - tag: EnemyBullet
+    prefab: {fileID: 1985112568650204, guid: 78370e8bff66a004f936998e12b995e2, type: 3}
+    size: 50
+  - tag: TurretBullet
+    prefab: {fileID: 5025700349016115662, guid: c80da9eb07315a04c9b3415fc54040ed,
+      type: 3}
+    size: 50
+  - tag: Swarm
+    prefab: {fileID: 1624102608886488, guid: d748b9ea0ba1ee944bcde06f2e3c5636, type: 3}
+    size: 50
+  - tag: Coward
+    prefab: {fileID: 4483640523836513649, guid: 062fef67845877e41b8c25260793bb6b,
+      type: 3}
+    size: 50
+  - tag: Fetcher
+    prefab: {fileID: 5062510125227563459, guid: 1d98db51b724d9e4fb3c29a62f04b655,
+      type: 3}
+    size: 10
+  - tag: Persistent
+    prefab: {fileID: 9000831034717668533, guid: 7b25fed870701a34785b609053982e2a,
+      type: 3}
+    size: 50
+  - tag: Suicider
+    prefab: {fileID: 7864133635307249560, guid: 9655ebdad797d2d4ab2cbbc95ba4392f,
+      type: 3}
+    size: 50
+  - tag: Freezer
+    prefab: {fileID: 3782877884061529672, guid: 0e68c5031376652438cf53b102adafb3,
+      type: 3}
+    size: 50
+  - tag: Healer
+    prefab: {fileID: 1076756149515054808, guid: b4f1dc514fa6efa4da229c92b790c913,
+      type: 3}
+    size: 10
 --- !u!1001 &1295987300820721807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17090,10 +17072,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1295987299401703908}
     m_Modifications:
-    - target: {fileID: 1551485662, guid: 2a6bba9c3f26d2945ade3f5e3c48825d, type: 3}
-      propertyPath: m_Name
-      value: NewUI(StateButtons)
-      objectReference: {fileID: 0}
     - target: {fileID: 1551485663, guid: 2a6bba9c3f26d2945ade3f5e3c48825d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -17177,6 +17155,10 @@ PrefabInstance:
     - target: {fileID: 1551485663, guid: 2a6bba9c3f26d2945ade3f5e3c48825d, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1551485662, guid: 2a6bba9c3f26d2945ade3f5e3c48825d, type: 3}
+      propertyPath: m_Name
+      value: NewUI(StateButtons)
       objectReference: {fileID: 0}
     - target: {fileID: 1551485664, guid: 2a6bba9c3f26d2945ade3f5e3c48825d, type: 3}
       propertyPath: ghost
