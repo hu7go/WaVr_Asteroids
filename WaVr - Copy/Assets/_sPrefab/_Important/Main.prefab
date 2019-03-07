@@ -686,6 +686,7 @@ GameObject:
   - component: {fileID: 1295987299115422404}
   - component: {fileID: 1295987299115422405}
   - component: {fileID: 1295987299115422411}
+  - component: {fileID: 2502358380755523626}
   - component: {fileID: 1295987299115422408}
   - component: {fileID: 1295987299115422409}
   - component: {fileID: 1295987299115422414}
@@ -942,49 +943,61 @@ MonoBehaviour:
     regenSpeed: 1
     regenValue: 4
   waves:
-  - damageThreshHold: 95
-    spawnPosition: {fileID: 0}
-    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
-    waitTime: 5
-    currentNumberOfEnemies: 0
-    enemies: []
-    damageDone: 0
+  - tag: 
     index: 1
-    numberOfrequiredTriggers: 1
+    damageThreshHold: 95
+    spawnPosition: {fileID: 0}
+    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
+    extraWaitTimeBool: 1
+    extraWaitTime: 10
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+    numberOfRequiredTriggers: 1
     triggers: []
-  - damageThreshHold: 80
-    spawnPosition: {fileID: 0}
-    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
     waitTime: 5
-    currentNumberOfEnemies: 0
-    enemies: []
-    damageDone: 0
+  - tag: 
     index: 2
-    numberOfrequiredTriggers: 1
-    triggers:
-    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
-  - damageThreshHold: 65
+    damageThreshHold: 80
     spawnPosition: {fileID: 0}
     enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
-    waitTime: 5
+    extraWaitTimeBool: 1
+    extraWaitTime: 10
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
+    numberOfRequiredTriggers: 1
+    triggers:
+    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
+    waitTime: 5
+  - tag: 
     index: 3
-    numberOfrequiredTriggers: 1
-    triggers:
-    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
-  - damageThreshHold: 50
+    damageThreshHold: 65
     spawnPosition: {fileID: 0}
     enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
-    waitTime: 5
+    extraWaitTimeBool: 1
+    extraWaitTime: 10
     currentNumberOfEnemies: 0
     enemies: []
     damageDone: 0
-    index: 4
-    numberOfrequiredTriggers: 1
+    numberOfRequiredTriggers: 1
     triggers:
     - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
+    waitTime: 5
+  - tag: 
+    index: 4
+    damageThreshHold: 50
+    spawnPosition: {fileID: 0}
+    enemyController: {fileID: 11400000, guid: 19ba544297b2d5d449e9e388b13e16e4, type: 2}
+    extraWaitTimeBool: 1
+    extraWaitTime: 10
+    currentNumberOfEnemies: 0
+    enemies: []
+    damageDone: 0
+    numberOfRequiredTriggers: 1
+    triggers:
+    - {fileID: 11400000, guid: 014ca63c7bab3504882fc2ef165b40fd, type: 2}
+    waitTime: 5
   minWaveWaitTime: 20
   maxWaveWaitTime: 40
   arrowRenderer: {fileID: 4858507230693590922}
@@ -1227,6 +1240,18 @@ MonoBehaviour:
   textDelayTime: 5
   noBuildText: {fileID: 1295987299700718734}
   nowHealingText: {fileID: 1295987300720621255}
+--- !u!114 &2502358380755523626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295987299115422400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c3d7426f995d3499496912b716acd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1295987299115422408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17193,21 +17218,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a6bba9c3f26d2945ade3f5e3c48825d, type: 3}
---- !u!23 &1295987301154391410 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 342861309, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
+--- !u!114 &3671491644039579806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2526387070731905041, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
     type: 3}
   m_PrefabInstance: {fileID: 1295987300820721807}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1295987299945802320 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1551485663, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
     type: 3}
   m_PrefabInstance: {fileID: 1295987300820721807}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1295987299945802321 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1551485662, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
+--- !u!23 &1295987299603451535 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1218326016, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1295987300820721807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1295987301154391410 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 342861309, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1295987300820721807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1295987299194455943 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1664182024, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1295987300820721807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1295987300886901887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 68277488, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1295987300820721807}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &4858507230693590922 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5949438729738168069, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
     type: 3}
   m_PrefabInstance: {fileID: 1295987300820721807}
   m_PrefabAsset: {fileID: 0}
@@ -17223,45 +17284,9 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1295987300886901887 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 68277488, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
+--- !u!1 &1295987299945802321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1551485662, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
     type: 3}
   m_PrefabInstance: {fileID: 1295987300820721807}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!23 &1295987299603451535 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1218326016, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1295987300820721807}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &4858507230693590922 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5949438729738168069, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1295987300820721807}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &1295987299194455943 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 1664182024, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1295987300820721807}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3671491644039579806 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2526387070731905041, guid: 2a6bba9c3f26d2945ade3f5e3c48825d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1295987300820721807}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
