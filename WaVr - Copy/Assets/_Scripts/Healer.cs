@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Healer : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
+public class Healer : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>, IPooledObject
 {
     HealerInfo hI;
 
@@ -11,6 +11,11 @@ public class Healer : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
     {
         hI = Manager.Instance.healerInfoTemplate;
         transform.position += hI.postition;
+    }
+
+    public void OnObjectSpawn()
+    {
+        hI.health = Manager.Instance.healerInfoTemplate.health;
     }
 
     public void SpawnAHealer(GameObject currentCube)
@@ -29,7 +34,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         if (hI.health <= 0)
         {
             myAsteroid.asteroid.beingHealed = false;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -48,7 +53,7 @@ public class Healer : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
         if (myAsteroid.asteroid.health >= Manager.Instance.tAe.asteroidHealth)
         {
             myAsteroid.asteroid.beingHealed = false;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             myAsteroid.asteroid.health = Manager.Instance.tAe.asteroidHealth;
         }
     }
