@@ -702,10 +702,7 @@ public class Manager : MonoBehaviour
         turrets.Clear();
     }
 
-    public void UpdatePath(Vector3 pos, EnemySpawnPoint currentSpawnPoint)
-    {
-        currentSpawnPoint.FindPath(pos);
-    }
+    public void UpdatePath(Vector3 pos, EnemySpawnPoint currentSpawnPoint) => currentSpawnPoint.FindPath(pos);
 
     int privateWaveCount = 0;
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ActiveAbilities : MonoBehaviour
@@ -10,10 +9,7 @@ public class ActiveAbilities : MonoBehaviour
     private TeleportRotation controller;
     private bool canUse = true;
 
-    private void Start()
-    {
-        controller = GetComponent<TeleportRotation>();
-    }
+    private void Start() => controller = GetComponent<TeleportRotation>();
 
     public void ActivateAbility ()
     {

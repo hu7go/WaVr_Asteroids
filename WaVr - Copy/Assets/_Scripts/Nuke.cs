@@ -15,6 +15,7 @@ public class Nuke : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > maxTimeAlive)
         {
+            Instantiate(explosion, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
@@ -24,12 +25,12 @@ public class Nuke : MonoBehaviour
         Debug.Log("Yaaas" + other.name);
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, layerMask);
-
         for (int i = 0; i < hitColliders.Length; i++)
         {
             hitColliders[i].GetComponent<EnemyAI>().TakeDamage(damage);
         }
 
+        Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }

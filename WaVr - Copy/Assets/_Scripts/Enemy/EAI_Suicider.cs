@@ -6,27 +6,23 @@ public class EAI_Suicider : EnemyAI
 {
     public GameObject deathEffect2;
     public float tempdistancecheck;
-    public override void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex, Enemies enemyType)
-    {
-        base.Initialize(newList, newHealthThreshHold, newMaster, newSpawner, newWaveIndex, enemyType);
-    }
+
+    public bool timeDone = false;
+    public bool zeroed = false;
+    public bool goForth = false;
+    public bool newBool = false;
 
     public override void Movement()
     {
         objective = objectiveOrder[nextTargetIndex];
 
         if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
-        {
             nextTargetIndex++;
-        }
+
         distance = Vector3.Distance(transform.position, objective.transform.position);
         StartCoroutine(IMovement());
     }
 
-       public bool timeDone = false;
-    public bool zeroed = false;
-    public bool goForth = false;
-    public bool newBool = false;
     private IEnumerator IMovement()
     {
         tempdistancecheck = distance;

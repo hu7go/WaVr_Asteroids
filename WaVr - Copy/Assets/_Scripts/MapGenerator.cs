@@ -49,6 +49,9 @@ public class MapGenerator : MonoBehaviour
     private Vector3 right;
     private List<Vector3> spawns = new List<Vector3>();
     private float numberOfAsteroids = 100;
+    private int halfWidth;
+    private int halfHeight;
+    private int halfDepth;
 
     private void Start()
     {
@@ -59,31 +62,27 @@ public class MapGenerator : MonoBehaviour
 
         System.Random psuedoRandom = new System.Random(seed.GetHashCode());
 
-        topRight = new Vector3(width / 2, height / 2, depth / 2);
-        topLeft = new Vector3(-width / 2, height / 2, depth / 2);
-        bottomLeft = new Vector3(-width / 2, -height / 2, depth / 2);
-        bottomRight = new Vector3(width / 2, -height / 2, depth / 2);
-        bottomBackLeft = new Vector3(-width / 2, -height / 2, -depth / 2);
-        bottomBackRight = new Vector3(width / 2, -height / 2, -depth / 2);
-        topBackLeft = new Vector3(-width / 2, height / 2, -depth / 2);
-        topBackRight = new Vector3(width / 2, height / 2, -depth / 2);
+        halfWidth = width / 2;
+        halfHeight = height / 2;
+        halfDepth = depth / 2;
+        topRight = new Vector3(halfWidth, halfHeight, halfDepth);
+        topLeft = new Vector3(-halfWidth, halfHeight, halfDepth);
+        bottomLeft = new Vector3(-halfWidth, -halfHeight, halfDepth);
+        bottomRight = new Vector3(halfWidth, -halfHeight, halfDepth);
+        bottomBackLeft = new Vector3(-halfWidth, -halfHeight, -halfDepth);
+        bottomBackRight = new Vector3(halfWidth, -halfHeight, -halfDepth);
+        topBackLeft = new Vector3(-halfWidth, halfHeight, -halfDepth);
+        topBackRight = new Vector3(halfWidth, halfHeight, -halfDepth);
 
         int min = -25;
         int max = 25;
 
-        Vector3 randomVector = new Vector3(psuedoRandom.Next(min, max), psuedoRandom.Next(min, max), psuedoRandom.Next(min, max));
-        above = (transform.position + (topRight + topLeft + topBackRight + topBackLeft).normalized * height / 2 * portalDistanceOffset) + randomVector;
-        randomVector = new Vector3(psuedoRandom.Next(min, max), psuedoRandom.Next(min, max), psuedoRandom.Next(min, max));
-        forward = (transform.position + (topRight + topLeft + bottomLeft + bottomRight).normalized * depth / 2 * portalDistanceOffset) + randomVector;
-        randomVector = new Vector3(psuedoRandom.Next(min, max), psuedoRandom.Next(min, max), psuedoRandom.Next(min, max));
-        back = (transform.position + (topBackLeft + topBackRight + bottomBackLeft + bottomBackRight).normalized * depth / 2 * portalDistanceOffset) + randomVector;
-        randomVector = new Vector3(psuedoRandom.Next(min, max), psuedoRandom.Next(min, max), psuedoRandom.Next(min, max));
-        down = (transform.position + (bottomBackLeft + bottomBackRight + bottomLeft + bottomRight).normalized * height / 2 * portalDistanceOffset) + randomVector;
-        randomVector = new Vector3(psuedoRandom.Next(min, max), psuedoRandom.Next(min, max), psuedoRandom.Next(min, max));
-        left = (transform.position + (topLeft + topBackLeft + bottomLeft + bottomBackLeft).normalized * width / 2 * portalDistanceOffset) + randomVector;
-        randomVector = new Vector3(psuedoRandom.Next(min, max), psuedoRandom.Next(min, max), psuedoRandom.Next(min, max));
-        right = (transform.position + (bottomRight + bottomBackRight + topRight + topBackRight).normalized * width / 2 * portalDistanceOffset) + randomVector;
-        randomVector = new Vector3(psuedoRandom.Next(min, max), psuedoRandom.Next(min, max), psuedoRandom.Next(min, max));
+        above = (transform.position + (topRight + topLeft + topBackRight + topBackLeft).normalized * halfHeight * portalDistanceOffset) + RandomVector(psuedoRandom, min, max);
+        forward = (transform.position + (topRight + topLeft + bottomLeft + bottomRight).normalized * halfDepth * portalDistanceOffset) + RandomVector(psuedoRandom, min, max);
+        back = (transform.position + (topBackLeft + topBackRight + bottomBackLeft + bottomBackRight).normalized * halfDepth * portalDistanceOffset) + RandomVector(psuedoRandom, min, max);
+        down = (transform.position + (bottomBackLeft + bottomBackRight + bottomLeft + bottomRight).normalized * halfHeight * portalDistanceOffset) + RandomVector(psuedoRandom, min, max);
+        left = (transform.position + (topLeft + topBackLeft + bottomLeft + bottomBackLeft).normalized * halfWidth * portalDistanceOffset) + RandomVector(psuedoRandom, min, max);
+        right = (transform.position + (bottomRight + bottomBackRight + topRight + topBackRight).normalized * halfWidth * portalDistanceOffset) + RandomVector(psuedoRandom, min, max);
 
         spawns.Add(left);
         spawns.Add(right);
@@ -104,17 +103,19 @@ public class MapGenerator : MonoBehaviour
         map.Clear();
     }
 
+    Vector3 RandomVector(System.Random psuedoRandom,int min, int max) => new Vector3(psuedoRandom.Next(min, max), psuedoRandom.Next(min, max), psuedoRandom.Next(min, max));
+
     private void GenerateMap()
     {
         System.Random psuedoRandom = new System.Random(seed.GetHashCode());
         System.Random psuedoRandomJunk = new System.Random(seed.GetHashCode());
 
 
-        for (int x = -width / 2; x < width / 2; x++)
+        for (int x = -halfWidth; x < halfWidth; x++)
         {
-            for (int y = -height / 2; y < height / 2; y++)
+            for (int y = -halfHeight; y < halfHeight; y++)
             {
-                for (int z = -depth / 2; z < depth / 2; z++)
+                for (int z = -halfDepth; z < halfDepth; z++)
                 {
                     int tmp = 0;
 
@@ -267,15 +268,6 @@ public class MapGenerator : MonoBehaviour
     //! Gizmos!
     private void OnDrawGizmos()
     {
-        topRight = new Vector3(width / 2, height / 2, depth / 2);
-        topLeft = new Vector3(-width / 2, height / 2, depth / 2);
-        bottomLeft = new Vector3(-width / 2, -height / 2, depth / 2);
-        bottomRight = new Vector3(width / 2, -height / 2, depth / 2);
-        bottomBackLeft = new Vector3(-width / 2, -height / 2, -depth / 2);
-        bottomBackRight = new Vector3(width / 2, -height / 2, -depth / 2);
-        topBackLeft = new Vector3(-width / 2, height / 2, -depth / 2);
-        topBackRight = new Vector3(width / 2, height / 2, -depth / 2);
-
         Gizmos.color = Color.yellow;
         Gizmos.DrawCube(topRight, Vector3.one);
         Gizmos.DrawCube(topLeft, Vector3.one);

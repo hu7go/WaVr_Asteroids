@@ -126,16 +126,6 @@ public class EnemyAI : MonoBehaviour
 
             distance = Vector3.Distance(transform.position, objective.transform.position);
 
-            if (distance > range)
-            {
-                freezing = false;
-                gun.freeze = false;
-            }
-            else
-            {
-                gun.freeze = true;
-            }
-
             //Stops a certain distance away from the target!
             if (distance > stopDistance)
             {
