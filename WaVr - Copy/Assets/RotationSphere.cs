@@ -17,7 +17,7 @@ public class RotationSphere : MonoBehaviour
         if (rotate == true)
         {
             Quaternion tmp = transform.localRotation;
-            transform.localRotation = Quaternion.Lerp(tmp, hand.localRotation * Manager.Instance.ReturnPlayerBody().transform.rotation, Time.deltaTime * 1);
+            transform.localRotation = Quaternion.Lerp(tmp, hand.localRotation, Time.deltaTime * 1);
             Manager.Instance.ReturnPlayer().transform.rotation = transform.localRotation;
         }
         else
