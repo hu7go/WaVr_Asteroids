@@ -17,7 +17,6 @@ public class EAI_Suicider : EnemyAI
 
         if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
         {
-            Debug.Log("Test target index upping Main!");
             nextTargetIndex++;
         }
         distance = Vector3.Distance(transform.position, objective.transform.position);
@@ -38,7 +37,6 @@ public class EAI_Suicider : EnemyAI
             privateSpeed = 0;
             transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, 0);
             zeroed = true;
-            print("step one");
         }
         if (zeroed)
         {
@@ -49,7 +47,6 @@ public class EAI_Suicider : EnemyAI
                 yield return new WaitForSeconds(2f);
                 timeDone = true;
             }
-            print("step two");
         }
         transform.LookAt(objective.transform);
         if (timeDone == true && goForth == false)
@@ -59,10 +56,9 @@ public class EAI_Suicider : EnemyAI
             privateSpeed = speed / 2;
             tmpSpeed = speed;
             goForth = true;
-            print("I make 3 speed");
         }
 
-        //BUGGEN KANSKE ÄR ATT DEN ÄR IN RANGE NÄR DEN BYTER TARGET OCH DÅ FUCKAR UT OCH INTE VILL ATTAKERA
+        // Kanske finns en bug - ATT DEN ÄR IN RANGE NÄR DEN BYTER TARGET OCH DÅ FUCKAR UT OCH INTE VILL ATTAKERA
         if (distance > 21f && zeroed == true)
         {
             StopAllCoroutines();
@@ -73,7 +69,6 @@ public class EAI_Suicider : EnemyAI
             speed = originalSpeed;
             privateSpeed = speed / 2;
             tmpSpeed = speed;
-            print("I make back to normal 4 ");
         }
 
         transform.position = Vector3.MoveTowards(transform.position, objective.transform.position, tmpSpeed * Time.deltaTime);
