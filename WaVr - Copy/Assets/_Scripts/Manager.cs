@@ -417,13 +417,16 @@ public class Manager : MonoBehaviour
 
             WaveSpawnCondition tmp = new WaveSpawnCondition();
 
-            while (tmp.Trigger(list) < waves[tAe.waveCount].numberOfrequiredTriggers)
+            while (tmp.Trigger(list) < waves[tAe.waveCount].numberOfRequiredTriggers)
             {
                 yield return null;
             }
 
             //A additional buffer to make the waves wait a little longer
-            yield return new WaitForSeconds(10);
+            if (waves[tAe.waveCount].extraWaitTimeBool)
+            {
+                yield return new WaitForSeconds(waves[tAe.waveCount].extraWaitTime);
+            }
 
             SpawnEnemies();
         }
@@ -552,7 +555,7 @@ public class Manager : MonoBehaviour
             uISettings.timerText.text = minutes.ToString() + ": " + seconds.ToString("00");
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             Utils.ClearLogConsole();
         }
