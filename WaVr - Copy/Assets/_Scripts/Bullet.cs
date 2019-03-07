@@ -1,19 +1,29 @@
 ﻿using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPooledObject
 {
     public string tagToHit;
 
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
+    float timer = 0;
 
-    private void Start() => Destroy(gameObject, 4f);
+    public void OnObjectSpawn()
+    {
+        timer = 0;
+    }
 
-    private void FixedUpdate() => rb.velocity = transform.forward * speed;
+    private void FixedUpdate()
+    {
+        timer += Time.deltaTime;
+        if (timer > 10)
+            gameObject.SetActive(false);
+        rb.velocity = transform.forward * speed;
+    }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == tagToHit)
-            Destroy(gameObject);
+            gameObject.SetActive(false);
     }
 }

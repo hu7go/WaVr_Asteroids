@@ -90,10 +90,7 @@ public class TurretAI : MonoBehaviour
             if (currentTarget == null)
                 enemies.RemoveAt(0);
 
-            Instantiate(bullet, tMuzzle.transform.position, tMuzzle.transform.rotation, Manager.Instance.enemyParent.transform);
-
-            //tMuzzle.transform.GetChild(0).gameObject.SetActive(true);
-            //MuzzleParticle();
+            ObjectPooler.Instance.SpawnFromPool("TurretBullet", tMuzzle.transform.position, tMuzzle.transform.rotation);
 
             if (enemies.Count <= 0)
                 shooting = false;

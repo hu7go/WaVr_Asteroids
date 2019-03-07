@@ -132,7 +132,7 @@ public class SpaceGun : MonoBehaviour
         switch (bulletType)
         {
             case BulletType.bullet:
-                GameObject tmpBullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation * Quaternion.Euler(fireDirection));
+                ObjectPooler.Instance.SpawnFromPool("EnemyBullet", muzzle.position, muzzle.rotation);
                 break;
             case BulletType.beam:
                 break;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebee3eab8bec4fc428147917574ca61a, type: 3}
   m_Name: SwarmEnemy
   m_EditorClassIdentifier: 
-  name: Swarmer
+  name: Swarm
   boss: 0
   damage: 1
   health: 6

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IPooledObject
 {
     public GameObject deathEffect;
 
@@ -43,25 +43,41 @@ public class EnemyAI : MonoBehaviour
     protected bool onTheWay = false;
     protected float stopDistance = 9;
 
+    private Enemies me;
+
     protected Spawner spawner;
 
     protected int waveIndex;
 
-    private void Start()
+    public void OnObjectSpawn ()
     {
-        ups = GetComponentInChildren<UnparentSound>();
+        if (ups == null)
+            ups = GetComponentInChildren<UnparentSound>();
 
         randomNmbrX = Random.Range(-10, 10);
         randomNmbrY = Random.Range(-10, 10);
         randomNmbrZ = Random.Range(-10, 10);
 
-
-        health += Manager.Instance.tAe.waveCount;
+        if (me != null)
+            health = me.health;
     }
+
+    //private void Start()
+    //{
+    //    ups = GetComponentInChildren<UnparentSound>();
+
+    //    randomNmbrX = Random.Range(-10, 10);
+    //    randomNmbrY = Random.Range(-10, 10);
+    //    randomNmbrZ = Random.Range(-10, 10);
+
+    //    health += Manager.Instance.tAe.waveCount;
+    //}
 
     public virtual void Initialize(List<AsteroidHealth> newList, float newHealthThreshHold, EnemySpawnPoint newMaster, Spawner newSpawner, int newWaveIndex, Enemies enemyType)
     {
         gun = GetComponent<SpaceGun>();
+
+        me = enemyType;
 
         gun.damage = enemyType.damage;
         gun.minFireRate = enemyType.minFireRate;
@@ -187,7 +203,7 @@ public class EnemyAI : MonoBehaviour
         Manager.Instance.waves[waveIndex].enemies.Remove(this);
         Manager.Instance.RemovedEnemy(waveIndex);
         spawner.RemoveEnemie(this);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public virtual void KilledTarget()
