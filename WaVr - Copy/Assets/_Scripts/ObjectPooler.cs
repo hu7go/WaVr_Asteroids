@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
@@ -13,7 +14,10 @@ public class ObjectPooler : MonoBehaviour
 
     #region Singleton
     public static ObjectPooler Instance;
-    private void Awake() => Instance = this;
+    private void Awake()
+    {
+        Instance = this;
+    }
     #endregion
 
     public List<Pool> pools;
@@ -55,7 +59,9 @@ public class ObjectPooler : MonoBehaviour
         IPooledObject pooledObj = objectToSpawn.GetComponent<IPooledObject>();
 
         if (pooledObj != null)
+        {
             pooledObj.OnObjectSpawn();
+        }
 
         poolDictionary[tag].Enqueue(objectToSpawn);
 
