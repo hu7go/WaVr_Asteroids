@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 1eaed1c793822a246b902abe9dffd6f0, type: 3}
   m_Name: ThreasholdReachedTrigger
-  m_EditorClassIdentifier: Assembly-CSharp::ThreasholdReached
+  m_EditorClassIdentifier: 
