@@ -14,7 +14,7 @@ public class TeleportRotation : MonoBehaviour
     public List<GameObject> hands;
     public GameObject[] parents = new GameObject[2];
     [SerializeField] private GameObject teleportorBuildUI;
-    private GameObject currentHand;
+    [HideInInspector] public GameObject currentHand;
 
     private bool canTeleport = false;
     private bool switchedHands;
