@@ -30,7 +30,6 @@ public class EnemyAI : MonoBehaviour, IPooledObject
     protected float privateSpeed;
     protected float tmpSpeed;
     protected float originalSpeed;
-    protected bool freezing;
     [HideInInspector] public List<AsteroidHealth> objectiveOrder;
 
     protected float healthThreshHold;

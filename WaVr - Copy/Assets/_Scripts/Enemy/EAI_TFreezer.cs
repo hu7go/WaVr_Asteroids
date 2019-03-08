@@ -110,7 +110,7 @@ public class EAI_TFreezer : EnemyAI
 
             if (distance > range)
             {
-                freezing = false;
+                isCurrentlyFreezing = false;
                 gun.freeze = false;
             }
             else
@@ -134,16 +134,21 @@ public class EAI_TFreezer : EnemyAI
 
             if (objectiveOrder[nextTargetIndex].frozen == true && isCurrentlyFreezing == false)
             {
-                if (objectiveOrder[nextTargetIndex].frozen == true && isCurrentlyFreezing == false)
-                    if (asteroidsWithTurret.Count != prevPathCount)
-                    {
-                        nextTargetIndex++;
-                        if (nextTargetIndex > asteroidsWithTurret.Count)
-                            nextTargetIndex--;
-                    }
-                else
-                    nextTargetIndex--;
+                if (asteroidsWithTurret.Count != prevPathCount)
+                {
+                    nextTargetIndex++;
+                    if (nextTargetIndex > asteroidsWithTurret.Count)
+                        nextTargetIndex--;
+                }
+            }
 
+            else
+            {
+                nextTargetIndex--;
+            }
+
+            if (objectiveOrder[nextTargetIndex].frozen == true && isCurrentlyFreezing == false)
+            {
                 if (nextTargetIndex > asteroidsWithTurret.Count)
                 {
                     nextTargetIndex--;
