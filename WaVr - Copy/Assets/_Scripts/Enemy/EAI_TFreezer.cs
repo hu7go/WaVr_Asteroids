@@ -132,7 +132,6 @@ public class EAI_TFreezer : EnemyAI
                 transform.RotateAround(objective.transform.position, new Vector3(randomNmbrX, randomNmbrY, randomNmbrZ), (tmpSpeed) * Time.deltaTime);
             }
 
-            int test = nextTargetIndex;
             if (objectiveOrder[nextTargetIndex].frozen == true && isCurrentlyFreezing == false)
             {
                 if (asteroidsWithTurret.Count != prevPathCount)
@@ -141,17 +140,9 @@ public class EAI_TFreezer : EnemyAI
                     if (nextTargetIndex > asteroidsWithTurret.Count)
                         nextTargetIndex--;
                 }
-            }
-            else
-            {
-                nextTargetIndex--;
-            }
 
-            if (objectiveOrder[test].frozen == true && isCurrentlyFreezing == false)
-            {
                 if (nextTargetIndex > asteroidsWithTurret.Count)
                 {
-                    if(test == nextTargetIndex)
                         nextTargetIndex--;
                     if (nextTargetIndex < 0)
                     {
