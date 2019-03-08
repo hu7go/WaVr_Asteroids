@@ -147,11 +147,10 @@ public class EAI_TFreezer : EnemyAI
                 nextTargetIndex--;
             }
 
-            if (objectiveOrder[nextTargetIndex].frozen == true && isCurrentlyFreezing == false)
+            if (objectiveOrder[nextTargetIndex++].frozen == true && isCurrentlyFreezing == false)
             {
                 if (nextTargetIndex > asteroidsWithTurret.Count)
                 {
-                    nextTargetIndex--;
                     if (nextTargetIndex < 0)
                     {
                         nextTargetIndex = 0;
