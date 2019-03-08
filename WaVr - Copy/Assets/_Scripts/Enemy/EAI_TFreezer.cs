@@ -27,6 +27,11 @@ public class EAI_TFreezer : EnemyAI
 
     public void CheckForTurrets()
     {
+        if (seekAndDestroy == false)
+        {
+            return;
+        }
+
         prevPathCount = asteroidsWithTurret.Count;
 
         if (asteroidsWithTurret.Count > 0)
@@ -72,7 +77,9 @@ public class EAI_TFreezer : EnemyAI
 
         if (asteroidsWithTurret.Count == prevPathCount)
             if (nextTargetIndex != 0)
+            {
                 nextTargetIndex++;
+            }
 
         currentTarget = objective.GetComponentInParent<TurretMenuMaster>().turrets;
         objective = objectiveOrder[nextTargetIndex];
@@ -101,10 +108,25 @@ public class EAI_TFreezer : EnemyAI
     {
         if (seekAndDestroy)
         {
-            objective = objectiveOrder[nextTargetIndex];
+            if (objectiveOrder[nextTargetIndex] != null)
+            {
+                objective = objectiveOrder[nextTargetIndex];
+            }
+            else
+            {
+                nextTargetIndex--;
+                if (nextTargetIndex < 0)
+                {
+                    nextTargetIndex = 0;
+                    GoHome();
+                    return;
+                }
+            }
 
             if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
+            {
                 nextTargetIndex++;
+            }
 
             distance = Vector3.Distance(transform.position, objective.transform.position);
 
@@ -137,8 +159,12 @@ public class EAI_TFreezer : EnemyAI
                 if (asteroidsWithTurret.Count != prevPathCount)
                 {
                     nextTargetIndex++;
-                    if (nextTargetIndex > asteroidsWithTurret.Count)
-                        nextTargetIndex--;
+                    if (nextTargetIndex >= asteroidsWithTurret.Count)
+                    {
+                        nextTargetIndex = 0;
+                        GoHome();
+                        return;
+                    }
                 }
 
                 if (nextTargetIndex > asteroidsWithTurret.Count)
