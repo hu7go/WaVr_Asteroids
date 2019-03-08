@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: Barrier
   m_Shader: {fileID: 4800000, guid: 94e3bb0247185f842a5153fe0cd6ef74, type: 3}
   m_ShaderKeywords: 
@@ -22,6 +23,8 @@ Material:
         m_Texture: {fileID: 2800000, guid: 80b2f969abd91254eaf26fd181c0d787, type: 3}
         m_Scale: {x: 10, y: 18}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - _Alpha: 1
+    - _Speed: 5
     m_Colors:
-    - _Color: {r: 0.055980776, g: 0.3207547, b: 0.16930932, a: 0.11764706}
+    - _Color: {r: 0.05490195, g: 0.30903468, b: 0.32156864, a: 0.101960786}

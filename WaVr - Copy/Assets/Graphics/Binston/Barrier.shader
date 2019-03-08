@@ -7,6 +7,8 @@ Shader "CloverSwatch/BinstonBarrier"
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_Color ("Color", Color) = (0,0,0,0)
+		_Speed("Speed", float) = 5
+		_Alpha("Alpha", float) = 1
 	}
 
 	SubShader
@@ -50,6 +52,8 @@ Shader "CloverSwatch/BinstonBarrier"
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
+			float _Speed;
+			float _Alpha;
 
 			v2f vert (appdata v)
 			{
@@ -79,10 +83,10 @@ Shader "CloverSwatch/BinstonBarrier"
 			fixed4 texColor(v2f i, float rim)
 			{
 				fixed4 mainTex = tex2D(_MainTex, i.uv);
-				mainTex.r *= triWave(_Time.x * 5, abs(i.objectPos.y) * 2, -0.7) * 6;
+				mainTex.r *= triWave(_Time.x * _Speed, abs(i.objectPos.y) * 2, -0.7) * 6;
 				// I ended up saturaing the rim calculation because negative values caused weird artifacts
-				mainTex.g *= saturate(rim) * (sin(_Time.z + mainTex.b * 5) + 1);
-				return mainTex.r * _Color + mainTex.g * _Color;
+				mainTex.g *= (saturate(rim) * (sin(_Time.z + mainTex.b * 5) + 1)) * _Alpha;
+				return (mainTex.r * _Color + mainTex.g * _Color) * _Alpha;
 			}
 
 			fixed4 frag (v2f i) : SV_Target
@@ -95,8 +99,8 @@ Shader "CloverSwatch/BinstonBarrier"
 					intersect = 1 - smoothstep(0, _ProjectionParams.w * 0.5, diff);
 
 				float rim = 1 - abs(dot(i.normal, normalize(i.viewDir))) * 2;
-				float northPole = (i.objectPos.y - 0.45) * 20;
-				float glow = max(max(intersect, rim), northPole);
+				float northPole = (i.objectPos.y - 0.45) * 1;
+				float glow = (max(max(intersect, rim), northPole)) * _Alpha;
 
 				fixed4 glowColor = fixed4(lerp(_Color.rgb, fixed3(1, 1, 1), pow(glow, 4)), 1);
 				

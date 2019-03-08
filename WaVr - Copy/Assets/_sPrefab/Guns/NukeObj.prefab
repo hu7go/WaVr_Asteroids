@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5416943699377911920}
-  - component: {fileID: 5461473818941547448}
+  - component: {fileID: 6507915839911538673}
   m_Layer: 19
   m_Name: Collider1
   m_TagString: Untagged
@@ -31,8 +31,8 @@ Transform:
   m_Father: {fileID: 5417005418978141090}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5461473818941547448
-BoxCollider:
+--- !u!135 &6507915839911538673
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 3}
-  m_Center: {x: 0, y: 0, z: -0.52}
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5415129122367737950
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,3 +220,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   explosion: {fileID: 1929620577409710, guid: eb550bb3d0f18944ba2272872ad6e2cd, type: 3}
+  speed: 1000
