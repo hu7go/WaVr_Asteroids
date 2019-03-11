@@ -16,6 +16,10 @@ public class RotationSphere : MonoBehaviour
     private Quaternion handRotation = new Quaternion();
     private Quaternion oldRot = new Quaternion();
 
+
+    private Quaternion oldHandRot = new Quaternion();
+    private bool afterRelease = false;
+
     private void Start()
     {
         manager = Manager.Instance;
@@ -28,25 +32,19 @@ public class RotationSphere : MonoBehaviour
 
         if (rotate == true)
         {
-            //if (clicked == false)
-            //{
-            //    handRotation = hand.localRotation;
-            //    clicked = true;
-            //}
+            if (afterRelease == false)
+            {
+                oldHandRot = hand.localRotation;
+                afterRelease = true;
+            }
 
-            //transform.localRotation = hand.localRotation;
-
-            //Quaternion changeRotation = transform.localRotation * Quaternion.Inverse(handRotation);
-
-            //Quaternion lerpRot = Quaternion.Lerp(transform.localRotation, transform.localRotation * handRotation, Time.deltaTime);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, transform.localRotation * (hand.localRotation * Quaternion.Inverse(oldHandRot)), Time.deltaTime * 1);
 
             manager.ReturnPlayer().transform.rotation = transform.localRotation;
         }
         else
         {
-            //if (clicked)
-            //    oldRot = transform.localRotation;
-            //clicked = false;
+            afterRelease = false;
         }
     }
 
