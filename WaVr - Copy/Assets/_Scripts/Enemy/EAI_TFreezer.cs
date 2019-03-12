@@ -169,13 +169,13 @@ public class EAI_TFreezer : EnemyAI
 
                 if (nextTargetIndex > asteroidsWithTurret.Count)
                 {
-                        nextTargetIndex--;
-                    if (nextTargetIndex < 0)
+                    if ((nextTargetIndex -1)< 0)
                     {
                         nextTargetIndex = 0;
                         GoHome();
                         return;
                     }
+                        nextTargetIndex--;
                 }
                 else
                 {
