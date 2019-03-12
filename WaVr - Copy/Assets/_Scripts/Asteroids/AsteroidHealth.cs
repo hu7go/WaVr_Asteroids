@@ -104,12 +104,13 @@ public class AsteroidHealth : MonoBehaviour, ITakeDamage<float, EnemySpawnPoint>
 
         UpdateColor();
     }
-
+    //has to be called to work
     public void Freeze ()
     {
         iceEffect.IsActive = true;
     }
 
+    //has to be called to work
     public void UnFreeze ()
     {
         iceEffect.IsActive = false;

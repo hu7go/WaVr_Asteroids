@@ -4812,6 +4812,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b342467be256c4ea990a49390a2bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAsteroid: 1
+  frozen: 0
   asteroid:
     postition: {x: 0, y: 0, z: 0}
     health: 100

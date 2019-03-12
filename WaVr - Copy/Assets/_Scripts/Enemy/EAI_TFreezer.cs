@@ -114,13 +114,13 @@ public class EAI_TFreezer : EnemyAI
             }
             else
             {
-                nextTargetIndex--;
-                if (nextTargetIndex < 0)
+                if ((nextTargetIndex - 1) < 0)
                 {
                     nextTargetIndex = 0;
                     GoHome();
                     return;
                 }
+                nextTargetIndex--;
             }
 
             if (objectiveOrder[nextTargetIndex].asteroid.alive == false)
@@ -217,9 +217,9 @@ public class EAI_TFreezer : EnemyAI
 
     public override void GoHome()
     {
-        base.GoHome();
         foreach (TurretStruct turret in currentTarget)
             turret.ai.frozen = false;
+        base.GoHome();
     }
 
     public override void Kill()
