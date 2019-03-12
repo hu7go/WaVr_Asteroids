@@ -6,10 +6,13 @@ public class CreateFolderExample : MonoBehaviour
     [MenuItem("GameObject/Create Folder")]
     private void Start()
     {
-        if (!AssetDatabase.IsValidFolder("Assets/HUGOMAPPEN"))
+        if (AssetDatabase.IsValidFolder("Assets/Scripts"))
         {
-            string guid = AssetDatabase.CreateFolder("Assets", "HUGOMAPPEN");
-            string newFolderPath = AssetDatabase.GUIDToAssetPath(guid);
+            FileUtil.DeleteFileOrDirectory("Assets/Scripts");
+        }
+        if (AssetDatabase.IsValidFolder("Assets/AsteroidPack"))
+        {
+            FileUtil.DeleteFileOrDirectory("Assets/AsteroidPack");
         }
     }
 }
