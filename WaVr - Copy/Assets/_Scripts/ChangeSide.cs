@@ -1,5 +1,13 @@
 ﻿using UnityEngine;
 
+public enum direction
+{
+    forward,
+    backward,
+    left,
+    right,
+}
+
 public class ChangeSide : MonoBehaviour
 {
     public GameObject rotator;
@@ -8,14 +16,6 @@ public class ChangeSide : MonoBehaviour
     public bool useIndex;
 
     private Sides previousDirection;
-
-    public enum direction
-    {
-        forward,
-        backward,
-        left,
-        right,
-    }
 
     public void DoFunction () => Rotate();
 
@@ -30,18 +30,16 @@ public class ChangeSide : MonoBehaviour
                     switch (tpm.arrowIndex)
                     {
                         case 1:
-                            rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
+                            RotatePlayer(90);
                             break;
                         case 2:
-                            rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
+                            RotatePlayer(0, -90);
                             break;
                         case 3:
-                            rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
+                            RotatePlayer(-90);
                             break;
                         case 4:
-                            rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
-                            break;
-                        default:
+                            RotatePlayer(0, 90);
                             break;
                     }
                     break;
@@ -50,18 +48,16 @@ public class ChangeSide : MonoBehaviour
                     switch (tpm.arrowIndex)
                     {
                         case 1:
-                            rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
+                            RotatePlayer(-90);
                             break;
                         case 2:
-                            rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
+                            RotatePlayer(0, 90);
                             break;
                         case 3:
-                            rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
+                            RotatePlayer(90);
                             break;
                         case 4:
-                            rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
-                            break;
-                        default:
+                            RotatePlayer(0, -90);
                             break;
                     }
                     break;
@@ -70,18 +66,16 @@ public class ChangeSide : MonoBehaviour
                     switch (tpm.arrowIndex)
                     {
                         case 1:
-                            rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
+                            RotatePlayer(0, 90);
                             break;
                         case 2:
-                            rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
+                            RotatePlayer(90);
                             break;
                         case 3:
-                            rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
+                            RotatePlayer(0, -90);
                             break;
                         case 4:
-                            rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
-                            break;
-                        default:
+                            RotatePlayer(-90);
                             break;
                     }
                     break;
@@ -90,22 +84,18 @@ public class ChangeSide : MonoBehaviour
                     switch (tpm.arrowIndex)
                     {
                         case 1:
-                            rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
+                            RotatePlayer(0, -90);
                             break;
                         case 2:
-                            rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
+                            RotatePlayer(-90);
                             break;
                         case 3:
-                            rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
+                            RotatePlayer(0, 90);
                             break;
                         case 4:
-                            rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
-                            break;
-                        default:
+                            RotatePlayer(90);
                             break;
                     }
-                    break;
-                default:
                     break;
             }
         }
@@ -114,21 +104,26 @@ public class ChangeSide : MonoBehaviour
             switch (myDirection)
             {
                 case direction.forward:
-                    rotator.transform.localRotation *= Quaternion.Euler(90, 0, 0);
+                    RotatePlayer(90);
                     break;
                 case direction.backward:
-                    rotator.transform.localRotation *= Quaternion.Euler(-90, 0, 0);
+                    RotatePlayer(-90);
                     break;
                 case direction.left:
-                    rotator.transform.localRotation *= Quaternion.Euler(0, 0, 90);
+                    RotatePlayer(0, 90);
                     break;
                 case direction.right:
-                    rotator.transform.localRotation *= Quaternion.Euler(0, 0, -90);
+                    RotatePlayer(0, -90);
                     break;
             }
         }
         tpm.ChechWhichSideIsClosest();
 
         Manager.Instance.SetWorldAxis();
+    }
+
+    private void RotatePlayer (float x = 0, float z = 0)
+    {
+        rotator.transform.localRotation *= Quaternion.Euler(x, 0, z);
     }
 }

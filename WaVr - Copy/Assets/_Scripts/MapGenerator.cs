@@ -268,28 +268,51 @@ public class MapGenerator : MonoBehaviour
     //! Gizmos!
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(topRight, Vector3.one);
-        Gizmos.DrawCube(topLeft, Vector3.one);
-        Gizmos.DrawCube(bottomLeft, Vector3.one);
-        Gizmos.DrawCube(bottomBackLeft, Vector3.one);
-        Gizmos.DrawCube(bottomRight, Vector3.one);
-        Gizmos.DrawCube(bottomBackRight, Vector3.one);
-        Gizmos.DrawCube(topBackLeft, Vector3.one);
-        Gizmos.DrawCube(topBackRight, Vector3.one);
+        if (width == 0 && height == 0)
+            return;
 
-        Gizmos.DrawLine(topRight, topLeft);
-        Gizmos.DrawLine(topLeft, topBackLeft);
-        Gizmos.DrawLine(topBackLeft, topBackRight);
-        Gizmos.DrawLine(topBackRight, topRight);
-        Gizmos.DrawLine(topRight, bottomRight);
-        Gizmos.DrawLine(bottomRight, bottomLeft);
-        Gizmos.DrawLine(bottomLeft, bottomBackLeft);
-        Gizmos.DrawLine(bottomBackLeft, bottomBackRight);
-        Gizmos.DrawLine(bottomBackRight, bottomRight);
-        Gizmos.DrawLine(bottomBackRight, topBackRight);
-        Gizmos.DrawLine(bottomBackLeft, topBackLeft);
-        Gizmos.DrawLine(bottomLeft, topLeft);
+        Gizmos.color = Color.yellow;
+        if (topRight != Vector3.zero)
+            Gizmos.DrawCube(topRight, Vector3.one);
+        if (topLeft != Vector3.zero)
+            Gizmos.DrawCube(topLeft, Vector3.one);
+        if (bottomLeft != Vector3.zero)
+            Gizmos.DrawCube(bottomLeft, Vector3.one);
+        if (bottomBackLeft != Vector3.zero)
+            Gizmos.DrawCube(bottomBackLeft, Vector3.one);
+        if (bottomRight != Vector3.zero)
+            Gizmos.DrawCube(bottomRight, Vector3.one);
+        if (bottomBackRight != Vector3.zero)
+            Gizmos.DrawCube(bottomBackRight, Vector3.one);
+        if (topBackLeft != Vector3.zero)
+            Gizmos.DrawCube(topBackLeft, Vector3.one);
+        if (topBackRight != Vector3.zero)
+            Gizmos.DrawCube(topBackRight, Vector3.one);
+
+        if (topRight != Vector3.zero || topLeft != Vector3.zero)
+            Gizmos.DrawLine(topRight, topLeft);
+        if (topLeft != Vector3.zero || topBackLeft != Vector3.zero)
+            Gizmos.DrawLine(topLeft, topBackLeft);
+        if (topBackLeft != Vector3.zero || topBackRight != Vector3.zero)
+            Gizmos.DrawLine(topBackLeft, topBackRight);
+        if (topBackRight != Vector3.zero || topRight != Vector3.zero)
+            Gizmos.DrawLine(topBackRight, topRight);
+        if (topRight != Vector3.zero || bottomRight != Vector3.zero)
+            Gizmos.DrawLine(topRight, bottomRight);
+        if (bottomRight != Vector3.zero || bottomLeft != Vector3.zero)
+            Gizmos.DrawLine(bottomRight, bottomLeft);
+        if (bottomLeft != Vector3.zero || bottomBackLeft != Vector3.zero)
+            Gizmos.DrawLine(bottomLeft, bottomBackLeft);
+        if (bottomBackLeft != Vector3.zero || bottomBackRight != Vector3.zero)
+            Gizmos.DrawLine(bottomBackLeft, bottomBackRight);
+        if (bottomBackRight != Vector3.zero || bottomRight != Vector3.zero)
+            Gizmos.DrawLine(bottomBackRight, bottomRight);
+        if (bottomBackRight != Vector3.zero || topBackRight != Vector3.zero)
+            Gizmos.DrawLine(bottomBackRight, topBackRight);
+        if (bottomBackLeft != Vector3.zero || topBackLeft != Vector3.zero)
+            Gizmos.DrawLine(bottomBackLeft, topBackLeft);
+        if (bottomLeft != Vector3.zero || topLeft != Vector3.zero)
+            Gizmos.DrawLine(bottomLeft, topLeft);
 
         Gizmos.color = Color.red;
         
@@ -306,12 +329,18 @@ public class MapGenerator : MonoBehaviour
 
         Gizmos.color = Color.green;
 
-        Gizmos.DrawCube(above, Vector3.one * 3);
-        Gizmos.DrawCube(forward, Vector3.one * 3);
-        Gizmos.DrawCube(back, Vector3.one * 3);
-        Gizmos.DrawCube(down, Vector3.one * 3);
-        Gizmos.DrawCube(right, Vector3.one * 3);
-        Gizmos.DrawCube(left, Vector3.one * 3);
+        if (above != Vector3.zero)
+            Gizmos.DrawCube(above, Vector3.one * 3);
+        if (forward != Vector3.zero)
+            Gizmos.DrawCube(forward, Vector3.one * 3);
+        if (back != Vector3.zero)
+            Gizmos.DrawCube(back, Vector3.one * 3);
+        if (down != Vector3.zero)
+            Gizmos.DrawCube(down, Vector3.one * 3);
+        if (right != Vector3.zero)
+            Gizmos.DrawCube(right, Vector3.one * 3);
+        if (left != Vector3.zero)
+            Gizmos.DrawCube(left, Vector3.one * 3);
     }
 }
 

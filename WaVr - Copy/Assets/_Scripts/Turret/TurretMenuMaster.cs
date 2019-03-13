@@ -27,7 +27,7 @@ public class TurretMenuMaster : MonoBehaviour
         asteroid = GetComponentInChildren<AsteroidHealth>();
     }
 
-    public void CheckSides(TeleportMaster master, bool spawn = true)
+    public void CheckSides(TeleportMaster master, bool spawn = true, bool rotationSphere = false)
     {
         tpMaster = master;
         if (!spawn)
@@ -46,18 +46,36 @@ public class TurretMenuMaster : MonoBehaviour
 
             float distance = 10;
 
+            Vector3 targetPos = master.arrowPositionCheck.position;
+                if (rotationSphere)
+                    targetPos = master.transform.up * 2;
+
             foreach (SideScript side in tmpList)
             {
+                Debug.DrawLine(side.transform.position, targetPos, Color.red, 10);
+
                 //Debug.DrawLine(side.transform.position, master.arrowPositionCheck.position, Color.blue, 10f);
-                if (distance > Vector3.Distance(side.transform.position, master.arrowPositionCheck.position))
+                if (distance > Vector3.Distance(side.transform.position, targetPos))
                 {
-                    distance = Vector3.Distance(side.transform.position, master.arrowPositionCheck.position);
+                    distance = Vector3.Distance(side.transform.position, targetPos);
                     finalSide = side;
                 }
             }
 
-            master.previousSide = master.currentSide;
-            master.currentSide = finalSide.sides;
+            if (rotationSphere)
+            {
+                if (master.currentSide != finalSide.sides)
+                {
+                    master.previousSide = master.currentSide;
+                    master.currentSide = finalSide.sides;
+                    Manager.Instance.SetWorldAxis();
+                }
+            }
+            else
+            {
+                master.previousSide = master.currentSide;
+                master.currentSide = finalSide.sides;
+            }
             return;
         }
 

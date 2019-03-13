@@ -507,7 +507,10 @@ public class TeleportMaster : MonoBehaviour
     public void DDTest() => playerParent.transform.position += new Vector3(1, 0, 1);
 
     //This is for when we rotate to see which side of the asteroid we are standing on!
-    public void ChechWhichSideIsClosest () => currentAsteroidStandingOn.GetComponent<TurretMenuMaster>().CheckSides(this, false);
+    public void ChechWhichSideIsClosest(bool rotationSphere = false)
+    {
+        currentAsteroidStandingOn.GetComponent<TurretMenuMaster>().CheckSides(this, false, rotationSphere);
+    }
 
     public SideScript GetClosestSide (Vector3 posToCompare)
     {
