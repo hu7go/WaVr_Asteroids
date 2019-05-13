@@ -114,7 +114,7 @@ public class SpaceGun : MonoBehaviour
         switch (bulletType)
         {
             case BulletType.bullet:
-                if (audioManager.isPlaying == false)
+                if (!audioManager.isPlaying)
                     audioManager.Play();
                 break;
             case BulletType.beam:

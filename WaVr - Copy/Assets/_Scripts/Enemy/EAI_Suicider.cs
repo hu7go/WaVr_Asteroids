@@ -54,7 +54,7 @@ public class EAI_Suicider : EnemyAI
             goForth = true;
         }
 
-        // Kanske finns en bug - ATT DEN ÄR IN RANGE NÄR DEN BYTER TARGET OCH DÅ FUCKAR UT OCH INTE VILL ATTAKERA
+        // Kanske finns en bug - ATT DEN ÄR IN RANGE NÄR DEN BYTER TARGET OCH DÅ INTE VILL ATTAKERA
         if (distance > 21f && zeroed == true)
         {
             StopAllCoroutines();
